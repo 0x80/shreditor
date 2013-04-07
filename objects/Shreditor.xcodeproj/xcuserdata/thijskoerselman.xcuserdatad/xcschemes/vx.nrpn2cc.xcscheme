@@ -17,7 +17,7 @@
                BlueprintIdentifier = "84A9647B161112540048B8B5"
                BuildableName = "vx.nrpn2cc.mxo"
                BlueprintName = "vx.nrpn2cc"
-               ReferencedContainer = "container:MutableSysex.xcodeproj">
+               ReferencedContainer = "container:Shreditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

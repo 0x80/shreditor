@@ -17,7 +17,7 @@
                BlueprintIdentifier = "369473B20FD5C3DC00A5E9FD"
                BuildableName = "vx.shruthi.mxo"
                BlueprintName = "vx.shruthi"
-               ReferencedContainer = "container:MutableSysex.xcodeproj">
+               ReferencedContainer = "container:Shreditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
