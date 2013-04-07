@@ -1,3 +1,4 @@
 objects/bin
 .DS_Store
 /objects/DerivedData/
+/objects/.DS_Store
