@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		3694742E0FD5C8DC00A5E9FD /* All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 369474430FD5C90000A5E9FD /* Build configuration list for PBXAggregateTarget "All" */;
+			buildPhases = (
+				84EAB6F5161A2208009240D2 /* CopyFiles */,
+				840088CF16D18801001D2D5B /* CopyFiles */,
+			);
+			dependencies = (
+				84AC366016111EED00C30CEA /* PBXTargetDependency */,
+				8473C62B1610FAF0004C5FFA /* PBXTargetDependency */,
+				369474320FD5C8E700A5E9FD /* PBXTargetDependency */,
+			);
+			name = All;
+			productName = Untitled;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
+		840088D116D1881C001D2D5B /* vx.cc2nrpn.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */; };
+		840088D216D1881C001D2D5B /* vx.nrpn2cc.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */; };
+		8458DEC315AA1800003124B9 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
+		846B9B5C1634634800718272 /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 846B9B5716344D6900718272 /* RtMidi.cpp */; };
+		846B9B5E163467CD00718272 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846B9B5D163467CD00718272 /* CoreMIDI.framework */; };
+		846B9B60163467EB00718272 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846B9B5F163467EB00718272 /* CoreAudio.framework */; };
+		846B9B62163467F900718272 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846B9B61163467F900718272 /* CoreFoundation.framework */; };
+		846B9B6416346B2E00718272 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
+		8473C6251610FA67004C5FFA /* vx.cc2nrpn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8473C6231610FA67004C5FFA /* vx.cc2nrpn.cpp */; };
+		8473C6281610FA67004C5FFA /* vx.shruthi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8473C6241610FA67004C5FFA /* vx.shruthi.cpp */; };
+		84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A5939C1668CCDB00214212 /* shruthi.midi.cpp */; };
+		84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A593A5166A48F300214212 /* shruthi.transfer.cpp */; };
+		84A9647E161112540048B8B5 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
+		84EAB6F6161A2214009240D2 /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
+		84EAB6F7161A2214009240D2 /* vx.cc2nrpn.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */; };
+		84EAB6F8161A2214009240D2 /* vx.nrpn2cc.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */; };
+		84EAB6F9161A391E009240D2 /* vx.nrpn2cc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		369474310FD5C8E700A5E9FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 369473B20FD5C3DC00A5E9FD;
+			remoteInfo = "vx.circular~";
+		};
+		8473C62A1610FAF0004C5FFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8458DEBF15AA1800003124B9;
+			remoteInfo = vx.cc2nrpn;
+		};
+		84AC365F16111EED00C30CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84A9647B161112540048B8B5;
+			remoteInfo = vx.nrpn2cc;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		840088CF16D18801001D2D5B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Applications/Max 6.1/Cycling '74/_vauxlab";
+			dstSubfolderSpec = 0;
+			files = (
+				840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */,
+				840088D116D1881C001D2D5B /* vx.cc2nrpn.mxo in CopyFiles */,
+				840088D216D1881C001D2D5B /* vx.nrpn2cc.mxo in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84EAB6F5161A2208009240D2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Applications/Max6/Cycling '74/_vauxlab";
+			dstSubfolderSpec = 0;
+			files = (
+				84EAB6F6161A2214009240D2 /* vx.shruthi.mxo in CopyFiles */,
+				84EAB6F7161A2214009240D2 /* vx.cc2nrpn.mxo in CopyFiles */,
+				84EAB6F8161A2214009240D2 /* vx.nrpn2cc.mxo in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		22CF116D0EE9A7700054F513 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = SOURCE_ROOT; };
+		54266BCE05E6E9780000000C /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../c74support/max-includes/MaxAPI.framework"; sourceTree = SOURCE_ROOT; };
+		844870B1161DDFC5001F4CB0 /* sequencer_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sequencer_settings.h; path = include/shruthi/sequencer_settings.h; sourceTree = SOURCE_ROOT; };
+		846B9B5716344D6900718272 /* RtMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RtMidi.cpp; path = include/rtmidi/RtMidi.cpp; sourceTree = "<group>"; };
+		846B9B5D163467CD00718272 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		846B9B5F163467EB00718272 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		846B9B61163467F900718272 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		8473C6231610FA67004C5FFA /* vx.cc2nrpn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.cc2nrpn.cpp; path = src/vx.cc2nrpn.cpp; sourceTree = "<group>"; };
+		8473C6241610FA67004C5FFA /* vx.shruthi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.shruthi.cpp; path = src/vx.shruthi.cpp; sourceTree = "<group>"; };
+		8473C6331611084C004C5FFA /* vx.shruthi.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vx.shruthi.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vx.cc2nrpn.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A5939A1668CC2000214212 /* vx.shruthi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vx.shruthi.h; path = src/vx.shruthi.h; sourceTree = "<group>"; };
+		84A5939C1668CCDB00214212 /* shruthi.midi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shruthi.midi.cpp; path = src/shruthi.midi.cpp; sourceTree = "<group>"; };
+		84A593A01668DD5E00214212 /* shruthi.midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shruthi.midi.h; path = src/shruthi.midi.h; sourceTree = "<group>"; };
+		84A593A4166A48D700214212 /* shruthi.transfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shruthi.transfer.h; path = src/shruthi.transfer.h; sourceTree = "<group>"; };
+		84A593A5166A48F300214212 /* shruthi.transfer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shruthi.transfer.cpp; path = src/shruthi.transfer.cpp; sourceTree = "<group>"; };
+		84A593A7166A4AC100214212 /* shruthi.types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shruthi.types.h; path = src/shruthi.types.h; sourceTree = "<group>"; };
+		84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vx.nrpn2cc.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = maxmspsdk.xcconfig; sourceTree = "<group>"; };
+		84C3C13315A84702007FE735 /* commonsyms.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = commonsyms.c; path = "../c74support/max-includes/common/commonsyms.c"; sourceTree = "<group>"; };
+		84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.nrpn2cc.cpp; path = src/vx.nrpn2cc.cpp; sourceTree = "<group>"; };
+		84EAB6FA161B8F9D009240D2 /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = patch.h; path = ../objects/include/shruthi/patch.h; sourceTree = "<group>"; };
+		84F1286315A8E9C400B5F511 /* maxcpp6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maxcpp6.h; path = include/maxcpp6.h; sourceTree = SOURCE_ROOT; };
+		84FB91A91624CAAC00775C99 /* system_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = system_settings.h; path = include/shruthi/system_settings.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		369473B70FD5C3DC00A5E9FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				846B9B62163467F900718272 /* CoreFoundation.framework in Frameworks */,
+				846B9B60163467EB00718272 /* CoreAudio.framework in Frameworks */,
+				846B9B5E163467CD00718272 /* CoreMIDI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8458DEC415AA1800003124B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84A96480161112540048B8B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* iterator */ = {
+			isa = PBXGroup;
+			children = (
+				84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */,
+				846B9B5716344D6900718272 /* RtMidi.cpp */,
+				84C3C13315A84702007FE735 /* commonsyms.c */,
+				36D4A7DD0FD5A5C00086FA80 /* Include */,
+				08FB77ADFE841716C02AAC07 /* Source */,
+				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
+				8473C6341611084C004C5FFA /* Products */,
+			);
+			name = iterator;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				846B9B61163467F900718272 /* CoreFoundation.framework */,
+				846B9B5F163467EB00718272 /* CoreAudio.framework */,
+				846B9B5D163467CD00718272 /* CoreMIDI.framework */,
+				54266BCE05E6E9780000000C /* MaxAPI.framework */,
+				22CF116D0EE9A7700054F513 /* MaxAudioAPI.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		08FB77ADFE841716C02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */,
+				8473C6231610FA67004C5FFA /* vx.cc2nrpn.cpp */,
+				8473C6241610FA67004C5FFA /* vx.shruthi.cpp */,
+				84A5939A1668CC2000214212 /* vx.shruthi.h */,
+				84A5939C1668CCDB00214212 /* shruthi.midi.cpp */,
+				84A593A01668DD5E00214212 /* shruthi.midi.h */,
+				84A593A4166A48D700214212 /* shruthi.transfer.h */,
+				84A593A5166A48F300214212 /* shruthi.transfer.cpp */,
+				84A593A7166A4AC100214212 /* shruthi.types.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		36D4A7DD0FD5A5C00086FA80 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				84FB91A91624CAAC00775C99 /* system_settings.h */,
+				84EAB6FA161B8F9D009240D2 /* patch.h */,
+				84F1286315A8E9C400B5F511 /* maxcpp6.h */,
+				844870B1161DDFC5001F4CB0 /* sequencer_settings.h */,
+			);
+			name = Include;
+			path = ../include;
+			sourceTree = SOURCE_ROOT;
+		};
+		8473C6341611084C004C5FFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8473C6331611084C004C5FFA /* vx.shruthi.mxo */,
+				8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */,
+				84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		369473B20FD5C3DC00A5E9FD /* vx.shruthi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 369473BB0FD5C3DC00A5E9FD /* Build configuration list for PBXNativeTarget "vx.shruthi" */;
+			buildPhases = (
+				369473B30FD5C3DC00A5E9FD /* Resources */,
+				369473B40FD5C3DC00A5E9FD /* Sources */,
+				369473B70FD5C3DC00A5E9FD /* Frameworks */,
+				369473BA0FD5C3DC00A5E9FD /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vx.shruthi;
+			productName = iterator;
+			productReference = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8458DEBF15AA1800003124B9 /* vx.cc2nrpn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8458DEC815AA1800003124B9 /* Build configuration list for PBXNativeTarget "vx.cc2nrpn" */;
+			buildPhases = (
+				8458DEC015AA1800003124B9 /* Resources */,
+				8458DEC115AA1800003124B9 /* Sources */,
+				8458DEC415AA1800003124B9 /* Frameworks */,
+				8458DEC715AA1800003124B9 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vx.cc2nrpn;
+			productName = iterator;
+			productReference = 8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		84A9647B161112540048B8B5 /* vx.nrpn2cc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84A96484161112540048B8B5 /* Build configuration list for PBXNativeTarget "vx.nrpn2cc" */;
+			buildPhases = (
+				84A9647C161112540048B8B5 /* Resources */,
+				84A9647D161112540048B8B5 /* Sources */,
+				84A96480161112540048B8B5 /* Frameworks */,
+				84A96483161112540048B8B5 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vx.nrpn2cc;
+			productName = iterator;
+			productReference = 84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "Shreditor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* iterator */;
+			productRefGroup = 8473C6341611084C004C5FFA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				369473B20FD5C3DC00A5E9FD /* vx.shruthi */,
+				84A9647B161112540048B8B5 /* vx.nrpn2cc */,
+				8458DEBF15AA1800003124B9 /* vx.cc2nrpn */,
+				3694742E0FD5C8DC00A5E9FD /* All */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		369473B30FD5C3DC00A5E9FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8458DEC015AA1800003124B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84A9647C161112540048B8B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		369473BA0FD5C3DC00A5E9FD /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8458DEC715AA1800003124B9 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84A96483161112540048B8B5 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		369473B40FD5C3DC00A5E9FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8473C6281610FA67004C5FFA /* vx.shruthi.cpp in Sources */,
+				846B9B5C1634634800718272 /* RtMidi.cpp in Sources */,
+				846B9B6416346B2E00718272 /* commonsyms.c in Sources */,
+				84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */,
+				84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8458DEC115AA1800003124B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8458DEC315AA1800003124B9 /* commonsyms.c in Sources */,
+				8473C6251610FA67004C5FFA /* vx.cc2nrpn.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84A9647D161112540048B8B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84EAB6F9161A391E009240D2 /* vx.nrpn2cc.cpp in Sources */,
+				84A9647E161112540048B8B5 /* commonsyms.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		369474320FD5C8E700A5E9FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 369473B20FD5C3DC00A5E9FD /* vx.shruthi */;
+			targetProxy = 369474310FD5C8E700A5E9FD /* PBXContainerItemProxy */;
+		};
+		8473C62B1610FAF0004C5FFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8458DEBF15AA1800003124B9 /* vx.cc2nrpn */;
+			targetProxy = 8473C62A1610FAF0004C5FFA /* PBXContainerItemProxy */;
+		};
+		84AC366016111EED00C30CEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84A9647B161112540048B8B5 /* vx.nrpn2cc */;
+			targetProxy = 84AC365F16111EED00C30CEA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2FBBEAD008F335010078DB84 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				HEADER_SEARCH_PATHS = (
+					/Developer/Headers/FlatCarbon,
+					"\"$(C74SUPPORT)/max-includes\"",
+					"\"$(C74SUPPORT)/msp-includes\"",
+					"\"$(C74SUPPORT)/jit-includes\"",
+					/usr/local/include,
+				);
+				OTHER_LDFLAGS = "$(C74_SYM_LINKER_FLAGS)";
+			};
+			name = Development;
+		};
+		2FBBEAD108F335010078DB84 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				HEADER_SEARCH_PATHS = (
+					/Developer/Headers/FlatCarbon,
+					"\"$(C74SUPPORT)/max-includes\"",
+					"\"$(C74SUPPORT)/msp-includes\"",
+					"\"$(C74SUPPORT)/jit-includes\"",
+					/usr/local/include,
+				);
+				OTHER_LDFLAGS = "$(C74_SYM_LINKER_FLAGS)";
+			};
+			name = Deployment;
+		};
+		369473BC0FD5C3DC00A5E9FD /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DSTROOT = "$(SRCROOT)/bin";
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					include,
+					/usr/local/include,
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/include/rtmidi\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D__MACOSX_CORE__",
+				);
+				PRODUCT_NAME = $TARGET_NAME;
+			};
+			name = Development;
+		};
+		369473BD0FD5C3DC00A5E9FD /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DSTROOT = "$(SRCROOT)/bin";
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					include,
+					/usr/local/include,
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/include/rtmidi\"",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D__MACOSX_CORE__",
+				);
+				PRODUCT_NAME = $TARGET_NAME;
+			};
+			name = Deployment;
+		};
+		3694742F0FD5C8DD00A5E9FD /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Untitled;
+			};
+			name = Development;
+		};
+		369474300FD5C8DD00A5E9FD /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				DSTROOT = /;
+				PRODUCT_NAME = Untitled;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		8458DEC915AA1800003124B9 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "";
+				PRODUCT_NAME = $TARGET_NAME;
+			};
+			name = Development;
+		};
+		8458DECA15AA1800003124B9 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "";
+				PRODUCT_NAME = $TARGET_NAME;
+			};
+			name = Deployment;
+		};
+		84A96485161112540048B8B5 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "";
+				PRODUCT_NAME = vx.nrpn2cc;
+			};
+			name = Development;
+		};
+		84A96486161112540048B8B5 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "";
+				PRODUCT_NAME = vx.nrpn2cc;
+			};
+			name = Deployment;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "Shreditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FBBEAD008F335010078DB84 /* Development */,
+				2FBBEAD108F335010078DB84 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		369473BB0FD5C3DC00A5E9FD /* Build configuration list for PBXNativeTarget "vx.shruthi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				369473BC0FD5C3DC00A5E9FD /* Development */,
+				369473BD0FD5C3DC00A5E9FD /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		369474430FD5C90000A5E9FD /* Build configuration list for PBXAggregateTarget "All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3694742F0FD5C8DD00A5E9FD /* Development */,
+				369474300FD5C8DD00A5E9FD /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		8458DEC815AA1800003124B9 /* Build configuration list for PBXNativeTarget "vx.cc2nrpn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8458DEC915AA1800003124B9 /* Development */,
+				8458DECA15AA1800003124B9 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		84A96484161112540048B8B5 /* Build configuration list for PBXNativeTarget "vx.nrpn2cc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84A96485161112540048B8B5 /* Development */,
+				84A96486161112540048B8B5 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
