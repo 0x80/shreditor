@@ -4,11 +4,12 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 1,
 			"architecture" : "x86"
 		}
 ,
 		"rect" : [ 67.0, 44.0, 1473.0, 1109.0 ],
+		"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -28,6 +29,19 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "bpatcher",
+					"name" : "IR_Devices_And_HIRT_Credits.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 41.570099, 130.991547, 480.03418, 108.267548 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 920.0, 176.0, 480.03418, 108.267548 ]
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -185,7 +199,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -652,7 +666,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -996,7 +1010,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -2377,7 +2391,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -3213,7 +3227,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -3498,7 +3512,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -3890,7 +3904,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -4494,7 +4508,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -5600,7 +5614,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -5636,7 +5650,7 @@
 										"appversion" : 										{
 											"major" : 6,
 											"minor" : 1,
-											"revision" : 0,
+											"revision" : 1,
 											"architecture" : "x86"
 										}
 ,
@@ -6466,7 +6480,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 0,
+							"revision" : 1,
 							"architecture" : "x86"
 						}
 ,
@@ -7812,203 +7826,203 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-21::obj-75" : [ "Op1Input1", "Input1", 0 ],
-			"obj-12::obj-43" : [ "Cutoff2[4]", "F2Cut", 0 ],
-			"obj-34::obj-56" : [ "Mod1Amount[4]", ".", 0 ],
-			"obj-17::obj-55" : [ "SystemLegato", "Legato", 0 ],
-			"obj-21::obj-7" : [ "Op2Operator", "Operator", 0 ],
-			"obj-34::obj-68" : [ "Mod1Amount[6]", ".", 0 ],
-			"obj-17::obj-48" : [ "SystemOctave", "Octave", 0 ],
-			"obj-6::obj-2" : [ "Env1Decay", "Decay", 0 ],
-			"obj-17::obj-69" : [ "SystemSplit", "Split", 0 ],
-			"obj-6::obj-10" : [ "Env2Release", "Release", 0 ],
-			"obj-11::obj-4" : [ "Osc1Parameter", "Param", 0 ],
-			"obj-22::obj-28" : [ "ArpWarp", "Warp", 0 ],
-			"obj-11::obj-24" : [ "Osc2Shape", "Shape", 0 ],
-			"obj-12::obj-37" : [ "Filter2Mode[3]", "F2Mode", 0 ],
-			"obj-10::obj-78" : [ "Reson[1]", "Reson", 0 ],
-			"obj-12::obj-13" : [ "Cutoff2[1]", "F2Cut", 0 ],
-			"obj-34::obj-98" : [ "Mod1Amount[11]", ".", 0 ],
-			"obj-10::obj-75" : [ "live.dial[4]", "Cutoff", 0 ],
-			"obj-21::obj-3" : [ "Op1Input2", "Input2", 0 ],
-			"obj-12::obj-20" : [ "Resonance2[1]", "F2Reson", 0 ],
-			"obj-34::obj-50" : [ "Mod1Amount[3]", ".", 0 ],
-			"obj-6::obj-8" : [ "Env1Release", "Release", 0 ],
-			"obj-6::obj-12" : [ "Env2Sustain", "Sustain", 0 ],
-			"obj-4::obj-6" : [ "Lfo1RiseTime", "Attack", 0 ],
-			"obj-11::obj-1" : [ "Osc1Shape", "Shape", 0 ],
-			"obj-11::obj-26" : [ "OscBalance", "Balance", 0 ],
-			"obj-11::obj-8" : [ "ModulationOperator", "Operator", 0 ],
-			"obj-12::obj-35" : [ "Filter2Mode[2]", "F2Mode", 0 ],
-			"obj-4::obj-18" : [ "Lfo2Mode", "Mode", 0 ],
 			"obj-22::obj-8" : [ "ModulationOperator[1]", "Amount", 0 ],
-			"obj-12::obj-33" : [ "Filter1Mode[2]", "F1Mode", 0 ],
-			"obj-12::obj-16" : [ "Cutoff2[2]", "F2Cut", 0 ],
-			"obj-34::obj-44" : [ "Mod1Amount[2]", ".", 0 ],
-			"obj-21::obj-80" : [ "Op1Operator", "Operator", 0 ],
-			"obj-12::obj-7" : [ "Filter1Mode", "F1Mode", 0 ],
-			"obj-34::obj-23" : [ "Mod1Amount[1]", ".", 0 ],
-			"obj-6::obj-6" : [ "Env1Sustain", "Sustain", 0 ],
-			"obj-17::obj-50" : [ "SystemPortamento", "Portamento", 0 ],
-			"obj-12::obj-54" : [ "DspMode1", "F1 Mode", 0 ],
-			"obj-4::obj-20" : [ "Lfo2RiseTime", "Attack", 0 ],
-			"obj-22::obj-24" : [ "ArpDirection", "Direction", 0 ],
-			"obj-11::obj-28" : [ "Osc2Detune", "Detune", 0 ],
-			"obj-17::obj-71" : [ "SystemCvMode", "CV", 0 ],
-			"obj-12::obj-3" : [ "Cutoff2", "F2Cut", 0 ],
-			"obj-4::obj-8" : [ "Lfo1Mode", "Mode", 0 ],
-			"obj-11::obj-35" : [ "SubShape", "Shape", 0 ],
-			"obj-11::obj-6" : [ "Osc1Range", "Range", 0 ],
-			"obj-12::obj-18" : [ "Filter1Mode[1]", "F1Mode", 0 ],
-			"obj-4::obj-22" : [ "Lfo2Rate", "Rate", 0 ],
-			"obj-22::obj-6" : [ "Osc1Range[1]", "Groove", 0 ],
-			"obj-12::obj-9" : [ "Filter2Mode", "F2Mode", 0 ],
-			"obj-1::obj-192" : [ "grid", "grid", 0 ],
-			"obj-12::obj-28" : [ "Cutoff2[3]", "F2Cut", 0 ],
-			"obj-34::obj-74" : [ "Mod1Amount[7]", ".", 0 ],
-			"obj-21::obj-9" : [ "Op2Input1", "Input1", 0 ],
-			"obj-12::obj-41" : [ "Resonance2[3]", "F2Reson", 0 ],
-			"obj-34::obj-86" : [ "Mod1Amount[9]", ".", 0 ],
-			"obj-6::obj-16" : [ "Env2Attack", "Attack", 0 ],
-			"obj-17::obj-68" : [ "SystemMidiMode", "Midi", 0 ],
-			"obj-22::obj-20" : [ "ArpPattern", "Pattern", 0 ],
-			"obj-11::obj-22" : [ "Osc2Parameter", "Param", 0 ],
-			"obj-1::obj-191" : [ "sequencerSteps", "steps", 0 ],
-			"obj-22::obj-1" : [ "SequencerMode", "Mode", 0 ],
-			"obj-4::obj-2" : [ "Lfo1Rate", "Rate", 0 ],
-			"obj-11::obj-31" : [ "SubVolume", "SubVol", 0 ],
-			"obj-17::obj-65" : [ "SystemChannel", "Channel", 0 ],
 			"obj-4::obj-24" : [ "Lfo2Waveform", "Shape", 0 ],
-			"obj-12::obj-39" : [ "Filter1Mode[3]", "F1Mode", 0 ],
-			"obj-34::obj-92" : [ "Mod1Amount[10]", ".", 0 ],
+			"obj-17::obj-55" : [ "SystemLegato", "Legato", 0 ],
+			"obj-21::obj-80" : [ "Op1Operator", "Operator", 0 ],
+			"obj-17::obj-48" : [ "SystemOctave", "Octave", 0 ],
+			"obj-12::obj-54" : [ "DspMode1", "F1 Mode", 0 ],
+			"obj-34::obj-23" : [ "Mod1Amount[1]", ".", 0 ],
+			"obj-34::obj-98" : [ "Mod1Amount[11]", ".", 0 ],
+			"obj-12::obj-41" : [ "Resonance2[3]", "F2Reson", 0 ],
+			"obj-6::obj-2" : [ "Env1Decay", "Decay", 0 ],
+			"obj-12::obj-13" : [ "Cutoff2[1]", "F2Cut", 0 ],
+			"obj-22::obj-24" : [ "ArpDirection", "Direction", 0 ],
+			"obj-12::obj-43" : [ "Cutoff2[4]", "F2Cut", 0 ],
+			"obj-11::obj-4" : [ "Osc1Parameter", "Param", 0 ],
+			"obj-12::obj-24" : [ "Resonance2[2]", "F2Reson", 0 ],
+			"obj-11::obj-6" : [ "Osc1Range", "Range", 0 ],
+			"obj-11::obj-24" : [ "Osc2Shape", "Shape", 0 ],
+			"obj-4::obj-4" : [ "Lfo1Waveform", "Shape", 0 ],
+			"obj-22::obj-6" : [ "Osc1Range[1]", "Groove", 0 ],
 			"obj-10::obj-82" : [ "LFO[1]", "LFO", 0 ],
-			"obj-17::obj-56" : [ "SystemTuning", "Tuning", 0 ],
-			"obj-12::obj-5" : [ "Resonance2", "F2Reson", 0 ],
-			"obj-34::obj-80" : [ "Mod1Amount[8]", ".", 0 ],
+			"obj-21::obj-9" : [ "Op2Input1", "Input1", 0 ],
+			"obj-17::obj-65" : [ "SystemChannel", "Channel", 0 ],
+			"obj-34::obj-44" : [ "Mod1Amount[2]", ".", 0 ],
+			"obj-34::obj-56" : [ "Mod1Amount[4]", ".", 0 ],
+			"obj-12::obj-35" : [ "Filter2Mode[2]", "F2Mode", 0 ],
+			"obj-6::obj-8" : [ "Env1Release", "Release", 0 ],
+			"obj-4::obj-6" : [ "Lfo1RiseTime", "Attack", 0 ],
+			"obj-12::obj-30" : [ "Filter2Mode[1]", "F2Mode", 0 ],
+			"obj-22::obj-20" : [ "ArpPattern", "Pattern", 0 ],
+			"obj-12::obj-9" : [ "Filter2Mode", "F2Mode", 0 ],
+			"obj-11::obj-1" : [ "Osc1Shape", "Shape", 0 ],
+			"obj-22::obj-1" : [ "SequencerMode", "Mode", 0 ],
+			"obj-11::obj-26" : [ "OscBalance", "Balance", 0 ],
+			"obj-1::obj-191" : [ "sequencerSteps", "steps", 0 ],
+			"obj-10::obj-78" : [ "Reson[1]", "Reson", 0 ],
+			"obj-17::obj-71" : [ "SystemCvMode", "CV", 0 ],
 			"obj-21::obj-5" : [ "Op2Input2", "Input2", 0 ],
-			"obj-34::obj-62" : [ "Mod1Amount[5]", ".", 0 ],
-			"obj-6::obj-4" : [ "Env1Attack", "Attack", 0 ],
+			"obj-6::obj-10" : [ "Env2Release", "Release", 0 ],
+			"obj-34::obj-80" : [ "Mod1Amount[8]", ".", 0 ],
+			"obj-34::obj-74" : [ "Mod1Amount[7]", ".", 0 ],
+			"obj-12::obj-39" : [ "Filter1Mode[3]", "F1Mode", 0 ],
+			"obj-12::obj-18" : [ "Filter1Mode[1]", "F1Mode", 0 ],
+			"obj-6::obj-6" : [ "Env1Sustain", "Sustain", 0 ],
+			"obj-4::obj-20" : [ "Lfo2RiseTime", "Attack", 0 ],
+			"obj-12::obj-5" : [ "Resonance2", "F2Reson", 0 ],
 			"obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
+			"obj-22::obj-22" : [ "ArpRange", "Range", 0 ],
+			"obj-12::obj-3" : [ "Cutoff2", "F2Cut", 0 ],
+			"obj-11::obj-28" : [ "Osc2Detune", "Detune", 0 ],
+			"obj-22::obj-4" : [ "SequencerTempo", "Tempo", 0 ],
+			"obj-11::obj-35" : [ "SubShape", "Shape", 0 ],
+			"obj-4::obj-18" : [ "Lfo2Mode", "Mode", 0 ],
+			"obj-10::obj-80" : [ "Env[1]", "Envelope", 0 ],
+			"obj-17::obj-68" : [ "SystemMidiMode", "Midi", 0 ],
+			"obj-10::obj-75" : [ "live.dial[4]", "Cutoff", 0 ],
+			"obj-21::obj-75" : [ "Op1Input1", "Input1", 0 ],
+			"obj-21::obj-7" : [ "Op2Operator", "Operator", 0 ],
+			"obj-6::obj-12" : [ "Env2Sustain", "Sustain", 0 ],
+			"obj-34::obj-62" : [ "Mod1Amount[5]", ".", 0 ],
+			"obj-34::obj-50" : [ "Mod1Amount[3]", ".", 0 ],
+			"obj-12::obj-33" : [ "Filter1Mode[2]", "F1Mode", 0 ],
+			"obj-6::obj-16" : [ "Env2Attack", "Attack", 0 ],
+			"obj-12::obj-37" : [ "Filter2Mode[3]", "F2Mode", 0 ],
+			"obj-22::obj-28" : [ "ArpWarp", "Warp", 0 ],
+			"obj-12::obj-7" : [ "Filter1Mode", "F1Mode", 0 ],
+			"obj-11::obj-22" : [ "Osc2Parameter", "Param", 0 ],
+			"obj-4::obj-8" : [ "Lfo1Mode", "Mode", 0 ],
+			"obj-11::obj-31" : [ "SubVolume", "SubVol", 0 ],
+			"obj-17::obj-56" : [ "SystemTuning", "Tuning", 0 ],
+			"obj-4::obj-22" : [ "Lfo2Rate", "Rate", 0 ],
+			"obj-21::obj-3" : [ "Op1Input2", "Input2", 0 ],
+			"obj-1::obj-192" : [ "grid", "grid", 0 ],
+			"obj-34::obj-86" : [ "Mod1Amount[9]", ".", 0 ],
+			"obj-34::obj-92" : [ "Mod1Amount[10]", ".", 0 ],
+			"obj-34::obj-68" : [ "Mod1Amount[6]", ".", 0 ],
+			"obj-12::obj-20" : [ "Resonance2[1]", "F2Reson", 0 ],
+			"obj-6::obj-4" : [ "Env1Attack", "Attack", 0 ],
+			"obj-17::obj-50" : [ "SystemPortamento", "Portamento", 0 ],
+			"obj-12::obj-16" : [ "Cutoff2[2]", "F2Cut", 0 ],
 			"obj-6::obj-14" : [ "Env2Decay", "Decay", 0 ],
 			"obj-11::obj-33" : [ "NoiseVolume", "Noise", 0 ],
-			"obj-22::obj-22" : [ "ArpRange", "Range", 0 ],
+			"obj-17::obj-69" : [ "SystemSplit", "Split", 0 ],
+			"obj-12::obj-28" : [ "Cutoff2[3]", "F2Cut", 0 ],
 			"obj-11::obj-20" : [ "Osc2Range", "Range", 0 ],
-			"obj-22::obj-4" : [ "SequencerTempo", "Tempo", 0 ],
-			"obj-4::obj-4" : [ "Lfo1Waveform", "Shape", 0 ],
-			"obj-12::obj-24" : [ "Resonance2[2]", "F2Reson", 0 ],
-			"obj-12::obj-30" : [ "Filter2Mode[1]", "F2Mode", 0 ],
-			"obj-10::obj-80" : [ "Env[1]", "Envelope", 0 ]
+			"obj-11::obj-8" : [ "ModulationOperator", "Operator", 0 ],
+			"obj-4::obj-2" : [ "Lfo1Rate", "Rate", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "nrpnFilter.js",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pDevicePresets.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "_.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "ShreditorDevices.json",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pFilter.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "param.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pOscillators.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pLfos.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pEnvelopes.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pMatrix.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pExtra.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pOperands.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pSequencerSettings.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pSequencer.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pSystemSettings.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pPatchNames.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "./",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}

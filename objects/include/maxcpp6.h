@@ -91,7 +91,7 @@ THE SOFTWARE.
     (t_class *)CLASS::m_class,								\
     (method)CLASS::MaxMethodSymbolLong<&CLASS::METHOD>::call,	\
     #METHOD,												\
-    A_SYM, A_LONG,                                                  \
+    A_SYM, A_LONG,                                          \
     0);
 
 #define REGISTER_METHOD_LONG2(CLASS, METHOD) class_addmethod(\

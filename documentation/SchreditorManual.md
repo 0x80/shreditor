@@ -9,27 +9,27 @@ Yes back up your stuff. This thing is in beta. I will never feel responsible for
 ### !!
 This object will only work with Shruthi-1 firmware versions >= 0.98. At the time of writing this version is not yet released, but you can grab a working pre-0.98 version from here: 
 
-There were numeous changes made to the previous firmware in order to allow the level of control that this object offers. Some of the firmware updates that are essential to this editor are:
+There were numerous changes made to the previous firmware in order to allow the level of control that this object offers. Some of the firmware updates that are essential to this editor are:
 - transfer / write system settings
 - program change for sequence presets
 - transfer of individual sequence step data
 - request for bulk data transfer
 
 ### !!
-Beware that sysex is not tied to a specific channel. All devices with the same device header will respond. Having multple Shruthi devices on the same midi port is something you want to **prevent** when using this editor. 
+Beware that sysex is not tied to a specific channel. All devices with the same device header will respond. Having multiple Shruthi devices on the same midi port is something you want to **prevent** when using this editor. 
 
 ## Feature Summary
 - Control over every available parameter of the device including system settings(*), routing matrix and sequence editor.
 - Bidirectional communication. Active patch and sequence data is mirrored in the interface.
 - Direct internal MIDI communication with device, allows for unfiltered sysex (M4L) and efficient data transfer
 - Device EEPROM transfer and mirroring
-- Correctly labled parameters and ranges
+- Correctly labeled parameters and ranges
 
 (*) Some settings are deliberately ignored because I don't think they make sense to expose in an editor, like display pause and parameter snap.
 
 ***
 ## Function Reference
-Hoe maak je een object referece zodat ie past in het stramien van C74?
+Hoe maak je een object reference zodat ie past in het stramien van C74?
 
 
 ## Notes
@@ -61,6 +61,9 @@ Sequence rotation doesn't work
 
 #ToDo
 ##Sooner
+convert maxpatch to project?
+apply m4l default	
+
 als je nu patch saved onder andere preset en zit spatie in de naam dan kut
 editing van patch names-> clip 8 char -> update shruti, eeprom en patchlist
 
