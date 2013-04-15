@@ -22,8 +22,8 @@ ShruthiMidi::ShruthiMidi()
     valid(false),
     enable_running_status_(false),
     filterMsb_(true),
-    sysexCallback_(NULL),
-    nrpnCallback_(NULL),
+   // sysexCallback_(NULL),
+    //nrpnCallback_(NULL),
     locked_(false)
 {
     // Create an api map.
@@ -166,7 +166,7 @@ void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
     midiin->openPort(findInputPortNumberForName(portName));
     midiin->setCallback( &ShruthiMidi::midiInputCallback, this);
     midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
-    channelIn_ = CLIP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+    channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
 }
 
 void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
@@ -176,7 +176,7 @@ void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
     }
     midiout->closePort();
     midiout->openPort(findOutputPortNumberForName(portName));
-    channelOut_ = CLIP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+    channelOut_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
 }
 
 void ShruthiMidi::sendMessage(std::vector<uint8_t> *msg){

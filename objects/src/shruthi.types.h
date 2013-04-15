@@ -5,8 +5,14 @@
 #include "shruthi/patch.h"
 #include "shruthi/sequencer_settings.h"
 #include "shruthi/system_settings.h"
-#include <fstream> // uint declarations, waar anders??
-#include <boost/tr1/functional.hpp>
+//#include <fstream> // uint declarations, waar anders??
+#include <functional>
+//#include <boost/tr1/functional>
+#include "stdint.h"
+
+//#define uint16_t unsigned int
+//#define uint8_t unsigned char
+
 
 const uint16_t kUserWavetableSize = 8 * 129;
 const uint8_t kSysExBulkDumpBlockSize = 128;
