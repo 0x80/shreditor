@@ -8,6 +8,9 @@
 #include <map>
 #include <fstream>
 
+// for using _1 _2 
+using namespace std::placeholders; 
+
 //#include "rtmidi/RtMidi.h"
 
 const float VELOCITY_SCALE_DOWN = 7.f / 127.f;
@@ -85,9 +88,9 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
     memset(eeprom_, 0, kEepromSize*sizeof(uint8_t)); // init to zero
     
     setupIO(1, 2); // inlets / outlets
-    
-    device_.registerSysexCallback(std::tr1::bind(&VxShruthi::acceptSysexData, this, _1, _2, _3));
-    device_.registerNrpnCallback(std::tr1::bind(&VxShruthi::outputNrpn, this, _1, _2));
+
+    device_.registerSysexCallback(std::bind(&VxShruthi::acceptSysexData, this, _1, _2, _3));
+	device_.registerNrpnCallback(std::bind(&VxShruthi::outputNrpn, this, _1, _2));
     
     m_clock = clock_new((t_object *)this, (method)onTick);
     clock_fdelay(m_clock, SEQUENCE_UPDATE_INTERVAL_MS);
@@ -432,7 +435,7 @@ void VxShruthi::transferSequencerSettings(long inlet){
 
 
 void VxShruthi::setPatternLength(long inlet, long length){
-    uint8_t v = CLIP(length, 1, 16);
+    uint8_t v = CLAMP(length, 1, 16);
     sequencer_.pattern_size = v;
     device_.sendSysexCommand(0x08, v);
 }
@@ -557,19 +560,19 @@ void VxShruthi::setSettingsFilter(long inlet, t_symbol *name){
 }
 
 void VxShruthi::setSettingsOctave(long inlet, long v){    
-    settings_->octave = CLIP(v, -2, 2);
+    settings_->octave = CLAMP(v, -2, 2);
     transferSystemSettings();
     outputSettingsData();
 }
 
 void VxShruthi::setSettingsRaga(long inlet, long v){
-    settings_->raga = CLIP(v, 0, 31);
+    settings_->raga = CLAMP(v, 0, 31);
     transferSystemSettings();
     outputSettingsData();
 }
 
 void VxShruthi::setSettingsPortamento(long inlet, long v){
-    settings_->portamento = CLIP(v, 0, 63);
+    settings_->portamento = CLAMP(v, 0, 63);
     transferSystemSettings();
     outputSettingsData();
 }
@@ -1000,7 +1003,7 @@ void VxShruthi::listPatchNames(long inlet){
 
 }
 
-extern "C" int main(void) {
+int T_EXPORT main(void) {
 	// create a class with the given name:
 	VxShruthi::makeMaxClass("vx.shruthi");
     
