@@ -169,10 +169,6 @@
 
 			}
  ],
-		"parameters" : 		{
-
-		}
-,
 		"dependency_cache" : [ 			{
 				"name" : "pDevicePresets.maxpat",
 				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",

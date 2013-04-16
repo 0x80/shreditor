@@ -1649,11 +1649,13 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowbgcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"framecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"id" : "obj-211",
 					"items" : [ "Pitch", ",", "Velocity", ",", "Controller" ],
 					"maxclass" : "umenu",
@@ -1664,9 +1666,9 @@
 					"patching_rect" : [ 720.0, 176.0, 88.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 424.0, 8.0, 104.0, 20.0 ],
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textcolor2" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"togcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"togcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -2386,6 +2388,19 @@
 					"source" : [ "obj-9", 0 ]
 				}
 
+			}
+ ],
+		"parameters" : 		{
+			"obj-192" : [ "grid", "grid", 0 ],
+			"obj-191" : [ "sequencerSteps", "steps", 0 ]
+		}
+,
+		"dependency_cache" : [ 			{
+				"name" : "_.maxpat",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
 			}
  ]
 	}

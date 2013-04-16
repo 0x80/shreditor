@@ -159,6 +159,7 @@
 					"name" : "pTabsBottom.maxpat",
 					"numinlets" : 1,
 					"numoutlets" : 0,
+					"offset" : [ 0.0, -200.0 ],
 					"patching_rect" : [ 368.0, 680.0, 152.0, 88.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 192.0, 568.0, 592.0, 200.0 ],
