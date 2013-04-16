@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 268.0, 104.0, 1214.0, 851.0 ],
+		"rect" : [ 386.0, 445.0, 1214.0, 851.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -31,34 +31,34 @@
 		"boxes" : [ 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
+					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-33",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 264.0, 44.0, 19.0 ],
+					"patching_rect" : [ 24.0, 264.0, 48.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 11.0, 48.0, 19.0 ],
+					"presentation_rect" : [ 8.0, 11.0, 52.0, 20.0 ],
 					"text" : "Device",
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ]
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
+					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-31",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 296.0, 42.0, 19.0 ],
+					"patching_rect" : [ 24.0, 296.0, 46.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 126.0, 42.0, 19.0 ],
+					"presentation_rect" : [ 328.0, 62.0, 46.0, 20.0 ],
 					"text" : "Merge",
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ]
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -139,18 +139,18 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 1016.0, 224.0, 137.0, 20.0 ],
-					"text" : "s #0.midiMergeChannel"
+					"text" : "s ---midiMergeChannel"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"bordercolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"hbgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"htextcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"htextcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"htricolor" : [ 1.0, 0.427231, 0.000534, 1.0 ],
 					"id" : "obj-28",
 					"maxclass" : "number",
@@ -160,10 +160,10 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 928.0, 208.0, 42.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 232.0, 126.0, 32.0, 20.0 ],
+					"presentation_rect" : [ 552.0, 62.0, 32.0, 20.0 ],
 					"prototypename" : "Live",
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"tricolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"tricolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"triscale" : 0.75
 				}
 
@@ -177,21 +177,21 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 880.0, 312.0, 115.0, 20.0 ],
-					"text" : "s #0.midiMergePort"
+					"text" : "s ---midiMergePort"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"arrowbgcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"arrowcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"arrowbgcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"arrowcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"discolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"discolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"framecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"hltcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-9",
 					"items" : [ "AU DLS Synth 1", ",", "IAC Driver Bus 1", ",", "IAC Driver Max <-> Live", ",", "IAC Driver Max <-> Pages", ",", "IAC Driver IAC Bus 4", ",", "IAC Driver IAC Bus 5", ",", "Akai APC40", ",", "USB MIDI 1x1 Port 1", ",", "Fireface 400 (B21) Port 1", ",", "Fireface 400 (B21) Port 2", ",", "MIDI Monitor (Untitled)", ",", "from Max 1", ",", "from Max 2" ],
 					"labelclick" : 1,
@@ -200,13 +200,13 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 672.0, 184.0, 168.0, 19.0 ],
+					"patching_rect" : [ 672.0, 184.0, 168.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 56.0, 126.0, 168.0, 19.0 ],
+					"presentation_rect" : [ 376.0, 62.0, 168.0, 20.0 ],
 					"prototypename" : "shreditor",
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"textcolor2" : [ 0.862745, 0.862745, 0.862745, 1.0 ],
-					"togcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"togcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -236,7 +236,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 272.0, 688.0, 66.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 368.0, 88.0, 65.0, 18.0 ],
+					"presentation_rect" : [ 368.0, 336.0, 65.0, 18.0 ],
 					"text" : "writeagain",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -396,7 +396,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 128.0, 488.0, 72.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 400.0, 8.0, 72.0, 19.0 ],
+					"presentation_rect" : [ 400.0, 256.0, 72.0, 19.0 ],
 					"text" : "transfer data",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -414,7 +414,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 288.0, 488.0, 60.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 568.0, 8.0, 65.0, 18.0 ],
+					"presentation_rect" : [ 568.0, 256.0, 65.0, 18.0 ],
 					"text" : "to device",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -429,7 +429,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 208.0, 536.0, 85.0, 20.0 ],
-					"text" : "s #0.toShruthi"
+					"text" : "s ---toShruthi"
 				}
 
 			}
@@ -459,7 +459,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 208.0, 488.0, 74.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 480.0, 8.0, 74.0, 18.0 ],
+					"presentation_rect" : [ 480.0, 256.0, 74.0, 18.0 ],
 					"text" : "from device",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -580,7 +580,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 904.0, 664.0, 85.0, 20.0 ],
-					"text" : "s #0.toShruthi"
+					"text" : "s ---toShruthi"
 				}
 
 			}
@@ -638,7 +638,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1072.0, 464.0, 38.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 592.0, 40.0, 41.0, 18.0 ],
+					"presentation_rect" : [ 592.0, 288.0, 41.0, 18.0 ],
 					"text" : "open",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -684,7 +684,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 968.0, 464.0, 53.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 528.0, 40.0, 53.0, 18.0 ],
+					"presentation_rect" : [ 528.0, 288.0, 53.0, 18.0 ],
 					"text" : "save as",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -702,7 +702,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 912.0, 464.0, 37.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 480.0, 40.0, 37.0, 18.0 ],
+					"presentation_rect" : [ 480.0, 288.0, 37.0, 18.0 ],
 					"text" : "save",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -793,7 +793,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 656.0, 624.0, 85.0, 20.0 ],
-					"text" : "s #0.toShruthi"
+					"text" : "s ---toShruthi"
 				}
 
 			}
@@ -883,7 +883,7 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 656.0, 488.0, 240.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 368.0, 112.0, 168.0, 23.0 ]
+					"presentation_rect" : [ 368.0, 360.0, 168.0, 23.0 ]
 				}
 
 			}
@@ -898,7 +898,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 656.0, 464.0, 74.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 320.0, 112.0, 39.0, 19.0 ],
+					"presentation_rect" : [ 320.0, 360.0, 39.0, 19.0 ],
 					"text" : "Mirror",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -923,7 +923,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 656.0, 488.0, 108.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 368.0, 112.0, 168.0, 24.0 ],
+					"presentation_rect" : [ 368.0, 360.0, 168.0, 24.0 ],
 					"text" : "cemmetje_data.bin"
 				}
 
@@ -931,17 +931,17 @@
 , 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
+					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-53",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 528.0, 464.0, 74.0, 19.0 ],
+					"patching_rect" : [ 528.0, 464.0, 78.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 42.0, 40.0, 19.0 ],
-					"text" : "Name",
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ]
+					"presentation_rect" : [ 8.0, 40.0, 43.0, 20.0 ],
+					"text" : "ID",
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -949,7 +949,7 @@
 				"box" : 				{
 					"autoscroll" : 0,
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"bordercolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"frgb" : 0.0,
@@ -964,24 +964,24 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 528.0, 488.0, 102.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 56.0, 40.0, 102.0, 24.0 ],
+					"presentation_rect" : [ 56.0, 38.0, 128.0, 24.0 ],
 					"prototypename" : "shreditor",
 					"tabmode" : 0,
 					"text" : "cemmetje",
-					"textcolor" : [ 1.0, 0.427231, 0.000534, 1.0 ]
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"active1" : [ 1.0, 0.427231, 0.000534, 1.0 ],
-					"active2" : [ 1.0, 0.427231, 0.000534, 1.0 ],
+					"active1" : [ 0.242355, 0.476857, 0.983694, 1.0 ],
+					"active2" : [ 0.242355, 0.476857, 0.983694, 1.0 ],
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"bubblesize" : 12,
+					"bordercolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bubblesize" : 11,
 					"clicked1" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
 					"clicked2" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
-					"emptycolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"emptycolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-119",
 					"margin" : 6,
 					"maxclass" : "preset",
@@ -992,6 +992,7 @@
 					"pattrstorage" : "ShreditorDevices",
 					"presentation" : 1,
 					"presentation_rect" : [ 56.0, 8.0, 128.0, 24.0 ],
+					"spacing" : 4,
 					"stored1" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"stored2" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"textcolor" : [ 0.501961, 0.501961, 0.501961, 0.0 ]
@@ -1008,7 +1009,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 272.0, 32.0, 85.0, 20.0 ],
-					"text" : "r #0.initLevel0"
+					"text" : "r ---initLevel0"
 				}
 
 			}
@@ -1023,7 +1024,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 488.0, 64.0, 45.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 520.0, 72.0, 45.0, 19.0 ],
+					"presentation_rect" : [ 520.0, 320.0, 45.0, 19.0 ],
 					"text" : "rescan",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -1038,41 +1039,41 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 464.0, 64.0, 20.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 496.0, 72.0, 20.0, 20.0 ]
+					"presentation_rect" : [ 496.0, 320.0, 20.0, 20.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
+					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-6",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 360.0, 22.0, 19.0 ],
+					"patching_rect" : [ 24.0, 360.0, 24.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 72.0, 28.0, 19.0 ],
+					"presentation_rect" : [ 328.0, 8.0, 30.0, 20.0 ],
 					"text" : "To",
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ]
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
+					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-5",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 328.0, 36.0, 19.0 ],
+					"patching_rect" : [ 24.0, 328.0, 39.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 99.0, 36.0, 19.0 ],
+					"presentation_rect" : [ 328.0, 35.0, 39.0, 20.0 ],
 					"text" : "From",
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ]
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -1124,17 +1125,17 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 552.0, 224.0, 103.0, 20.0 ],
-					"text" : "s #0.midiChannel"
+					"text" : "s ---midiChannel"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"bordercolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"htextcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"htextcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"htricolor" : [ 1.0, 0.427231, 0.000534, 1.0 ],
 					"id" : "obj-18",
 					"maxclass" : "number",
@@ -1144,9 +1145,9 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 416.0, 184.0, 32.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 232.0, 72.0, 32.0, 20.0 ],
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"tricolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ]
+					"presentation_rect" : [ 552.0, 8.0, 32.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"tricolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -1159,7 +1160,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 488.0, 376.0, 91.0, 20.0 ],
-					"text" : "s #0.midiInPort"
+					"text" : "s ---midiInPort"
 				}
 
 			}
@@ -1172,7 +1173,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 656.0, 328.0, 100.0, 20.0 ],
-					"text" : "s #0.midiOutPort"
+					"text" : "s ---midiOutPort"
 				}
 
 			}
@@ -1206,15 +1207,15 @@
 			}
 , 			{
 				"box" : 				{
-					"arrowbgcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"arrowcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"arrowbgcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"arrowcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"discolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"discolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"framecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"hltcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-36",
 					"items" : [ "AU DLS Synth 1", ",", "IAC Driver Bus 1", ",", "IAC Driver Max <-> Live", ",", "IAC Driver Max <-> Pages", ",", "IAC Driver IAC Bus 4", ",", "IAC Driver IAC Bus 5", ",", "Akai APC40", ",", "USB MIDI 1x1 Port 1", ",", "Fireface 400 (B21) Port 1", ",", "Fireface 400 (B21) Port 2", ",", "MIDI Monitor (Untitled)", ",", "from Max 1", ",", "from Max 2" ],
 					"labelclick" : 1,
@@ -1223,12 +1224,12 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 64.0, 184.0, 168.0, 19.0 ],
+					"patching_rect" : [ 64.0, 184.0, 168.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 56.0, 99.0, 168.0, 19.0 ],
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"textcolor2" : [ 0.862745, 0.862745, 0.862745, 1.0 ],
-					"togcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"presentation_rect" : [ 376.0, 35.0, 168.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"togcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -1248,15 +1249,15 @@
 			}
 , 			{
 				"box" : 				{
-					"arrowbgcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"arrowcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"arrowbgcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"arrowcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"discolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"discolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"framecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"hltcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-2",
 					"items" : [ "IAC Driver Bus 1", ",", "IAC Driver Max <-> Live", ",", "IAC Driver Max <-> Pages", ",", "IAC Driver IAC Bus 4", ",", "IAC Driver IAC Bus 5", ",", "Akai APC40", ",", "USB MIDI 1x1 Port 1", ",", "Fireface 400 (B21) Port 1", ",", "Fireface 400 (B21) Port 2", ",", "to Max 1", ",", "to Max 2" ],
 					"labelclick" : 1,
@@ -1265,12 +1266,12 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 240.0, 184.0, 168.0, 19.0 ],
+					"patching_rect" : [ 240.0, 184.0, 168.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 56.0, 72.0, 168.0, 19.0 ],
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"textcolor2" : [ 0.862745, 0.862745, 0.862745, 1.0 ],
-					"togcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"presentation_rect" : [ 376.0, 8.0, 168.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"togcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -1285,22 +1286,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 240.0, 152.0, 55.0, 21.0 ],
 					"text" : "midiinfo"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 1,
-					"bgcolor" : [ 0.137255, 0.145098, 0.160784, 0.4 ],
-					"id" : "obj-34",
-					"maxclass" : "panel",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 784.0, 16.0, 37.25, 159.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 648.0, 152.0 ],
-					"rounded" : 10,
-					"varname" : "Display"
 				}
 
 			}

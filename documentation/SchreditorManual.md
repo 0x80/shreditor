@@ -56,37 +56,30 @@ The sequencer settings are not stored anywhere in the Shruthi eeprom. This means
 - 
 
 #Bugs
-Portamento wil niet WTF worden??
 Sequence rotation doesn't work
 
 #ToDo
 ##Sooner
+static mirror filenames
 convert maxpatch to project?
-apply m4l default	
+fix patch list offset
+implement pgm change voor patch en sequence
+tabs voor matrix/seq
+worden de operators opgeslagen in patch nu?
+add clock source and test
+werken de lfo's nog wel?
 
-als je nu patch saved onder andere preset en zit spatie in de naam dan kut
-editing van patch names-> clip 8 char -> update shruti, eeprom en patchlist
-
-Update de internal mirror bij het saven van nieuwe patch
-
-Save veranderingen in sequence. Nu worden de sequences niet uit cache gehaald?
-
-Auto-save mirror on close
-
-Detect filter board als je device preset switched? Wat als CEM en 4PM combineren?
-
-Settings inklapbaar maken. Die hoef je niet de hele tijd te zien.
-
-Kleuren en lettertypen afkijken van Live9 M4L patches
+* als je nu patch saved onder andere preset en zit spatie in de naam dan kut
+* editing van patch names-> clip 8 char -> update shruti, eeprom en patchlist
+* Save internal mirror + preset bij het store van shruthi patch en sluiten app
+* Save veranderingen in sequence. Nu worden de sequences niet uit cache gehaald?
+* Detect filter board als je device preset switched? Wat als CEM en 4PM combineren?
+*  transfer moet midi blokkeren zodat er niks gestuurd wordt als de eeprom transfer aan de gang is
+* edits van parameters en sequence ook naar internal eeprom mirror. 
+* presets met port/channel/eeprom mirror/ name
+* program change from aux input  -> load patch
 
 
-- transfer moet midi blokkeren zodat er niks gestuurd wordt als de eeprom transfer aan de gang is
-- edits van parameters en sequence ook naar internal eeprom mirror. 
-- presets met port/channel/eeprom mirror/ name
-- autosave poll functie voor eeprom mirror?
-- program change from aux input  -> load patch
-
-- wavetable transfer from buffer
 - seq pattern_size parameter
 
 msb filter timewindow reset
@@ -94,6 +87,10 @@ midilock output 1/0 when transferring eeprom
 test midi clock sync
 
 ##Later
+ credits/about
+reset knop voor modulation
+- wavetable transfer from buffer
+backup and import voor mirrors, is dit nodig?
 forward debug log to void post(C74_CONST char *fmt, ...);
 reset click op dials vooral matrix 
 default settings functie: lpf, 0 0 0 0 0 1

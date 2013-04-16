@@ -128,7 +128,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 32.0, 304.0, 91.0, 20.0 ],
-					"text" : "s #0.nrpnout"
+					"text" : "s ---nrpnout"
 				}
 
 			}

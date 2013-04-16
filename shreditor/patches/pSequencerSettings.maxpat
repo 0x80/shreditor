@@ -32,21 +32,6 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"id" : "obj-9",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patching_rect" : [ 167.0, 263.0, 44.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 48.0, 80.0, 20.0 ],
-					"text" : "#0.foo"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-14",
 					"maxclass" : "comment",
@@ -118,12 +103,12 @@
 					"presentation_rect" : [ 144.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "->", "<-", ">--<", ">-<", "glass", "krama", "jata", "sikha", "ghana", "2glass", "2krama", "2jata", "2sikha", "2ghana", "4glass", "4krama", "4jata", "4sikha", "4ghana" ],
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Warp",
-							"parameter_longname" : "ArpWarp",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "->", "<-", ">--<", ">-<", "glass", "krama", "jata", "sikha", "ghana", "2glass", "2krama", "2jata", "2sikha", "2ghana", "4glass", "4krama", "4jata", "4sikha", "4ghana" ]
+							"parameter_longname" : "ArpWarp"
 						}
 
 					}
@@ -166,13 +151,13 @@
 					"presentation_rect" : [ 96.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "seq" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 15.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Pattern",
-							"parameter_longname" : "ArpPattern",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "seq" ]
+							"parameter_longname" : "ArpPattern"
 						}
 
 					}
@@ -215,13 +200,13 @@
 					"presentation_rect" : [ 48.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 4.0,
 							"parameter_mmin" : 1.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Range",
-							"parameter_longname" : "ArpRange",
-							"parameter_linknames" : 1
+							"parameter_longname" : "ArpRange"
 						}
 
 					}
@@ -264,13 +249,13 @@
 					"presentation_rect" : [ 0.0, 64.0, 51.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "up", "down", "up/down", "random" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 33.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Direction",
-							"parameter_longname" : "ArpDirection",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "up", "down", "up/down", "random" ]
+							"parameter_longname" : "ArpDirection"
 						}
 
 					}
@@ -313,12 +298,12 @@
 					"presentation_rect" : [ 144.0, 0.0, 51.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "sum", "sync", "ring", "xor", "fuzz", ">>4", ">>8", "fold", "bits", "duo", "2steps", "4steps", "8steps", "seqmix" ],
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Amount",
-							"parameter_longname" : "ModulationOperator",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "sum", "sync", "ring", "xor", "fuzz", ">>4", ">>8", "fold", "bits", "duo", "2steps", "4steps", "8steps", "seqmix" ]
+							"parameter_longname" : "ModulationOperator"
 						}
 
 					}
@@ -361,14 +346,14 @@
 					"presentation_rect" : [ 96.0, 0.0, 51.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "swing", "shuffle", "push", "lag", "human", "monkey" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 24.0,
 							"parameter_mmin" : -24.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Groove",
-							"parameter_longname" : "Osc1Range",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "swing", "shuffle", "push", "lag", "human", "monkey" ]
+							"parameter_longname" : "Osc1Range"
 						}
 
 					}
@@ -411,12 +396,12 @@
 					"presentation_rect" : [ 48.0, 0.0, 51.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "extern", "2x ext", "/2 ext", "/4 ext", "/8 ext", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149", "150", "151", "152", "153", "154", "155", "156", "157", "158", "159", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175", "176", "177", "178", "179", "180", "181", "182", "183", "184", "185", "186", "187", "188", "189", "190", "191", "192", "193", "194", "195", "196", "197", "198", "199", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223", "224", "225", "226", "227", "228", "229", "230", "231", "232", "233", "234", "235", "236", "237", "238", "239", "240", "270", "300", "330", "360", "420", "480", "600", "720" ],
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Tempo",
-							"parameter_longname" : "SequencerTempo",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "extern", "2x ext", "/2 ext", "/4 ext", "/8 ext", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149", "150", "151", "152", "153", "154", "155", "156", "157", "158", "159", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175", "176", "177", "178", "179", "180", "181", "182", "183", "184", "185", "186", "187", "188", "189", "190", "191", "192", "193", "194", "195", "196", "197", "198", "199", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223", "224", "225", "226", "227", "228", "229", "230", "231", "232", "233", "234", "235", "236", "237", "238", "239", "240", "270", "300", "330", "360", "420", "480", "600", "720" ]
+							"parameter_longname" : "SequencerTempo"
 						}
 
 					}
@@ -459,13 +444,13 @@
 					"presentation_rect" : [ 0.0, 0.0, 51.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "step", "arp", "arp+latch", "seq", "seq+latch", "rec", "impro" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 33.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Mode",
-							"parameter_longname" : "SequencerMode",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "step", "arp", "arp+latch", "seq", "seq+latch", "rec", "impro" ]
+							"parameter_longname" : "SequencerMode"
 						}
 
 					}
@@ -640,14 +625,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-24" : [ "ArpDirection", "Direction", 0 ],
-			"obj-6" : [ "Osc1Range", "Groove", 0 ],
-			"obj-20" : [ "ArpPattern", "Pattern", 0 ],
 			"obj-1" : [ "SequencerMode", "Mode", 0 ],
-			"obj-22" : [ "ArpRange", "Range", 0 ],
 			"obj-4" : [ "SequencerTempo", "Tempo", 0 ],
+			"obj-8" : [ "ModulationOperator", "Amount", 0 ],
+			"obj-22" : [ "ArpRange", "Range", 0 ],
 			"obj-28" : [ "ArpWarp", "Warp", 0 ],
-			"obj-8" : [ "ModulationOperator", "Amount", 0 ]
+			"obj-24" : [ "ArpDirection", "Direction", 0 ],
+			"obj-20" : [ "ArpPattern", "Pattern", 0 ],
+			"obj-6" : [ "Osc1Range", "Groove", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

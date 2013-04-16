@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 461.0, 124.0, 1139.0, 871.0 ],
+		"rect" : [ 461.0, 540.0, 1139.0, 871.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -59,13 +59,13 @@
 					"presentation_rect" : [ 0.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lowpass", "highpass" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 4.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "F1Mode",
-							"parameter_longname" : "DspMode1",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "lowpass", "highpass" ]
+							"parameter_longname" : "DspMode1"
 						}
 
 					}
@@ -102,8 +102,8 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 58.0, 16.0, 170.0, 36.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 16.0, 192.0, 21.0 ],
-					"text" : "... additional  filter parameters",
+					"presentation_rect" : [ 0.0, 24.0, 192.0, 21.0 ],
+					"text" : "No additional  filter parameters",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
@@ -331,7 +331,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 776.0, 600.0, 83.0, 20.0 ],
-					"text" : "r #0.filterType"
+					"text" : "r ---filterType"
 				}
 
 			}
@@ -399,12 +399,12 @@
 					"presentation_rect" : [ 144.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 15.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Flavour",
-							"parameter_longname" : "DelayFlavour",
-							"parameter_linknames" : 1
+							"parameter_longname" : "DelayFlavour"
 						}
 
 					}
@@ -446,12 +446,12 @@
 					"presentation_rect" : [ 96.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 15.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Fdbck",
-							"parameter_longname" : "DelayFeedback",
-							"parameter_linknames" : 1
+							"parameter_longname" : "DelayFeedback"
 						}
 
 					}
@@ -493,12 +493,12 @@
 					"presentation_rect" : [ 48.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Level",
-							"parameter_longname" : "DelayLevel",
-							"parameter_linknames" : 1
+							"parameter_longname" : "DelayLevel"
 						}
 
 					}
@@ -540,11 +540,11 @@
 					"presentation_rect" : [ 0.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Time",
-							"parameter_longname" : "DelayTime",
-							"parameter_linknames" : 1
+							"parameter_longname" : "DelayTime"
 						}
 
 					}
@@ -586,13 +586,13 @@
 					"presentation_rect" : [ 48.0, 328.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "liquid", "ms", "wobbly", "whacky" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Flavour",
-							"parameter_longname" : "4pmFlavour",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "liquid", "ms", "wobbly", "whacky" ]
+							"parameter_longname" : "4pmFlavour"
 						}
 
 					}
@@ -634,13 +634,13 @@
 					"presentation_rect" : [ 0.0, 328.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lp4", "lp3", "lp2", "lp1", "hp1", "hp2", "hp3", "bp2", "bp4", "notch", "phaser", "hp2+lp", "hp3+lp", "notch+lp", "phasr+lp" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Flt Mode",
-							"parameter_longname" : "4pmMode",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "lp4", "lp3", "lp2", "lp1", "hp1", "hp2", "hp3", "bp2", "bp4", "notch", "phaser", "hp2+lp", "hp3+lp", "notch+lp", "phasr+lp" ]
+							"parameter_longname" : "4pmMode"
 						}
 
 					}
@@ -699,12 +699,12 @@
 					"presentation_rect" : [ 48.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 15.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Program",
-							"parameter_longname" : "DspProgram",
-							"parameter_linknames" : 1
+							"parameter_longname" : "DspProgram"
 						}
 
 					}
@@ -763,12 +763,12 @@
 					"presentation_rect" : [ 144.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Param2",
-							"parameter_longname" : "DspParam2",
-							"parameter_linknames" : 1
+							"parameter_longname" : "DspParam2"
 						}
 
 					}
@@ -810,11 +810,11 @@
 					"presentation_rect" : [ 96.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Param1",
-							"parameter_longname" : "DspParam1",
-							"parameter_linknames" : 1
+							"parameter_longname" : "DspParam1"
 						}
 
 					}
@@ -873,13 +873,13 @@
 					"presentation_rect" : [ 96.0, 264.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "on" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 1.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "FmFdbck",
-							"parameter_longname" : "PvkFmFeedback",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "off", "on" ]
+							"parameter_longname" : "PvkFmFeedback"
 						}
 
 					}
@@ -921,13 +921,13 @@
 					"presentation_rect" : [ 0.0, 264.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lowpass", "bandpass" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Flt Mode",
-							"parameter_longname" : "PvkMode1",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "lowpass", "bandpass" ]
+							"parameter_longname" : "PvkMode1"
 						}
 
 					}
@@ -969,13 +969,13 @@
 					"presentation_rect" : [ 48.0, 264.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "on" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 1.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "OD",
-							"parameter_longname" : "PvkOverdrive",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "off", "on" ]
+							"parameter_longname" : "PvkOverdrive"
 						}
 
 					}
@@ -1034,11 +1034,11 @@
 					"presentation_rect" : [ 0.0, 72.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Highpass",
-							"parameter_longname" : "SsmHighpass",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SsmHighpass"
 						}
 
 					}
@@ -1097,13 +1097,13 @@
 					"presentation_rect" : [ 48.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "+lp", "+bp", "+hp", ">lp", ">bp", ">hp" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "F2 Mode",
-							"parameter_longname" : "SvfMode2",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "+lp", "+bp", "+hp", ">lp", ">bp", ">hp" ]
+							"parameter_longname" : "SvfMode2"
 						}
 
 					}
@@ -1145,13 +1145,13 @@
 					"presentation_rect" : [ 0.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lpf", "bpf", "hpf", "lp<", "bp<", "hp<" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "F1Mode",
-							"parameter_longname" : "SvfMode1",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "lpf", "bpf", "hpf", "lp<", "bp<", "hp<" ]
+							"parameter_longname" : "SvfMode1"
 						}
 
 					}
@@ -1193,12 +1193,12 @@
 					"presentation_rect" : [ 144.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "F2 Reson",
-							"parameter_longname" : "SvfResonance2",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SvfResonance2"
 						}
 
 					}
@@ -1240,11 +1240,11 @@
 					"presentation_rect" : [ 96.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "F2 Cut",
-							"parameter_longname" : "SvfCutoff2",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SvfCutoff2"
 						}
 
 					}
@@ -1779,24 +1779,24 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-39" : [ "DelayFeedback", "Fdbck", 0 ],
-			"obj-28" : [ "DspParam1", "Param1", 0 ],
-			"obj-16" : [ "PvkOverdrive", "OD", 0 ],
-			"obj-5" : [ "SvfResonance2", "F2 Reson", 0 ],
-			"obj-37" : [ "DelayFlavour", "Flavour", 0 ],
-			"obj-24" : [ "DspParam2", "Param2", 0 ],
-			"obj-13" : [ "SsmHighpass", "Highpass", 0 ],
-			"obj-41" : [ "DelayLevel", "Level", 0 ],
-			"obj-30" : [ "DspProgram", "Program", 0 ],
-			"obj-3" : [ "SvfCutoff2", "F2 Cut", 0 ],
-			"obj-35" : [ "4pmFlavour", "Flavour", 0 ],
-			"obj-43" : [ "DelayTime", "Time", 0 ],
-			"obj-20" : [ "PvkFmFeedback", "FmFdbck", 0 ],
-			"obj-7" : [ "SvfMode1", "F1Mode", 0 ],
-			"obj-33" : [ "4pmMode", "Flt Mode", 0 ],
 			"obj-54" : [ "DspMode1", "F1Mode", 0 ],
+			"obj-37" : [ "DelayFlavour", "Flavour", 0 ],
+			"obj-43" : [ "DelayTime", "Time", 0 ],
+			"obj-13" : [ "SsmHighpass", "Highpass", 0 ],
+			"obj-24" : [ "DspParam2", "Param2", 0 ],
+			"obj-35" : [ "4pmFlavour", "Flavour", 0 ],
+			"obj-3" : [ "SvfCutoff2", "F2 Cut", 0 ],
+			"obj-39" : [ "DelayFeedback", "Fdbck", 0 ],
+			"obj-9" : [ "SvfMode2", "F2 Mode", 0 ],
+			"obj-28" : [ "DspParam1", "Param1", 0 ],
+			"obj-20" : [ "PvkFmFeedback", "FmFdbck", 0 ],
+			"obj-5" : [ "SvfResonance2", "F2 Reson", 0 ],
+			"obj-41" : [ "DelayLevel", "Level", 0 ],
+			"obj-33" : [ "4pmMode", "Flt Mode", 0 ],
+			"obj-7" : [ "SvfMode1", "F1Mode", 0 ],
 			"obj-18" : [ "PvkMode1", "Flt Mode", 0 ],
-			"obj-9" : [ "SvfMode2", "F2 Mode", 0 ]
+			"obj-16" : [ "PvkOverdrive", "OD", 0 ],
+			"obj-30" : [ "DspProgram", "Program", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

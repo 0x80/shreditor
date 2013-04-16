@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 169.0, 343.0, 1431.0, 799.0 ],
+		"rect" : [ 253.0, 406.0, 1431.0, 766.0 ],
 		"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -72,13 +72,13 @@
 					"patching_rect" : [ 832.0, 312.0, 44.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "4cv in", "programmer", "pedals" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 16.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "CV",
-							"parameter_longname" : "SystemCvMode",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "4cv in", "programmer", "pedals" ]
+							"parameter_longname" : "SystemCvMode"
 						}
 
 					}
@@ -107,13 +107,13 @@
 					"presentation_rect" : [ 144.0, 0.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "C-1", "C0", "C1", "C2", "C3", "C4", "C5", "C6" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 16.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Split",
-							"parameter_longname" : "SystemSplit",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "C-1", "C0", "C1", "C2", "C3", "C4", "C5", "C6" ]
+							"parameter_longname" : "SystemSplit"
 						}
 
 					}
@@ -142,13 +142,13 @@
 					"presentation_rect" : [ 96.0, 64.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "thru", "seq", "ctrl", "split", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 16.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Midi",
-							"parameter_longname" : "SystemMidiMode",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "off", "thru", "seq", "ctrl", "split", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ]
+							"parameter_longname" : "SystemMidiMode"
 						}
 
 					}
@@ -192,12 +192,12 @@
 					"presentation_rect" : [ 48.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 16.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Channel",
-							"parameter_longname" : "SystemChannel",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SystemChannel"
 						}
 
 					}
@@ -291,13 +291,13 @@
 					"presentation_rect" : [ 0.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 126.0,
 							"parameter_mmin" : -127.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Tuning",
-							"parameter_longname" : "SystemTuning",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SystemTuning"
 						}
 
 					}
@@ -326,12 +326,12 @@
 					"presentation_rect" : [ 96.0, 0.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "on" ],
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Legato",
-							"parameter_longname" : "SystemLegato",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "off", "on" ]
+							"parameter_longname" : "SystemLegato"
 						}
 
 					}
@@ -360,13 +360,13 @@
 					"presentation_rect" : [ 48.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_invisible" : 2,
 							"parameter_shortname" : "Porta",
-							"parameter_longname" : "SystemPortamento",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SystemPortamento"
 						}
 
 					}
@@ -395,13 +395,13 @@
 					"presentation_rect" : [ 0.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 2.0,
 							"parameter_mmin" : -2.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Octave",
-							"parameter_longname" : "SystemOctave",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SystemOctave"
 						}
 
 					}
@@ -524,7 +524,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 208.0, 552.0, 85.0, 20.0 ],
-					"text" : "s #0.toShruthi"
+					"text" : "s ---toShruthi"
 				}
 
 			}
@@ -551,7 +551,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 784.0, 384.0, 85.0, 20.0 ],
-					"text" : "s #0.filterType"
+					"text" : "s ---filterType"
 				}
 
 			}
@@ -860,14 +860,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
-			"obj-68" : [ "SystemMidiMode", "Midi", 0 ],
-			"obj-56" : [ "SystemTuning", "Tuning", 0 ],
-			"obj-65" : [ "SystemChannel", "Channel", 0 ],
-			"obj-55" : [ "SystemLegato", "Legato", 0 ],
-			"obj-48" : [ "SystemOctave", "Octave", 0 ],
 			"obj-69" : [ "SystemSplit", "Split", 0 ],
-			"obj-71" : [ "SystemCvMode", "CV", 0 ]
+			"obj-55" : [ "SystemLegato", "Legato", 0 ],
+			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
+			"obj-48" : [ "SystemOctave", "Octave", 0 ],
+			"obj-71" : [ "SystemCvMode", "CV", 0 ],
+			"obj-65" : [ "SystemChannel", "Channel", 0 ],
+			"obj-68" : [ "SystemMidiMode", "Midi", 0 ],
+			"obj-56" : [ "SystemTuning", "Tuning", 0 ]
 		}
 ,
 		"dependency_cache" : [  ]

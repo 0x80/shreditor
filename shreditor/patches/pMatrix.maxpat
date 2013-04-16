@@ -29,7 +29,7 @@
 		"tags" : "",
 		"boxes" : [ 			{
 				"box" : 				{
-					"bgcolor" : [ 1.0, 0.427231, 0.000534, 1.0 ],
+					"bgcolor" : [ 0.307212, 0.465429, 0.934762, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-11",
@@ -76,7 +76,7 @@
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 1.0, 0.427231, 0.000534, 1.0 ],
+					"bgcolor" : [ 0.307212, 0.465429, 0.934762, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-5",
@@ -102,14 +102,13 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 576.0, 136.0, 32.5, 18.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 200.0, 18.0, 18.0 ],
 					"text" : "0"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-8",
@@ -121,8 +120,7 @@
 					"outlettype" : [ "int", "bang" ],
 					"parameter_enable" : 0,
 					"patching_rect" : [ 616.0, 136.0, 50.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 40.0, 200.0, 50.0, 20.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -218,7 +216,7 @@
 					}
 ,
 					"text" : "autopattr",
-					"varname" : "u652012245"
+					"varname" : "u345012227"
 				}
 
 			}
@@ -238,8 +236,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"id" : "obj-80",
 					"maxclass" : "live.dial",
 					"numinlets" : 1,
@@ -251,18 +250,18 @@
 					"presentation_rect" : [ 496.0, 152.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod12Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod12Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod12Amount"
 				}
 
@@ -297,8 +296,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-83",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -309,14 +314,23 @@
 					"patching_rect" : [ 280.0, 560.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 384.0, 168.0, 100.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod12Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-84",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -327,6 +341,9 @@
 					"patching_rect" : [ 104.0, 560.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 272.0, 168.0, 104.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod12Src"
 				}
 
@@ -347,8 +364,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 11.0,
 					"id" : "obj-86",
@@ -362,18 +380,18 @@
 					"presentation_rect" : [ 496.0, 120.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod11Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod11Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod11Amount"
 				}
 
@@ -408,8 +426,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-89",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -420,15 +444,23 @@
 					"patching_rect" : [ 280.0, 512.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 384.0, 136.0, 100.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod11Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-90",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -439,7 +471,9 @@
 					"patching_rect" : [ 104.0, 512.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 272.0, 136.0, 104.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod11Src"
 				}
 
@@ -460,8 +494,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"id" : "obj-92",
 					"maxclass" : "live.dial",
 					"numinlets" : 1,
@@ -473,18 +508,18 @@
 					"presentation_rect" : [ 496.0, 88.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod10Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod10Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod10Amount"
 				}
 
@@ -519,8 +554,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-95",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -531,14 +572,23 @@
 					"patching_rect" : [ 280.0, 464.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 384.0, 104.0, 100.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod10Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-96",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -549,6 +599,9 @@
 					"patching_rect" : [ 104.0, 464.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 272.0, 104.0, 104.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod10Src"
 				}
 
@@ -569,8 +622,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 11.0,
 					"id" : "obj-98",
@@ -584,18 +638,18 @@
 					"presentation_rect" : [ 496.0, 56.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod9Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod9Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod9Amount"
 				}
 
@@ -630,8 +684,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-101",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -642,15 +702,23 @@
 					"patching_rect" : [ 280.0, 416.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 384.0, 72.0, 100.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod9Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-102",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -661,7 +729,9 @@
 					"patching_rect" : [ 104.0, 416.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 272.0, 72.0, 104.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod9Src"
 				}
 
@@ -682,8 +752,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"id" : "obj-56",
 					"maxclass" : "live.dial",
 					"numinlets" : 1,
@@ -695,18 +766,18 @@
 					"presentation_rect" : [ 496.0, 24.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod8Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod8Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod8Amount"
 				}
 
@@ -741,8 +812,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-59",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -753,14 +830,23 @@
 					"patching_rect" : [ 280.0, 368.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 384.0, 40.0, 100.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod8Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-60",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -771,6 +857,9 @@
 					"patching_rect" : [ 104.0, 368.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 272.0, 40.0, 104.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod8Src"
 				}
 
@@ -791,8 +880,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 11.0,
 					"id" : "obj-62",
@@ -806,18 +896,18 @@
 					"presentation_rect" : [ 496.0, -8.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod7Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod7Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod7Amount"
 				}
 
@@ -852,8 +942,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-65",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -864,15 +960,23 @@
 					"patching_rect" : [ 280.0, 320.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 384.0, 8.0, 100.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod7Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-66",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -883,7 +987,9 @@
 					"patching_rect" : [ 104.0, 320.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 272.0, 8.0, 104.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod7Src"
 				}
 
@@ -904,8 +1010,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"id" : "obj-68",
 					"maxclass" : "live.dial",
 					"numinlets" : 1,
@@ -917,18 +1024,18 @@
 					"presentation_rect" : [ 232.0, 152.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod6Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod6Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod6Amount"
 				}
 
@@ -963,8 +1070,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-71",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -975,14 +1088,23 @@
 					"patching_rect" : [ 280.0, 272.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 120.0, 168.0, 100.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod6Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-72",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -993,6 +1115,9 @@
 					"patching_rect" : [ 104.0, 272.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 168.0, 104.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod6Src"
 				}
 
@@ -1013,8 +1138,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 11.0,
 					"id" : "obj-74",
@@ -1028,18 +1154,18 @@
 					"presentation_rect" : [ 232.0, 120.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod5Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod5Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod5Amount"
 				}
 
@@ -1074,8 +1200,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-77",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -1086,15 +1218,23 @@
 					"patching_rect" : [ 280.0, 224.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 120.0, 136.0, 100.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod5Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-78",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -1105,7 +1245,9 @@
 					"patching_rect" : [ 104.0, 224.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 136.0, 104.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod5Src"
 				}
 
@@ -1126,8 +1268,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"id" : "obj-44",
 					"maxclass" : "live.dial",
 					"numinlets" : 1,
@@ -1139,18 +1282,18 @@
 					"presentation_rect" : [ 232.0, 88.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod4Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod4Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod4Amount"
 				}
 
@@ -1185,8 +1328,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-47",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -1197,14 +1346,23 @@
 					"patching_rect" : [ 280.0, 176.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 120.0, 104.0, 100.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod4Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-48",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -1215,6 +1373,9 @@
 					"patching_rect" : [ 104.0, 176.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 104.0, 104.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod4Src"
 				}
 
@@ -1235,8 +1396,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 11.0,
 					"id" : "obj-50",
@@ -1250,18 +1412,18 @@
 					"presentation_rect" : [ 232.0, 56.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod3Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod3Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod3Amount"
 				}
 
@@ -1296,8 +1458,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-53",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -1308,15 +1476,23 @@
 					"patching_rect" : [ 280.0, 128.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 120.0, 72.0, 100.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod3Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-54",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -1327,7 +1503,9 @@
 					"patching_rect" : [ 104.0, 128.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 72.0, 104.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod3Src"
 				}
 
@@ -1348,8 +1526,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"id" : "obj-23",
 					"maxclass" : "live.dial",
 					"numinlets" : 1,
@@ -1361,18 +1540,18 @@
 					"presentation_rect" : [ 232.0, 24.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod2Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod2Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod2Amount"
 				}
 
@@ -1407,8 +1586,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-26",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -1419,14 +1604,23 @@
 					"patching_rect" : [ 280.0, 80.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 120.0, 40.0, 100.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod2Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-27",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -1437,6 +1631,9 @@
 					"patching_rect" : [ 104.0, 80.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 40.0, 104.0, 20.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod2Src"
 				}
 
@@ -1457,8 +1654,9 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"activeneedlecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"appearance" : 1,
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 11.0,
 					"id" : "obj-20",
@@ -1472,18 +1670,18 @@
 					"presentation_rect" : [ 232.0, -8.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_mmin" : -63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : ".",
-							"parameter_longname" : "Mod1Amount",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Mod1Amount"
 						}
 
 					}
 ,
-					"textcolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"textcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod1Amount"
 				}
 
@@ -1518,8 +1716,14 @@
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-15",
 					"items" : [ "cutoff", ",", "vca", ",", "pwm1", ",", "pwm2", ",", "osc1", ",", "osc2", ",", "osc1&2", ",", "finetune", ",", "osc", "balance", ",", "noise", ",", "sub", "volume", ",", "resonance", ",", "cv", "output1", ",", "cv", "output2", ",", "env1&2", "attack", ",", "lfo1", "rate", ",", "lfo2", "rate", ",", "env1", "trigger", ",", "env2", "trigger" ],
 					"maxclass" : "umenu",
@@ -1530,15 +1734,23 @@
 					"patching_rect" : [ 280.0, 32.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 120.0, 8.0, 100.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod1Dst"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"arrowcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"discolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"hltcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"id" : "obj-12",
 					"items" : [ "lfo1", ",", "lfo2", ",", "stepseq", ",", "stepseq1st8", ",", "stepseq2nd8", ",", "arp", ",", "modwheel", ",", "atertouch", ",", "pitchbend", ",", "offset", ",", "cv", "input1", ",", "cv", "input2", ",", "cv", "input4", ",", "cv", "input4", ",", "cc", "#16", ",", "cc", "#17", ",", "cc", "#18", ",", "cc", "#19", ",", "noise", ",", "envelope1", ",", "envelope2", ",", "velocity", ",", "random", ",", "note", ",", "gate", ",", "audio", ",", "operator1", ",", "operator2", ",", "trigger1", ",", "trigger2" ],
 					"maxclass" : "umenu",
@@ -1549,24 +1761,10 @@
 					"patching_rect" : [ 104.0, 32.0, 104.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 8.0, 104.0, 20.0 ],
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"togcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"varname" : "Mod1Src"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 1,
-					"bgcolor" : [ 0.137255, 0.145098, 0.160784, 0.4 ],
-					"id" : "obj-1",
-					"maxclass" : "panel",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 80.0, 728.0, 37.25, 159.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 528.0, 232.0 ],
-					"rounded" : 10,
-					"varname" : "Display"
 				}
 
 			}
@@ -2293,6 +2491,7 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-50" : [ "Mod3Amount", ".", 0 ],
 			"obj-56" : [ "Mod8Amount", ".", 0 ],
 			"obj-80" : [ "Mod12Amount", ".", 0 ],
 			"obj-74" : [ "Mod5Amount", ".", 0 ],
@@ -2303,8 +2502,7 @@
 			"obj-98" : [ "Mod9Amount", ".", 0 ],
 			"obj-20" : [ "Mod1Amount", ".", 0 ],
 			"obj-68" : [ "Mod6Amount", ".", 0 ],
-			"obj-92" : [ "Mod10Amount", ".", 0 ],
-			"obj-50" : [ "Mod3Amount", ".", 0 ]
+			"obj-92" : [ "Mod10Amount", ".", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

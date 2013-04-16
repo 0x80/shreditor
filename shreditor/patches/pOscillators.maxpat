@@ -32,21 +32,6 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"id" : "obj-11",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patching_rect" : [ 152.0, 248.0, 39.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 184.0, 88.0, 39.0, 20.0 ],
-					"text" : "---foo"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
 					"id" : "obj-34",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -77,13 +62,13 @@
 					"presentation_rect" : [ 144.0, 128.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "sq1", "tr1", "pl1", "sq2", "tr2", "pl2", "click", "glitch", "blow", "metal", "pop" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 10.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Shape",
-							"parameter_longname" : "SubShape",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "sq1", "tr1", "pl1", "sq2", "tr2", "pl2", "click", "glitch", "blow", "metal", "pop" ]
+							"parameter_longname" : "SubShape"
 						}
 
 					}
@@ -127,12 +112,12 @@
 					"presentation_rect" : [ 96.0, 128.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Noise",
-							"parameter_longname" : "NoiseVolume",
-							"parameter_linknames" : 1
+							"parameter_longname" : "NoiseVolume"
 						}
 
 					}
@@ -176,12 +161,12 @@
 					"presentation_rect" : [ 48.0, 128.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "SubVol",
-							"parameter_longname" : "SubVolume",
-							"parameter_linknames" : 1
+							"parameter_longname" : "SubVolume"
 						}
 
 					}
@@ -225,12 +210,12 @@
 					"presentation_rect" : [ 0.0, 128.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Balance",
-							"parameter_longname" : "OscBalance",
-							"parameter_linknames" : 1
+							"parameter_longname" : "OscBalance"
 						}
 
 					}
@@ -274,11 +259,11 @@
 					"presentation_rect" : [ 144.0, 64.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Detune",
-							"parameter_longname" : "Osc2Detune",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Osc2Detune"
 						}
 
 					}
@@ -322,13 +307,13 @@
 					"presentation_rect" : [ 96.0, 64.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 24.0,
 							"parameter_mmin" : -24.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Range",
-							"parameter_longname" : "Osc2Range",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Osc2Range"
 						}
 
 					}
@@ -372,11 +357,11 @@
 					"presentation_rect" : [ 48.0, 64.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Param",
-							"parameter_longname" : "Osc2Parameter",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Osc2Parameter"
 						}
 
 					}
@@ -420,13 +405,13 @@
 					"presentation_rect" : [ 0.0, 64.0, 50.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "none", "saw", "square", "triang", "zsaw", "zreso", "ztri", "zpulse", "zsync", "pad", "fm", "waves", "tampur", "digitl", "metall", "bowed", "slap", "organ", "male", "user", "8bits", "crush", "pwm", "noise", "vowel", "belish", "polatd", "cello", "clpswp", "female", "fmtvoc", "frmnt2", "res3hp", "electp", "vibes" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 33.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Shape",
-							"parameter_longname" : "Osc2Shape",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "none", "saw", "square", "triang", "zsaw", "zreso", "ztri", "zpulse", "zsync", "pad", "fm", "waves", "tampur", "digitl", "metall", "bowed", "slap", "organ", "male", "user", "8bits", "crush", "pwm", "noise", "vowel", "belish", "polatd", "cello", "clpswp", "female", "fmtvoc", "frmnt2", "res3hp", "electp", "vibes" ]
+							"parameter_longname" : "Osc2Shape"
 						}
 
 					}
@@ -470,13 +455,13 @@
 					"presentation_rect" : [ 144.0, 0.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "sum", "sync", "ring", "xor", "fuzz", ">>4", ">>8", "fold", "bits", "duo", "2steps", "4steps", "8steps", "seqmix" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 13.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Operator",
-							"parameter_longname" : "ModulationOperator",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "sum", "sync", "ring", "xor", "fuzz", ">>4", ">>8", "fold", "bits", "duo", "2steps", "4steps", "8steps", "seqmix" ]
+							"parameter_longname" : "ModulationOperator"
 						}
 
 					}
@@ -520,13 +505,13 @@
 					"presentation_rect" : [ 96.0, 0.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 24.0,
 							"parameter_mmin" : -24.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Range",
-							"parameter_longname" : "Osc1Range",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Osc1Range"
 						}
 
 					}
@@ -570,11 +555,11 @@
 					"presentation_rect" : [ 48.0, 0.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "Param",
-							"parameter_longname" : "Osc1Parameter",
-							"parameter_linknames" : 1
+							"parameter_longname" : "Osc1Parameter"
 						}
 
 					}
@@ -618,13 +603,13 @@
 					"presentation_rect" : [ 0.0, 0.0, 50.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "none", "saw", "square", "triang", "zsaw", "zreso", "ztri", "zpulse", "zsync", "pad", "fm", "waves", "tampur", "digitl", "metall", "bowed", "slap", "organ", "male", "user", "8bits", "crush", "pwm", "noise", "vowel", "belish", "polatd", "cello", "clpswp", "female", "fmtvoc", "frmnt2", "res3hp", "electp", "vibes" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 33.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Shape",
-							"parameter_longname" : "Osc1Shape",
-							"parameter_linknames" : 1,
-							"parameter_enum" : [ "none", "saw", "square", "triang", "zsaw", "zreso", "ztri", "zpulse", "zsync", "pad", "fm", "waves", "tampur", "digitl", "metall", "bowed", "slap", "organ", "male", "user", "8bits", "crush", "pwm", "noise", "vowel", "belish", "polatd", "cello", "clpswp", "female", "fmtvoc", "frmnt2", "res3hp", "electp", "vibes" ]
+							"parameter_longname" : "Osc1Shape"
 						}
 
 					}
@@ -853,18 +838,18 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-1" : [ "Osc1Shape", "Shape", 0 ],
-			"obj-26" : [ "OscBalance", "Balance", 0 ],
-			"obj-6" : [ "Osc1Range", "Range", 0 ],
-			"obj-28" : [ "Osc2Detune", "Detune", 0 ],
-			"obj-35" : [ "SubShape", "Shape", 0 ],
-			"obj-22" : [ "Osc2Parameter", "Param", 0 ],
 			"obj-31" : [ "SubVolume", "SubVol", 0 ],
-			"obj-33" : [ "NoiseVolume", "Noise", 0 ],
+			"obj-8" : [ "ModulationOperator", "Operator", 0 ],
 			"obj-20" : [ "Osc2Range", "Range", 0 ],
 			"obj-4" : [ "Osc1Parameter", "Param", 0 ],
-			"obj-24" : [ "Osc2Shape", "Shape", 0 ],
-			"obj-8" : [ "ModulationOperator", "Operator", 0 ]
+			"obj-26" : [ "OscBalance", "Balance", 0 ],
+			"obj-35" : [ "SubShape", "Shape", 0 ],
+			"obj-22" : [ "Osc2Parameter", "Param", 0 ],
+			"obj-1" : [ "Osc1Shape", "Shape", 0 ],
+			"obj-33" : [ "NoiseVolume", "Noise", 0 ],
+			"obj-6" : [ "Osc1Range", "Range", 0 ],
+			"obj-28" : [ "Osc2Detune", "Detune", 0 ],
+			"obj-24" : [ "Osc2Shape", "Shape", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
