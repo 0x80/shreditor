@@ -4,11 +4,12 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 2,
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 500.0, 64.0, 1431.0, 799.0 ],
+		"rect" : [ 169.0, 343.0, 1431.0, 799.0 ],
+		"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -38,24 +39,9 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 128.0, 101.0, 150.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 16.0, 160.0, 68.0, 20.0 ],
-					"text" : "Filterboard"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"frgb" : 0.0,
-					"id" : "obj-2",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 128.0, 88.0, 150.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 16.0, 128.0, 47.0, 20.0 ],
-					"text" : "Scale"
+					"presentation_rect" : [ 152.0, 96.0, 37.0, 20.0 ],
+					"text" : "Filter",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -86,13 +72,13 @@
 					"patching_rect" : [ 832.0, 312.0, 44.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "4cv in", "programmer", "pedals" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 16.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "CV",
 							"parameter_longname" : "SystemCvMode",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "4cv in", "programmer", "pedals" ]
 						}
 
 					}
@@ -104,7 +90,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -115,30 +102,31 @@
 					"outlettype" : [ "", "float" ],
 					"panelcolor" : [ 0.955487, 0.975006, 1.0, 1.0 ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 696.0, 312.0, 44.0, 51.0 ],
+					"patching_rect" : [ 696.0, 312.0, 49.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 64.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 144.0, 0.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "C-1", "C0", "C1", "C2", "C3", "C4", "C5", "C6" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 16.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Split",
 							"parameter_longname" : "SystemSplit",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "C-1", "C0", "C1", "C2", "C3", "C4", "C5", "C6" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SystemSplit"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -149,23 +137,23 @@
 					"outlettype" : [ "", "float" ],
 					"panelcolor" : [ 0.955487, 0.975006, 1.0, 1.0 ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 640.0, 312.0, 44.0, 51.0 ],
+					"patching_rect" : [ 640.0, 312.0, 48.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 64.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 64.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "off", "thru", "seq", "ctrl", "split", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 16.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Midi",
 							"parameter_longname" : "SystemMidiMode",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "thru", "seq", "ctrl", "split", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SystemMidiMode"
 				}
 
@@ -187,7 +175,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -200,7 +189,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 584.0, 312.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 64.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -213,7 +202,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SystemChannel"
 				}
 
@@ -262,8 +251,12 @@
 			}
 , 			{
 				"box" : 				{
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"hltcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"id" : "obj-58",
 					"items" : [ "equal", ",", "just", ",", "pythagorean", ",", "1/4", "eb", ",", "1/4", "e", ",", "1/4", "ea", ",", "bhairav", ",", "gunakri", ",", "marwa", ",", "shree", ",", "purvi", ",", "bilawal", ",", "yaman", ",", "kafi", ",", "bhimpalasree", ",", "darbari", ",", "bageshree", ",", "rageshree", ",", "khamaj", ",", "mi'mal", ",", "parameshwari", ",", "rangeshwari", ",", "gangeshwari", ",", "kameshwari", ",", "palas", "kafi", ",", "natbhairav", ",", "m.kauns", ",", "bairagi", ",", "b.todi", ",", "chandradeep", ",", "kaushik", "todi", ",", "jogeshwari", ",", "rasia" ],
 					"maxclass" : "umenu",
@@ -273,13 +266,16 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 368.0, 272.0, 100.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 96.0, 128.0, 104.0, 20.0 ]
+					"presentation_rect" : [ 152.0, 72.0, 104.0, 20.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor2" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -292,7 +288,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 528.0, 312.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 64.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -306,14 +302,15 @@
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SystemTuning"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -324,29 +321,30 @@
 					"outlettype" : [ "", "float" ],
 					"panelcolor" : [ 0.955487, 0.975006, 1.0, 1.0 ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 472.0, 312.0, 44.0, 51.0 ],
+					"patching_rect" : [ 472.0, 312.0, 48.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 8.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 0.0, 49.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "off", "on" ],
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Legato",
 							"parameter_longname" : "SystemLegato",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "on" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SystemLegato"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -359,26 +357,29 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 416.0, 312.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 8.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 1,
 							"parameter_invisible" : 2,
-							"parameter_shortname" : "WTF",
-							"parameter_longname" : "sdf"
+							"parameter_shortname" : "Porta",
+							"parameter_longname" : "SystemPortamento",
+							"parameter_linknames" : 1
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"varname" : "SystemPortamento"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -391,7 +392,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 352.0, 312.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 8.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -405,7 +406,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SystemOctave"
 				}
 
@@ -493,8 +494,12 @@
 			}
 , 			{
 				"box" : 				{
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"bgcolor2" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"framecolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"hltcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"id" : "obj-11",
 					"items" : [ "lpf", ",", "ssm", ",", "svf", ",", "dsp", ",", "pvk", ",", "4pm", ",", "dly" ],
 					"maxclass" : "umenu",
@@ -504,7 +509,9 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 760.0, 344.0, 56.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 96.0, 160.0, 56.0, 20.0 ]
+					"presentation_rect" : [ 200.0, 96.0, 56.0, 20.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor2" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -516,8 +523,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 208.0, 552.0, 68.0, 20.0 ],
-					"text" : "s toShruthi"
+					"patching_rect" : [ 208.0, 552.0, 85.0, 20.0 ],
+					"text" : "s #0.toShruthi"
 				}
 
 			}
@@ -530,7 +537,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 296.0, 112.0, 99.0, 20.0 ],
+					"patching_rect" : [ 296.0, 112.0, 117.0, 20.0 ],
 					"text" : "r systemSettings"
 				}
 
@@ -543,8 +550,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 784.0, 384.0, 69.0, 20.0 ],
-					"text" : "s filterType"
+					"patching_rect" : [ 784.0, 384.0, 85.0, 20.0 ],
+					"text" : "s #0.filterType"
 				}
 
 			}
@@ -853,14 +860,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-50" : [ "sdf", "WTF", 0 ],
-			"obj-56" : [ "SystemTuning", "Tuning", 0 ],
-			"obj-48" : [ "SystemOctave", "Octave", 0 ],
-			"obj-55" : [ "SystemLegato", "Legato", 0 ],
-			"obj-71" : [ "SystemCvMode", "CV", 0 ],
+			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
 			"obj-68" : [ "SystemMidiMode", "Midi", 0 ],
+			"obj-56" : [ "SystemTuning", "Tuning", 0 ],
 			"obj-65" : [ "SystemChannel", "Channel", 0 ],
-			"obj-69" : [ "SystemSplit", "Split", 0 ]
+			"obj-55" : [ "SystemLegato", "Legato", 0 ],
+			"obj-48" : [ "SystemOctave", "Octave", 0 ],
+			"obj-69" : [ "SystemSplit", "Split", 0 ],
+			"obj-71" : [ "SystemCvMode", "CV", 0 ]
 		}
 ,
 		"dependency_cache" : [  ]

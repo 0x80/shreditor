@@ -8,8 +8,10 @@
 #include <map>
 #include <fstream>
 
+
 // for using _1 _2 
-using namespace std::placeholders; 
+using namespace std::placeholders;
+
 
 //#include "rtmidi/RtMidi.h"
 
@@ -30,7 +32,7 @@ const size_t kEepromSize = kInternalEepromSize + kExternalEepromSize;
 static t_symbol *ps_nrpn = gensym("nrpn");
 //static t_symbol *ps_cc = gensym("cc");
 static t_symbol *ps_empty = gensym("");
-static t_symbol *ps_name = gensym("name");
+static t_symbol *psx_name = gensym("name"); // global clash
 static t_symbol *ps_settings = gensym("settings");
 //static t_symbol *ps_filter = gensym("filter");
 //static t_symbol *ps_unknown = gensym("unknown");
@@ -48,7 +50,7 @@ static t_symbol *ps_velocity = gensym("velocity");
 static t_symbol *ps_ctrl = gensym("ctrl");
 static t_symbol *ps_legato = gensym("legato");
 static t_symbol *ps_rotation = gensym("rotation");
-static t_symbol *ps_size = gensym("size");
+static t_symbol *psx_size = gensym("size"); // global clash
 static t_symbol *ps_progress = gensym("progress");
 //static t_symbol *ps_extra1 = gensym("extra1");
 //static t_symbol *ps_step = gensym("step");
@@ -108,14 +110,14 @@ uint16_t VxShruthi::addressable_space_size() {
 void VxShruthi::outputProgress(long v){
     atom_setsym(atoms_, ps_progress);
     atom_setlong(atoms_+1, v);
-    outlet_list(m_outlet[1], ps_empty, 2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
 }
 
 void VxShruthi::outputPatchData(){    
     // Convert name directly to symbol. Both should be char
-    atom_setsym(atoms_, ps_name);
+    atom_setsym(atoms_, psx_name);
     atom_setsym(atoms_+1, gensym((char*)patch_.name));
-    outlet_list(m_outlet[1], ps_empty, 2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
     outputNrpn(0, patch_.osc[0].shape);
     outputNrpn(1, patch_.osc[0].parameter);
@@ -276,63 +278,63 @@ void VxShruthi::outputSettingsData(){
 //    atom_setsym(atoms_, ps_settings);
 //    atom_setsym(atoms_+1, ps_filter);
 //    atom_setsym(atoms_+2, fb);
-//    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("octave"));
     atom_setlong(atoms_+2, settings_->octave);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("raga"));
     atom_setlong(atoms_+2, settings_->raga);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("portamento"));
     atom_setlong(atoms_+2, settings_->portamento);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("legato"));
     atom_setlong(atoms_+2, settings_->legato);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("tuning"));
     atom_setlong(atoms_+2, settings_->master_tuning);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("channel"));
     atom_setlong(atoms_+2, settings_->midi_channel);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("midimode"));
     atom_setlong(atoms_+2, settings_->midi_out_mode);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("split"));
     atom_setlong(atoms_+2, settings_->midi_split_point);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("filter"));
     atom_setlong(atoms_+2, settings_->expansion_filter_board);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 
     atom_setsym(atoms_, ps_settings);
     atom_setsym(atoms_+1, gensym("cvmode"));
     atom_setlong(atoms_+2, settings_->expansion_cv_mode);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 }
 
 void VxShruthi::outputNrpn(long index, long value){
     atom_setlong(atoms_, index);
     atom_setlong(atoms_+1, value);
-    outlet_list(m_outlet[0],  ps_nrpn, 2, atoms_);
+    outlet_list(m_outlets[0],  ps_nrpn, 2, atoms_);
 }
 
 void VxShruthi::outputSequence(){
@@ -343,41 +345,41 @@ void VxShruthi::outputSequence(){
     atom_setsym(atoms_+1, ps_note);
     for(int i=0; i<kNumSteps; ++i)
         atom_setlong(data+i, sequencer_.steps[i].getNoteValue()); // only first 7 bits
-    outlet_list(m_outlet[1], ps_empty, kNumSteps+2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // velocity
     atom_setsym(atoms_+1, ps_velocity);
     for(int i=0; i<kNumSteps; ++i)
         atom_setlong(data+i, sequencer_.steps[i].getVelocityValue() * VELOCITY_SCALE_UP);
-    outlet_list(m_outlet[1], ps_empty, kNumSteps+2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
 
     // ctrl
     atom_setsym(atoms_+1, ps_ctrl);
     for(int i=0; i<kNumSteps; ++i)
         atom_setlong(data+i, sequencer_.steps[i].getControllerValue());
-    outlet_list(m_outlet[1], ps_empty, kNumSteps+2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // gate
     atom_setsym(atoms_+1, ps_gate);
     for(int i=0; i<kNumSteps; ++i)
         atom_setlong(data+i, sequencer_.steps[i].getGateValue());
-    outlet_list(m_outlet[1], ps_empty, kNumSteps+2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // legato
     atom_setsym(atoms_+1, ps_legato);
     for(int i=0; i<kNumSteps; ++i)
         atom_setlong(data+i, sequencer_.steps[i].getLegatoValue());
-    outlet_list(m_outlet[1], ps_empty, kNumSteps+2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // rotation
     atom_setsym(atoms_+1, ps_rotation);
     atom_setlong(atoms_+2, sequencer_.pattern_rotation);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     // size
-    atom_setsym(atoms_+1, ps_size);
+    atom_setsym(atoms_+1, psx_size);
     atom_setlong(atoms_+2, sequencer_.pattern_size);
-    outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     
     // gate legato matrix
@@ -388,17 +390,17 @@ void VxShruthi::outputSequence(){
         atom_setlong(atoms_+1, i+1);
         atom_setlong(atoms_+2, 1);
         atom_setlong(atoms_+3, sequencer_.steps[i].getLegatoValue());
-        outlet_list(m_outlet[1], ps_empty, 4, atoms_);
+        outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     }
     
     for(int i=0; i<16; ++i){
         atom_setlong(atoms_+1, i+1);
         atom_setlong(atoms_+2, 2);
         atom_setlong(atoms_+3, sequencer_.steps[i].getGateValue());
-        outlet_list(m_outlet[1], ps_empty, 4, atoms_);
+        outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     }
     
-//        outlet_list(m_outlet[1], ps_empty, 1+counter*3, atoms_);
+//        outlet_list(m_outlets[1], ps_empty, 1+counter*3, atoms_);
 }
 
 
@@ -529,9 +531,9 @@ void VxShruthi::setPatchName(long inlet, t_symbol *name){
     
     transferPatchName();
     
-    atom_setsym(atoms_, ps_name);
+    atom_setsym(atoms_, psx_name);
     atom_setsym(atoms_+1, gensym((char*)patch_.name));
-    outlet_list(m_outlet[1], ps_empty, 2, atoms_);
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
 }
 
 void VxShruthi::setSettingsFilter(long inlet, t_symbol *name){
@@ -976,7 +978,7 @@ void VxShruthi::listPatchNames(long inlet){
         } else {
             atom_setsym(atoms_+2, gensym((char*)p->name));
         }
-        outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+        outlet_list(m_outlets[1], ps_empty, 3, atoms_);
         ++p;
     }
     
@@ -994,14 +996,21 @@ void VxShruthi::listPatchNames(long inlet){
         } else {
             atom_setsym(atoms_+2, gensym((char*)p->name));
         }
-        outlet_list(m_outlet[1], ps_empty, 3, atoms_);
+        outlet_list(m_outlets[1], ps_empty, 3, atoms_);
         ++p;
     }
-    
-    
-    
-
 }
+
+// a macro to mark exported symbols in the code without requiring an external file to define them
+#ifdef WIN_VERSION
+// note that this is the required syntax on windows regardless of whether the compiler is msvc or gcc
+#define T_EXPORT __declspec(dllexport)
+#else // MAC_VERSION
+// the mac uses the standard gcc syntax, you should also set the -fvisibility=hidden flag to hide the non-marked symbols
+#define T_EXPORT __attribute__((visibility("default")))
+#endif
+
+
 
 int T_EXPORT main(void) {
 	// create a class with the given name:

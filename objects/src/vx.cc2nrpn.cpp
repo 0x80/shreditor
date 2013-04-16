@@ -84,7 +84,7 @@ public:
                     post("v %i", v);
                     atom_setlong(atoms_, index_msb | index_lsb);
                     atom_setlong(atoms_+1, v);
-                    outlet_list(m_outlet[0], ps_empty, 2, atoms_);
+                    outlet_list(m_outlets[0], ps_empty, 2, atoms_);
                     
                 }else{
                     // range 0-127 or >127 positive
@@ -92,13 +92,13 @@ public:
                     post("v %i", v);
                     atom_setlong(atoms_, index_msb | index_lsb);
                     atom_setlong(atoms_+1, value_msb | value_lsb);
-                    outlet_list(m_outlet[0], ps_empty, 2, atoms_);
+                    outlet_list(m_outlets[0], ps_empty, 2, atoms_);
                 }
                 break;
             case k14bit:
                 atom_setlong(atoms_, index_msb | index_lsb);
                 atom_setlong(atoms_+1, value_msb | value_lsb);
-                outlet_list(m_outlet[0], ps_empty, 2, atoms_);
+                outlet_list(m_outlets[0], ps_empty, 2, atoms_);
                 break;
             case kInvalid:
                 break;
@@ -109,7 +109,7 @@ public:
     inline void send_cc(long index, long nrpn_value){
         atom_setlong(atoms_, index);
         atom_setlong(atoms_+1, nrpn_value);
-        outlet_list(m_outlet[1], ps_empty, 2, atoms_);
+        outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     }
     
     
@@ -153,7 +153,17 @@ private:
     NrpnMode mode_;
 };
 
-extern "C" int main(void) {
+// a macro to mark exported symbols in the code without requiring an external file to define them
+#ifdef WIN_VERSION
+// note that this is the required syntax on windows regardless of whether the compiler is msvc or gcc
+#define T_EXPORT __declspec(dllexport)
+#else // MAC_VERSION
+// the mac uses the standard gcc syntax, you should also set the -fvisibility=hidden flag to hide the non-marked symbols
+#define T_EXPORT __attribute__((visibility("default")))
+#endif
+
+
+int T_EXPORT main(void) {
 	ControlToNrpn::makeMaxClass("vx.cc2nrpn");
     REGISTER_METHOD_LONG2(ControlToNrpn, cc);
     REGISTER_METHOD_LIST_DEF(ControlToNrpn, listInput);

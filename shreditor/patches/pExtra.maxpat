@@ -3,11 +3,12 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 7
+			"minor" : 1,
+			"revision" : 2,
+			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 216.0, 44.0, 867.0, 1110.0 ],
+		"rect" : [ 461.0, 124.0, 1139.0, 871.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -43,7 +44,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-54",
@@ -54,21 +56,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 336.0, 240.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 200.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "lowpass", "highpass" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 4.0,
 							"parameter_type" : 1,
 							"parameter_shortname" : "F1Mode",
 							"parameter_longname" : "DspMode1",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lowpass", "highpass" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DspMode1"
 				}
 
@@ -91,16 +93,18 @@
 , 			{
 				"box" : 				{
 					"fontname" : "Arial",
-					"fontsize" : 12.0,
+					"fontsize" : 13.0,
 					"frgb" : 0.0,
 					"id" : "obj-46",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 58.0, 16.0, 158.0, 20.0 ],
+					"patching_rect" : [ 58.0, 16.0, 170.0, 36.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 56.0, 16.0, 151.0, 20.0 ],
-					"text" : "(no additional parameters)"
+					"presentation_rect" : [ 0.0, 16.0, 192.0, 21.0 ],
+					"text" : "... additional  filter parameters",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -116,7 +120,8 @@
 					"patching_rect" : [ 13.0, 16.0, 37.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 248.0, 16.0, 37.0, 20.0 ],
-					"text" : "LPF"
+					"text" : "LPF",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -325,8 +330,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 776.0, 600.0, 67.0, 20.0 ],
-					"text" : "r filterType"
+					"patching_rect" : [ 776.0, 600.0, 83.0, 20.0 ],
+					"text" : "r #0.filterType"
 				}
 
 			}
@@ -357,7 +362,8 @@
 					"patching_rect" : [ 784.0, 192.0, 34.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 248.0, 408.0, 34.0, 20.0 ],
-					"text" : "DLY"
+					"text" : "DLY",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -378,7 +384,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-37",
@@ -389,7 +396,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 776.0, 432.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 392.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 144.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -402,7 +409,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DelayFlavour"
 				}
 
@@ -424,7 +431,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-39",
@@ -435,20 +443,20 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 776.0, 368.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 392.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 15.0,
 							"parameter_type" : 1,
-							"parameter_shortname" : "Feedback",
+							"parameter_shortname" : "Fdbck",
 							"parameter_longname" : "DelayFeedback",
 							"parameter_linknames" : 1
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DelayFeedback"
 				}
 
@@ -470,7 +478,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-41",
@@ -481,7 +490,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 776.0, 304.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 392.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -494,7 +503,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DelayLevel"
 				}
 
@@ -516,7 +525,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-43",
@@ -527,7 +537,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 776.0, 240.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 392.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 392.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -539,7 +549,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DelayTime"
 				}
 
@@ -561,7 +571,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-35",
@@ -572,21 +583,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 632.0, 304.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 328.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 328.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "liquid", "ms", "wobbly", "whacky" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Flavour",
 							"parameter_longname" : "4pmFlavour",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "liquid", "ms", "wobbly", "whacky" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "4pmFlavour"
 				}
 
@@ -608,7 +619,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-33",
@@ -619,21 +631,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 632.0, 240.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 328.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 328.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "lp4", "lp3", "lp2", "lp1", "hp1", "hp2", "hp3", "bp2", "bp4", "notch", "phaser", "hp2+lp", "hp3+lp", "notch+lp", "phasr+lp" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
-							"parameter_shortname" : "Fltr Mode",
+							"parameter_shortname" : "Flt Mode",
 							"parameter_longname" : "4pmMode",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lp4", "lp3", "lp2", "lp1", "hp1", "hp2", "hp3", "bp2", "bp4", "notch", "phaser", "hp2+lp", "hp3+lp", "notch+lp", "phasr+lp" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "4pmMode"
 				}
 
@@ -650,7 +662,8 @@
 					"patching_rect" : [ 640.0, 192.0, 34.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 248.0, 344.0, 34.0, 20.0 ],
-					"text" : "4PM"
+					"text" : "4PM",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -671,7 +684,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-30",
@@ -682,7 +696,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 336.0, 304.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 200.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -695,7 +709,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DspProgram"
 				}
 
@@ -712,7 +726,8 @@
 					"patching_rect" : [ 344.0, 192.0, 34.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 248.0, 216.0, 34.0, 20.0 ],
-					"text" : "DSP"
+					"text" : "DSP",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -733,7 +748,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-24",
@@ -744,7 +760,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 336.0, 432.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 200.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 144.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -757,7 +773,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DspParam2"
 				}
 
@@ -779,7 +795,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-28",
@@ -790,7 +807,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 336.0, 368.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 200.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 200.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -802,7 +819,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "DspParam1"
 				}
 
@@ -819,7 +836,8 @@
 					"patching_rect" : [ 488.0, 192.0, 34.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 248.0, 280.0, 34.0, 20.0 ],
-					"text" : "PVK"
+					"text" : "PVK",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -840,7 +858,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-20",
@@ -851,21 +870,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 480.0, 368.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 264.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 264.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "off", "on" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 1.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "FmFdbck",
 							"parameter_longname" : "PvkFmFeedback",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "on" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "PvkFmFeedback"
 				}
 
@@ -887,7 +906,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-18",
@@ -898,21 +918,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 480.0, 240.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 264.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 264.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "lowpass", "bandpass" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
-							"parameter_shortname" : "Fltr Mode",
+							"parameter_shortname" : "Flt Mode",
 							"parameter_longname" : "PvkMode1",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lowpass", "bandpass" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "PvkMode1"
 				}
 
@@ -934,7 +954,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-16",
@@ -945,21 +966,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 480.0, 304.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 264.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 264.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "off", "on" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 1.0,
 							"parameter_type" : 2,
-							"parameter_shortname" : "Overdrive",
+							"parameter_shortname" : "OD",
 							"parameter_longname" : "PvkOverdrive",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "off", "on" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "PvkOverdrive"
 				}
 
@@ -976,7 +997,8 @@
 					"patching_rect" : [ 72.0, 192.0, 37.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 248.0, 88.0, 37.0, 20.0 ],
-					"text" : "SSM"
+					"text" : "SSM",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -997,7 +1019,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-13",
@@ -1008,7 +1031,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 240.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 72.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 72.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -1020,7 +1043,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SsmHighpass"
 				}
 
@@ -1037,7 +1060,8 @@
 					"patching_rect" : [ 200.0, 192.0, 34.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 248.0, 152.0, 34.0, 20.0 ],
-					"text" : "SVF"
+					"text" : "SVF",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -1058,7 +1082,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-9",
@@ -1069,21 +1094,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 192.0, 432.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 136.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "+lp", "+bp", "+hp", ">lp", ">bp", ">hp" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "F2 Mode",
 							"parameter_longname" : "SvfMode2",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "+lp", "+bp", "+hp", ">lp", ">bp", ">hp" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SvfMode2"
 				}
 
@@ -1105,7 +1130,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-7",
@@ -1116,21 +1142,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 192.0, 368.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 136.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "lpf", "bpf", "hpf", "lp<", "bp<", "hp<" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 63.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "F1Mode",
 							"parameter_longname" : "SvfMode1",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "lpf", "bpf", "hpf", "lp<", "bp<", "hp<" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SvfMode1"
 				}
 
@@ -1152,7 +1178,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-5",
@@ -1163,7 +1190,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 192.0, 304.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 136.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 144.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -1176,7 +1203,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SvfResonance2"
 				}
 
@@ -1198,7 +1225,8 @@
 , 			{
 				"box" : 				{
 					"activedialcolor" : [ 0.295176, 0.553973, 0.94902, 1.0 ],
-					"activeneedlecolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"focusbordercolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
 					"id" : "obj-3",
@@ -1209,7 +1237,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 192.0, 240.0, 52.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 136.0, 52.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 136.0, 52.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -1221,44 +1249,8 @@
 
 					}
 ,
-					"textcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "SvfCutoff2"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-1",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 608.0, 696.0, 59.5, 20.0 ],
-					"restore" : 					{
-						"4pmFlavour" : [ 3.0 ],
-						"4pmMode" : [ 5.0 ],
-						"DelayFeedback" : [ 5.0 ],
-						"DelayFlavour" : [ 5.0 ],
-						"DelayLevel" : [ 0.0 ],
-						"DelayTime" : [ 0.0 ],
-						"DspMode1" : [ 4.0 ],
-						"DspParam1" : [ 0.0 ],
-						"DspParam2" : [ 0.0 ],
-						"DspProgram" : [ 5.0 ],
-						"PvkFmFeedback" : [ 0.0 ],
-						"PvkMode1" : [ 1.0 ],
-						"PvkOverdrive" : [ 0.0 ],
-						"SsmHighpass" : [ 0.0 ],
-						"SvfCutoff2" : [ 0.0 ],
-						"SvfMode1" : [ 1.0 ],
-						"SvfMode2" : [ 1.0 ],
-						"SvfResonance2" : [ 0.0 ]
-					}
-,
-					"text" : "autopattr",
-					"varname" : "u845001092"
 				}
 
 			}
@@ -1787,8 +1779,9 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-39" : [ "DelayFeedback", "Fdbck", 0 ],
 			"obj-28" : [ "DspParam1", "Param1", 0 ],
-			"obj-16" : [ "PvkOverdrive", "Overdrive", 0 ],
+			"obj-16" : [ "PvkOverdrive", "OD", 0 ],
 			"obj-5" : [ "SvfResonance2", "F2 Reson", 0 ],
 			"obj-37" : [ "DelayFlavour", "Flavour", 0 ],
 			"obj-24" : [ "DspParam2", "Param2", 0 ],
@@ -1800,17 +1793,16 @@
 			"obj-43" : [ "DelayTime", "Time", 0 ],
 			"obj-20" : [ "PvkFmFeedback", "FmFdbck", 0 ],
 			"obj-7" : [ "SvfMode1", "F1Mode", 0 ],
-			"obj-33" : [ "4pmMode", "Fltr Mode", 0 ],
+			"obj-33" : [ "4pmMode", "Flt Mode", 0 ],
 			"obj-54" : [ "DspMode1", "F1Mode", 0 ],
-			"obj-18" : [ "PvkMode1", "Fltr Mode", 0 ],
-			"obj-9" : [ "SvfMode2", "F2 Mode", 0 ],
-			"obj-39" : [ "DelayFeedback", "Feedback", 0 ]
+			"obj-18" : [ "PvkMode1", "Flt Mode", 0 ],
+			"obj-9" : [ "SvfMode2", "F2 Mode", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "param.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}

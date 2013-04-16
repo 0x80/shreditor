@@ -79,7 +79,7 @@ private:
     long value_msb;
     bool valid;
     
-    uint8_t midiMsgCounter_;
+//    uint8_t midiMsgCounter_;
     bool enable_running_status_;
     bool filterMsb_; // TODO fix
     

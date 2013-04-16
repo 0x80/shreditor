@@ -3,11 +3,12 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 7
+			"minor" : 1,
+			"revision" : 2,
+			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 413.0, 141.0, 640.0, 480.0 ],
+		"rect" : [ 277.0, 182.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -126,8 +127,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 32.0, 304.0, 61.0, 20.0 ],
-					"text" : "s nrpnout"
+					"patching_rect" : [ 32.0, 304.0, 91.0, 20.0 ],
+					"text" : "s #0.nrpnout"
 				}
 
 			}
@@ -154,7 +155,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 32.0, 8.0, 63.0, 20.0 ],
+					"patching_rect" : [ 32.0, 8.0, 59.0, 20.0 ],
 					"text" : "r #1.nrpn"
 				}
 

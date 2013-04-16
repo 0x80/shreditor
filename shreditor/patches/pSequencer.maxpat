@@ -4,11 +4,11 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 0,
+			"revision" : 2,
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 54.0, 94.0, 1161.0, 828.0 ],
+		"rect" : [ 54.0, 94.0, 1195.0, 973.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -92,8 +92,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 64.0, 304.0, 107.0, 20.0 ],
-					"text" : "s toSequencerGui"
+					"patching_rect" : [ 64.0, 304.0, 137.0, 20.0 ],
+					"text" : "s #0.toSequencerGui"
 				}
 
 			}
@@ -137,8 +137,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 616.0, 792.0, 231.0, 45.0 ],
-					"text" : ";\rtoSequencerGui scramble pitch 1, dump;\rtoShruthi transferSequence;\r"
+					"patching_rect" : [ 616.0, 792.0, 261.0, 45.0 ],
+					"text" : ";\r#0.toSequencerGui scramble pitch 1, dump;\r#0.toShruthi transferSequence;\r"
 				}
 
 			}
@@ -208,7 +208,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 936.0, 664.0, 127.0, 18.0 ],
+					"patching_rect" : [ 936.0, 712.0, 127.0, 18.0 ],
 					"text" : "setPatternRotation $1"
 				}
 
@@ -221,8 +221,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 928.0, 720.0, 68.0, 20.0 ],
-					"text" : "s toShruthi"
+					"patching_rect" : [ 928.0, 776.0, 98.0, 20.0 ],
+					"text" : "s #0.toShruthi"
 				}
 
 			}
@@ -290,8 +290,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 624.0, 728.0, 107.0, 20.0 ],
-					"text" : "s toSequencerGui"
+					"patching_rect" : [ 624.0, 728.0, 137.0, 20.0 ],
+					"text" : "s #0.toSequencerGui"
 				}
 
 			}
@@ -410,8 +410,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 624.0, 568.0, 95.0, 20.0 ],
-					"text" : "r sequenceData"
+					"patching_rect" : [ 624.0, 568.0, 125.0, 20.0 ],
+					"text" : "r #0.sequenceData"
 				}
 
 			}
@@ -481,8 +481,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 56.0, 504.0, 119.0, 20.0 ],
-					"text" : "r toSequencerMatrix"
+					"patching_rect" : [ 56.0, 504.0, 149.0, 20.0 ],
+					"text" : "r #0.toSequencerMatrix"
 				}
 
 			}
@@ -522,8 +522,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 168.0, 768.0, 68.0, 20.0 ],
-					"text" : "s toShruthi"
+					"patching_rect" : [ 168.0, 768.0, 98.0, 20.0 ],
+					"text" : "s #0.toShruthi"
 				}
 
 			}
@@ -535,8 +535,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 544.0, 384.0, 68.0, 20.0 ],
-					"text" : "s toShruthi"
+					"patching_rect" : [ 544.0, 384.0, 98.0, 20.0 ],
+					"text" : "s #0.toShruthi"
 				}
 
 			}
@@ -548,8 +548,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 480.0, 416.0, 107.0, 20.0 ],
-					"text" : "s toSequencerGui"
+					"patching_rect" : [ 480.0, 424.0, 137.0, 20.0 ],
+					"text" : "s #0.toSequencerGui"
 				}
 
 			}
@@ -717,8 +717,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 784.0, 376.0, 107.0, 20.0 ],
-					"text" : "s toSequencerGui"
+					"patching_rect" : [ 784.0, 376.0, 137.0, 20.0 ],
+					"text" : "s #0.toSequencerGui"
 				}
 
 			}
@@ -777,8 +777,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 248.0, 360.0, 121.0, 20.0 ],
-					"text" : "s fromSequencerGui"
+					"patching_rect" : [ 248.0, 360.0, 151.0, 20.0 ],
+					"text" : "s #0.fromSequencerGui"
 				}
 
 			}
@@ -791,8 +791,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 240.0, 120.0, 105.0, 20.0 ],
-					"text" : "r toSequencerGui"
+					"patching_rect" : [ 240.0, 120.0, 135.0, 20.0 ],
+					"text" : "r #0.toSequencerGui"
 				}
 
 			}

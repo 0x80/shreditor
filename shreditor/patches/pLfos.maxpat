@@ -3,11 +3,13 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 7
+			"minor" : 1,
+			"revision" : 2,
+			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 1988.0, 154.0, 636.0, 763.0 ],
+		"rect" : [ 964.0, 154.0, 636.0, 763.0 ],
+		"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -32,7 +34,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-17",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 480.0, 61.0, 20.0 ],
@@ -42,7 +44,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -55,21 +58,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 464.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 72.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 144.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "free", "slave", "master" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 2.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Mode",
 							"parameter_longname" : "Lfo2Mode",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "free", "slave", "master" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo2Mode"
 				}
 
@@ -80,7 +83,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-19",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 424.0, 61.0, 20.0 ],
@@ -90,7 +93,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -103,7 +107,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 408.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 72.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -115,7 +119,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo2Attack"
 				}
 
@@ -126,7 +130,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-21",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 368.0, 61.0, 20.0 ],
@@ -136,7 +140,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -149,21 +154,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 352.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 72.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15", "x16", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 142.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Rate",
 							"parameter_longname" : "Lfo2Rate",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15", "x16", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo2Rate"
 				}
 
@@ -174,7 +179,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-23",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 312.0, 61.0, 20.0 ],
@@ -184,7 +189,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -197,20 +203,20 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 296.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 72.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 64.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "tri", "sqr", "s&h", "ramp", "step", "~1", "~2", "~3", "~4", "~5", "~6", "~7", "~8", "~9", "~10", "~11", "~12", "~13", "~14", "~15", "~16" ],
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Shape",
 							"parameter_longname" : "Lfo2Waveform",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "tri", "sqr", "s&h", "ramp", "step", "~1", "~2", "~3", "~4", "~5", "~6", "~7", "~8", "~9", "~10", "~11", "~12", "~13", "~14", "~15", "~16" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo2Waveform"
 				}
 
@@ -221,7 +227,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-7",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 256.0, 61.0, 20.0 ],
@@ -231,7 +237,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -244,21 +251,21 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 240.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 8.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 144.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "free", "slave", "master" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 2.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Mode",
 							"parameter_longname" : "Lfo1Mode",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "free", "slave", "master" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo1Mode"
 				}
 
@@ -269,7 +276,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-5",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 200.0, 61.0, 20.0 ],
@@ -279,7 +286,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -292,7 +300,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 184.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 120.0, 8.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 96.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_unitstyle" : 0,
@@ -304,7 +312,7 @@
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo1Attack"
 				}
 
@@ -315,7 +323,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-1",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 144.0, 61.0, 20.0 ],
@@ -325,7 +333,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -338,48 +347,22 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 128.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 8.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 48.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15", "x16", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127" ],
 							"parameter_unitstyle" : 0,
 							"parameter_mmax" : 142.0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Rate",
 							"parameter_longname" : "Lfo1Rate",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15", "x16", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo1Rate"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-29",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 344.0, 216.0, 59.5, 20.0 ],
-					"restore" : 					{
-						"Lfo1Attack" : [ 0.0 ],
-						"Lfo1Mode" : [ 0.0 ],
-						"Lfo1Rate" : [ 0.0 ],
-						"Lfo1Waveform" : [ 0.0 ],
-						"Lfo2Attack" : [ 0.0 ],
-						"Lfo2Mode" : [ 0.0 ],
-						"Lfo2Rate" : [ 0.0 ],
-						"Lfo2Waveform" : [ 0.0 ]
-					}
-,
-					"text" : "autopattr",
-					"varname" : "u190001129"
 				}
 
 			}
@@ -389,7 +372,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-3",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 88.0, 61.0, 20.0 ],
@@ -399,7 +382,8 @@
 			}
 , 			{
 				"box" : 				{
-					"activeneedlecolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activedialcolor" : [ 0.944984, 0.0, 0.94902, 1.0 ],
+					"activeneedlecolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
 					"fontface" : 0,
 					"fontsize" : 12.0,
@@ -412,20 +396,20 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 64.0, 72.0, 44.0, 51.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 8.0, 48.0, 51.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 48.0, 51.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_enum" : [ "tri", "sqr", "s&h", "ramp", "step", "~1", "~2", "~3", "~4", "~5", "~6", "~7", "~8", "~9", "~10", "~11", "~12", "~13", "~14", "~15", "~16" ],
 							"parameter_unitstyle" : 0,
 							"parameter_type" : 2,
 							"parameter_shortname" : "Shape",
 							"parameter_longname" : "Lfo1Waveform",
-							"parameter_linknames" : 1
+							"parameter_linknames" : 1,
+							"parameter_enum" : [ "tri", "sqr", "s&h", "ramp", "step", "~1", "~2", "~3", "~4", "~5", "~6", "~7", "~8", "~9", "~10", "~11", "~12", "~13", "~14", "~15", "~16" ]
 						}
 
 					}
 ,
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"varname" : "Lfo1Waveform"
 				}
 
@@ -577,20 +561,20 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-20" : [ "Lfo2Attack", "Attack", 0 ],
-			"obj-6" : [ "Lfo1Attack", "Attack", 0 ],
 			"obj-18" : [ "Lfo2Mode", "Mode", 0 ],
 			"obj-8" : [ "Lfo1Mode", "Mode", 0 ],
 			"obj-22" : [ "Lfo2Rate", "Rate", 0 ],
+			"obj-6" : [ "Lfo1Attack", "Attack", 0 ],
 			"obj-2" : [ "Lfo1Rate", "Rate", 0 ],
 			"obj-24" : [ "Lfo2Waveform", "Shape", 0 ],
-			"obj-4" : [ "Lfo1Waveform", "Shape", 0 ]
+			"obj-4" : [ "Lfo1Waveform", "Shape", 0 ],
+			"obj-20" : [ "Lfo2Attack", "Attack", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "param.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/ShruthiEditor",
-				"patcherrelativepath" : "",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patches",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}

@@ -9,8 +9,6 @@ static t_symbol *ps_nrpn = gensym("nrpn");
 static t_symbol *ps_cc = gensym("cc");
 static t_symbol *ps_empty = gensym("");
 
-
-
 class NrpnToControl : public MaxCpp6<NrpnToControl> {
 public:
 	NrpnToControl(t_symbol * sym, long ac, t_atom * av)
@@ -66,12 +64,12 @@ public:
             if(!filterMsb_ || nrpn_msb){
                 atom_setlong(atoms_, CC_NRPN_MSB);
                 atom_setlong(atoms_+1, nrpn_msb);
-                outlet_list(m_outlet[0], ps_empty, 2,  atoms_);
+                outlet_list(m_outlets[0], ps_empty, 2,  atoms_);
             }
             
             atom_setlong(atoms_, CC_NRPN_LSB);
             atom_setlong(atoms_+1, nrpn_lsb);
-            outlet_list(m_outlet[0], ps_empty, 2,  atoms_);
+            outlet_list(m_outlets[0], ps_empty, 2,  atoms_);
             
             // remember to avoid redundant nrpn messages
             lastNrpnIndex = nrpn_index;
@@ -81,12 +79,12 @@ public:
         if(!filterMsb_ || data_msb != last_data_msb){
             atom_setlong(atoms_, CC_DATA_MSB);
             atom_setlong(atoms_+1, data_msb);
-            outlet_list(m_outlet[0], ps_empty, 2,  atoms_);
+            outlet_list(m_outlets[0], ps_empty, 2,  atoms_);
         }
         
         atom_setlong(atoms_, CC_DATA_LSB);
         atom_setlong(atoms_+1, data_lsb);
-        outlet_list(m_outlet[0], ps_empty, 2,  atoms_);
+        outlet_list(m_outlets[0], ps_empty, 2,  atoms_);
         
         // save data_msb for redundancy check
         last_data_msb = data_msb;
@@ -140,7 +138,17 @@ private:
     
 };
 
-extern "C" int main(void) {
+// a macro to mark exported symbols in the code without requiring an external file to define them
+#ifdef WIN_VERSION
+// note that this is the required syntax on windows regardless of whether the compiler is msvc or gcc
+#define T_EXPORT __declspec(dllexport)
+#else // MAC_VERSION
+// the mac uses the standard gcc syntax, you should also set the -fvisibility=hidden flag to hide the non-marked symbols
+#define T_EXPORT __attribute__((visibility("default")))
+#endif
+
+
+int T_EXPORT main(void) {
 	// create a class with the given name:
 	NrpnToControl::makeMaxClass("vx.nrpn2cc");
     REGISTER_METHOD_LONG(NrpnToControl, filterMsb);
