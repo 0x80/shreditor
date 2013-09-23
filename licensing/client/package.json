@@ -1,0 +1,32 @@
+{
+  "name": "vauxlab-license-manager",
+  "main": "index.html",
+  "nodejs": true,
+  "node-main": "app.js",
+  "description": "License manager for Vauxlab software",
+  "version": "0.0.1",
+  "keywords": [ "vauxlab", "license" ],
+  "window": {
+    "icon": "128.png",
+    "toolbar": true,
+    "width": 800,
+    "height": 500,
+    "position": "mouse",
+    "min_width": 400,
+    "min_height": 200,
+    "max_width": 800,
+    "max_height": 600
+  },
+  "webkit": {
+    "plugin": true
+  },
+
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.6",
+    "jade": "*"
+  }
+}

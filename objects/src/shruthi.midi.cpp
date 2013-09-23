@@ -38,17 +38,19 @@ ShruthiMidi::ShruthiMidi()
     std::vector< RtMidi::Api > apis;
     RtMidi :: getCompiledApi( apis );
     
-    post("Compiled APIs:");
+    DPOST("Compiled APIs:");
     for ( unsigned int i=0; i<apis.size(); i++ ){
-        post("%s", apiMap[ apis[i] ].c_str());
+        DPOST("%s", apiMap[ apis[i] ].c_str());
     }
     
     try {
         midiin = new RtMidiIn();
-        post("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
+        DPOST("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
+        
+        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
         
         midiout = new RtMidiOut();
-        post("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
+        DPOST("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
     }
     catch (RtError & err) {
         error("Failed to create midi ports: %s", err.getMessage().c_str());
@@ -58,6 +60,9 @@ ShruthiMidi::ShruthiMidi()
 }
 
 ShruthiMidi::~ShruthiMidi(){
+    midiin->closePort();
+    midiout->closePort();
+    
     delete midiin;
     delete midiout;
 }
@@ -82,7 +87,7 @@ bool ShruthiMidi::validateSysexChecksum(std::vector<uint8_t> *msg, uint8_t check
 
 void ShruthiMidi::testMidiOut(){
     if(locked_){
-        post("midi output locked for sysex transfer");
+        DPOST("midi output locked for sysex transfer");
         return;
     }
     
@@ -112,7 +117,7 @@ bool ShruthiMidi::validateSysex(std::vector<uint8_t> *sysex){
 void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
     // header and checksum
     if(!validateSysex(msg)){
-        post("Ignored incoming sysex, n: %i", msg->size());
+        DPOST("Ignored incoming sysex, n: %i", msg->size());
         return;
     }
     
@@ -121,9 +126,13 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
     
     long payload = (msg->size() - 11) >> 1;
     long expected_payload = expectedSysexPayload(cmd);
+    
     if(expected_payload < 0){
-        post("Sysex command is not implemented: %x", cmd);
-    } else if (payload != expected_payload){
+        DPOST("Sysex command is not implemented: %x", cmd);
+        return;
+    }
+    
+    if (payload != expected_payload){
         error("Expected sysex payload for cmd %x is %i, not: %i", cmd, expected_payload, payload);
         return;
     }
@@ -159,19 +168,17 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
     }
 }
 
-
-
 void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
     midiin->closePort();
     midiin->openPort(findInputPortNumberForName(portName));
-    midiin->setCallback( &ShruthiMidi::midiInputCallback, this);
+    
     midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
     channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
 }
 
 void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
     if(locked_){
-        post("midi output locked for sysex transfer");
+        DPOST("midi output locked for sysex transfer");
         return;
     }
     midiout->closePort();
@@ -181,7 +188,7 @@ void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
 
 void ShruthiMidi::sendMessage(std::vector<uint8_t> *msg){
     if(locked_){
-        post("midi output locked for sysex transfer");
+        DPOST("midi output locked for sysex transfer");
         return;
     }
     midiout->sendMessage(msg);
@@ -197,7 +204,7 @@ void ShruthiMidi::unlock(){
 
 void ShruthiMidi::sendSysex(uint8_t* data, uint8_t command, uint8_t argument, size_t size){
     if(locked_){
-        post("midi output locked for sysex transfer");
+        DPOST("midi output locked for sysex transfer");
         return;
     }
     
@@ -237,7 +244,7 @@ void ShruthiMidi::sendSysexSafe(uint8_t* data, uint8_t command, uint8_t argument
 
 void ShruthiMidi::sendSysexCommand(uint8_t command, uint8_t argument) {
     if(locked_){
-        post("midi output locked for sysex transfer");
+        DPOST("midi output locked for sysex transfer");
         return;
     }
     std::vector<unsigned char> msg;
@@ -268,6 +275,10 @@ int ShruthiMidi::expectedSysexPayload(SysexCommand cmd){
 //    size_t size = (msg->size() - 11) >> 1; // sysex overhead is 11 bytes, bytes are transferred in nibblets
 
     switch (cmd) {
+        case kNumbers:
+            return sizeof(uint16_t) * 2 ;
+            break;
+            
         case kPatch:  // Patch transfer
 //            post("expected size %i", StorageConfiguration<Patch>::size);
             return StorageConfiguration<Patch>::size;
@@ -366,7 +377,7 @@ int ShruthiMidi::expectedSysexPayload(SysexCommand cmd){
 void ShruthiMidi::processControlChange(long cc_index, long cc_value){
 
     switch(cc_index){
-            // ******************** INDEX ************* //
+            // ******************** Parameter INDEX ************* //
         case CC_NRPN_MSB:
             // Save 7 high bits
             index_msb = cc_value << 7;
@@ -377,7 +388,7 @@ void ShruthiMidi::processControlChange(long cc_index, long cc_value){
             index_lsb = cc_value;
             valid = true;
             break;
-            // ******************** VALUE **************//
+            // ******************** Parameter VALUE **************//
         case CC_DATA_MSB:
             // WARNING
             // Officially LSB is optional, but since Max provides us only separate messages and not a buffer
@@ -400,7 +411,8 @@ void ShruthiMidi::processControlChange(long cc_index, long cc_value){
         default:
             // process cc as regular
             // TODO forward as cc to shruthi?
-            //                send_cc(cc_index, cc_value);
+            
+//              send_cc(cc_index, cc_value);// output cc to max patch to update parameters?
             break;
     }
 }
@@ -411,6 +423,7 @@ void ShruthiMidi::processControlChangeAsNrpn(){
         long v = value_lsb - 0x80;
 //        outputNrpn(index_msb | index_lsb, v);
         if(nrpnCallback_){
+//            post("nrpn_callback %x %x", index_msb | index_lsb, v);
             nrpnCallback_(index_msb | index_lsb, v);
         }
 
@@ -419,6 +432,7 @@ void ShruthiMidi::processControlChangeAsNrpn(){
         long v = value_msb | value_lsb;
 //        outputNrpn(index_msb | index_lsb, v);
         if(nrpnCallback_){
+//            post("nrpn_callback %x %x", index_msb | index_lsb, v);
             nrpnCallback_(index_msb | index_lsb, v);
         }
     }
@@ -434,7 +448,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
     
     if(x.locked_){
-        post("midi input locked for sysex transfer");
+        DPOST("midi input locked for sysex transfer");
         return;
     }
     
@@ -454,7 +468,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     
     switch(status){
         case STATUS_SYSEX:
-            //                post("sysex, n: %i", nBytes);
+            DPOST("Sysex message received, n: %i", nBytes);
             x.parseSysex(msg);
             break;
         case STATUS_CC:
@@ -467,7 +481,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
         }
             break;
         default:
-            post("Ignored channel msg with status: %x", status);
+            DPOST("Ignored channel msg with status: %x", status);
             break;
     }
 }
@@ -479,7 +493,7 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
         try {
             portName = gensym(midiin->getPortName(i).c_str());
             if(portName == name){
-                post("Port name %s, matched index %i", name->s_name, i);
+                DPOST("Port name %s, matched index %i", name->s_name, i);
                 return i;
             }
         }
@@ -498,7 +512,7 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
         try {
             portName = gensym(midiout->getPortName(i).c_str());
             if(portName == name){
-                post("Port name %s, matched index %i", name->s_name, i);
+                DPOST("Port name %s, matched index %i", name->s_name, i);
                 return i;
             }
         }
@@ -515,12 +529,12 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
 void ShruthiMidi::printMidiPorts(long inlet){
     // Check inputs.
     unsigned int nPorts = midiin->getPortCount();
-    post("There are %i input ports available:", nPorts);
+    DPOST("There are %i input ports available:", nPorts);
     std::string portName;
     for ( unsigned int i=0; i<nPorts; i++ ) {
         try {
             portName = midiin->getPortName(i);
-            post("input %i: %s", i+1, portName.c_str());
+            DPOST("input %i: %s", i+1, portName.c_str());
         }
         catch ( RtError &err ) {
             error("%s", err.getMessage().c_str());
@@ -529,11 +543,11 @@ void ShruthiMidi::printMidiPorts(long inlet){
     
     
     nPorts = midiout->getPortCount();
-    post("There are %i output ports available:", nPorts);
+    DPOST("There are %i output ports available:", nPorts);
     for ( unsigned int i=0; i<nPorts; i++ ) {
         try {
             portName = midiout->getPortName(i);
-            post("output %i: %s", i+1, portName.c_str());
+            DPOST("output %i: %s", i+1, portName.c_str());
         }
         catch ( RtError &err ) {
             error("%s", err.getMessage().c_str());
@@ -544,7 +558,7 @@ void ShruthiMidi::printMidiPorts(long inlet){
 void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
     
     if(locked_){
-        post("midi output locked for sysex transfer");
+        DPOST("midi output locked for sysex transfer");
         return;
     }
     

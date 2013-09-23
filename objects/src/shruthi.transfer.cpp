@@ -11,7 +11,9 @@ SysexBulkTransfer::SysexBulkTransfer(ShruthiMidi &device) :
     data_(0),
     size_(0),
     dataposition_(0),
+    isTransferBusy_(false),
     device_(device)
+    
 {
     x_systhread = NULL;
     x_systhread_cancel = false;
@@ -53,6 +55,7 @@ void SysexBulkTransfer::start(){
     // create new thread + begin execution
     if (x_systhread == NULL) {
         post("starting a new thread");
+        isTransferBusy_ = true;
         systhread_create((method) memberproc, this, 0, 0, 0, &x_systhread);
     }
 }
@@ -76,35 +79,51 @@ void SysexBulkTransfer::stop(){
 void SysexBulkTransfer::qfn(SysexBulkTransfer *x)
 {
     int block_counter, message_id;
-    uint8_t *dataposition;
+    uint8_t *dataposition, block_id;
+    bool isTransferBusy;
     
     systhread_mutex_lock(x->x_mutex);
-    block_counter = x->block_counter_;															// access shared data
+    block_counter = x->block_counter_;
+    block_id = x->block_id_;
+    // access shared data
     message_id = x->message_id_;
     dataposition = x->dataposition_;
+    isTransferBusy = x->isTransferBusy_;
     systhread_mutex_unlock(x->x_mutex);
     
     // *never* wrap outlet calls with systhread_mutex_lock()
     //        outlet_int(x->x_outlet, myfoo);
 //    post("transfer block %i", block);
     post("dataposition %x, messid %x, nblock %i, size %i", dataposition, message_id, block_counter, kSysExBulkDumpBlockSize);
+    
+    if(x->progressReporter_){
+        x->progressReporter_(isTransferBusy, block_id);
+    }
 }
 
+
+// TODO figure out how to skip system settings / internal eeprom
 void SysexBulkTransfer::memberproc(SysexBulkTransfer *x)
 {
 //    start_ = 0;
     
     // refactor naar local vars
     x->message_id_ = 0x40;
+    uint16_t delay = 250;//100;
     
-    x->block_id_ = 16; // skip first 16
-    uint16_t pos = kInternalEepromSize; // start at external eeprom
-    uint16_t delay = 100;
+    /// first is system settings 
+ //   x->block_id_ = 16; // skip first 16
+ //   uint16_t pos = kInternalEepromSize; // start at external eeprom
+   
+    
+    x->block_id_ = 0; // skip first 16
+    uint16_t pos = 0; // start at external eeprom
     
     x->block_counter_ = 0;
     x->dataposition_ = 0;
 
-    x->device_.lock();
+    //!!! Is dit wel nodig, sysex zijn blocks met header en footer
+//    x->device_.lock();
     
 //    for (uint16_t start = 0; start < x->size_; start += kSysExBulkDumpBlockSize) {
     
@@ -157,6 +176,11 @@ void SysexBulkTransfer::memberproc(SysexBulkTransfer *x)
     x->x_systhread_cancel = false;                                                 // reset cancel flag for next time, in case
     
     x->device_.unlock();
+    
+    x->isTransferBusy_ = false;
+    
+    qelem_set(x->x_qelem); // nog 1x om finished door te geven.
+    
     // the thread is created again
     systhread_exit(0);															// this can return a value to systhread_join();
 }

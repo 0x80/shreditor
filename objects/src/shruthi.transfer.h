@@ -5,6 +5,7 @@
 #include "shruthi.types.h"
 class ShruthiMidi;
 
+typedef std::function<void (bool, int)> ProgressCallback;
 
 class SysexBulkTransfer
 {
@@ -20,6 +21,11 @@ public:
     static void qfn(SysexBulkTransfer *x);
     static void memberproc(SysexBulkTransfer *x);
     
+    // een callback voor het teruggeven van progress of finished
+    void registerProgressCallback(ProgressCallback fun){
+        progressReporter_ = fun;
+    }
+    
     //private:
     
     uint16_t start_;
@@ -31,6 +37,7 @@ public:
     uint8_t *data_;
     size_t size_;
     uint8_t *dataposition_;
+    bool isTransferBusy_;
     
     void *transferclock_;
     
@@ -43,6 +50,7 @@ public:
 //	int                 x_sleeptime;                            // how many milliseconds to sleep
     
     ShruthiMidi &device_;
+    ProgressCallback progressReporter_;
     
 };
 

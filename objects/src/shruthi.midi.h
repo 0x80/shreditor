@@ -51,6 +51,8 @@ public:
     
     void lock();
     void unlock();
+    
+    long lastNrpnIndex;
         
 //    typedef std::tr1::function<void (SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data)> SysexCallbackFun;
 //    void registerCallbacks(VxShruthi &ob);
@@ -63,7 +65,7 @@ private:
     void processControlChange(long cc_index, long cc_value);
     void processControlChangeAsNrpn();
         
-    long lastNrpnIndex;
+   
     
     uint8_t nrpn_msb;
     uint8_t nrpn_lsb;

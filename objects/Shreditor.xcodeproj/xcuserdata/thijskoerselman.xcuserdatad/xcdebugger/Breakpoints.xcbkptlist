@@ -36,7 +36,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "164"
-         endingLineNumber = "164">
+         endingLineNumber = "164"
+         landmarkName = "ShruthiMidi::parseSysex(std::vector&lt;uint8_t&gt; *msg)"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

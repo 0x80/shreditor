@@ -15,6 +15,7 @@
 				840088CF16D18801001D2D5B /* CopyFiles */,
 			);
 			dependencies = (
+				843981081726B2C70022FFE9 /* PBXTargetDependency */,
 				84AC366016111EED00C30CEA /* PBXTargetDependency */,
 				8473C62B1610FAF0004C5FFA /* PBXTargetDependency */,
 				369474320FD5C8E700A5E9FD /* PBXTargetDependency */,
@@ -28,6 +29,13 @@
 		840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
 		840088D116D1881C001D2D5B /* vx.cc2nrpn.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */; };
 		840088D216D1881C001D2D5B /* vx.nrpn2cc.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */; };
+		843980F317268B510022FFE9 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
+		843980F817268B510022FFE9 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266BCE05E6E9780000000C /* MaxAPI.framework */; };
+		843980F917268B510022FFE9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846B9B61163467F900718272 /* CoreFoundation.framework */; };
+		8439810317268C1D0022FFE9 /* vx.configure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8439810217268C1D0022FFE9 /* vx.configure.cpp */; };
+		8439810617269B350022FFE9 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8439810417269B350022FFE9 /* tinyxml2.cpp */; };
+		843981091726B2CF0022FFE9 /* vx.configure.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8439810017268B510022FFE9 /* vx.configure.mxo */; };
+		8439810A1726B2D70022FFE9 /* vx.configure.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8439810017268B510022FFE9 /* vx.configure.mxo */; };
 		84477FFD171C9DE900910AEA /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84477FFC171C9DE900910AEA /* RtMidi.cpp */; };
 		84478001171CA6BF00910AEA /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266BCE05E6E9780000000C /* MaxAPI.framework */; };
 		8458DEC315AA1800003124B9 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
@@ -54,6 +62,13 @@
 			remoteGlobalIDString = 369473B20FD5C3DC00A5E9FD;
 			remoteInfo = "vx.circular~";
 		};
+		843981071726B2C70022FFE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 843980EF17268B510022FFE9;
+			remoteInfo = vx.configure;
+		};
 		8473C62A1610FAF0004C5FFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -77,6 +92,7 @@
 			dstPath = "Applications/Max 6.1/Cycling '74/_vauxlab";
 			dstSubfolderSpec = 0;
 			files = (
+				8439810A1726B2D70022FFE9 /* vx.configure.mxo in CopyFiles */,
 				840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */,
 				840088D116D1881C001D2D5B /* vx.cc2nrpn.mxo in CopyFiles */,
 				840088D216D1881C001D2D5B /* vx.nrpn2cc.mxo in CopyFiles */,
@@ -89,6 +105,7 @@
 			dstPath = "Applications/Max6/Cycling '74/_vauxlab";
 			dstSubfolderSpec = 0;
 			files = (
+				843981091726B2CF0022FFE9 /* vx.configure.mxo in CopyFiles */,
 				84EAB6F6161A2214009240D2 /* vx.shruthi.mxo in CopyFiles */,
 				84EAB6F7161A2214009240D2 /* vx.cc2nrpn.mxo in CopyFiles */,
 				84EAB6F8161A2214009240D2 /* vx.nrpn2cc.mxo in CopyFiles */,
@@ -100,6 +117,11 @@
 /* Begin PBXFileReference section */
 		22CF116D0EE9A7700054F513 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = SOURCE_ROOT; };
 		54266BCE05E6E9780000000C /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../c74support/max-includes/MaxAPI.framework"; sourceTree = SOURCE_ROOT; };
+		8439810017268B510022FFE9 /* vx.configure.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vx.configure.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		8439810117268BC50022FFE9 /* vx.configure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vx.configure.h; path = src/vx.configure.h; sourceTree = "<group>"; };
+		8439810217268C1D0022FFE9 /* vx.configure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.configure.cpp; path = src/vx.configure.cpp; sourceTree = "<group>"; };
+		8439810417269B350022FFE9 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml2.cpp; path = external/tinyxml2/tinyxml2.cpp; sourceTree = "<group>"; };
+		8439810517269B350022FFE9 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml2.h; path = external/tinyxml2/tinyxml2.h; sourceTree = "<group>"; };
 		84477FF9171C9DCF00910AEA /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patch.h; sourceTree = "<group>"; };
 		84477FFA171C9DCF00910AEA /* sequencer_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sequencer_settings.h; sourceTree = "<group>"; };
 		84477FFB171C9DCF00910AEA /* system_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_settings.h; sourceTree = "<group>"; };
@@ -135,6 +157,15 @@
 				846B9B62163467F900718272 /* CoreFoundation.framework in Frameworks */,
 				846B9B60163467EB00718272 /* CoreAudio.framework in Frameworks */,
 				846B9B5E163467CD00718272 /* CoreMIDI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		843980F717268B510022FFE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843980F817268B510022FFE9 /* MaxAPI.framework in Frameworks */,
+				843980F917268B510022FFE9 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +222,8 @@
 				84A593A4166A48D700214212 /* shruthi.transfer.h */,
 				84A593A5166A48F300214212 /* shruthi.transfer.cpp */,
 				84A593A7166A4AC100214212 /* shruthi.types.h */,
+				8439810117268BC50022FFE9 /* vx.configure.h */,
+				8439810217268C1D0022FFE9 /* vx.configure.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -198,6 +231,8 @@
 		84477E9B171C9DA000910AEA /* External */ = {
 			isa = PBXGroup;
 			children = (
+				8439810417269B350022FFE9 /* tinyxml2.cpp */,
+				8439810517269B350022FFE9 /* tinyxml2.h */,
 				84478000171C9EE000910AEA /* RtMidi.h */,
 				84477FFF171C9EC900910AEA /* base.h */,
 				84477FFE171C9EB900910AEA /* maxcpp6.h */,
@@ -225,6 +260,7 @@
 				8473C6331611084C004C5FFA /* vx.shruthi.mxo */,
 				8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */,
 				84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */,
+				8439810017268B510022FFE9 /* vx.configure.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,6 +284,24 @@
 			name = vx.shruthi;
 			productName = iterator;
 			productReference = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		843980EF17268B510022FFE9 /* vx.configure */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 843980FD17268B510022FFE9 /* Build configuration list for PBXNativeTarget "vx.configure" */;
+			buildPhases = (
+				843980F017268B510022FFE9 /* Resources */,
+				843980F117268B510022FFE9 /* Sources */,
+				843980F717268B510022FFE9 /* Frameworks */,
+				843980FC17268B510022FFE9 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vx.configure;
+			productName = iterator;
+			productReference = 8439810017268B510022FFE9 /* vx.configure.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8458DEBF15AA1800003124B9 /* vx.cc2nrpn */ = {
@@ -312,6 +366,7 @@
 				369473B20FD5C3DC00A5E9FD /* vx.shruthi */,
 				84A9647B161112540048B8B5 /* vx.nrpn2cc */,
 				8458DEBF15AA1800003124B9 /* vx.cc2nrpn */,
+				843980EF17268B510022FFE9 /* vx.configure */,
 				3694742E0FD5C8DC00A5E9FD /* All */,
 			);
 		};
@@ -319,6 +374,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		369473B30FD5C3DC00A5E9FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		843980F017268B510022FFE9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -343,6 +405,13 @@
 
 /* Begin PBXRezBuildPhase section */
 		369473BA0FD5C3DC00A5E9FD /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		843980FC17268B510022FFE9 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -378,6 +447,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		843980F117268B510022FFE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843980F317268B510022FFE9 /* commonsyms.c in Sources */,
+				8439810317268C1D0022FFE9 /* vx.configure.cpp in Sources */,
+				8439810617269B350022FFE9 /* tinyxml2.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8458DEC115AA1800003124B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -403,6 +482,11 @@
 			isa = PBXTargetDependency;
 			target = 369473B20FD5C3DC00A5E9FD /* vx.shruthi */;
 			targetProxy = 369474310FD5C8E700A5E9FD /* PBXContainerItemProxy */;
+		};
+		843981081726B2C70022FFE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 843980EF17268B510022FFE9 /* vx.configure */;
+			targetProxy = 843981071726B2C70022FFE9 /* PBXContainerItemProxy */;
 		};
 		8473C62B1610FAF0004C5FFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -528,6 +612,59 @@
 			};
 			name = Deployment;
 		};
+		843980FE17268B510022FFE9 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = "$(SRCROOT)/bin";
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					external,
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D__MACOSX_CORE__",
+				);
+				PRODUCT_NAME = vx.configure;
+			};
+			name = Development;
+		};
+		843980FF17268B510022FFE9 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = "$(SRCROOT)/bin";
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					external,
+				);
+				INFOPLIST_FILE = "";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-D__MACOSX_CORE__",
+				);
+				PRODUCT_NAME = vx.configure;
+			};
+			name = Deployment;
+		};
 		8458DEC915AA1800003124B9 /* Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
@@ -631,6 +768,15 @@
 			buildConfigurations = (
 				3694742F0FD5C8DD00A5E9FD /* Development */,
 				369474300FD5C8DD00A5E9FD /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		843980FD17268B510022FFE9 /* Build configuration list for PBXNativeTarget "vx.configure" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843980FE17268B510022FFE9 /* Development */,
+				843980FF17268B510022FFE9 /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;

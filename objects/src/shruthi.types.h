@@ -5,19 +5,14 @@
 #include "shruthi/patch.h"
 #include "shruthi/sequencer_settings.h"
 #include "shruthi/system_settings.h"
-//#include <fstream> // uint declarations, waar anders??
 #include <functional>
 //#include <boost/tr1/functional>
 #include "stdint.h"
 
-//#define uint16_t unsigned int
-//#define uint8_t unsigned char
-
-
 const uint16_t kUserWavetableSize = 8 * 129;
 const uint8_t kSysExBulkDumpBlockSize = 128;
-const uint16_t kInternalEepromSize = 2048;
-const uint16_t kBankSize = 8192;
+const uint16_t kInternalEepromSize = 0x0800;
+const uint16_t kBankSize = 0x2000;
 const uint16_t kMaxNumBanks = 7;
 
 
@@ -56,6 +51,7 @@ static const uint8_t sysex_rx_header_old[] = {
 
 
 enum SysexCommand {
+    
     kPatch = 0x01,
     kSequence,
     kWavetable,
@@ -65,6 +61,7 @@ enum SysexCommand {
     kSequencerState,
     kPatternSize ,
     kPatternRotation,
+    kNumbers = 0x0a,
     
     kPatchRequest = 0x11,
     kSequenceRequest,
@@ -73,7 +70,9 @@ enum SysexCommand {
     kSequenceStepRequest,
     kPatchNameRequest,
     kSequencerStateRequest,
-    kRandomizePatchRequest,
+    kNumbersRequest = 0x1a,
+    
+    kRandomizePatchRequest = 0x31,
     kRandomizeSequenceRequest,
     
     kWritePatchRequest = 0x21,
