@@ -87,7 +87,7 @@ Sequences stored in presets are only the 16 step data. No size or rotation. All 
 * Max and shruthi firmware don't use the same character set for patch names, special characters might differ.
 * When switching devices any playing notes will hang on the previous device
 * Note trigger settings are not handled at the moment
-* Sometimes device presets don't load, and slots stay empty. Restart app.
+* Sometimes device presets don't load, and slots stay empty -> Restart app.
 * 
 
 Bugs
@@ -103,7 +103,6 @@ TODO
 
 ###Test
 * test editing through cirklon
-* wanneer gebeurt er een eeprom save naar disk? closebang? timer?
 * test midi clock sync
 
 ###Implement

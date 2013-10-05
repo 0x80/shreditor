@@ -279,6 +279,10 @@ int ShruthiMidi::expectedSysexPayload(SysexCommand cmd){
             return sizeof(uint16_t) * 2 ;
             break;
             
+        case kNumBanks:
+            return 0;
+            break;
+            
         case kPatch:  // Patch transfer
 //            post("expected size %i", StorageConfiguration<Patch>::size);
             return StorageConfiguration<Patch>::size;

@@ -77,7 +77,7 @@ uint8_t Patch::CheckBuffer(uint8_t* buffer) {
 
 VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
 :   transfer_(device_),
-    num_accessible_banks_(kMaxNumBanks),
+    num_accessible_banks_(2),
     useEepromCache_(true),
     hasEepromCache_(false)
 {
@@ -464,6 +464,7 @@ void VxShruthi::transferRom(long inlet) {
 
 // requests
 void VxShruthi::requestNumbers(long inlet){ device_.sendSysexCommand(0x1a); }
+void VxShruthi::requestNumBanks(long inlet){ device_.sendSysexCommand(0x1b); }
 void VxShruthi::requestPatch(long inlet){ device_.sendSysexCommand(0x11); }
 void VxShruthi::requestSequence(long inlet){ device_.sendSysexCommand(0x12); }
 void VxShruthi::requestWavetable(long inlet){ device_.sendSysexCommand(0x13); }
@@ -893,11 +894,32 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
                 current_patch_number_ = current_patch_number;
                 current_sequence_number_ = current_sequence_number;
                 
-//                outputCurrentNumbers();
                 atom_setsym(atoms_, gensym("current"));
                 atom_setlong(atoms_+1, current_patch_number_);
                 atom_setlong(atoms_+2, current_sequence_number_);
                 outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+            }
+            break;
+            
+        case kNumBanks:
+            if(data.size() == 0 && arg > 0){
+                success = 1;
+                num_accessible_banks_ = arg;
+                
+                DPOST("Device numbanks: %i", num_accessible_banks_ );
+                
+                if(num_accessible_banks_ > 7){
+                    object_error((t_object *)this, "Invalid eeprom size numbanks: %i", num_accessible_banks_);
+                    DPOST("Resetting storage to default 2 banks");
+                    num_accessible_banks_ = 2;
+                }
+                
+                
+                
+//                atom_setsym(atoms_, gensym("current"));
+//                atom_setlong(atoms_+1, current_patch_number_);
+//                atom_setlong(atoms_+2, current_sequence_number_);
+//                outlet_list(m_outlets[1], ps_empty, 3, atoms_);
             }
             break;
             
@@ -1168,24 +1190,25 @@ void VxShruthi::transferProgressReporter(bool isBusy, uint8_t progress){
 
 void VxShruthi::listPatchNames(long inlet){
     
-    
     Patch *p;
-    size_t numPatches;
+//    size_t numPatches;
     uint8_t *pmem;
     int patchNumber = 1; // starting at 1max
     
-//    int count = 0;
-//    t_atom* a = atoms_;
+    
+    // first output how many patches there will be
+    atom_setsym(atoms_, gensym("patchcount"));
+    atom_setlong(atoms_+1, getNumPatches());
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
     
-    //kMaxNumBanks * 128; f ix atoms_ size limted ot 128
+    // then build the list
     atom_setsym(atoms_, gensym("patchlist"));
     
     // 16 internal patches
     pmem = eeprom_ + 0x0010;
-    numPatches = 16;
         
-    for(size_t i=0; i<numPatches; ++i ){
+    for(size_t i=0; i<16; ++i ){
         p = reinterpret_cast<Patch *>(pmem + i*PATCH_SIZE); 
         atom_setlong(atoms_+1, patchNumber++);
         
@@ -1199,16 +1222,13 @@ void VxShruthi::listPatchNames(long inlet){
         ++p;
     }
     
-    // external patches starting here
-//    pmem = eeprom_+kInternalEepromSize;
-    numPatches = 64;
     
-    // for each bank
-    for(int k=0; k<kMaxNumBanks; ++k){
+    // for each bank 64 patches
+    for(int k=0; k<num_accessible_banks_; ++k){
     
         pmem = eeprom_ + kInternalEepromSize + (k * kBankSize);
         
-        for(size_t i=0; i<numPatches; ++i ){
+        for(size_t i=0; i<64; ++i ){
             p = reinterpret_cast<Patch *>(pmem + i*PATCH_SIZE);
             atom_setlong(atoms_+1, patchNumber++);
             
@@ -1249,6 +1269,7 @@ int T_EXPORT main(void) {
     REGISTER_METHOD_SYMBOL(VxShruthi, setPatchName);
     
     REGISTER_METHOD(VxShruthi, requestNumbers);
+    REGISTER_METHOD(VxShruthi, requestNumBanks);
     REGISTER_METHOD(VxShruthi, requestPatch);
     REGISTER_METHOD(VxShruthi, requestSequence);
     REGISTER_METHOD(VxShruthi, requestWavetable);

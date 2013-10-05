@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 209.0, 307.0, 1274.0, 809.0 ],
+		"rect" : [ 184.0, 279.0, 1274.0, 809.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -29,6 +29,21 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"frgb" : 0.0,
+					"id" : "obj-14",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 656.0, 352.0, 150.0, 33.0 ],
+					"text" : "preset recall -> eeprom wordt intern geregeld"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -120,7 +135,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "bang" ],
-					"patching_rect" : [ 632.0, 384.0, 32.5, 20.0 ],
+					"patching_rect" : [ 624.0, 392.0, 32.5, 20.0 ],
 					"text" : "t i b"
 				}
 
@@ -1113,7 +1128,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 632.0, 352.0, 97.0, 20.0 ],
+					"patching_rect" : [ 624.0, 328.0, 97.0, 20.0 ],
 					"text" : "r ---presetRecall"
 				}
 
@@ -1717,15 +1732,6 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-61", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-12", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-74", 0 ]
 				}
 
 			}

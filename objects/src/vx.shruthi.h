@@ -26,6 +26,19 @@
 #include "shruthi.midi.h"
 #include "shruthi.transfer.h"
 
+#define NUM_DEVICE_SLOTS 8
+class AppStorage {
+public:
+    Patch* getPatch() { return &patches_[deviceIndex_]; };
+
+private:
+    int deviceIndex_;
+    Patch patches_[NUM_DEVICE_SLOTS];
+    
+    
+    
+}
+
 
 class VxShruthi : public MaxCpp6<VxShruthi> {
 public:
@@ -65,6 +78,7 @@ public:
     void transferRom(long inlet = 0);
    
     void requestNumbers(long inlet = 0);
+    void requestNumBanks(long inlet = 0);
     void requestPatch(long inlet = 0);
     void requestSequence(long inlet = 0);
     void requestWavetable(long inlet = 0);
@@ -157,8 +171,12 @@ public:
 private:
 
     uint16_t addressable_space_size();
+    inline long getNumPatches(){
+        return num_accessible_banks_ * 64 + 16;
+    }
+    
 
-    Patch patch_;
+    Patch* patch_; // working patch
     Patch copypatch_;
 //    bool valid_copypatch_;
     SequencerSettings sequencer_;
@@ -172,6 +190,7 @@ private:
                                 // is allocated, it is just pointing to eeprom_;
     uint8_t *eeprom_;
     uint8_t load_buffer_[sizeof(Patch)];
+   // uint8_t numBanks_; // number of external eeprom banks
     
     ShruthiMidi device_;
     SysexBulkTransfer transfer_;

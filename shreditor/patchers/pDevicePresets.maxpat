@@ -336,20 +336,6 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"frgb" : 0.0,
-					"id" : "obj-74",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 488.0, 176.0, 150.0, 20.0 ],
-					"text" : "niet meer nodig"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
 					"id" : "obj-67",
 					"linecount" : 2,
 					"maxclass" : "message",
@@ -373,20 +359,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 16.0, 904.0, 222.0, 58.0 ],
 					"text" : ";\r---toShruthi requestSequencerSettings;\r---toShruthi requestSystemSettings;\r---toShruthi requestNumbers;\r"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-65",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "int", "int" ],
-					"patching_rect" : [ 456.0, 136.0, 50.0, 20.0 ],
-					"text" : "change"
 				}
 
 			}
@@ -689,7 +661,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 520.0, 136.0, 178.0, 20.0 ],
+					"patching_rect" : [ 464.0, 192.0, 178.0, 20.0 ],
 					"text" : "r ---systemSettingsMidiChannel"
 				}
 
@@ -1187,40 +1159,6 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"id" : "obj-23",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 472.0, 240.0, 19.0, 20.0 ],
-					"text" : "_"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-22",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 480.0, 200.0, 105.0, 20.0 ],
-					"restore" : [ 1 ],
-					"saved_object_attributes" : 					{
-						"parameter_enable" : 0
-					}
-,
-					"text" : "pattr midiChannel",
-					"varname" : "midiChannel"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
 					"id" : "obj-19",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1581,50 +1519,12 @@
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
-					"id" : "obj-40",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 440.0, 160.0, 32.5, 18.0 ],
-					"text" : "1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
 					"id" : "obj-39",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 544.0, 240.0, 103.0, 20.0 ],
+					"patching_rect" : [ 464.0, 224.0, 103.0, 20.0 ],
 					"text" : "s ---midiChannel"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"bordercolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"hbgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"hint" : "The MIDI channel of the Shruthi device",
-					"htextcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"htricolor" : [ 1.0, 0.427231, 0.000534, 1.0 ],
-					"id" : "obj-18",
-					"maxclass" : "number",
-					"maximum" : 16,
-					"minimum" : 0,
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "int", "bang" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 440.0, 200.0, 32.0, 20.0 ],
-					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"tricolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
 			}
@@ -1981,15 +1881,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-22", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-18", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -2003,24 +1894,6 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-2", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-23", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-22", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-18", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-23", 0 ]
 				}
 
 			}
@@ -2188,15 +2061,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-18", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-40", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-119", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -2318,15 +2182,6 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-60", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-18", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-65", 0 ]
 				}
 
 			}

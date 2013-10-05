@@ -62,6 +62,7 @@ enum SysexCommand {
     kPatternSize ,
     kPatternRotation,
     kNumbers = 0x0a,
+    kNumBanks,
     
     kPatchRequest = 0x11,
     kSequenceRequest,
@@ -71,6 +72,7 @@ enum SysexCommand {
     kPatchNameRequest,
     kSequencerStateRequest,
     kNumbersRequest = 0x1a,
+    kNumBanksRequest,
     
     kRandomizePatchRequest = 0x31,
     kRandomizeSequenceRequest,
