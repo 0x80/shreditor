@@ -40,5 +40,83 @@
          landmarkName = "ShruthiMidi::parseSysex(std::vector&lt;uint8_t&gt; *msg)"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "403268236.111439"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "80"
+         endingLineNumber = "80"
+         landmarkName = "VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "403268236.111439"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "82"
+         endingLineNumber = "82"
+         landmarkName = "VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "403268236.111439"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
+         landmarkName = "VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/shruthi.midi.cpp"
+         timestampString = "403268162.279325"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "563"
+         endingLineNumber = "563"
+         landmarkName = "ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "403371242.124102"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "739"
+         endingLineNumber = "739"
+         landmarkName = "VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "403382283.142061"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "986"
+         endingLineNumber = "986"
+         landmarkName = "VxShruthi::importEeprom(long inlet, t_symbol* filepath)"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -472,7 +472,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     
     switch(status){
         case STATUS_SYSEX:
-            DPOST("Sysex message received, n: %i", nBytes);
+//            DPOST("Sysex message received, n: %i", nBytes);
             x.parseSysex(msg);
             break;
         case STATUS_CC:

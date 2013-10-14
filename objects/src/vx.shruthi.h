@@ -9,35 +9,28 @@
 #ifndef MutableSysex_vx_shruthi_h
 #define MutableSysex_vx_shruthi_h
 
-
-#define __VAUXLAB_DEBUG__ 1
-
-#define __RTMIDI_DEBUG__ 1
+#ifdef DEBUG
+    #define __VAUXLAB_DEBUG__ 1
+    #define __RTMIDI_DEBUG__ 0
+#endif
 
 // a wrapper for cpost() only called for debug builds on Windows
 // to see these console posts, run the DbgView program (part of the SysInternals package distributed by Microsoft)
-#if defined( __VAUXLAB_DEBUG__ )
+#ifdef DEBUG
 #define DPOST post
 #else
 #define DPOST
+// voor nu even enabled
+//#define DPOST post
 #endif
+
+
 
 #include "shruthi.types.h"
 #include "shruthi.midi.h"
 #include "shruthi.transfer.h"
 
 #define NUM_DEVICE_SLOTS 8
-class AppStorage {
-public:
-    Patch* getPatch() { return &patches_[deviceIndex_]; };
-
-private:
-    int deviceIndex_;
-    Patch patches_[NUM_DEVICE_SLOTS];
-    
-    
-    
-}
 
 
 class VxShruthi : public MaxCpp6<VxShruthi> {
@@ -47,8 +40,11 @@ public:
     
     
 //    void midiInput(long v);
+    void initializeSystemStoragePath();
+    bool isExpired();
     
     static void onTick(VxShruthi *x);
+    static void onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
     
     void outputProgress(long progress);
     void outputPatchData();
@@ -123,11 +119,11 @@ public:
     void storePatch(long inlet, long slot);
     void storeSequence(long inlet, long slot);
     
+    void loadDeviceEeprom();
+    void saveDeviceEeprom();
+    
     void importEeprom(long inlet, t_symbol* filepath);
     void exportEeprom(long inlet, t_symbol* filepath);
-    
-//    void importUserData(long inlet, t_symbol* filepath);
-//    void exportUserData(long inlet, t_symbol* filepath);
     
     void storePatchToEeprom(long slot);
     void loadPatchFromEeprom(long slot);
@@ -136,8 +132,10 @@ public:
     
     void clearEepromCache(long inlet = 0);
     
+    void calculatePatternSize();
+    
     void nrpn(long inlet, long nrpn_index, long nrpn_value);
-    void panic(long inlet=0);
+    void stopTransfer(long inlet=0);
     
     void copyPatchToClipboard(long inlet);
     void pastePatchFromClipboard(long inlet);
@@ -145,8 +143,43 @@ public:
     void pasteSequenceFromClipboard(long inlet);
     
     void listPatchNames(long inlet = 0);
+    void outputDataroot();
     
     void transferProgressReporter(bool finished, uint8_t progress);
+    
+    // v range 1-8
+    void switchToDevice(long inlet, long v){
+        
+        v = CLAMP(v, 1, 8);
+        
+        DPOST("switch to device (1-8): %i", v);
+        
+        if(slotIndex_ != -1){
+          saveDeviceEeprom(); // save current
+        }
+        
+        slotIndex_ = v-1;
+        loadDeviceEeprom(); // load new
+        
+        // get sequencer settings since they are not stored anywhere
+        // and we might have restarted the editor meanwhile
+        requestSequencerSettings();
+        
+        refreshGui();
+       
+        // clear nrpn cache todo clean way
+        device_.lastNrpnIndex = -1;
+    }
+    
+    void refreshGui(){
+        // !! numbanks triggers listPatchNames when it returns
+        requestNumBanks();
+        // output the current selected patch and sequence numbers
+        requestNumbers();
+        // output global setting data
+        outputSettingsData();
+        outputSequencerSettings();
+    }
      
     template<typename T>
     uint8_t* getAddress(uint16_t slot) {
@@ -175,19 +208,22 @@ private:
         return num_accessible_banks_ * 64 + 16;
     }
     
+    int slotIndex_;
 
-    Patch* patch_; // working patch
-    Patch copypatch_;
-//    bool valid_copypatch_;
-    SequencerSettings sequencer_;
-    SequencerSettings copysequencer_;
-//    bool valid_copysequencer_;
+    Patch workingPatch_[NUM_DEVICE_SLOTS]; // working patch
+    int workingPatchIndex_[NUM_DEVICE_SLOTS];
+    Patch clipboardPatch_;
+    
+    SequencerSettings workingSequencer_[NUM_DEVICE_SLOTS];
+    int workingSequencerIndex_[NUM_DEVICE_SLOTS];
+    SequencerSettings clipboardSequencer_;
     
     uint8_t wavetable_[kUserWavetableSize+1]; // waarom +1?
     t_atom atoms_[128];
     
     SystemSettings* settings_;  // settings are stored at beginning of eeprom so no extra memory
                                 // is allocated, it is just pointing to eeprom_;
+    
     uint8_t *eeprom_;
     uint8_t load_buffer_[sizeof(Patch)];
    // uint8_t numBanks_; // number of external eeprom banks
@@ -200,6 +236,11 @@ private:
     bool hasEepromCache_;
     uint16_t current_patch_number_;
     uint16_t current_sequence_number_;
+    
+    std::string dataroot_;
+    std::string presetfile_;
+    
+    int progressCounter_;
 };
     
 #endif

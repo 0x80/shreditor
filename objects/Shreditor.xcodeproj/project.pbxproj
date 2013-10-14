@@ -48,6 +48,7 @@
 		84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A5939C1668CCDB00214212 /* shruthi.midi.cpp */; };
 		84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A593A5166A48F300214212 /* shruthi.transfer.cpp */; };
 		84A9647E161112540048B8B5 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
+		84C0D7D418007048004706D1 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C0D7D318007048004706D1 /* CoreServices.framework */; };
 		84EAB6F6161A2214009240D2 /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
 		84EAB6F7161A2214009240D2 /* vx.cc2nrpn.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */; };
 		84EAB6F8161A2214009240D2 /* vx.nrpn2cc.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */; };
@@ -143,6 +144,7 @@
 		84A593A5166A48F300214212 /* shruthi.transfer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shruthi.transfer.cpp; path = src/shruthi.transfer.cpp; sourceTree = "<group>"; };
 		84A593A7166A4AC100214212 /* shruthi.types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shruthi.types.h; path = src/shruthi.types.h; sourceTree = "<group>"; };
 		84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vx.nrpn2cc.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		84C0D7D318007048004706D1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = ../../../../../../System/Library/Frameworks/CoreServices.framework; sourceTree = "<group>"; };
 		84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = maxmspsdk.xcconfig; sourceTree = "<group>"; };
 		84C3C13315A84702007FE735 /* commonsyms.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = commonsyms.c; path = "../c74support/max-includes/common/commonsyms.c"; sourceTree = "<group>"; };
 		84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.nrpn2cc.cpp; path = src/vx.nrpn2cc.cpp; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C0D7D418007048004706D1 /* CoreServices.framework in Frameworks */,
 				84478001171CA6BF00910AEA /* MaxAPI.framework in Frameworks */,
 				846B9B62163467F900718272 /* CoreFoundation.framework in Frameworks */,
 				846B9B60163467EB00718272 /* CoreAudio.framework in Frameworks */,
@@ -189,6 +192,7 @@
 		089C166AFE841209C02AAC07 /* iterator */ = {
 			isa = PBXGroup;
 			children = (
+				84C0D7D318007048004706D1 /* CoreServices.framework */,
 				84477E9B171C9DA000910AEA /* External */,
 				84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */,
 				08FB77ADFE841716C02AAC07 /* Source */,
@@ -507,6 +511,11 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libc++";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"\"DEBUG = 1\"",
+					"\"DENORM_WANT_FIX = 1\"",
+					"\"NO_TRANSLATION_SUPPORT = 1\"",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
@@ -550,6 +559,11 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"DEBUG=1",
+					"\"DENORM_WANT_FIX = 1\"",
+					"\"NO_TRANSLATION_SUPPORT = 1\"",
+				);
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -576,6 +590,10 @@
 				DSTROOT = "$(SRCROOT)/bin";
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"\"DENORM_WANT_FIX = 1\"",
+					"\"NO_TRANSLATION_SUPPORT = 1\"",
+				);
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -598,6 +616,11 @@
 				DSTROOT = /;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"DEBUG=1",
+					"\"DENORM_WANT_FIX = 1\"",
+					"\"NO_TRANSLATION_SUPPORT = 1\"",
+				);
 				PRODUCT_NAME = Untitled;
 			};
 			name = Development;

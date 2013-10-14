@@ -95,40 +95,7 @@ enum ArpeggioDirection {
 // data[0] bestaat uit note (eerste 7bit) + gate flag bit #8
 class SequenceStep {
  public:
-//  void set_gate(uint8_t gate) {
-//    if (gate) {
-//      // set alleen 8e bit en laat rest staan (note data)
-//      data_[0] |= 0x80;
-//    } else {
-//      // zet alleen 8e bit uit en laat rest staan (&= 0x7f zou zelfde zijn toch?)
-//      data_[0] &= ~0x80;
-//    }
-//  }
-//  void set_note(uint8_t note) {
-//    // clear first 7 bits en zet daarna note data erin
-//    data_[0] = (data_[0] & 0x80) | (note & 0x7f);
-//  }
-//
-//  // legato, 8e bit
-//  void set_legato(uint8_t legato) {
-//    if (legato) {
-//      data_[1] |= 0x80;
-//    } else {
-//      data_[1] &= ~0x80;
-//    }
-//  }
-//
-//  // velocity, bit 5 6 7 (range 0-8)
-//  void set_velocity(uint8_t velocity) {
-//    // clear eerst bit 5 6 7 en vul daarna met velocity (gebruik alleen bit 5 6 7 van velocity)
-//    data_[1] = (data_[1] & 0x8f) | (velocity & 0x70);
-//  }
-//  // controller bit 1 2 3 4 (range 0-16)
-//  void set_controller(uint8_t controller) {
-//    // clear eerst bit 1 2 3 4 en vul daarna met controller waarde
-//    data_[1] = (data_[1] & 0xf0) | (controller & 0x0f);
-//  }
-    
+
     
     void setGateValue(uint8_t gate) {
         if (gate) {
@@ -165,45 +132,11 @@ class SequenceStep {
     }
 
     
-    
-//    
-//  void set_flags(uint8_t flags) {
-//    if (flags == 0){
-//      set_gate(0);
-//      set_legato(0);
-//      set_velocity(0);
-//    } else {
-//      --flags;
-//      set_gate(1);
-//      set_velocity(flags << 4);
-//      if (flags >= 8) {
-//        set_legato(1);
-//      } else {
-//        set_legato(0);
-//      }
-//    }
-//  }
   void set_raw(uint8_t a, uint8_t b) {
     data_[0] = a;
     data_[0] = b;
   }
   
-//  uint8_t gate() const {
-//    return data_[0] & 0x80;
-//  }
-//  uint8_t note() const {
-//    return data_[0] & 0x7f;
-//  }
-//  uint8_t legato() const {
-//    return data_[1] & 0x80;
-//  }
-//  uint8_t velocity() const {
-//    return data_[1] & 0x70;
-//  }
-//  uint8_t controller() const {
-//    return data_[1] & 0x0f;
-//  }
-    
     uint8_t getGateValue() const {
         return (data_[0] & 0x80) ? 1 : 0;
     }
@@ -220,21 +153,6 @@ class SequenceStep {
         return data_[1] & 0x0f;
     }
 
-//    
-//  uint8_t flags() const {
-//    uint8_t flags = 0;
-//    if (gate()) {
-//      ++flags;
-//      flags += velocity() >> 4;
-//      if (legato()) {
-//        flags += 8;
-//      }
-//    }
-//    return flags;
-//  }
-//  char character() const {
-//    return gate() ? (legato() ? '-' : '\x01') : ' ';
-//  }
   
   void clear() {
     data_[0] = 0;

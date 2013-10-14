@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 540.0, 313.0, 974.0, 841.0 ],
+		"rect" : [ 626.0, 269.0, 974.0, 841.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -144,7 +144,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 0.0, 192.0, 568.0, 224.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 200.0, 568.0, 224.0 ],
+					"presentation_rect" : [ 0.0, 200.0, 600.0, 224.0 ],
 					"varname" : "pMatrix"
 				}
 
@@ -185,7 +185,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 0.0, 0.0, 568.0, 176.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 8.0, 568.0, 192.0 ]
+					"presentation_rect" : [ 0.0, 8.0, 600.0, 192.0 ]
 				}
 
 			}
@@ -201,20 +201,22 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-34::obj-92" : [ "Mod10Amount", ".", 0 ],
+			"obj-34::obj-50" : [ "Mod3Amount", ".", 0 ],
+			"obj-34::obj-56" : [ "Mod8Amount", ".", 0 ],
 			"obj-34::obj-80" : [ "Mod12Amount", ".", 0 ],
-			"obj-1::obj-192" : [ "grid", "grid", 0 ],
 			"obj-34::obj-74" : [ "Mod5Amount", ".", 0 ],
+			"obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
 			"obj-34::obj-23" : [ "Mod2Amount", ".", 0 ],
 			"obj-34::obj-62" : [ "Mod7Amount", ".", 0 ],
-			"obj-1::obj-191" : [ "sequencerSteps", "steps", 0 ],
 			"obj-34::obj-86" : [ "Mod11Amount", ".", 0 ],
 			"obj-34::obj-44" : [ "Mod4Amount", ".", 0 ],
 			"obj-34::obj-98" : [ "Mod9Amount", ".", 0 ],
+			"obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
+			"obj-1::obj-29" : [ "PatternSize", "Size", 0 ],
 			"obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
-			"obj-34::obj-68" : [ "Mod6Amount", ".", 0 ],
-			"obj-34::obj-92" : [ "Mod10Amount", ".", 0 ],
-			"obj-34::obj-50" : [ "Mod3Amount", ".", 0 ],
-			"obj-34::obj-56" : [ "Mod8Amount", ".", 0 ]
+			"obj-1::obj-34" : [ "PatternRotation", "CtrlRotate", 0 ],
+			"obj-34::obj-68" : [ "Mod6Amount", ".", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -225,14 +227,14 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "pMatrix.maxpat",
+				"name" : "param.maxpat",
 				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "param.maxpat",
+				"name" : "pMatrix.maxpat",
 				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

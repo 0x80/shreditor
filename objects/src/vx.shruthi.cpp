@@ -8,10 +8,17 @@
 #include <map>
 #include <fstream>
 
+#ifdef WIN_VERSION
+    #include <w32api.h>
+#else // MAC_VERSION
+    #include <CoreServices/CoreServices.h>
+    #include <sys/types.h>
+    #include <sys/stat.h>
+#endif
 
 // for using _1 _2 
 using namespace std::placeholders;
-//#include "rtmidi/RtMidi.h"
+
 
 const float VELOCITY_SCALE_DOWN = 7.f / 127.f;
 const float VELOCITY_SCALE_UP = 1.f / VELOCITY_SCALE_DOWN;
@@ -26,12 +33,9 @@ const size_t kExternalEepromOffset = kInternalEepromSize;
 const size_t kEepromSize = kInternalEepromSize + kExternalEepromSize;
 
 static t_symbol *ps_nrpn = gensym("nrpn");
-//static t_symbol *ps_cc = gensym("cc");
 static t_symbol *ps_empty = gensym("");
-static t_symbol *psx_name = gensym("name"); // global clash
+static t_symbol *psx_name = gensym("name"); 
 static t_symbol *ps_settings = gensym("settings");
-//static t_symbol *ps_filter = gensym("filter");
-//static t_symbol *ps_unknown = gensym("unknown");
 static t_symbol *ps_lpf = gensym("lpf");
 static t_symbol *ps_ssm = gensym("ssm");
 static t_symbol *ps_svf = gensym("svf");
@@ -46,12 +50,7 @@ static t_symbol *ps_velocity = gensym("velocity");
 static t_symbol *ps_ctrl = gensym("ctrl");
 static t_symbol *ps_legato = gensym("legato");
 static t_symbol *ps_rotation = gensym("rotation");
-//static t_symbol *ps_size = gensym("size"); // global clash
 static t_symbol *ps_progress = gensym("progress");
-//static t_symbol *ps_transfer = gensym("transfer");
-//static t_symbol *ps_extra1 = gensym("extra1");
-//static t_symbol *ps_step = gensym("step");    
-//static t_symbol *ps_liveStep = gensym("liveStep");
 static t_symbol *ps_liveGrid = gensym("liveGrid");
 
 
@@ -70,21 +69,32 @@ uint8_t Patch::CheckBuffer(uint8_t* buffer) {
 }
 
 
-//static inline uint8_t pgm_read_byte(const uint8_t* address){
-//    return *address;
-//}
-
-
 VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
 :   transfer_(device_),
     num_accessible_banks_(2),
     useEepromCache_(true),
-    hasEepromCache_(false)
+    hasEepromCache_(false),
+    progressCounter_(0),
+//    slotIndex_(-1)
+slotIndex_(0)
 {
+    
+    if(isExpired()){
+        setupIO(1, 0); // inlets / outlets
+        object_error((t_object *)this, "This copy of Shreditor has expired.");
+        return;
+    }
+    
+    
+    
     eeprom_ = new uint8_t[kEepromSize];
     settings_ = (SystemSettings *)eeprom_; // settings are stored in first part of eeprom
     
     memset(eeprom_, 0, kEepromSize*sizeof(uint8_t)); // init to zero
+    
+    // init active indexs to -1
+    memset(workingPatchIndex_, -1, NUM_DEVICE_SLOTS*sizeof(int));
+    memset(workingSequencerIndex_, -1, NUM_DEVICE_SLOTS*sizeof(int));
     
     setupIO(1, 2); // inlets / outlets
 
@@ -94,12 +104,141 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
     
     m_clock = clock_new((t_object *)this, (method)onTick);
     clock_fdelay(m_clock, SEQUENCE_UPDATE_INTERVAL_MS);
+    
+    // after io is setup
+    initializeSystemStoragePath();
+    
+
 }
 
 VxShruthi::~VxShruthi() {
+    
+    // is dit handig?
+    if(hasEepromCache_) saveDeviceEeprom();
+    
     delete[] eeprom_;
     object_free(m_clock);
 }
+
+void VxShruthi::initializeSystemStoragePath(){
+    
+    #ifdef WIN_VERSION
+    
+    //For the Windows folder:
+    TCHAR windir[MAX_PATH];
+    GetWindowsDirectory(windir, MAX_PATH);
+    
+    //For program files:
+    TCHAR path[MAX_PATH];
+    SHGetSpecialFolderPath(
+                           0,
+                           path,
+                           CSIDL_PROGRAM_FILES,
+                           FALSE );
+    
+    
+    dataroot_ = std::string(path, strlen(path)) + std::string("\\Shreditor\\Userdata");
+    
+    int status = mkdir(dataroot_.c_str(), S_IRWXU);
+    if(!status || status == EEXIST){
+        DPOST("Initialize data root OK");
+    }else{
+        object_error((t_object*)this, "Initialize data root error status: %i", status);
+    }
+    
+    #else // MAC_VERSION
+    
+
+    FSRef ref;
+    OSType folderType = kApplicationSupportFolderType;
+    char path[PATH_MAX];
+    
+    FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
+    
+    FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
+    
+    std::string root = std::string(path, strlen(path)) + std::string("/Vauxlab/Shreditor");
+    
+    dataroot_ = root + std::string("/Eeprom");
+    
+    presetfile_ = root + std::string("/DevicePresets.json");
+
+    
+    int status = mkdir(dataroot_.c_str(), S_IRWXU);
+    if(!status || errno == EEXIST){
+        DPOST("Initialize data root OK");
+    }else{
+        object_error((t_object*)this, "Initialize data root error status: %i", errno);
+    }
+    #endif
+
+    DPOST("Shreditor userdata location: %s", dataroot_.c_str());
+    
+    // Need defer low to output some data from the constructor,
+    // otherwise outputs are not initialized at time of call.
+    defer_low(this, (method)VxShruthi::onReady, NULL, 0, NULL);
+    
+}
+
+void VxShruthi::outputDataroot(){
+    atom_setsym(atoms_, gensym("dataroot"));
+    atom_setsym(atoms_+1, gensym(dataroot_.c_str()));
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    
+    atom_setsym(atoms_, gensym("presetfile"));
+    atom_setsym(atoms_+1, gensym(presetfile_.c_str()));
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    
+}
+
+void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
+    DPOST("onReady...");
+    x->outputDataroot();
+}
+
+bool VxShruthi::isExpired(){
+
+    time_t now = time(0);
+    
+    struct tm local;
+    struct tm release;
+    struct tm expire;
+    double secondsSinceRelease;
+    double secondsToExpire;
+    
+       
+    local = *localtime(&now);
+//    DPOST("local %s", asctime(&local));
+//    expire = *localtime(&now);
+    
+    // year is since 1900
+    // mon range 0-11
+    // mday range 1-31
+    release = local;
+    release.tm_hour = 0;   release.tm_min = 0; release.tm_sec = 0;
+    release.tm_year = 113; release.tm_mon = 9; release.tm_mday = 13;
+    
+    expire = local;
+    expire.tm_hour = 0;   expire.tm_min = 0; expire.tm_sec = 0;
+    expire.tm_year = 113; expire.tm_mon = 10; expire.tm_mday = 13;
+    
+    secondsSinceRelease = difftime(now, mktime(&release));
+    secondsToExpire = difftime(mktime(&expire), now);
+    
+   
+    DPOST("Released %s", asctime(&release));
+    DPOST("Expires %s", asctime(&expire));
+    
+//    DPOST("%.f seconds since release", secondsSinceRelease);
+//    DPOST("%.f seconds to expire", secondsToExpire);
+    
+    if(secondsSinceRelease <= 0) return true; // time is reset by user before release time
+    
+    if(secondsToExpire <= 0) return true;
+    
+    return false;
+}
+
 
 uint16_t VxShruthi::addressable_space_size() {
     return kInternalEepromSize + num_accessible_banks_ * kBankSize;
@@ -107,111 +246,126 @@ uint16_t VxShruthi::addressable_space_size() {
 
 //void VxShruthi::outputProgress(long busy, long progress){
 void VxShruthi::outputProgress(long progress){
-//    post("progress %d", progress);
+    
+    int total = addressable_space_size();
+    int uploaded = progressCounter_++ * 128; // post inc anders 1 te veel, waarom?
+    int percentage = ((float)uploaded / total) * 100;
+
     atom_setsym(atoms_, ps_progress);
-//    atom_setlong(atoms_+1, busy);
-//    atom_setlong(atoms_+2, progress);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-    atom_setlong(atoms_+1, progress);
-    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    atom_setlong(atoms_+1, percentage);
+    atom_setlong(atoms_+2, uploaded);
+    atom_setlong(atoms_+3, total);
+    
+    outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+    
+    if(percentage == 100){
+        // switch to self just to output everytying
+        switchToDevice(0, slotIndex_+1); // +1 since v start at 1
+    }
+    
 }
 
 void VxShruthi::outputPatchData(){    
     // Convert name directly to symbol. Both should be char
+    
+    Patch &p = workingPatch_[slotIndex_];
+    
     atom_setsym(atoms_, psx_name);
-    atom_setsym(atoms_+1, gensym((char*)patch_.name));
+    atom_setsym(atoms_+1, gensym((char*)p.name));
     outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
-    outputNrpn(0, patch_.osc[0].shape);
-    outputNrpn(1, patch_.osc[0].parameter);
-    outputNrpn(2, patch_.osc[0].range);
-    outputNrpn(3, patch_.osc[0].option); // modulation operator?
     
-    outputNrpn(4, patch_.osc[1].shape);
-    outputNrpn(5, patch_.osc[1].parameter);
-    outputNrpn(6, patch_.osc[1].range);
-    outputNrpn(7, patch_.osc[1].option); // detune?
     
-    outputNrpn(8, patch_.mix_balance);
-    outputNrpn(9, patch_.mix_sub_osc);
-    outputNrpn(10, patch_.mix_noise);
-    outputNrpn(11, patch_.mix_sub_osc_shape);
+    outputNrpn(0, p.osc[0].shape);
+    outputNrpn(1, p.osc[0].parameter);
+    outputNrpn(2, p.osc[0].range);
+    outputNrpn(3, p.osc[0].option); // modulation operator?
     
-    outputNrpn(12, patch_.filter_cutoff);
-    outputNrpn(13, patch_.filter_resonance);
-    outputNrpn(14, patch_.filter_env);
-    outputNrpn(15, patch_.filter_lfo);
+    outputNrpn(4, p.osc[1].shape);
+    outputNrpn(5, p.osc[1].parameter);
+    outputNrpn(6, p.osc[1].range);
+    outputNrpn(7, p.osc[1].option); // detune?
     
-    outputNrpn(16, patch_.env[0].attack);
-    outputNrpn(17, patch_.env[0].decay);
-    outputNrpn(18, patch_.env[0].sustain);
-    outputNrpn(19, patch_.env[0].release);
+    outputNrpn(8, p.mix_balance);
+    outputNrpn(9, p.mix_sub_osc);
+    outputNrpn(10, p.mix_noise);
+    outputNrpn(11, p.mix_sub_osc_shape);
     
-    outputNrpn(20, patch_.env[1].attack);
-    outputNrpn(21, patch_.env[1].decay);
-    outputNrpn(22, patch_.env[1].sustain);
-    outputNrpn(23, patch_.env[1].release);
+    outputNrpn(12, p.filter_cutoff);
+    outputNrpn(13, p.filter_resonance);
+    outputNrpn(14, p.filter_env);
+    outputNrpn(15, p.filter_lfo);
+    
+    outputNrpn(16, p.env[0].attack);
+    outputNrpn(17, p.env[0].decay);
+    outputNrpn(18, p.env[0].sustain);
+    outputNrpn(19, p.env[0].release);
+    
+    outputNrpn(20, p.env[1].attack);
+    outputNrpn(21, p.env[1].decay);
+    outputNrpn(22, p.env[1].sustain);
+    outputNrpn(23, p.env[1].release);
 
-    outputNrpn(24, patch_.lfo[0].waveform);
-    outputNrpn(25, patch_.lfo[0].rate);
-    outputNrpn(26, patch_.lfo[0].attack);
-    outputNrpn(27, patch_.lfo[0].retrigger_mode);
+    outputNrpn(24, p.lfo[0].waveform);
+    outputNrpn(25, p.lfo[0].rate);
+    outputNrpn(26, p.lfo[0].attack);
+    outputNrpn(27, p.lfo[0].retrigger_mode);
     
-    outputNrpn(28, patch_.lfo[1].waveform);
-    outputNrpn(29, patch_.lfo[1].rate);
-    outputNrpn(30, patch_.lfo[1].attack);
-    outputNrpn(31, patch_.lfo[1].retrigger_mode);
+    outputNrpn(28, p.lfo[1].waveform);
+    outputNrpn(29, p.lfo[1].rate);
+    outputNrpn(30, p.lfo[1].attack);
+    outputNrpn(31, p.lfo[1].retrigger_mode);
 
     // kModulationMatrixSize 12
-    outputNrpn(32, patch_.modulation_matrix.modulation[0].source);
-    outputNrpn(33, patch_.modulation_matrix.modulation[0].destination);
-    outputNrpn(34, patch_.modulation_matrix.modulation[0].amount);
-    outputNrpn(35, patch_.modulation_matrix.modulation[1].source);
-    outputNrpn(36, patch_.modulation_matrix.modulation[1].destination);
-    outputNrpn(37, patch_.modulation_matrix.modulation[1].amount);
-    outputNrpn(38, patch_.modulation_matrix.modulation[2].source);
-    outputNrpn(39, patch_.modulation_matrix.modulation[2].destination);
-    outputNrpn(40, patch_.modulation_matrix.modulation[2].amount);
-    outputNrpn(41, patch_.modulation_matrix.modulation[3].source);
-    outputNrpn(42, patch_.modulation_matrix.modulation[3].destination);
-    outputNrpn(43, patch_.modulation_matrix.modulation[3].amount);
-    outputNrpn(44, patch_.modulation_matrix.modulation[4].source);
-    outputNrpn(45, patch_.modulation_matrix.modulation[4].destination);
-    outputNrpn(46, patch_.modulation_matrix.modulation[4].amount);
-    outputNrpn(47, patch_.modulation_matrix.modulation[5].source);
-    outputNrpn(48, patch_.modulation_matrix.modulation[5].destination);
-    outputNrpn(49, patch_.modulation_matrix.modulation[5].amount);
-    outputNrpn(50, patch_.modulation_matrix.modulation[6].source);
-    outputNrpn(51, patch_.modulation_matrix.modulation[6].destination);
-    outputNrpn(52, patch_.modulation_matrix.modulation[6].amount);
-    outputNrpn(53, patch_.modulation_matrix.modulation[7].source);
-    outputNrpn(54, patch_.modulation_matrix.modulation[7].destination);
-    outputNrpn(55, patch_.modulation_matrix.modulation[7].amount);
-    outputNrpn(56, patch_.modulation_matrix.modulation[8].source);
-    outputNrpn(57, patch_.modulation_matrix.modulation[8].destination);
-    outputNrpn(58, patch_.modulation_matrix.modulation[8].amount);
-    outputNrpn(59, patch_.modulation_matrix.modulation[9].source);
-    outputNrpn(60, patch_.modulation_matrix.modulation[9].destination);
-    outputNrpn(61, patch_.modulation_matrix.modulation[9].amount);
-    outputNrpn(62, patch_.modulation_matrix.modulation[10].source);
-    outputNrpn(63, patch_.modulation_matrix.modulation[10].destination);
-    outputNrpn(64, patch_.modulation_matrix.modulation[10].amount);
-    outputNrpn(65, patch_.modulation_matrix.modulation[11].source);
-    outputNrpn(66, patch_.modulation_matrix.modulation[11].destination);
-    outputNrpn(67, patch_.modulation_matrix.modulation[11].amount);
+    outputNrpn(32, p.modulation_matrix.modulation[0].source);
+    outputNrpn(33, p.modulation_matrix.modulation[0].destination);
+    outputNrpn(34, p.modulation_matrix.modulation[0].amount);
+    outputNrpn(35, p.modulation_matrix.modulation[1].source);
+    outputNrpn(36, p.modulation_matrix.modulation[1].destination);
+    outputNrpn(37, p.modulation_matrix.modulation[1].amount);
+    outputNrpn(38, p.modulation_matrix.modulation[2].source);
+    outputNrpn(39, p.modulation_matrix.modulation[2].destination);
+    outputNrpn(40, p.modulation_matrix.modulation[2].amount);
+    outputNrpn(41, p.modulation_matrix.modulation[3].source);
+    outputNrpn(42, p.modulation_matrix.modulation[3].destination);
+    outputNrpn(43, p.modulation_matrix.modulation[3].amount);
+    outputNrpn(44, p.modulation_matrix.modulation[4].source);
+    outputNrpn(45, p.modulation_matrix.modulation[4].destination);
+    outputNrpn(46, p.modulation_matrix.modulation[4].amount);
+    outputNrpn(47, p.modulation_matrix.modulation[5].source);
+    outputNrpn(48, p.modulation_matrix.modulation[5].destination);
+    outputNrpn(49, p.modulation_matrix.modulation[5].amount);
+    outputNrpn(50, p.modulation_matrix.modulation[6].source);
+    outputNrpn(51, p.modulation_matrix.modulation[6].destination);
+    outputNrpn(52, p.modulation_matrix.modulation[6].amount);
+    outputNrpn(53, p.modulation_matrix.modulation[7].source);
+    outputNrpn(54, p.modulation_matrix.modulation[7].destination);
+    outputNrpn(55, p.modulation_matrix.modulation[7].amount);
+    outputNrpn(56, p.modulation_matrix.modulation[8].source);
+    outputNrpn(57, p.modulation_matrix.modulation[8].destination);
+    outputNrpn(58, p.modulation_matrix.modulation[8].amount);
+    outputNrpn(59, p.modulation_matrix.modulation[9].source);
+    outputNrpn(60, p.modulation_matrix.modulation[9].destination);
+    outputNrpn(61, p.modulation_matrix.modulation[9].amount);
+    outputNrpn(62, p.modulation_matrix.modulation[10].source);
+    outputNrpn(63, p.modulation_matrix.modulation[10].destination);
+    outputNrpn(64, p.modulation_matrix.modulation[10].amount);
+    outputNrpn(65, p.modulation_matrix.modulation[11].source);
+    outputNrpn(66, p.modulation_matrix.modulation[11].destination);
+    outputNrpn(67, p.modulation_matrix.modulation[11].amount);
     
 
-    outputNrpn(84, patch_.filter_cutoff_2);
-    outputNrpn(85, patch_.filter_resonance_2);
-    outputNrpn(92, patch_.filter_1_mode_);
-    outputNrpn(93, patch_.filter_2_mode_);
+    outputNrpn(84, p.filter_cutoff_2);
+    outputNrpn(85, p.filter_resonance_2);
+    outputNrpn(92, p.filter_1_mode_);
+    outputNrpn(93, p.filter_2_mode_);
     
-    outputNrpn(94, patch_.ops_[0].operands[0]);
-    outputNrpn(95, patch_.ops_[0].operands[1]);
-    outputNrpn(96, patch_.ops_[0].op);
-    outputNrpn(97, patch_.ops_[1].operands[0]);
-    outputNrpn(98, patch_.ops_[1].operands[1]);
-    outputNrpn(99, patch_.ops_[1].op);
+    outputNrpn(94, p.ops_[0].operands[0]);
+    outputNrpn(95, p.ops_[0].operands[1]);
+    outputNrpn(96, p.ops_[0].op);
+    outputNrpn(97, p.ops_[1].operands[0]);
+    outputNrpn(98, p.ops_[1].operands[1]);
+    outputNrpn(99, p.ops_[1].op);
 }
 
 
@@ -219,7 +373,7 @@ void VxShruthi::outputPatchData(){
 void VxShruthi::setSystemSettings(long inlet, t_symbol *s, long ac, t_atom *av){
     
     if(ac != 10){
-        error("setSystemSettings expects 10 arguments, not %i", ac);
+        object_error((t_object*)this,"setSystemSettings expects 10 arguments, not %i", ac);
         return;
     }
     
@@ -253,57 +407,6 @@ void VxShruthi::outputSettingsData(){
     atom_setlong(a++, settings_->expansion_filter_board);
     atom_setlong(a++, settings_->expansion_cv_mode);
     outlet_list(m_outlets[1], ps_empty, 11, atoms_);
-    
-//
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("octave"));
-//    atom_setlong(atoms_+2, settings_->octave);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//    
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("raga"));
-//    atom_setlong(atoms_+2, settings_->raga);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//    
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("portamento"));
-//    atom_setlong(atoms_+2, settings_->portamento);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//    
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("legato"));
-//    atom_setlong(atoms_+2, settings_->legato);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//    
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("tuning"));
-//    atom_setlong(atoms_+2, settings_->master_tuning);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//    
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("channel"));
-//    atom_setlong(atoms_+2, settings_->midi_channel);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//    
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("midimode"));
-//    atom_setlong(atoms_+2, settings_->midi_out_mode);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("split"));
-//    atom_setlong(atoms_+2, settings_->midi_split_point);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("filter"));
-//    atom_setlong(atoms_+2, settings_->expansion_filter_board);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//
-//    atom_setsym(atoms_, ps_settings);
-//    atom_setsym(atoms_+1, gensym("cvmode"));
-//    atom_setlong(atoms_+2, settings_->expansion_cv_mode);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 }
 
 void VxShruthi::outputNrpn(long index, long value){
@@ -314,106 +417,89 @@ void VxShruthi::outputNrpn(long index, long value){
 }
 
 void VxShruthi::outputSequencerSettings(){
-    outputNrpn(100, sequencer_.seq_mode);
-    outputNrpn(101, sequencer_.seq_tempo);
-    outputNrpn(102, sequencer_.seq_groove_template);
-    outputNrpn(103, sequencer_.seq_groove_amount);
-    outputNrpn(104, sequencer_.arp_direction);
-    outputNrpn(105, sequencer_.arp_range);
-    outputNrpn(106, sequencer_.arp_pattern);
-    outputNrpn(107, sequencer_.arp_warp);
-    outputNrpn(108, sequencer_.pattern_size);
-    outputNrpn(109, sequencer_.pattern_rotation);
     
-//    atom_setsym(atoms_, ps_sequencersettings);
-//    t_atom *data = atoms_+2;
-//    
-//    // rotation
-//    atom_setsym(atoms_+1, ps_rotation);
-//    atom_setlong(atoms_+2, sequencer_.pattern_rotation);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//
-//    // size
-//    atom_setsym(atoms_+1, ps_size);
-//    atom_setlong(atoms_+2, sequencer_.pattern_size);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+    SequencerSettings &s = workingSequencer_[slotIndex_];
+    
+    outputNrpn(100, s.seq_mode);
+    outputNrpn(101, s.seq_tempo);
+    outputNrpn(102, s.seq_groove_template);
+    outputNrpn(103, s.seq_groove_amount);
+    outputNrpn(104, s.arp_direction);
+    outputNrpn(105, s.arp_range);
+    outputNrpn(106, s.arp_pattern);
+    outputNrpn(107, s.arp_warp);
+    // pattern size is not global but extracted from steps
+    outputNrpn(109, s.pattern_rotation);
+    
 }
 
 void VxShruthi::outputSequence(){
+    
+    SequencerSettings &s = workingSequencer_[slotIndex_];
     atom_setsym(atoms_, ps_sequence);
     t_atom *data = atoms_+2;
     
     // note
     atom_setsym(atoms_+1, ps_note);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, sequencer_.steps[i].getNoteValue()); // only first 7 bits
+        atom_setlong(data+i, s.steps[i].getNoteValue()); // only first 7 bits
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // velocity
     atom_setsym(atoms_+1, ps_velocity);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, sequencer_.steps[i].getVelocityValue() * VELOCITY_SCALE_UP);
+        atom_setlong(data+i, s.steps[i].getVelocityValue() * VELOCITY_SCALE_UP);
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
 
     // ctrl
     atom_setsym(atoms_+1, ps_ctrl);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, sequencer_.steps[i].getControllerValue());
+        atom_setlong(data+i, s.steps[i].getControllerValue());
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // gate
     atom_setsym(atoms_+1, ps_gate);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, sequencer_.steps[i].getGateValue());
+        atom_setlong(data+i, s.steps[i].getGateValue());
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
-    // legato
+    // legato / tie
     atom_setsym(atoms_+1, ps_legato);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, sequencer_.steps[i].getLegatoValue());
+        atom_setlong(data+i, s.steps[i].getLegatoValue());
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
-    
-//    // rotation
-//    atom_setsym(atoms_+1, ps_rotation);
-//    atom_setlong(atoms_+2, sequencer_.pattern_rotation);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-//    
-//    // size
-//    atom_setsym(atoms_+1, ps_size);
-//    atom_setlong(atoms_+2, sequencer_.pattern_size);
-//    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     
     
     // gate legato matrix
-//        int counter = 0;
     atom_setsym(atoms_, ps_liveGrid);
 
     for(int i=0; i<16; ++i){
         atom_setlong(atoms_+1, i+1);
         atom_setlong(atoms_+2, 1);
-        atom_setlong(atoms_+3, sequencer_.steps[i].getLegatoValue());
+        atom_setlong(atoms_+3, s.steps[i].getLegatoValue());
         outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     }
     
     for(int i=0; i<16; ++i){
         atom_setlong(atoms_+1, i+1);
         atom_setlong(atoms_+2, 2);
-        atom_setlong(atoms_+3, sequencer_.steps[i].getGateValue());
+        atom_setlong(atoms_+3, s.steps[i].getGateValue());
         outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     }
     
-//        outlet_list(m_outlets[1], ps_empty, 1+counter*3, atoms_);
+    // pattern size is not global but extracted from steps
+    outputNrpn(108, s.pattern_size);
 }
 
 
     
 // transfers
 void VxShruthi::transferPatch(long inlet){
-    device_.sendSysex((uint8_t*) &patch_, 0x01, 0, PATCH_SIZE);
+    device_.sendSysex((uint8_t*) &workingPatch_[slotIndex_], 0x01, 0, PATCH_SIZE);
 }
 
 void VxShruthi::transferSequence(long inlet){
-    device_.sendSysex((uint8_t*) sequencer_.steps, 0x02, 0, sizeof(SequenceStep) * kNumSteps);
+    device_.sendSysex((uint8_t*) workingSequencer_[slotIndex_].steps, 0x02, 0, sizeof(SequenceStep) * kNumSteps);
 }
 
 void VxShruthi::transferWavetable(long inlet){
@@ -426,30 +512,31 @@ void VxShruthi::transferSystemSettings(long inlet){
 
 void VxShruthi::transferSequenceStep(long index){
     uint8_t stepIndex = index & 0x0f;
-    device_.sendSysex(sequencer_.steps[stepIndex].data_, 0x05, stepIndex, 2);
+    device_.sendSysex( workingSequencer_[slotIndex_].steps[stepIndex].data_, 0x05, stepIndex, 2);
 }
 
 void VxShruthi::transferPatchName(long inlet){
-    device_.sendSysex(patch_.name, 0x06, 0, kPatchNameSize);
+    device_.sendSysex(workingPatch_[slotIndex_].name, 0x06, 0, kPatchNameSize);
 }
 
 void VxShruthi::transferSequencerSettings(long inlet){
-    device_.sendSysex((uint8_t*) &sequencer_, 0x07, 0, sizeof(SequencerSettings));
+    device_.sendSysex((uint8_t*) &workingSequencer_[slotIndex_], 0x07, 0, sizeof(SequencerSettings));
 }
 
 void VxShruthi::setPatternLength(long inlet, long length){
     uint8_t v = CLAMP(length, 1, 16);
-    sequencer_.pattern_size = v;
+    workingSequencer_[slotIndex_].pattern_size = v;
     device_.sendSysexCommand(0x08, v);
 }
 
 void VxShruthi::setPatternRotation(long inlet, long rotation){
     uint8_t v = rotation & 0x0f;
-    sequencer_.pattern_rotation = v;
+    workingSequencer_[slotIndex_].pattern_rotation = v;
     device_.sendSysexCommand(0x09, v);
 }
 
 void VxShruthi::requestRom(long inlet){
+    progressCounter_ = 0;
     device_.sendSysexCommand(0x50);
 //    useEepromCache_ = true;
     // Ga er maar vanuit dat dit goed gaat. We hebben geen aanduiding wanneer de transfer klaar is namelijk.
@@ -457,7 +544,7 @@ void VxShruthi::requestRom(long inlet){
 }
 // send out complete eeprom to midi
 void VxShruthi::transferRom(long inlet) {
-    
+    progressCounter_ = 0;
     transfer_.transferEeprom(eeprom_, addressable_space_size());
 //    useEepromCache_ = true;
 }
@@ -492,27 +579,27 @@ void VxShruthi::requestSequenceWrite(long slot){
 }
 
 void VxShruthi::setSequenceNote(long inlet, long step, long value){
-    sequencer_.steps[step & 0x0f].setNoteValue(value);
+    workingSequencer_[slotIndex_].steps[step & 0x0f].setNoteValue(value);
     transferSequenceStep(step);
 }
 
 void VxShruthi::setSequenceController(long inlet, long step, long value){
-    sequencer_.steps[step & 0x0f].setControllerValue(value);
+    workingSequencer_[slotIndex_].steps[step & 0x0f].setControllerValue(value);
     transferSequenceStep(step);
 }
 
 void VxShruthi::setSequenceGate(long inlet, long step, long value){
-    sequencer_.steps[step & 0x0f].setGateValue(value);
+    workingSequencer_[slotIndex_].steps[step & 0x0f].setGateValue(value);
     transferSequenceStep(step);
 }
 
 void VxShruthi::setSequenceLegato(long inlet, long step, long value){
-    sequencer_.steps[step & 0x0f].setLegatoValue(value);
+    workingSequencer_[slotIndex_].steps[step & 0x0f].setLegatoValue(value);
     transferSequenceStep(step);
 }
 
 void VxShruthi::setSequenceVelocity(long inlet, long step, long value){
-    sequencer_.steps[step & 0x0f].setVelocityValue(value);
+    workingSequencer_[slotIndex_].steps[step & 0x0f].setVelocityValue(value);
     transferSequenceStep(step);
 }
 
@@ -520,24 +607,24 @@ void VxShruthi::setPatchName(long inlet, t_symbol *name){
     int c = 0;
     const char* cname = name->s_name;
     for(c=0; c<kPatchNameSize; ++c){
-        patch_.name[c] = cname[c];
+        workingPatch_[slotIndex_].name[c] = cname[c];
         if(cname[c] == '\0'){
             break;
         }
     }
     
     while(c < kPatchNameSize){
-        patch_.name[c] = ' ';
+        workingPatch_[slotIndex_].name[c] = ' ';
         ++c;
     }
     
     transferPatchName();
     
     atom_setsym(atoms_, psx_name);
-    atom_setsym(atoms_+1, gensym((char*)patch_.name));
+    atom_setsym(atoms_+1, gensym((char*)workingPatch_[slotIndex_].name));
     outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
-    listPatchNames();
+//    listPatchNames();
 }
 
 void VxShruthi::setSettingsFilter(long inlet, t_symbol *name){
@@ -556,7 +643,7 @@ void VxShruthi::setSettingsFilter(long inlet, t_symbol *name){
     else if(name == ps_dly)
         settings_->expansion_filter_board = FILTER_BOARD_DLY;
     else{
-        error("Unknown filter board %s", name->s_name);
+        object_error((t_object*)this,"Unknown filter board %s", name->s_name);
         return;
     }
     
@@ -606,15 +693,15 @@ void VxShruthi::enableEepromCache(long inlet, long v){
 
 void VxShruthi::liveStep(long inlet, t_symbol* s, long ac, t_atom *av){
     if(ac != 6){
-        error("liveStep expects a list of 6 items");
+        object_error((t_object*)this,"liveStep expects a list of 6 items");
         return;
     }
     
     uint8_t stepIndex = (atom_getlong(av) - 1) & 0x0f;
-    sequencer_.steps[stepIndex].setNoteValue(atom_getlong(av+1));
+    workingSequencer_[slotIndex_].steps[stepIndex].setNoteValue(atom_getlong(av+1));
     // scale 0-127 to 0-7, round up is important here otherwise downspiral on iteration
-    sequencer_.steps[stepIndex].setVelocityValue(VELOCITY_SCALE_DOWN * atom_getlong(av+2) + 0.5f); 
-    sequencer_.steps[stepIndex].setControllerValue(atom_getlong(av+4));
+    workingSequencer_[slotIndex_].steps[stepIndex].setVelocityValue(VELOCITY_SCALE_DOWN * atom_getlong(av+2) + 0.5f); 
+    workingSequencer_[slotIndex_].steps[stepIndex].setControllerValue(atom_getlong(av+4));
     
     // schedule transfer to prevent sending lots of data
     sequence_dirty_ = true;
@@ -637,14 +724,14 @@ void VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av){
                 listLegato[stepIndex] = 1;
                 break;
             default:
-                error("Invalid row index for liveGrid: %i", row);
+                object_error((t_object*)this,"Invalid row index for liveGrid: %i", row);
                 break;
         }
     }
     
     for(size_t i=0; i<16; ++i){
-        sequencer_.steps[i].setGateValue(listGate[i]);
-        sequencer_.steps[i].setLegatoValue(listLegato[i]);
+        workingSequencer_[slotIndex_].steps[i].setGateValue(listGate[i]);
+        workingSequencer_[slotIndex_].steps[i].setLegatoValue(listLegato[i]);
     }
     
     // schedule transfer to prevent sending lots of data
@@ -668,22 +755,44 @@ void VxShruthi::storePatch(long inlet, long slot){
 }
 
 void VxShruthi::storeSequence(long inlet, long slot){
+    
+    // First we need to use global pattern_length to cut
+    // the sequence and clear every step outside length.
+    SequencerSettings &seq = workingSequencer_[slotIndex_];
+
+    // Clear all the notes after the cycle mark.
+    for (uint8_t i = seq.pattern_size; i < kNumSteps; ++i) {
+        seq.steps[i].clear();
+    }
+    // Output the new pattern with cleared steps
+    outputSequence();
+    
+    
     requestSequenceWrite(slot);
     storeSequenceToEeprom(slot);
 }
 
 void VxShruthi::storePatchToEeprom(long slot){
     DPOST("Store patch %i to eeprom cache", slot);
+    
     uint8_t *address = getAddress<Patch>(slot);
+    
+    DPOST("cutoff src %i", workingPatch_[slotIndex_].filter_cutoff);
+    DPOST("cutoff dst %i", ((Patch *)address)->filter_cutoff);
+    
+    DPOST("cpy size %i", StorageConfiguration<Patch>::size);
+   
     std::memcpy(address,
-                &patch_,
+                &workingPatch_[slotIndex_],
                 StorageConfiguration<Patch>::size);
+    
+    DPOST("cutoff postdst %i", ((Patch *)address)->filter_cutoff);
 }
 
 void VxShruthi::loadPatchFromEeprom(long slot){
     DPOST("Fetch patch %i from eeprom cache", slot);
     uint8_t *address = getAddress<Patch>(slot);
-    std::memcpy(&patch_,
+    std::memcpy(&workingPatch_[slotIndex_],
                 address,
                 StorageConfiguration<Patch>::size);
 }
@@ -691,30 +800,82 @@ void VxShruthi::storeSequenceToEeprom(long slot){
     DPOST("Store sequence %i to eeprom", slot);
     uint8_t *address = getAddress<SequencerSettings>(slot);
     std::memcpy(address,
-                &sequencer_.steps,
+                & workingSequencer_[slotIndex_].steps,
                 StorageConfiguration<SequencerSettings>::size);
 }
 
 void VxShruthi::loadSequenceFromEeprom(long slot){
     DPOST("Fetch sequence %i from eeprom", slot);
     uint8_t *address = getAddress<SequencerSettings>(slot);
-    std::memcpy(&sequencer_.steps,
+    std::memcpy(& workingSequencer_[slotIndex_].steps,
                 address,
                 StorageConfiguration<SequencerSettings>::size);
 }
 
 void VxShruthi::loadPatch(long inlet, long slot){
     
+    if(workingPatchIndex_[slotIndex_] == slot){
+        DPOST("Slot same as working, using exising data", slot);
+        outputPatchData();
+        return;
+    }
+    
+    workingPatchIndex_[slotIndex_] = slot; // store current active slot
+    
     sendPatchProgramChange(slot);
     
-    if(useEepromCache_ && hasEepromCache_){
+//    if(useEepromCache_ && hasEepromCache_){
         loadPatchFromEeprom(slot);
         outputPatchData();
-    }else{
-        DPOST("Transferring patch %i from device", slot);
-        // delay nodig misschien?
-        requestPatch();
+    
+    
+    
+//    }else{
+//        DPOST("Transferring patch %i from device", slot);
+//        // delay nodig misschien?
+//        requestPatch();
+//    }
+}
+
+
+void VxShruthi::calculatePatternSize(){
+    // Extract pattern length
+    
+    SequencerSettings &seq = workingSequencer_[slotIndex_];
+    
+    seq.pattern_size = kNumSteps;
+    for (uint8_t i = 0; i < kNumSteps; ++i) {
+        if (seq.steps[i].blank()) {
+            seq.pattern_size = i;
+            break;
+        }
     }
+    
+
+}
+
+void VxShruthi::loadSequence(long inlet, long slot){
+    
+    if(workingSequencerIndex_[slotIndex_] == slot){
+        DPOST("Slot same as working, using exising seq data", slot);
+        outputSequence();
+        return;
+    }
+    
+    workingSequencerIndex_[slotIndex_] = slot; // store current active slot
+    
+    sendSequenceProgramChange(slot);
+    
+//    if(useEepromCache_ && hasEepromCache_){
+        loadSequenceFromEeprom(slot);
+    
+    calculatePatternSize();
+    outputSequence();
+//    }else{
+//        DPOST("Transferring sequence %i from device", slot);
+//        // delay nodig misschien?
+//        requestSequence();
+//    }
 }
 
 void VxShruthi::sendPatchProgramChange(long slot){
@@ -742,19 +903,7 @@ void VxShruthi::sendPatchProgramChange(long slot){
 }
 
 
-void VxShruthi::loadSequence(long inlet, long slot){
-    
-    sendSequenceProgramChange(slot);
-    
-    if(useEepromCache_ && hasEepromCache_){
-        loadSequenceFromEeprom(slot);
-        outputSequence();
-    }else{
-        DPOST("Transferring sequence %i from device", slot);
-        // delay nodig misschien?
-        requestSequence();
-    }
-}
+
 
 void VxShruthi::sendSequenceProgramChange(long slot){
     uint8_t bank = slot / 128;
@@ -780,31 +929,93 @@ void VxShruthi::sendSequenceProgramChange(long slot){
 }
 
 
+void VxShruthi::loadDeviceEeprom(){
+    
+    char filepath[MAXPATHLEN];  /* defined in sys/param.h */
+    snprintf(
+             filepath,
+             MAXPATHLEN,
+             "%s/DeviceSlot%i.bin",
+             dataroot_.c_str(),
+             slotIndex_+1);
+    try{
+        hasEepromCache_ = false;
+        std::ifstream fs(filepath, std::ios::in | std::ios::binary);
+        
+        if(fs.fail()){
+            object_error((t_object*)this, "Failed to open file %s", filepath);
+            clearEepromCache();
+        }else{
+    
+            fs.read((char*)eeprom_, kEepromSize);
+            fs.close();
+            hasEepromCache_ = true;
+        }
+    }catch(std::exception e){
+        object_error((t_object*)this, "Failed to read eeprom from %s", filepath);
+        object_error((t_object*)this, "Initializing to all zero");
+        clearEepromCache();
+    }
+}
 
+void VxShruthi::saveDeviceEeprom(){
+    
+    char filepath[MAXPATHLEN];  /* defined in sys/param.h */
+    snprintf(
+             filepath,
+             MAXPATHLEN,
+             "%s/DeviceSlot%i.bin",
+             dataroot_.c_str(),
+             slotIndex_+1);
+    
+    try{
+        std::ofstream fs(filepath, std::ios::out | std::ios::binary);
+        if(fs.fail()){
+            object_error((t_object*)this, "Failed to open file %s", filepath);
+            return;
+        }
+        fs.write((const char*)eeprom_, kEepromSize);
+        fs.close();
+    }catch(std::exception e){
+        object_error((t_object*)this,"Failed to write eeprom file at %s", filepath);
+    }
+}
 
 void VxShruthi::importEeprom(long inlet, t_symbol* filepath){
     try{
         hasEepromCache_ = false;
         std::ifstream fs(filepath->s_name, std::ios::in | std::ios::binary);
+        
+        fs.seekg(0, std::ios::end);
+        std::ifstream::pos_type filesize = fs.tellg();
+        fs.seekg(0, std::ios::beg);
+        
+        if(filesize > kEepromSize){
+            object_error((t_object*)this, "Trying to import a file that's bigger than maximum eeprom size: %i", filesize);
+            return;
+        }
+        
+        if(fs.fail()){
+            object_error((t_object*)this, "Failed to open file %s", filepath->s_name);
+            return;
+        }
         fs.read((char*)eeprom_, kEepromSize);
         fs.close();
         hasEepromCache_ = true;
-        listPatchNames();
+ 
+        refreshGui();
         
-        requestNumbers();
-//        outputPatchData();
-        outputSettingsData();
-//        outputSequence();
-//        outputSequencerSettings();
         // clear nrpn cache todo clean way
         device_.lastNrpnIndex = -1;
         
     }catch(std::exception e){
         
-        error("Failed to read file %s", filepath->s_name);
-        error("Eeprom cache disabled.");
+        object_error((t_object*)this,"Failed to read file %s", filepath->s_name);
+        object_error((t_object*)this,"Eeprom cache disabled.");
     }
 }
+
+
 
 void VxShruthi::exportEeprom(long inlet, t_symbol* filepath){
     if(! hasEepromCache_){
@@ -812,70 +1023,54 @@ void VxShruthi::exportEeprom(long inlet, t_symbol* filepath){
     }
     try{
         std::ofstream fs(filepath->s_name, std::ios::out | std::ios::binary);
+        if(fs.fail()){
+            object_error((t_object*)this, "Failed to open file %s", filepath->s_name);
+            return;
+        }
         fs.write((const char*)eeprom_, kEepromSize);
         fs.close();
     }catch(std::exception e){
-        error("Failed to write file %s", filepath->s_name);
+        object_error((t_object*)this,"Failed to write file %s", filepath->s_name);
     }
 }
 
 
 
-
-//void VxShruthi::importUserData(long inlet, t_symbol* filepath){
-//    try{
-//        std::ifstream fs(filepath->s_name, std::ios::in | std::ios::binary);
-//        fs.read((char*)eeprom_+kInternalEepromSize, kEepromSize-kInternalEepromSize);
-//        fs.close();
-//        hasEepromCache_ = true;
-//        listPatchNames();
-//    }catch(std::exception e){
-//        
-//        error("Failed to read file %s", filepath->s_name);
-//    }
-//}
-//
-//void VxShruthi::exportUserData(long inlet, t_symbol* filepath){
-//    try{
-//        std::ofstream fs(filepath->s_name, std::ios::out | std::ios::binary);
-//        fs.write((const char*)eeprom_+kInternalEepromSize, kEepromSize-kInternalEepromSize);
-//        fs.close();
-//    }catch(std::exception e){
-//        error("Failed to write file %s", filepath->s_name);
-//    }
-//}
-
 void VxShruthi::clearEepromCache(long inlet){
     // only clear the external part
-    memset(eeprom_+kExternalEepromOffset, 0, kExternalEepromSize*sizeof(uint8_t)); // init to zero
+//    memset(eeprom_+kExternalEepromOffset, 0, kExternalEepromSize*sizeof(uint8_t)); // init to zero
+    
+    memset(eeprom_, 0, kEepromSize*sizeof(uint8_t)); // init to zero
     hasEepromCache_ = false;
 }
 
 void VxShruthi::copyPatchToClipboard(long inlet){
-    std::memcpy(&copypatch_,
-                &patch_,
+    std::memcpy(&clipboardPatch_,
+                &workingPatch_[slotIndex_],
                 StorageConfiguration<Patch>::size);
 }
 
 void VxShruthi::pastePatchFromClipboard(long inlet){
-    std::memcpy(&patch_,
-                &copypatch_,
+    std::memcpy(&workingPatch_[slotIndex_],
+                &clipboardPatch_,
                 StorageConfiguration<Patch>::size);
     transferPatch();
     outputPatchData();
 }
 
 void VxShruthi::copySequenceToClipboard(long inlet){
-    std::memcpy(&copysequencer_.steps,
-                &sequencer_.steps,
+    std::memcpy(&clipboardSequencer_.steps,
+                &workingSequencer_[slotIndex_].steps,
                 StorageConfiguration<SequencerSettings>::size);
 }
 
 void VxShruthi::pasteSequenceFromClipboard(long inlet){
-    std::memcpy(&sequencer_.steps,
-                &copysequencer_.steps,
+    std::memcpy(&workingSequencer_[slotIndex_].steps,
+                &clipboardSequencer_.steps,
                 StorageConfiguration<SequencerSettings>::size);
     transferSequence();
+    
+    calculatePatternSize();
     outputSequence();
 }
 
@@ -914,20 +1109,20 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
                     num_accessible_banks_ = 2;
                 }
                 
+                listPatchNames();
                 
-                
-//                atom_setsym(atoms_, gensym("current"));
-//                atom_setlong(atoms_+1, current_patch_number_);
-//                atom_setlong(atoms_+2, current_sequence_number_);
-//                outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+//                
+//                atom_setsym(atoms_, gensym("patchcount"));
+//                atom_setlong(atoms_+1, getNumPatches());
+//                outlet_list(m_outlets[1], ps_empty, 2, atoms_);
             }
             break;
             
         case kPatch:  // Patch transfer
-            success = patch_.CheckBuffer(sysex_rx_buffer_);
+            success = workingPatch_[slotIndex_].CheckBuffer(sysex_rx_buffer_);
             if(success){
                 DPOST("Patch data received");
-                std::memcpy(&patch_,
+                std::memcpy(&workingPatch_[slotIndex_],
                             sysex_rx_buffer_,
                             StorageConfiguration<Patch>::size);
                 outputPatchData();
@@ -937,7 +1132,7 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
         case kSequence:  // Sequence transfer
             success = 1;
             DPOST("Sequence data received");
-            std::memcpy(sequencer_.saved_data(),
+            std::memcpy(workingSequencer_[slotIndex_].saved_data(),
                         sysex_rx_buffer_,
                         StorageConfiguration<SequencerSettings>::size);
             outputSequence();
@@ -961,15 +1156,15 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
         case kSequenceStep:
         {
             uint8_t stepIndex = arg & 0x0f;
-            sequencer_.steps[stepIndex].data_[0] = sysex_rx_buffer_[0];
-            sequencer_.steps[stepIndex].data_[1] = sysex_rx_buffer_[1];
+            workingSequencer_[slotIndex_].steps[stepIndex].data_[0] = sysex_rx_buffer_[0];
+            workingSequencer_[slotIndex_].steps[stepIndex].data_[1] = sysex_rx_buffer_[1];
             DPOST("Sequencer step data received, index: %i", stepIndex);
         }
             success = 1;
             outputSequence();
             break;
         case kPatchName:
-            std::memcpy(patch_.name,
+            std::memcpy(workingPatch_[slotIndex_].name,
                         sysex_rx_buffer_,
                         kPatchNameSize);
             success = 1;
@@ -978,7 +1173,7 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
         case kSequencerState: // full sequencer state transfer
             success = 1;
             DPOST("Full sequencer state received");
-            std::memcpy(&sequencer_,
+            std::memcpy(&workingSequencer_[slotIndex_],
                         sysex_rx_buffer_,
                         sizeof(SequencerSettings));
 
@@ -1022,7 +1217,7 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
     }
   
     if(!success){
-        error("Sysex transfer error cmd %x, arg %x, data length %i", cmd, arg, data.size());
+        object_error((t_object*)this,"Sysex transfer error cmd %x, arg %x, data length %i", cmd, arg, data.size());
     }
 }
 
@@ -1030,6 +1225,7 @@ void VxShruthi::midiNrpnCallback(long nrpn_index, long v){
     
     // update internal eeprom
 //    mapSequencerNrpnToEeprom(nrpn_index, v);
+    mapNrpnToEeprom(nrpn_index, v);
     
     // send out to patch
     outputNrpn(nrpn_index, v);
@@ -1040,130 +1236,117 @@ void VxShruthi::midiNrpnCallback(long nrpn_index, long v){
 void VxShruthi::nrpn(long inlet, long nrpn_index, long v){
     // update internal eeprom
 //    mapSequencerNrpnToEeprom(nrpn_index, v);
+    mapNrpnToEeprom(nrpn_index, v);
     
     // send to device
     device_.sendNrpn(nrpn_index, v);
-}
-
-void VxShruthi::mapSequencerNrpnToEeprom(long nrpn_index, long v){
     
-    // these nrpn values are global and schould be mirrored in eeprom
-    // when changes occur from patch or from device.
-    switch(nrpn_index){
-        case 100: sequencer_.seq_mode = v; break;
-        case 101: sequencer_.seq_tempo = v; break;
-        case 102: sequencer_.seq_groove_template = v; break;
-        case 103: sequencer_.seq_groove_amount = v; break;
-        case 104: sequencer_.arp_direction = v; break;
-        case 105: sequencer_.arp_range = v; break;
-        case 106: sequencer_.arp_pattern = v; break;
-        case 107: sequencer_.arp_warp = v; break;
-        case 108: sequencer_.pattern_size = v; break;
-        case 109: sequencer_.pattern_rotation = v; break;
-    }
 }
 
-// not used atm
 void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
+    Patch &p = workingPatch_[slotIndex_];
     
     switch(nrpn_index){
-        case 0: patch_.osc[0].shape = v; break;
-        case 1: patch_.osc[0].parameter = v; break;
-        case 2: patch_.osc[0].range = v; break;
-        case 3: patch_.osc[0].option = v; break;
+        case 0: p.osc[0].shape = v; break;
+        case 1: p.osc[0].parameter = v; break;
+        case 2: p.osc[0].range = v; break;
+        case 3: p.osc[0].option = v; break;
             
-        case 4: patch_.osc[1].shape = v; break;
-        case 5: patch_.osc[1].parameter = v; break;
-        case 6: patch_.osc[1].range = v; break;
-        case 7: patch_.osc[1].option = v; break;
+        case 4: p.osc[1].shape = v; break;
+        case 5: p.osc[1].parameter = v; break;
+        case 6: p.osc[1].range = v; break;
+        case 7: p.osc[1].option = v; break;
             
-        case 8: patch_.mix_balance = v; break;
-        case 9: patch_.mix_sub_osc = v; break;
-        case 10: patch_.mix_noise = v; break;
-        case 11: patch_.mix_sub_osc_shape = v; break;
+        case 8: p.mix_balance = v; break;
+        case 9: p.mix_sub_osc = v; break;
+        case 10: p.mix_noise = v; break;
+        case 11: p.mix_sub_osc_shape = v; break;
             
-        case 12: patch_.filter_cutoff = v; break;
-        case 13: patch_.filter_resonance = v; break;
-        case 14: patch_.filter_env = v; break;
-        case 15: patch_.filter_lfo = v; break;
+        case 12: p.filter_cutoff = v; break;
+        case 13: p.filter_resonance = v; break;
+        case 14: p.filter_env = v; break;
+        case 15: p.filter_lfo = v; break;
             
-        case 16: patch_.env[0].attack = v; break;
-        case 17: patch_.env[0].decay = v; break;
-        case 18: patch_.env[0].sustain = v; break;
-        case 19: patch_.env[0].release = v; break;
+        case 16: p.env[0].attack = v; break;
+        case 17: p.env[0].decay = v; break;
+        case 18: p.env[0].sustain = v; break;
+        case 19: p.env[0].release = v; break;
             
-        case 20: patch_.env[1].attack = v; break;
-        case 21: patch_.env[1].decay = v; break;
-        case 22: patch_.env[1].sustain = v; break;
-        case 23: patch_.env[1].release = v; break;
+        case 20: p.env[1].attack = v; break;
+        case 21: p.env[1].decay = v; break;
+        case 22: p.env[1].sustain = v; break;
+        case 23: p.env[1].release = v; break;
             
-        case 24: patch_.lfo[0].waveform = v; break;
-        case 25: patch_.lfo[0].rate = v; break;
-        case 26: patch_.lfo[0].attack = v; break;
-        case 27: patch_.lfo[0].retrigger_mode = v; break;
+        case 24: p.lfo[0].waveform = v; break;
+        case 25: p.lfo[0].rate = v; break;
+        case 26: p.lfo[0].attack = v; break;
+        case 27: p.lfo[0].retrigger_mode = v; break;
             
-        case 28: patch_.lfo[1].waveform = v; break;
-        case 29: patch_.lfo[1].rate = v; break;
-        case 30: patch_.lfo[1].attack = v; break;
-        case 31: patch_.lfo[1].retrigger_mode = v; break;
+        case 28: p.lfo[1].waveform = v; break;
+        case 29: p.lfo[1].rate = v; break;
+        case 30: p.lfo[1].attack = v; break;
+        case 31: p.lfo[1].retrigger_mode = v; break;
             
-        case 32: patch_.modulation_matrix.modulation[0].source = v; break;
-        case 33: patch_.modulation_matrix.modulation[0].destination = v; break;
-        case 34: patch_.modulation_matrix.modulation[0].amount = v; break;
-        case 35: patch_.modulation_matrix.modulation[1].source = v; break;
-        case 36: patch_.modulation_matrix.modulation[1].destination = v; break;
-        case 37: patch_.modulation_matrix.modulation[1].amount = v; break;
-        case 38: patch_.modulation_matrix.modulation[2].source = v; break;
-        case 39: patch_.modulation_matrix.modulation[2].destination = v; break;
-        case 40: patch_.modulation_matrix.modulation[2].amount = v; break;
-        case 41: patch_.modulation_matrix.modulation[3].source = v; break;
-        case 42: patch_.modulation_matrix.modulation[3].destination = v; break;
-        case 43: patch_.modulation_matrix.modulation[3].amount = v; break;
-        case 44: patch_.modulation_matrix.modulation[4].source = v; break;
-        case 45: patch_.modulation_matrix.modulation[4].destination = v; break;
-        case 46: patch_.modulation_matrix.modulation[4].amount = v; break;
-        case 47: patch_.modulation_matrix.modulation[5].source = v; break;
-        case 48: patch_.modulation_matrix.modulation[5].destination = v; break;
-        case 49: patch_.modulation_matrix.modulation[5].amount = v; break;
-        case 50: patch_.modulation_matrix.modulation[6].source = v; break;
-        case 51: patch_.modulation_matrix.modulation[6].destination = v; break;
-        case 52: patch_.modulation_matrix.modulation[6].amount = v; break;
-        case 53: patch_.modulation_matrix.modulation[7].source = v; break;
-        case 54: patch_.modulation_matrix.modulation[7].destination = v; break;
-        case 55: patch_.modulation_matrix.modulation[7].amount = v; break;
-        case 56: patch_.modulation_matrix.modulation[8].source = v; break;
-        case 57: patch_.modulation_matrix.modulation[8].destination = v; break;
-        case 58: patch_.modulation_matrix.modulation[8].amount = v; break;
-        case 59: patch_.modulation_matrix.modulation[9].source = v; break;
-        case 60: patch_.modulation_matrix.modulation[9].destination = v; break;
-        case 61: patch_.modulation_matrix.modulation[9].amount = v; break;
-        case 62: patch_.modulation_matrix.modulation[10].source = v; break;
-        case 63: patch_.modulation_matrix.modulation[10].destination = v; break;
-        case 64: patch_.modulation_matrix.modulation[10].amount = v; break;
-        case 65: patch_.modulation_matrix.modulation[11].source = v; break;
-        case 66: patch_.modulation_matrix.modulation[11].destination = v; break;
-        case 67: patch_.modulation_matrix.modulation[11].amount = v; break;
+        case 32: p.modulation_matrix.modulation[0].source = v; break;
+        case 33: p.modulation_matrix.modulation[0].destination = v; break;
+        case 34: p.modulation_matrix.modulation[0].amount = v; break;
+        case 35: p.modulation_matrix.modulation[1].source = v; break;
+        case 36: p.modulation_matrix.modulation[1].destination = v; break;
+        case 37: p.modulation_matrix.modulation[1].amount = v; break;
+        case 38: p.modulation_matrix.modulation[2].source = v; break;
+        case 39: p.modulation_matrix.modulation[2].destination = v; break;
+        case 40: p.modulation_matrix.modulation[2].amount = v; break;
+        case 41: p.modulation_matrix.modulation[3].source = v; break;
+        case 42: p.modulation_matrix.modulation[3].destination = v; break;
+        case 43: p.modulation_matrix.modulation[3].amount = v; break;
+        case 44: p.modulation_matrix.modulation[4].source = v; break;
+        case 45: p.modulation_matrix.modulation[4].destination = v; break;
+        case 46: p.modulation_matrix.modulation[4].amount = v; break;
+        case 47: p.modulation_matrix.modulation[5].source = v; break;
+        case 48: p.modulation_matrix.modulation[5].destination = v; break;
+        case 49: p.modulation_matrix.modulation[5].amount = v; break;
+        case 50: p.modulation_matrix.modulation[6].source = v; break;
+        case 51: p.modulation_matrix.modulation[6].destination = v; break;
+        case 52: p.modulation_matrix.modulation[6].amount = v; break;
+        case 53: p.modulation_matrix.modulation[7].source = v; break;
+        case 54: p.modulation_matrix.modulation[7].destination = v; break;
+        case 55: p.modulation_matrix.modulation[7].amount = v; break;
+        case 56: p.modulation_matrix.modulation[8].source = v; break;
+        case 57: p.modulation_matrix.modulation[8].destination = v; break;
+        case 58: p.modulation_matrix.modulation[8].amount = v; break;
+        case 59: p.modulation_matrix.modulation[9].source = v; break;
+        case 60: p.modulation_matrix.modulation[9].destination = v; break;
+        case 61: p.modulation_matrix.modulation[9].amount = v; break;
+        case 62: p.modulation_matrix.modulation[10].source = v; break;
+        case 63: p.modulation_matrix.modulation[10].destination = v; break;
+        case 64: p.modulation_matrix.modulation[10].amount = v; break;
+        case 65: p.modulation_matrix.modulation[11].source = v; break;
+        case 66: p.modulation_matrix.modulation[11].destination = v; break;
+        case 67: p.modulation_matrix.modulation[11].amount = v; break;
             
-        case 84: patch_.filter_cutoff_2 = v; break;
-        case 85: patch_.filter_resonance_2 = v; break;
-        case 92: patch_.filter_1_mode_ = v; break;
-        case 93: patch_.filter_2_mode_ = v; break;
+        case 84: p.filter_cutoff_2 = v; break;
+        case 85: p.filter_resonance_2 = v; break;
+        case 92: p.filter_1_mode_ = v; break;
+        case 93: p.filter_2_mode_ = v; break;
             
-        case 94: patch_.ops_[0].operands[0] = v; break;
-        case 95: patch_.ops_[0].operands[1] = v; break;
-        case 96: patch_.ops_[0].op = v; break;
-        case 97: patch_.ops_[1].operands[0] = v; break;
-        case 98: patch_.ops_[1].operands[1] = v; break;
-        case 99: patch_.ops_[1].op = v; break;
+        case 94: p.ops_[0].operands[0] = v; break;
+        case 95: p.ops_[0].operands[1] = v; break;
+        case 96: p.ops_[0].op = v; break;
+        case 97: p.ops_[1].operands[0] = v; break;
+        case 98: p.ops_[1].operands[1] = v; break;
+        case 99: p.ops_[1].op = v; break;
             
-        case 100: sequencer_.seq_mode = v; break;
-        case 101: sequencer_.seq_tempo = v; break;
-        case 102: sequencer_.seq_groove_template = v; break;
-        case 103: sequencer_.seq_groove_amount = v; break;
-        case 104: sequencer_.arp_direction = v; break;
-        case 105: sequencer_.arp_range = v; break;
-        case 106: sequencer_.arp_pattern = v; break;
-        case 107: sequencer_.arp_warp = v; break;
+        case 100: workingSequencer_[slotIndex_].seq_mode = v; break;
+        case 101: workingSequencer_[slotIndex_].seq_tempo = v; break;
+        case 102: workingSequencer_[slotIndex_].seq_groove_template = v; break;
+        case 103: workingSequencer_[slotIndex_].seq_groove_amount = v; break;
+        case 104: workingSequencer_[slotIndex_].arp_direction = v; break;
+        case 105: workingSequencer_[slotIndex_].arp_range = v; break;
+        case 106: workingSequencer_[slotIndex_].arp_pattern = v; break;
+        case 107: workingSequencer_[slotIndex_].arp_warp = v; break;
+        case 108: workingSequencer_[slotIndex_].pattern_size = v; break;
+        case 109: workingSequencer_[slotIndex_].pattern_rotation = v; break;
+            
         default:
             object_error((t_object*)this, "Nrpn index %i is not valid", nrpn_index);
     }
@@ -1172,7 +1355,7 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
 
 
 // voor als er iets hangt
-void VxShruthi::panic(long inlet){
+void VxShruthi::stopTransfer(long inlet){
     transfer_.stop();
     device_.unlock();
     
@@ -1182,12 +1365,12 @@ void VxShruthi::panic(long inlet){
 }
 
 void VxShruthi::transferProgressReporter(bool isBusy, uint8_t progress){
-//    atom_setlong(atoms_, finished?1:0);
-//    atom_setlong(atoms_+1, progress);
-//    outlet_list(m_outlets[1], ps_transfer, 2, atoms_);
     outputProgress(progress);
 }
 
+
+// triggered by kNumBanks return, because first we want to know the
+// total number of slots to init the list
 void VxShruthi::listPatchNames(long inlet){
     
     Patch *p;
@@ -1320,13 +1503,10 @@ int T_EXPORT main(void) {
     
     REGISTER_METHOD_SYMBOL(VxShruthi, importEeprom);
     REGISTER_METHOD_SYMBOL(VxShruthi, exportEeprom);
-//    REGISTER_METHOD_SYMBOL(VxShruthi, importUserData);
-//    REGISTER_METHOD_SYMBOL(VxShruthi, exportUserData);
+
     REGISTER_METHOD(VxShruthi, clearEepromCache);
     
-//    REGISTER_METHOD(VxShruthi, testThreadStart);
-//    REGISTER_METHOD(VxShruthi, stopTransfer);
-    REGISTER_METHOD(VxShruthi, panic);
+    REGISTER_METHOD(VxShruthi, stopTransfer);
     
     REGISTER_METHOD_LONG(VxShruthi, enableEepromCache);
     
@@ -1336,25 +1516,27 @@ int T_EXPORT main(void) {
     REGISTER_METHOD(VxShruthi, pastePatchFromClipboard);
     REGISTER_METHOD(VxShruthi, copySequenceToClipboard);
     REGISTER_METHOD(VxShruthi, pasteSequenceFromClipboard);
+    
+    REGISTER_METHOD_LONG(VxShruthi, switchToDevice);
 
     
     //    REGISTER_METHOD(VxShruthi, printMidiPorts);
     //    REGISTER_METHOD(VxShruthi, testMidiOut);
     
-    #ifdef WIN_VERSION
-        char user_name[UNLEN+1];
-        DWORD user_name_size = sizeof(user_name);
-        if (GetUserName(user_name, &user_name_size)){
-            DPOST("Your user name is: %s", user_name);
-        }else{
-            error("Failed to lookup user name");
-        }
-        /* Handle error */
-    #else // MAC_VERSION
-                // the mac uses the standard gcc syntax, you should also set the -fvisibility=hidden flag to hide the non-marked symbols
-        char* szUserName;
-        szUserName = getenv("USER");
-        DPOST("Your user name is: %s", szUserName);  
-    #endif
+//    #ifdef WIN_VERSION
+//        char user_name[UNLEN+1];
+//        DWORD user_name_size = sizeof(user_name);
+//        if (GetUserName(user_name, &user_name_size)){
+//            DPOST("Your user name is: %s", user_name);
+//        }else{
+//            object_error((t_object*)this,"Failed to lookup user name");
+//        }
+//        /* Handle error */
+//    #else // MAC_VERSION
+//                // the mac uses the standard gcc syntax, you should also set the -fvisibility=hidden flag to hide the non-marked symbols
+//        char* szUserName;
+//        szUserName = getenv("USER");
+//        DPOST("Your user name is: %s", szUserName);  
+//    #endif
 }
 
