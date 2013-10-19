@@ -9,7 +9,24 @@
 #include <fstream>
 
 #ifdef WIN_VERSION
-    #include <w32api.h>
+
+//#define NTDDI_VERSION NTDDI_WINXP 
+//#define _WIN32_WINNT _WIN32_WINNT_WINXP
+//#define WINVER 0x0502
+//#define _WIN32_WINNT 0x0502
+//#define WIN32_LEAN_AND_MEAN
+
+#include <Windows.h>
+#include <Shlwapi.h>
+#include <Shlobj.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#if _MSC_VER
+#define snprintf _snprintf
+#endif
+
 #else // MAC_VERSION
     #include <CoreServices/CoreServices.h>
     #include <sys/types.h>
@@ -130,21 +147,39 @@ void VxShruthi::initializeSystemStoragePath(){
     
     //For program files:
     TCHAR path[MAX_PATH];
-    SHGetSpecialFolderPath(
-                           0,
-                           path,
-                           CSIDL_PROGRAM_FILES,
-                           FALSE );
-    
-    
-    dataroot_ = std::string(path, strlen(path)) + std::string("\\Shreditor\\Userdata");
-    
-    int status = mkdir(dataroot_.c_str(), S_IRWXU);
-    if(!status || status == EEXIST){
-        DPOST("Initialize data root OK");
-    }else{
-        object_error((t_object*)this, "Initialize data root error status: %i", status);
-    }
+
+	// todo make switch for windows vista and later using SHGetKnownFolderPath
+
+	if(SUCCEEDED(SHGetFolderPath(NULL, 
+								 CSIDL_APPDATA|CSIDL_FLAG_CREATE, 
+								 NULL, 
+								 0, 
+								 path))) 
+	{
+		std::string root = std::string(path, strlen(path)) + std::string("\\Vauxlab\\Shreditor");
+		dataroot_ = root + std::string("\\Eeprom");
+		presetfile_ = root + std::string("\\DevicePresets.json");
+
+		//PathAppend(szPath, TEXT("\\Shreditor\\Eeprom"));
+
+		if(SUCCEEDED(CreateDirectory(dataroot_.c_str(), NULL))){
+			DPOST("Created directory dataroot: %s", path);
+		}else{
+			DWORD errcode = GetLastError();
+			if(errcode == ERROR_ALREADY_EXISTS){
+				DPOST("Directory already exists: %s", path);
+				DPOST("Initialize data root OK");
+			}else{
+				 object_error((t_object*)this, "Failed to create directory: %s", path);
+				 return;
+			}
+		}
+	
+	}else{
+		DWORD errcode = GetLastError();
+		object_error((t_object*)this, "Failed to look up appdata path: %s", path);
+		return;
+	}
     
     #else // MAC_VERSION
     
@@ -198,6 +233,11 @@ void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
 
 bool VxShruthi::isExpired(){
 
+#ifdef WIN_VERSION
+	// todo figure out time
+	DPOST("TODO figure out time");
+	return false;
+#else
     time_t now = time(0);
     
     struct tm local;
@@ -238,6 +278,7 @@ bool VxShruthi::isExpired(){
     if(secondsToExpire <= 0) return true;
     
     return false;
+#endif
 }
 
 
@@ -933,10 +974,10 @@ void VxShruthi::sendSequenceProgramChange(long slot){
 
 void VxShruthi::loadDeviceEeprom(){
     
-    char filepath[MAXPATHLEN];  /* defined in sys/param.h */
+    char filepath[MAX_PATH];  /* defined in sys/param.h */
     snprintf(
              filepath,
-             MAXPATHLEN,
+             MAX_PATH,
              "%s/DeviceSlot%i.bin",
              dataroot_.c_str(),
              slotIndex_+1);
@@ -962,10 +1003,10 @@ void VxShruthi::loadDeviceEeprom(){
 
 void VxShruthi::saveDeviceEeprom(){
     
-    char filepath[MAXPATHLEN];  /* defined in sys/param.h */
+    char filepath[MAX_PATH];  /* defined in sys/param.h */
     snprintf(
              filepath,
-             MAXPATHLEN,
+             MAX_PATH,
              "%s/DeviceSlot%i.bin",
              dataroot_.c_str(),
              slotIndex_+1);

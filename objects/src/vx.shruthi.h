@@ -9,14 +9,14 @@
 #ifndef MutableSysex_vx_shruthi_h
 #define MutableSysex_vx_shruthi_h
 
-#ifdef DEBUG
+#ifdef _DEBUG
     #define __VAUXLAB_DEBUG__ 1
     #define __RTMIDI_DEBUG__ 0
 #endif
 
 // a wrapper for cpost() only called for debug builds on Windows
 // to see these console posts, run the DbgView program (part of the SysInternals package distributed by Microsoft)
-#ifdef DEBUG
+#ifdef _DEBUG
 #define DPOST post
 #else
 #define DPOST
