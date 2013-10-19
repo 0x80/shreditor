@@ -3,8 +3,9 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 8
+			"minor" : 1,
+			"revision" : 4,
+			"architecture" : "x86"
 		}
 ,
 		"rect" : [ 449.0, 72.0, 974.0, 841.0 ],
@@ -28,6 +29,32 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"embed" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"hidden" : 0,
+					"id" : "obj-11",
+					"ignoreclick" : 0,
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"modulemode" : 0,
+					"name" : "pInfo.maxpat",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 0.0, 442.0, 312.0, 160.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 440.0, 624.0, 152.0 ]
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"background" : 0,
 					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
@@ -76,6 +103,7 @@
 					"presentation_rect" : [ 656.0, 640.0, 35.0, 20.0 ],
 					"text" : "640",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -103,6 +131,7 @@
 					"presentation_rect" : [ 664.0, 200.0, 31.0, 20.0 ],
 					"text" : "200",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -130,6 +159,7 @@
 					"presentation_rect" : [ 656.0, 440.0, 31.0, 20.0 ],
 					"text" : "440",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -241,7 +271,8 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -277,20 +308,30 @@
 		"dependency_cache" : [ 			{
 				"name" : "pDevicePresets.maxpat",
 				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : "",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "DevicePresets.json",
+				"bootpath" : "/Users/thijskoerselman/Library/Application Support/Vauxlab/Shreditor",
+				"patcherrelativepath" : "../../../../../Library/Application Support/Vauxlab/Shreditor",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "pEepromData.maxpat",
 				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : "",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "_.mxo",
-				"type" : "iLaX"
+				"name" : "pInfo.maxpat",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
 			}
  ]
 	}

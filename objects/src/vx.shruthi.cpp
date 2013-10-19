@@ -225,9 +225,10 @@ bool VxShruthi::isExpired(){
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire), now);
     
-   
-    DPOST("Released %s", asctime(&release));
-    DPOST("Expires %s", asctime(&expire));
+    post("\tvx.shruthi version beta 1");
+//    post("\t© vauxlab 2013");
+//    post("\tauthor Thijs Koerselman");
+    post("\texpires %s", asctime(&expire));
     
 //    DPOST("%.f seconds since release", secondsSinceRelease);
 //    DPOST("%.f seconds to expire", secondsToExpire);
@@ -248,7 +249,7 @@ uint16_t VxShruthi::addressable_space_size() {
 void VxShruthi::outputProgress(long progress){
     
     int total = addressable_space_size();
-    int uploaded = progressCounter_++ * 128; // post inc anders 1 te veel, waarom?
+    int uploaded = ++progressCounter_ * 128;
     int percentage = ((float)uploaded / total) * 100;
 
     atom_setsym(atoms_, ps_progress);
@@ -259,6 +260,7 @@ void VxShruthi::outputProgress(long progress){
     outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     
     if(percentage == 100){
+        DPOST("done 100%");
         // switch to self just to output everytying
         switchToDevice(0, slotIndex_+1); // +1 since v start at 1
     }

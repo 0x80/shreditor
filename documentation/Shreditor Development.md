@@ -38,6 +38,9 @@ audiosupport 0, database 0, searchformissingfiles 0, usesearchpath 0
 MSP/ad: no ad folder
 Core Audio: No such object
 pattr_obex: no such file in collective
+DevicePresets.json: no such file in collective
+DevicePresets.xml: no such file in collective
+
 
 overdrive is not on by default
 
@@ -62,7 +65,7 @@ user feedback for import export failures
 
 maak een dirty flag voor elke working copy. output naar interface als indicatie dat een patch geedit is.
 
-undo patch. Remember original patch when fetched from eeprom. for each working slot. so we can reset it...
+undoriginal patch when fetched from eeprom. for each working slot. so we can reset it...
 
 maak switch om eeprom mirror uit te schakelen, voor als mensen alleen midi in willen gebruiken 
 
