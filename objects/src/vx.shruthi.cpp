@@ -23,6 +23,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define PATH_MAX MAX_PATH 
+
 #if _MSC_VER
 #define snprintf _snprintf
 #endif
@@ -137,6 +139,43 @@ VxShruthi::~VxShruthi() {
     object_free(m_clock);
 }
 
+void VxShruthi::testpaths(const char* rootname){
+    //path_frompotentialpathname(fullpath, &path, filename);
+    //foldername = strrchr(fullpath, '/');
+    
+//    std::string testfile = dataroot_+"/"
+    
+    short root;
+    char filename[PATH_MAX];
+    if(path_frompathname(rootname, &root, filename)){
+        object_error((t_object*)this, "path_frompathname failed");
+    }else{
+//        if(path_createfile()
+        DPOST("frompathname returned filename %s", filename);
+    }
+    
+//    short userdocpath = path_userdocfolder();
+//    short defaultpath = path_getdefault();
+    short newpath;
+    if(path_createfolder(root, "TeSTfolder", &newpath)){
+        
+        object_error((t_object*)this, "creatfolder TeSTfolder failed");
+        //return;
+    }else{
+    
+        DPOST("createfolder ok");
+    }
+//    char userdocname[PATH_MAX];
+//    char defaultname[PATH_MAX];
+//    short outpath;
+//    path_getname(userdocpath, userdocname, &outpath);
+//    path_getname(defaultpath, defaultname, &outpath);
+    
+//    DPOST("userdocname %s", userdocname);
+//    DPOST("defaultname %s", defaultname);
+    
+}
+
 void VxShruthi::initializeSystemStoragePath(){
     
     #ifdef WIN_VERSION
@@ -221,11 +260,15 @@ void VxShruthi::initializeSystemStoragePath(){
 
     DPOST("Shreditor userdata location: %s", dataroot_.c_str());
     
+    testpaths(path);
+    
     // Need defer low to output some data from the constructor,
     // otherwise outputs are not initialized at time of call.
     defer_low(this, (method)VxShruthi::onReady, NULL, 0, NULL);
     
 }
+
+
 
 void VxShruthi::outputDataroot(){
     atom_setsym(atoms_, gensym("dataroot"));
@@ -986,10 +1029,10 @@ void VxShruthi::sendSequenceProgramChange(long slot){
 
 void VxShruthi::loadDeviceEeprom(){
     
-    char filepath[MAX_PATH];  /* defined in sys/param.h */
+    char filepath[PATH_MAX];  /* defined in sys/param.h */
     snprintf(
              filepath,
-             MAX_PATH,
+             PATH_MAX,
              "%s/DeviceSlot%i.bin",
              dataroot_.c_str(),
              slotIndex_+1);
@@ -1015,10 +1058,10 @@ void VxShruthi::loadDeviceEeprom(){
 
 void VxShruthi::saveDeviceEeprom(){
     
-    char filepath[MAX_PATH];  /* defined in sys/param.h */
+    char filepath[PATH_MAX];  /* defined in sys/param.h */
     snprintf(
              filepath,
-             MAX_PATH,
+             PATH_MAX,
              "%s/DeviceSlot%i.bin",
              dataroot_.c_str(),
              slotIndex_+1);

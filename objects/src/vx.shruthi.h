@@ -42,6 +42,7 @@ public:
 //    void midiInput(long v);
     void initializeSystemStoragePath();
     bool isExpired();
+    void testpaths(const char* root);
     
     static void onTick(VxShruthi *x);
     static void onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
