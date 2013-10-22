@@ -149,9 +149,10 @@ void VxShruthi::initializeSystemStoragePath(){
     TCHAR path[MAX_PATH];
 
 	// todo make switch for windows vista and later using SHGetKnownFolderPath
+	CreateDirectory ("C:\\random", NULL);
 
 	if(SUCCEEDED(SHGetFolderPath(NULL, 
-								 CSIDL_APPDATA|CSIDL_FLAG_CREATE, 
+								 CSIDL_PROGRAM_FILES_COMMONX86|CSIDL_FLAG_CREATE, 
 								 NULL, 
 								 0, 
 								 path))) 
@@ -164,16 +165,27 @@ void VxShruthi::initializeSystemStoragePath(){
 
 		if(SUCCEEDED(CreateDirectory(dataroot_.c_str(), NULL))){
 			DPOST("Created directory dataroot: %s", path);
+
+			{
+			BOOL bTest=FALSE;
+			DWORD dwNumRead=0;
+			DPOST("test create %s", presetfile_.c_str());
+			HANDLE hFile=CreateFile(presetfile_.c_str(),GENERIC_READ,FILE_SHARE_READ,
+										  NULL, CREATE_ALWAYS , FILE_ATTRIBUTE_NORMAL,NULL);
+			bTest= CloseHandle(hFile);
+			}
 		}else{
 			DWORD errcode = GetLastError();
 			if(errcode == ERROR_ALREADY_EXISTS){
 				DPOST("Directory already exists: %s", path);
-				DPOST("Initialize data root OK");
+				
 			}else{
 				 object_error((t_object*)this, "Failed to create directory: %s", path);
 				 return;
 			}
 		}
+
+		DPOST("Initialize data root OK");
 	
 	}else{
 		DWORD errcode = GetLastError();

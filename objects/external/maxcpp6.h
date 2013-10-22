@@ -227,7 +227,7 @@ public:
 	
 	static t_class * makeMaxClass(const char * classname) {
 		common_symbols_init();
-		t_class * c = class_new(classname, (method)MaxCpp6<T>::maxcpp_create, (method)MaxCpp6<T>::maxcpp_destroy, sizeof(T), NULL, A_GIMME, 0);
+		t_class * c = class_new(classname, (method)MaxCpp6<T>::maxcpp_create, (method)MaxCpp6<T>::maxcpp_destroy, sizeof(T), 0L, A_GIMME, 0);
 		class_register(CLASS_BOX, c);
 		MaxCppBase<T>::m_class = c;
 		return c;

@@ -3,4 +3,9 @@
   <PropertyGroup>
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommand>C:\Program Files %28x86%29\Cycling %2774\Max 6.1\MaxRT.exe</LocalDebuggerCommand>
+    <LocalDebuggerAttach>false</LocalDebuggerAttach>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>
