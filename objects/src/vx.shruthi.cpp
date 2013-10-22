@@ -3,6 +3,7 @@
 #include "vx.shruthi.h"
 
 #include <cstring>
+#include <ctime>
 #include <iostream>
 #include <cstdlib>
 #include <map>
@@ -140,31 +141,25 @@ VxShruthi::~VxShruthi() {
 }
 
 void VxShruthi::testpaths(const char* rootname){
-    //path_frompotentialpathname(fullpath, &path, filename);
-    //foldername = strrchr(fullpath, '/');
-    
-//    std::string testfile = dataroot_+"/"
-    
-    short root;
+
+    short rootpath;
     char filename[PATH_MAX];
-    if(path_frompathname(rootname, &root, filename)){
+    if(path_frompathname(rootname, &rootpath, filename)){
         object_error((t_object*)this, "path_frompathname failed");
-    }else{
-//        if(path_createfile()
-        DPOST("frompathname returned filename %s", filename);
+		return;
     }
     
 //    short userdocpath = path_userdocfolder();
 //    short defaultpath = path_getdefault();
-    short newpath;
-    if(path_createfolder(root, "TeSTfolder", &newpath)){
-        
-        object_error((t_object*)this, "creatfolder TeSTfolder failed");
-        //return;
-    }else{
-    
-        DPOST("createfolder ok");
-    }
+    //short newpath;
+    //if(path_createfolder(root, "TeSTfolder", &newpath)){
+    //    
+    //    object_error((t_object*)this, "creatfolder TeSTfolder failed");
+    //    //return;
+    //}else{
+    //
+    //    DPOST("createfolder ok");
+    //}
 //    char userdocname[PATH_MAX];
 //    char defaultname[PATH_MAX];
 //    short outpath;
@@ -173,59 +168,46 @@ void VxShruthi::testpaths(const char* rootname){
     
 //    DPOST("userdocname %s", userdocname);
 //    DPOST("defaultname %s", defaultname);
-    
+	short newpath;
+	//short rootpath;
+    if(path_createfolder(rootpath, "Vauxlab", &newpath)){
+        object_error((t_object*)this, "createfolder Vauxlab failed");
+        return;
+    }
+
+	if(path_createfolder(newpath, "Shreditor", &newpath)){
+        object_error((t_object*)this, "createfolder Shreditor failed");
+        return;
+    }
+
+	if(path_createfolder(newpath, "Eeprom", &newpath)){
+        object_error((t_object*)this, "createfolder Eeprom failed");
+        return;
+    }
+
 }
 
 void VxShruthi::initializeSystemStoragePath(){
     
+
     #ifdef WIN_VERSION
     
-    //For the Windows folder:
-    TCHAR windir[MAX_PATH];
-    GetWindowsDirectory(windir, MAX_PATH);
-    
-    //For program files:
     TCHAR path[MAX_PATH];
-
-	// todo make switch for windows vista and later using SHGetKnownFolderPath
-	CreateDirectory ("C:\\random", NULL);
-
+	TCHAR conformpath[MAX_PATH];
 	if(SUCCEEDED(SHGetFolderPath(NULL, 
 								 CSIDL_PROGRAM_FILES_COMMONX86|CSIDL_FLAG_CREATE, 
 								 NULL, 
 								 0, 
 								 path))) 
 	{
-		std::string root = std::string(path, strlen(path)) + std::string("\\Vauxlab\\Shreditor");
-		dataroot_ = root + std::string("\\Eeprom");
-		presetfile_ = root + std::string("\\DevicePresets.json");
-
-		//PathAppend(szPath, TEXT("\\Shreditor\\Eeprom"));
-
-		if(SUCCEEDED(CreateDirectory(dataroot_.c_str(), NULL))){
-			DPOST("Created directory dataroot: %s", path);
-
-			{
-			BOOL bTest=FALSE;
-			DWORD dwNumRead=0;
-			DPOST("test create %s", presetfile_.c_str());
-			HANDLE hFile=CreateFile(presetfile_.c_str(),GENERIC_READ,FILE_SHARE_READ,
-										  NULL, CREATE_ALWAYS , FILE_ATTRIBUTE_NORMAL,NULL);
-			bTest= CloseHandle(hFile);
-			}
-		}else{
-			DWORD errcode = GetLastError();
-			if(errcode == ERROR_ALREADY_EXISTS){
-				DPOST("Directory already exists: %s", path);
-				
-			}else{
-				 object_error((t_object*)this, "Failed to create directory: %s", path);
-				 return;
-			}
+		if(path_nameconform(path, conformpath, PATH_STYLE_MAX_PLAT, PATH_TYPE_ABSOLUTE)){
+			object_error((t_object*)this, "Failed to conform path");
 		}
+		std::string root = std::string(conformpath, strlen(path)) + std::string("/Vauxlab/Shreditor");
+		//root = std::string(path, strlen(path)) + std::string("\\Vauxlab\\Shreditor");
+		dataroot_ = root + std::string("/Eeprom");
+		presetfile_ = root + std::string("/DevicePresets.json");
 
-		DPOST("Initialize data root OK");
-	
 	}else{
 		DWORD errcode = GetLastError();
 		object_error((t_object*)this, "Failed to look up appdata path: %s", path);
@@ -240,23 +222,13 @@ void VxShruthi::initializeSystemStoragePath(){
     char path[PATH_MAX];
     
     FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
-    
     FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
-    
-    std::string root = std::string(path, strlen(path)) + std::string("/Vauxlab/Shreditor");
-    
+	std::string root = std::string(path, strlen(path)) + std::string("/Vauxlab/Shreditor");
     dataroot_ = root + std::string("/Eeprom");
-    
     presetfile_ = root + std::string("/DevicePresets.json");
 
+	#endif
     
-    int status = mkdir(dataroot_.c_str(), S_IRWXU);
-    if(!status || errno == EEXIST){
-        DPOST("Initialize data root OK");
-    }else{
-        object_error((t_object*)this, "Initialize data root error status: %i", errno);
-    }
-    #endif
 
     DPOST("Shreditor userdata location: %s", dataroot_.c_str());
     
@@ -288,11 +260,11 @@ void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
 
 bool VxShruthi::isExpired(){
 
-#ifdef WIN_VERSION
-	// todo figure out time
-	DPOST("TODO figure out time");
-	return false;
-#else
+//#ifdef WIN_VERSION
+//	// todo figure out time
+//	DPOST("TODO figure out time");
+//	return false;
+//#else
     time_t now = time(0);
     
     struct tm local;
@@ -333,7 +305,7 @@ bool VxShruthi::isExpired(){
     if(secondsToExpire <= 0) return true;
     
     return false;
-#endif
+//#endif
 }
 
 

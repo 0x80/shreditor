@@ -24,13 +24,13 @@ ShruthiMidi::ShruthiMidi()
     filterMsb_(true),
    // sysexCallback_(NULL),
     //nrpnCallback_(NULL),
-    locked_(false)
+    locked_(true) // gebruikt nu voor init als poorten nog niet aangemaakt zijn geen berichtjes sturen
 {
     // Create an api map.
     std::map<int, std::string> apiMap;
     apiMap[RtMidi::MACOSX_CORE] = "OS-X CoreMidi";
     apiMap[RtMidi::WINDOWS_MM] = "Windows MultiMedia";
-    apiMap[RtMidi::WINDOWS_KS] = "Windows Kernel Straming";
+    apiMap[RtMidi::WINDOWS_KS] = "Windows Kernel Streaming";
     apiMap[RtMidi::UNIX_JACK] = "Jack Client";
     apiMap[RtMidi::LINUX_ALSA] = "Linux ALSA";
     apiMap[RtMidi::RTMIDI_DUMMY] = "RtMidi Dummy";
@@ -169,21 +169,29 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
 }
 
 void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
+	locked_ = true;
     midiin->closePort();
-    midiin->openPort(findInputPortNumberForName(portName));
+	int portindex = findInputPortNumberForName(portName);
+	if(portindex == -1)
+		return;
+
+    midiin->openPort();
     
     midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
     channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+	locked_ = false;
 }
 
 void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
-    if(locked_){
-        DPOST("midi output locked for sysex transfer");
-        return;
-    }
+	locked_ = true;
     midiout->closePort();
-    midiout->openPort(findOutputPortNumberForName(portName));
+	int portindex = findOutputPortNumberForName(portName);
+	if(portindex == -1)
+		return;
+
+    midiout->openPort(portindex);
     channelOut_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+	locked_ = false;
 }
 
 void ShruthiMidi::sendMessage(std::vector<uint8_t> *msg){
