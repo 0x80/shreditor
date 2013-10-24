@@ -49,6 +49,8 @@
 #include <string>
 #include <vector>
 
+#undef error // undefine ext.h error macro to avoid clash with member function
+
 class RtMidi
 {
  public:

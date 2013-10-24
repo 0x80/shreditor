@@ -29,6 +29,7 @@
 #include "shruthi.types.h"
 #include "shruthi.midi.h"
 #include "shruthi.transfer.h"
+#include "maxcpp6.h"
 
 #define NUM_DEVICE_SLOTS 8
 

@@ -3,6 +3,7 @@
 #define MutableSysex_shruthi_transfer_h
 
 #include "shruthi.types.h"
+#include "ext.h"
 class ShruthiMidi;
 
 typedef std::function<void (bool, int)> ProgressCallback;

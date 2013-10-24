@@ -50,7 +50,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "80"
          endingLineNumber = "80"
-         landmarkName = "VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)"
+         landmarkName = "Patch::CheckBuffer(uint8_t* buffer)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -63,7 +63,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "82"
          endingLineNumber = "82"
-         landmarkName = "VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)"
+         landmarkName = "Patch::CheckBuffer(uint8_t* buffer)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -76,7 +76,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "88"
          endingLineNumber = "88"
-         landmarkName = "VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)"
+         landmarkName = "Patch::CheckBuffer(uint8_t* buffer)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -89,7 +89,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "563"
          endingLineNumber = "563"
-         landmarkName = "ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value)"
+         landmarkName = "ShruthiMidi::printMidiPorts(long inlet)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -102,7 +102,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "739"
          endingLineNumber = "739"
-         landmarkName = "VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av)"
+         landmarkName = "VxShruthi::setSettingsPortamento(long inlet, long v)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -115,7 +115,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "986"
          endingLineNumber = "986"
-         landmarkName = "VxShruthi::importEeprom(long inlet, t_symbol* filepath)"
+         landmarkName = "VxShruthi::sendSequenceProgramChange(long slot)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

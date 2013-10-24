@@ -1,11 +1,17 @@
 #ifndef MutableSysex_shruthi_midi_h
 #define MutableSysex_shruthi_midi_h
 
-#include "shruthi.types.h"
-#include "rtmidi/RtMidi.h"
+
+
+//#include "shruthi.types.h"
+
 //#include <boost/tr1/functional.hpp>
 #include <functional>
+#include "rtmidi/RtMidi.h"
+#include "ext.h"
 
+class RtMidiIn;
+class RtMidiOut;
 
 class SysexBulkTransfer;
 // typedef std::tr1::function<void (SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data)> SysexCallback;

@@ -1,7 +1,7 @@
 #ifndef MutableSysex_shruthi_types_h
 #define MutableSysex_shruthi_types_h
 
-#include "maxcpp6.h"
+
 #include "shruthi/patch.h"
 #include "shruthi/sequencer_settings.h"
 #include "shruthi/system_settings.h"
