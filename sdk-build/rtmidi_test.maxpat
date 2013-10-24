@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 1602.0, 205.0, 640.0, 480.0 ],
+		"rect" : [ 420.0, 169.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -28,6 +28,20 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-3",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 57.0, 424.0, 85.0, 18.0 ],
+					"text" : "sendLongMidi"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -90,8 +104,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 400.0, 304.0, 160.0, 18.0 ],
-					"presentation_rect" : [ 403.0, 307.0, 0.0, 0.0 ],
-					"text" : "\"Fireface 400 (B21) Port 1\""
+					"text" : "\"Fireface Midi Port 1\""
 				}
 
 			}
@@ -105,7 +118,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 184.0, 304.0, 168.0, 18.0 ],
-					"text" : "\"Fireface 400 (B21) Port 1\""
+					"text" : "\"Fireface Midi Port 1\""
 				}
 
 			}
@@ -116,8 +129,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 408.0, 120.0, 20.0, 20.0 ],
-					"presentation_rect" : [ 407.0, 117.0, 0.0, 0.0 ]
+					"patching_rect" : [ 408.0, 120.0, 20.0, 20.0 ]
 				}
 
 			}
@@ -137,7 +149,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-5",
-					"items" : [ "IAC Driver Bus 1", ",", "IAC Driver Max <-> Live", ",", "IAC Driver Live Remote Bus", ",", "IAC Driver Live ClyphX Bus", ",", "IAC Driver Live Loopback Bus", ",", "IAC Driver Lanbox", ",", "USB MIDI 1x1 Port 1", ",", "MPK mini", ",", "Ableton Push Live Port", ",", "Ableton Push User Port", ",", "Fireface 400 (B21) Port 1", ",", "Fireface 400 (B21) Port 2", ",", "to Max 1", ",", "to Max 2" ],
+					"items" : [ "Fireface Midi Port 1", ",", "Fireface Midi Port 2", ",", "Ableton Push", ",", "MIDIIN2 (Ableton Push)", ",", "MPK mini" ],
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -166,7 +178,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-19",
-					"items" : [ "AU DLS Synth 1", ",", "IAC Driver Bus 1", ",", "IAC Driver Max <-> Live", ",", "IAC Driver Live Remote Bus", ",", "IAC Driver Live ClyphX Bus", ",", "IAC Driver Live Loopback Bus", ",", "IAC Driver Lanbox", ",", "USB MIDI 1x1 Port 1", ",", "MPK mini", ",", "Ableton Push Live Port", ",", "Ableton Push User Port", ",", "Fireface 400 (B21) Port 1", ",", "Fireface 400 (B21) Port 2", ",", "from Max 1", ",", "from Max 2" ],
+					"items" : [ "Microsoft Synthesizer", ",", "Microsoft GS Wavetable Synth", ",", "Fireface Midi Port 1", ",", "Fireface Midi Port 2", ",", "Ableton Push", ",", "MIDIOUT2 (Ableton Push)", ",", "MPK mini" ],
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -220,6 +232,15 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-12", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-19", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-8", 1 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -247,10 +268,29 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"midpoints" : [ 223.0, 394.0 ],
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-5", 1 ]
 				}
 
 			}
@@ -293,8 +333,12 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "rtmidi.mxo",
-				"type" : "iLaX"
+				"name" : "omsinfo.mxe",
+				"type" : "iLaF"
+			}
+, 			{
+				"name" : "rtmidi.mxe",
+				"type" : "iLaF"
 			}
  ]
 	}

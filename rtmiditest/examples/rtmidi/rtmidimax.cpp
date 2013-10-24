@@ -1,5 +1,8 @@
-#include "maxcpp6.h"
+
 #include "RtMidi.h"
+#include "maxcpp6.h"
+#include "ext.h"
+#include "stdint.h"
 
 #include <cstring>
 #include <iostream>
@@ -7,13 +10,13 @@
 #include <map>
 
 
-#if defined(__WINDOWS_MM__)
-#include <windows.h>
-#define SLEEP( milliseconds ) Sleep( (DWORD) milliseconds )
-#else // Unix variants
-#include <unistd.h>
-#define SLEEP( milliseconds ) usleep( (unsigned long) (milliseconds * 1000.0) )
-#endif
+//#if defined(__WINDOWS_MM__)
+//#include <windows.h>
+//#define SLEEP( milliseconds ) Sleep( (DWORD) milliseconds )
+//#else // Unix variants
+//#include <unistd.h>
+//#define SLEEP( milliseconds ) usleep( (unsigned long) (milliseconds * 1000.0) )
+//#endif
 
 #define STATUS_NOTE_ON 0x90
 #define STATUS_NOTE_OFF 0x80
@@ -220,6 +223,63 @@ public:
 //        return 0;
         
     }
+
+	void sendLongMidi(long inlet){
+        if(locked_){
+            post("output locked");
+            return;
+        }
+
+		//try{
+        
+//        RtMidiOut *midiout = 0;
+        std::vector<unsigned char> message;
+//
+
+        // Program change: 192, 5
+        message.push_back( 192 );
+        message.push_back( 5 );
+        //midiout->sendMessage( &message );
+
+        
+        message.push_back(0xF1);
+        message.push_back(60);
+       // midiout->sendMessage( &message );
+        
+        // Control Change: 176, 7, 100 (volume)
+        message.push_back(176);
+        message.push_back(7);
+        message.push_back( 100 );
+       // midiout->sendMessage( &message );
+        
+        // Note On: 144, 64, 90
+        message.push_back(144);
+        message.push_back(64);
+        message.push_back(90);
+       // midiout->sendMessage( &message );
+        
+//        SLEEP( 500 );
+        
+        // Note Off: 128, 64, 40
+        message.push_back(128);
+        message.push_back(64);
+        message.push_back(40);
+       // midiout->sendMessage( &message );
+        
+//        SLEEP( 500 );
+        
+        // Control Change: 176, 7, 40
+        message.push_back(176);
+        message.push_back(7);
+        message.push_back(40);
+
+
+        midiout->sendMessage( &message );
+		//}catch(RtError &err){
+		//	error("%s", err.getMessage().c_str());
+		//}
+
+    }
     
     void setMidiIn(long inlet, t_symbol* portName, long channel){
         locked_ = true;
@@ -257,43 +317,53 @@ public:
         }
     }
     
-    int findInputPortNumberForName(t_symbol* name){
-        t_symbol *portName;
-        for (size_t i=0; i<midiin->getPortCount(); ++i){
-            try {
-                portName = gensym(midiin->getPortName(i).c_str());
-                if(portName == name){
-                    post("Port name %s, matched index %i", name->s_name, i);
-                    return i;
-                }
-            }
-            catch ( RtError &err ) {
-                error("%s", err.getMessage().c_str());
+   int findInputPortNumberForName(t_symbol* name){
+    t_symbol *portName;
+    for (size_t i=0; i<midiin->getPortCount(); ++i){
+        try {
+#ifdef WIN_VERSION
+			std::string str =  midiin->getPortName(i);
+			std::string fixedname = str.substr(0, str.length()-2);
+			portName = gensym(fixedname.c_str());
+#else
+			portName = gensym(midiin->getPortName(i).c_str());
+#endif
+            
+			post("match input port %s", portName->s_name);
+            if(portName == name){
+                post("Port name %s, matched index %i", name->s_name, i);
+                return i;
             }
         }
-        
-        error("%s is not a valid input port name", name->s_name);
-        return 0;
+        catch ( RtError &err ) {
+            error("%s", err.getMessage().c_str());
+        }
     }
     
-    int findOutputPortNumberForName(t_symbol* name){
-        t_symbol *portName;
-        for (size_t i=0; i<midiout->getPortCount(); ++i){
-            try {
-                portName = gensym(midiout->getPortName(i).c_str());
-                if(portName == name){
-                    post("Port name %s, matched index %i", name->s_name, i);
-                    return i;
-                }
-            }
-            catch ( RtError &err ) {
-                error("%s", err.getMessage().c_str());
+    error("%s is not a valid input port name", name->s_name);
+    return -1;
+}
+
+int findOutputPortNumberForName(t_symbol* name){
+    t_symbol *portName;
+    for (size_t i=0; i<midiout->getPortCount(); ++i){
+        try {
+            portName = gensym(midiout->getPortName(i).c_str());
+			post("match input port %s", portName->s_name);
+            if(portName == name){
+                post("Port name %s, matched index %i", name->s_name, i);
+                return i;
             }
         }
-        
-        error("%s is not a valid input port name", name->s_name);
-        return 0;
+        catch ( RtError &err ) {
+            error("%s", err.getMessage().c_str());
+        }
     }
+    
+    error("%s is not a valid output port name", name->s_name);
+    return -1;
+}
+
     
     
     int channelIn_;
@@ -306,12 +376,20 @@ public:
 
 };
 
+// a macro to mark exported symbols in the code without requiring an external file to define them
+#ifdef WIN_VERSION
+// note that this is the required syntax on windows regardless of whether the compiler is msvc or gcc
+#define T_EXPORT __declspec(dllexport)
+#else // MAC_VERSION
+// the mac uses the standard gcc syntax, you should also set the -fvisibility=hidden flag to hide the non-marked symbols
+#define T_EXPORT __attribute__((visibility("default")))
+#endif
 
-
-C74_EXPORT extern "C" int main(void) {
+int T_EXPORT main(void) {
 	// create a class with the given name:
 	RtMidiMax::makeMaxClass("rtmidi");
 	REGISTER_METHOD(RtMidiMax, bang);
+	REGISTER_METHOD(RtMidiMax, sendLongMidi);
 	REGISTER_METHOD_FLOAT(RtMidiMax, testfloat);
 	REGISTER_METHOD_LONG(RtMidiMax, testint);
 	REGISTER_METHOD_GIMME(RtMidiMax, test);
