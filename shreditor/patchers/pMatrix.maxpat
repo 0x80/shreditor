@@ -3,11 +3,12 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 8
+			"minor" : 1,
+			"revision" : 4,
+			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 264.0, 44.0, 789.0, 1034.0 ],
+		"rect" : [ 264.0, 50.0, 789.0, 1034.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -47,7 +48,8 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 512.0, 200.0, 18.0, 18.0 ],
 					"text" : "0",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -68,11 +70,12 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 632.0, 472.0, 207.0, 45.0 ],
+					"patching_rect" : [ 632.0, 472.0, 207.0, 46.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "Mod7Amount $1, Mod8Amount $1, Mod9Amount $1, Mod10Amount $1, Mod11Amount $1, Mod12Amount $1",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -93,11 +96,12 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 632.0, 376.0, 200.0, 45.0 ],
+					"patching_rect" : [ 632.0, 376.0, 200.0, 46.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "Mod1Amount $1, Mod2Amount $1, Mod3Amount $1, Mod4Amount $1, Mod5Amount $1, Mod6Amount $1",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -121,7 +125,8 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 232.0, 200.0, 18.0, 18.0 ],
 					"text" : "0",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -145,7 +150,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "0",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -201,11 +207,12 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 576.0, 176.0, 207.0, 85.0 ],
+					"patching_rect" : [ 576.0, 176.0, 207.0, 87.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "Mod1Amount $1, Mod2Amount $1, Mod3Amount $1, Mod4Amount $1, Mod5Amount $1, Mod6Amount $1, Mod7Amount $1, Mod8Amount $1, Mod9Amount $1, Mod10Amount $1, Mod11Amount $1, Mod12Amount $1",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -229,7 +236,8 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -265,7 +273,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 576.0, 296.0, 59.5, 20.0 ],
+					"patching_rect" : [ 576.0, 296.0, 144.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"restore" : 					{
@@ -307,9 +315,10 @@
 						"Mod9Src" : [ 0 ]
 					}
 ,
-					"text" : "autopattr",
+					"text" : "autopattr @autorestore 0",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"varname" : "u441008627"
+					"textjustification" : 0,
+					"varname" : "u409001494"
 				}
 
 			}
@@ -332,7 +341,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 67",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -363,13 +373,13 @@
 					"presentation_rect" : [ 512.0, 152.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod12Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -403,7 +413,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 66",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -426,7 +437,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 65",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -543,7 +555,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 64",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -574,13 +587,13 @@
 					"presentation_rect" : [ 512.0, 120.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod11Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -614,7 +627,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 63",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -637,7 +651,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 62",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -754,7 +769,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 61",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -785,13 +801,13 @@
 					"presentation_rect" : [ 512.0, 88.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod10Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -825,7 +841,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 60",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -848,7 +865,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 59",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -965,7 +983,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 58",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -996,13 +1015,13 @@
 					"presentation_rect" : [ 512.0, 56.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod9Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -1036,7 +1055,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 57",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1059,7 +1079,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 56",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1176,7 +1197,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 55",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1207,13 +1229,13 @@
 					"presentation_rect" : [ 512.0, 24.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod8Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -1247,7 +1269,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 54",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1270,7 +1293,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 53",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1387,7 +1411,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 52",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1418,13 +1443,13 @@
 					"presentation_rect" : [ 512.0, -8.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod7Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -1458,7 +1483,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 51",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1481,7 +1507,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 50",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1598,7 +1625,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 49",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1629,13 +1657,13 @@
 					"presentation_rect" : [ 232.0, 152.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod6Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -1669,7 +1697,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 48",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1692,7 +1721,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 47",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1809,7 +1839,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 46",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1840,13 +1871,13 @@
 					"presentation_rect" : [ 232.0, 120.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod5Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -1880,7 +1911,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 45",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1903,7 +1935,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 44",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2020,7 +2053,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 43",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2051,13 +2085,13 @@
 					"presentation_rect" : [ 232.0, 88.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod4Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -2091,7 +2125,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 42",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2114,7 +2149,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 41",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2231,7 +2267,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 40",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2262,13 +2299,13 @@
 					"presentation_rect" : [ 232.0, 56.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod3Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -2302,7 +2339,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 39",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2325,7 +2363,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 38",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2442,7 +2481,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 37",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2473,13 +2513,13 @@
 					"presentation_rect" : [ 232.0, 24.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod2Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -2513,7 +2553,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 36",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2536,7 +2577,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 35",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2653,7 +2695,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 34",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2684,13 +2727,13 @@
 					"presentation_rect" : [ 232.0, -8.0, 47.0, 36.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_mmin" : -63.0,
-							"parameter_type" : 1,
-							"parameter_shortname" : ".",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "Mod1Amount",
-							"parameter_linknames" : 1
+							"parameter_shortname" : ".",
+							"parameter_type" : 1,
+							"parameter_mmin" : -63.0,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -2724,7 +2767,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 33",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2747,7 +2791,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "param 32",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -3648,6 +3693,7 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-20" : [ "Mod1Amount", ".", 0 ],
 			"obj-68" : [ "Mod6Amount", ".", 0 ],
 			"obj-92" : [ "Mod10Amount", ".", 0 ],
 			"obj-50" : [ "Mod3Amount", ".", 0 ],
@@ -3658,14 +3704,13 @@
 			"obj-62" : [ "Mod7Amount", ".", 0 ],
 			"obj-86" : [ "Mod11Amount", ".", 0 ],
 			"obj-44" : [ "Mod4Amount", ".", 0 ],
-			"obj-98" : [ "Mod9Amount", ".", 0 ],
-			"obj-20" : [ "Mod1Amount", ".", 0 ]
+			"obj-98" : [ "Mod9Amount", ".", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "param.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : "",
+				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}

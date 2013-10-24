@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 4.0, 44.0, 1451.0, 941.0 ],
+		"rect" : [ 88.0, 59.0, 1451.0, 941.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -96,7 +96,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 848.0, 472.0, 248.0, 47.0 ],
+					"patching_rect" : [ 848.0, 472.0, 248.0, 48.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "stored but not shown, zodat we maar 1x de midi port hoeven aan te maken, en niet bij poort verandering en dan weer op channel.",
@@ -268,7 +268,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 216.0, 792.0, 150.0, 33.0 ],
+					"patching_rect" : [ 216.0, 792.0, 150.0, 34.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "preset recall -> eeprom wordt intern geregeld",
@@ -310,6 +310,10 @@
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"frozen_object_attributes" : 					{
+						"autorestore" : 0
+					}
+,
 					"hidden" : 0,
 					"id" : "obj-65",
 					"ignoreclick" : 0,
@@ -351,7 +355,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 560.0, 336.0, 150.0, 47.0 ],
+					"patching_rect" : [ 560.0, 336.0, 150.0, 48.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "wait for midi channel to come from system settings",
@@ -1241,7 +1245,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 568.0, 776.0, 171.0, 33.0 ],
+					"patching_rect" : [ 568.0, 776.0, 171.0, 34.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "send all notes off for selected chan",
@@ -1530,7 +1534,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 240.0, 552.0, 104.0, 33.0 ],
+					"patching_rect" : [ 240.0, 552.0, 104.0, 34.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "preset store also writes to file",
@@ -1695,6 +1699,10 @@
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"frozen_object_attributes" : 					{
+						"autorestore" : 0
+					}
+,
 					"hidden" : 0,
 					"id" : "obj-30",
 					"ignoreclick" : 0,
@@ -1705,7 +1713,7 @@
 					"patching_rect" : [ 504.0, 240.0, 116.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"restore" : [ "MPK mini" ],
+					"restore" : [ 0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
@@ -1749,6 +1757,10 @@
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"frozen_object_attributes" : 					{
+						"autorestore" : 0
+					}
+,
 					"hidden" : 0,
 					"id" : "obj-24",
 					"ignoreclick" : 0,
@@ -1759,7 +1771,7 @@
 					"patching_rect" : [ 544.0, 88.0, 139.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"restore" : [ 1 ],
+					"restore" : [ 0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
@@ -1877,7 +1889,7 @@
 					"hltcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"id" : "obj-9",
 					"ignoreclick" : 0,
-					"items" : "<empty>",
+					"items" : [ "Microsoft Synthesizer", ",", "Microsoft GS Wavetable Synth", ",", "Fireface Midi Port 1", ",", "Fireface Midi Port 2", ",", "Ableton Push", ",", "MIDIOUT2 (Ableton Push)", ",", "MPK mini" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"menumode" : 0,
@@ -1982,6 +1994,10 @@
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"frozen_object_attributes" : 					{
+						"autorestore" : 0
+					}
+,
 					"hidden" : 0,
 					"id" : "obj-12",
 					"ignoreclick" : 0,
@@ -1992,7 +2008,7 @@
 					"patching_rect" : [ 24.0, 240.0, 118.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"restore" : [ "Fireface 400 (B21) Port 1" ],
+					"restore" : [ 0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
@@ -2012,6 +2028,10 @@
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"frozen_object_attributes" : 					{
+						"autorestore" : 0
+					}
+,
 					"hidden" : 0,
 					"id" : "obj-11",
 					"ignoreclick" : 0,
@@ -2022,7 +2042,7 @@
 					"patching_rect" : [ 272.0, 240.0, 109.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"restore" : [ "Fireface 400 (B21) Port 1" ],
+					"restore" : [ 0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0
 					}
@@ -2060,7 +2080,6 @@
 			}
 , 			{
 				"box" : 				{
-					"autorestore" : "DevicePresets.json",
 					"background" : 0,
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"color" : [ 1.0, 0.543994, 0.077547, 1.0 ],
@@ -2151,6 +2170,10 @@
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"frozen_object_attributes" : 					{
+						"autorestore" : 0
+					}
+,
 					"hidden" : 0,
 					"id" : "obj-91",
 					"ignoreclick" : 0,
@@ -2547,7 +2570,7 @@
 					"hltcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"id" : "obj-36",
 					"ignoreclick" : 0,
-					"items" : "<empty>",
+					"items" : [ "Microsoft Synthesizer", ",", "Microsoft GS Wavetable Synth", ",", "Fireface Midi Port 1", ",", "Fireface Midi Port 2", ",", "Ableton Push", ",", "MIDIOUT2 (Ableton Push)", ",", "MPK mini" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"menumode" : 0,
@@ -2560,7 +2583,7 @@
 					"prefix" : "",
 					"prefix_mode" : 0,
 					"presentation" : 1,
-					"presentation_rect" : [ 264.0, 32.0, 168.0, 19.0 ],
+					"presentation_rect" : [ 264.0, 5.0, 168.0, 19.0 ],
 					"prototypename" : "shreditor",
 					"rounded" : 8,
 					"showdotfiles" : 0,
@@ -2619,7 +2642,7 @@
 					"hltcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"id" : "obj-2",
 					"ignoreclick" : 0,
-					"items" : "<empty>",
+					"items" : [ "Fireface Midi Port 1", ",", "Fireface Midi Port 2", ",", "Ableton Push", ",", "MIDIIN2 (Ableton Push)", ",", "MPK mini" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"menumode" : 0,
@@ -2632,7 +2655,7 @@
 					"prefix" : "",
 					"prefix_mode" : 0,
 					"presentation" : 1,
-					"presentation_rect" : [ 264.0, 5.0, 168.0, 19.0 ],
+					"presentation_rect" : [ 264.0, 32.0, 168.0, 19.0 ],
 					"prototypename" : "shreditor",
 					"rounded" : 8,
 					"showdotfiles" : 0,
@@ -3421,11 +3444,15 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "DevicePresets.json",
-				"bootpath" : "/Users/thijskoerselman/Library/Application Support/Vauxlab/Shreditor",
-				"patcherrelativepath" : "../../../../../Library/Application Support/Vauxlab/Shreditor",
+				"name" : "_.maxpat",
+				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "omsinfo.mxe",
+				"type" : "iLaF"
 			}
  ]
 	}

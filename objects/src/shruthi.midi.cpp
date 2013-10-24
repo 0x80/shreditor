@@ -170,28 +170,38 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
 
 void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
 	locked_ = true;
+	try{
     midiin->closePort();
 	int portindex = findInputPortNumberForName(portName);
 	if(portindex == -1)
 		return;
 
     midiin->openPort();
-    
     midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
     channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
 	locked_ = false;
+	}catch(std::exception& e){
+		error("setMidiIn failed: %s", e.what());
+	}
 }
 
 void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
 	locked_ = true;
+
+	try{
     midiout->closePort();
 	int portindex = findOutputPortNumberForName(portName);
 	if(portindex == -1)
 		return;
 
     midiout->openPort(portindex);
-    channelOut_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+	channel = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+    //DPOST("output midi channel %i", channel);
+	channelOut_ = channel;
 	locked_ = false;
+	}catch(std::exception& e){
+		error("setMidiOut failed: %s", e.what());
+	}
 }
 
 void ShruthiMidi::sendMessage(std::vector<uint8_t> *msg){
@@ -503,7 +513,15 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
     t_symbol *portName;
     for (size_t i=0; i<midiin->getPortCount(); ++i){
         try {
-            portName = gensym(midiin->getPortName(i).c_str());
+#ifdef WIN_VERSION
+			std::string str =  midiin->getPortName(i);
+			std::string fixedname = str.substr(0, str.length()-2);
+			portName = gensym(fixedname.c_str());
+#else
+			portName = gensym(midiin->getPortName(i).c_str());
+#endif
+            
+			DPOST("match input port %s", portName->s_name);
             if(portName == name){
                 DPOST("Port name %s, matched index %i", name->s_name, i);
                 return i;
@@ -515,7 +533,7 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
     }
     
     error("%s is not a valid input port name", name->s_name);
-    return 0;
+    return -1;
 }
 
 int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
@@ -523,6 +541,7 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
     for (size_t i=0; i<midiout->getPortCount(); ++i){
         try {
             portName = gensym(midiout->getPortName(i).c_str());
+			DPOST("match input port %s", portName->s_name);
             if(portName == name){
                 DPOST("Port name %s, matched index %i", name->s_name, i);
                 return i;
@@ -533,8 +552,8 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
         }
     }
     
-    error("%s is not a valid input port name", name->s_name);
-    return 0;
+    error("%s is not a valid output port name", name->s_name);
+    return -1;
 }
 
 
