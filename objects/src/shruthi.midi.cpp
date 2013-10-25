@@ -46,16 +46,16 @@ ShruthiMidi::ShruthiMidi()
     }
     
     try {
-        midiin = new RtMidiIn();
+       /* midiin = new RtMidiIn();
         DPOST("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
         
-        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
+        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);*/
         
         midiout = new RtMidiOut();
         DPOST("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
     }
     catch (RtError & err) {
-        error("Failed to create midi ports: %s", err.getMessage().c_str());
+        error("Failed to create midi ports: %s", err.what());
     }
     
     
@@ -108,7 +108,7 @@ void ShruthiMidi::testMidiOut(){
         message[2] = 90;
         midiout->sendMessage( &message );
     } catch ( RtError &err ) {
-        error("%s", err.getMessage().c_str());
+        error("%s", err.what());
     }
     
 }
@@ -177,7 +177,13 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
 void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
 	locked_ = true;
 	try{
-        midiin->closePort();
+		if(midiin){
+				midiin->closePort();
+				delete midiin;
+			}
+       
+		midiin = new RtMidiIn();
+        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
         int portindex = findInputPortNumberForName(portName);
         if(portindex == -1)
             return;
@@ -186,8 +192,8 @@ void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
         midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
         channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
         locked_ = false;
-	}catch(std::exception& e){
-		error("setMidiIn failed: %s", e.what());
+	}catch(RtError &err){
+		error("setMidiIn failed: %s", err.what());
 	}
 }
 
@@ -205,21 +211,21 @@ void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
         //DPOST("output midi channel %i", channel);
         channelOut_ = channel;
         locked_ = false;
-	}catch(std::exception& e){
-		error("setMidiOut failed: %s", e.what());
+	}catch(RtError &err){
+		error("setMidiOut failed: %s", err.what());
 	}
 }
 
 void ShruthiMidi::sendMessage(std::vector<uint8_t> *msg){
     if(locked_){
-        DPOST("midi output locked for sysex transfer");
+        DPOST("midi output locked");
         return;
     }
     
     try{
         midiout->sendMessage(msg);
     }catch(RtError &err){
-        error("Midi error: %s", err.getMessage().c_str());
+        error("Midi error: %s", err.what());
     }
 }
 
@@ -233,7 +239,7 @@ void ShruthiMidi::unlock(){
 
 void ShruthiMidi::sendSysex(uint8_t* data, uint8_t command, uint8_t argument, size_t size){
     if(locked_){
-        DPOST("midi output locked for sysex transfer");
+        DPOST("midi output locked");
         return;
     }
     
@@ -271,13 +277,13 @@ void ShruthiMidi::sendSysexSafe(uint8_t* data, uint8_t command, uint8_t argument
     try{
         midiout->sendMessage(&msg);
     }catch(RtError &err){
-        error("Midi error: %s", err.getMessage().c_str());
+        error("Midi error: %s", err.what());
     }
 }
 
 void ShruthiMidi::sendSysexCommand(uint8_t command, uint8_t argument) {
     if(locked_){
-        DPOST("midi output locked for sysex transfer");
+        DPOST("midi output locked");
         return;
     }
     std::vector<unsigned char> msg;
@@ -301,7 +307,7 @@ void ShruthiMidi::sendSysexCommand(uint8_t command, uint8_t argument) {
     try{
         midiout->sendMessage(&msg);
     }catch(RtError &err){
-        error("Midi error: %s", err.getMessage().c_str());
+        error("Midi error: %s", err.what());
     }
 }
 
@@ -487,11 +493,6 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
     
-    if(x.locked_){
-        DPOST("midi input locked for sysex transfer");
-        return;
-    }
-    
     size_t nBytes = msg->size();
     
     if(!nBytes)
@@ -539,14 +540,14 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
 			portName = gensym(midiin->getPortName(i).c_str());
 #endif
             
-//			DPOST("match input port %s", portName->s_name);
+			DPOST("match input port %s", portName->s_name);
             if(portName == name){
                 DPOST("Port name %s, matched index %i", name->s_name, i);
                 return i;
             }
         }
         catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
+            error("%s", err.what());
         }
     }
     
@@ -559,14 +560,14 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
     for (size_t i=0; i<midiout->getPortCount(); ++i){
         try {
             portName = gensym(midiout->getPortName(i).c_str());
-//			DPOST("match input port %s", portName->s_name);
+			DPOST("match output port %s", portName->s_name);
             if(portName == name){
                 DPOST("Port name %s, matched index %i", name->s_name, i);
                 return i;
             }
         }
         catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
+            error("%s", errc);
         }
     }
     
@@ -586,7 +587,7 @@ void ShruthiMidi::printMidiPorts(long inlet){
             DPOST("input %i: %s", i+1, portName.c_str());
         }
         catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
+            error("%s", err.what());
         }
     }
     
@@ -599,7 +600,7 @@ void ShruthiMidi::printMidiPorts(long inlet){
             DPOST("output %i: %s", i+1, portName.c_str());
         }
         catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
+            error("%s", err.what());
         }
     }
 }
@@ -669,7 +670,7 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
         last_data_msb = data_msb;
         
     }catch ( RtError &err ) {
-        error("%s", err.getMessage().c_str());
+        error("%s", err.what());
     }
     
 }

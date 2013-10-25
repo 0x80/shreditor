@@ -53,10 +53,13 @@ public:
         }
         
         try {
-            midiin = new RtMidiIn();
-            post("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
+   //         midiin = new RtMidiIn();
+			//midiin->setCallback(&RtMidiMax::midiInputCallback, this);
+
+
+   //         post("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
             
-            midiin->setCallback(&RtMidiMax::midiInputCallback, this);
+            
             
             midiout = new RtMidiOut();
             post("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
@@ -289,7 +292,16 @@ public:
     void setMidiIn(long inlet, t_symbol* portName, long channel){
         locked_ = true;
         try{
-            midiin->closePort();
+
+			if(midiin){
+				midiin->closePort();
+				delete midiin;
+			}
+
+			midiin = new RtMidiIn();
+			midiin->setCallback(&RtMidiMax::midiInputCallback, this);
+
+
             int portindex = findInputPortNumberForName(portName);
             if(portindex == -1)
                 return;
