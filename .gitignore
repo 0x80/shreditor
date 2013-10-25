@@ -4,6 +4,8 @@ objects/bin
 /objects/.DS_Store
 /objects/Shreditor.xcodeproj/
 /objects/build/
+*.opensln
+
 
 DerivedData
 

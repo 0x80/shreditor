@@ -73,6 +73,9 @@ void RtMidi :: getCompiledApi( std::vector<RtMidi::Api> &apis ) throw()
 
 void RtMidi :: error( RtError::Type type, std::string errorString )
 {
+	// Thijs edit, always throw
+	throw RtError( errorString, type );
+
   if (type == RtError::WARNING) {
     std::cerr << '\n' << errorString << "\n\n";
   }

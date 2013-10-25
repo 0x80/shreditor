@@ -165,6 +165,7 @@ public:
 //            goto cleanup;
 //        }
         
+		try{
         
         // Program change: 192, 5
         message.push_back( 192 );
@@ -216,6 +217,10 @@ public:
         message.push_back( 247 );
         midiout->sendMessage( &message );
         
+		}catch ( RtError &err ) {
+            error("%s", err.getMessage().c_str());
+        }
+
         // Clean up
 //    cleanup:
 //        delete midiout;
@@ -273,11 +278,11 @@ public:
         message.push_back(7);
         message.push_back(40);
 
-
+		try{
         midiout->sendMessage( &message );
-		//}catch(RtError &err){
-		//	error("%s", err.getMessage().c_str());
-		//}
+		}catch ( RtError &err ) {
+            error("%s", err.getMessage().c_str());
+        }
 
     }
     
@@ -293,8 +298,8 @@ public:
             midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
             channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
             locked_ = false;
-        }catch(std::exception& e){
-            error("setMidiIn failed: %s", e.what());
+        }catch ( RtError &err ) {
+            error("%s", err.getMessage().c_str());
         }
     }
     
@@ -312,8 +317,8 @@ public:
             //DPOST("output midi channel %i", channel);
             channelOut_ = channel;
             locked_ = false;
-        }catch(std::exception& e){
-            error("setMidiOut failed: %s", e.what());
+		}catch ( RtError &err ) {
+            error("%s", err.getMessage().c_str());
         }
     }
     
