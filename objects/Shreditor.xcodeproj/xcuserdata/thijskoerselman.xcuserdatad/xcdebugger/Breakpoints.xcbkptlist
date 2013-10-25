@@ -28,7 +28,7 @@
          endingLineNumber = "107">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/shruthi.midi.cpp"

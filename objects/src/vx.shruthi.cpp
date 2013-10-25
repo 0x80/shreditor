@@ -960,15 +960,18 @@ void VxShruthi::sendPatchProgramChange(long slot){
     message.push_back(0xb0 | device_.channelOut_);
     message.push_back(0); // bank MSB
     message.push_back(0);
+    device_.sendMessage( &message );
+    message.clear();
     
     message.push_back(0xb0 | device_.channelOut_);
     message.push_back(0x20); // bank LSB
     message.push_back(bank);
+    device_.sendMessage( &message );
+    message.clear();
     
     // Program Change
     message.push_back(0xc0 | device_.channelOut_);
     message.push_back(patch);
-    
     device_.sendMessage( &message );
 }
 
@@ -987,14 +990,18 @@ void VxShruthi::sendSequenceProgramChange(long slot){
     message.push_back(0xb0 | device_.channelOut_);
     message.push_back(0); // bank MSB
     message.push_back(0);
+    device_.sendMessage( &message );
+    message.clear();
+    
     message.push_back(0xb0 | device_.channelOut_);
     message.push_back(0x20); // bank LSB
     message.push_back(bank + 0x40); // offset for shruthi sequence banks
+    device_.sendMessage( &message );
+    message.clear();
     
     // Program Change
     message.push_back(0xc0 | device_.channelOut_);
     message.push_back(patch & 0x7f);
-    
     device_.sendMessage( &message );
 }
 
@@ -1145,7 +1152,7 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
 }
 
 void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
-//    post("acceptSysexData");
+    post("acceptSysexData");
     uint8_t success = 0;
     uint8_t *sysex_rx_buffer_ = &data[0];
     switch (cmd) {
@@ -1256,7 +1263,7 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
         case kRawDataDumpC:
         case kRawDataDumpD:
         {
-//            post("cmd %d arg %d", cmd, arg);
+            post("cmd %d arg %d", cmd, arg);
             outputProgress(arg);
             uint8_t command = cmd;
             uint16_t address = arg * kSysExBulkDumpBlockSize;
@@ -1275,7 +1282,6 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
                         kSysExBulkDumpBlockSize);
 
         }
-//            success = 1;
             break;
             
             
@@ -1581,6 +1587,7 @@ int T_EXPORT main(void) {
     REGISTER_METHOD_LONG(VxShruthi, enableEepromCache);
     
     REGISTER_METHOD(VxShruthi, listPatchNames);
+    REGISTER_METHOD(VxShruthi, testMidi);
     
     REGISTER_METHOD(VxShruthi, copyPatchToClipboard);
     REGISTER_METHOD(VxShruthi, pastePatchFromClipboard);
@@ -1590,8 +1597,6 @@ int T_EXPORT main(void) {
     REGISTER_METHOD_LONG(VxShruthi, switchToDevice);
 
     
-    //    REGISTER_METHOD(VxShruthi, printMidiPorts);
-    //    REGISTER_METHOD(VxShruthi, testMidiOut);
     
 //    #ifdef WIN_VERSION
 //        char user_name[UNLEN+1];

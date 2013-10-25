@@ -144,7 +144,7 @@
 		84A593A5166A48F300214212 /* shruthi.transfer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shruthi.transfer.cpp; path = src/shruthi.transfer.cpp; sourceTree = "<group>"; };
 		84A593A7166A4AC100214212 /* shruthi.types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shruthi.types.h; path = src/shruthi.types.h; sourceTree = "<group>"; };
 		84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vx.nrpn2cc.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
-		84C0D7D318007048004706D1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = ../../../../../../System/Library/Frameworks/CoreServices.framework; sourceTree = "<group>"; };
+		84C0D7D318007048004706D1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = maxmspsdk.xcconfig; sourceTree = "<group>"; };
 		84C3C13315A84702007FE735 /* commonsyms.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = commonsyms.c; path = "../c74support/max-includes/common/commonsyms.c"; sourceTree = "<group>"; };
 		84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.nrpn2cc.cpp; path = src/vx.nrpn2cc.cpp; sourceTree = "<group>"; };
@@ -192,7 +192,6 @@
 		089C166AFE841209C02AAC07 /* iterator */ = {
 			isa = PBXGroup;
 			children = (
-				84C0D7D318007048004706D1 /* CoreServices.framework */,
 				84477E9B171C9DA000910AEA /* External */,
 				84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */,
 				08FB77ADFE841716C02AAC07 /* Source */,
@@ -205,6 +204,7 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				84C0D7D318007048004706D1 /* CoreServices.framework */,
 				846B9B61163467F900718272 /* CoreFoundation.framework */,
 				846B9B5F163467EB00718272 /* CoreAudio.framework */,
 				846B9B5D163467CD00718272 /* CoreMIDI.framework */,

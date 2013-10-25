@@ -50,6 +50,9 @@ public:
     
     void outputProgress(long progress);
     void outputPatchData();
+    void testMidi(long inlet){
+        device_.testMidiOut();
+    }
     
     void outputSequence();
     void outputSequencerSettings();
