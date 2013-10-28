@@ -3,11 +3,12 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 8
+			"minor" : 1,
+			"revision" : 4,
+			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 185.0, 304.0, 799.0, 608.0 ],
+		"rect" : [ 417.0, 74.0, 799.0, 608.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -46,7 +47,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "conformpath native boot",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -68,7 +70,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "print import",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -95,6 +98,7 @@
 					"presentation_rect" : [ 176.0, 48.0, 54.0, 19.0 ],
 					"text" : "Abort UL",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -139,7 +143,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t stopTransfer",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -167,6 +172,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "first time we store preset, we have probably set the midi connections, so we want to know numbanks before we start initial transfer",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -194,6 +200,7 @@
 					"presentation_rect" : [ 288.0, 8.0, 77.0, 19.0 ],
 					"text" : "File i/O",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -221,6 +228,7 @@
 					"presentation_rect" : [ 288.0, 32.0, 52.0, 19.0 ],
 					"text" : "Import",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -269,6 +277,7 @@
 					"presentation_rect" : [ 288.0, 56.0, 52.0, 19.0 ],
 					"text" : "Export",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -317,6 +326,7 @@
 					"presentation_rect" : [ 176.0, 8.0, 57.0, 19.0 ],
 					"text" : "Upload",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -365,6 +375,7 @@
 					"presentation_rect" : [ 72.0, 8.0, 71.0, 19.0 ],
 					"text" : "Download",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -410,9 +421,10 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 392.0, 168.0, 41.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 144.0, 48.0, 19.0, 20.0 ],
-					"text" : "B",
+					"presentation_rect" : [ 112.0, 48.0, 41.0, 20.0 ],
+					"text" : "Bytes",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -437,9 +449,10 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 352.0, 168.0, 21.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 64.0, 48.0, 21.0, 20.0 ],
+					"presentation_rect" : [ 48.0, 48.0, 21.0, 20.0 ],
 					"text" : "of",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -490,7 +503,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "unpack 0 0 0",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -513,7 +527,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "sprintf symout %s_eeprom.bin",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -536,7 +551,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---transferProgress",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -563,8 +579,9 @@
 					"presentation" : 1,
 					"presentation_linecount" : 4,
 					"presentation_rect" : [ 376.0, 8.0, 240.0, 56.0 ],
-					"text" : "Import or export full eeprom data to or from an external file. On import the data is loaded into the editor. You still need to tranfer it to the device using the function on the left.",
+					"text" : "Import or export full eeprom data to or from an external file. On import the data is loaded into the editor. You still need to tranfer it to the device using the upload function on the left.",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -594,6 +611,7 @@
 					"presentation_rect" : [ 8.0, 128.0, 256.0, 74.0 ],
 					"text" : "When you start editing a new Shruthi first transfer all eeprom data from the device to create a mirror. Data is automatically saved to disk every 10 seconds, or when you store a preset.",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -617,7 +635,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---deviceName",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -640,7 +659,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "conformpath native boot",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -663,7 +683,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t transferRom",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -690,6 +711,7 @@
 					"presentation_rect" : [ 8.0, 8.0, 54.0, 19.0 ],
 					"text" : "Eeprom ",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -712,7 +734,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -735,7 +758,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t requestRom",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -758,7 +782,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend name",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -780,7 +805,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -803,7 +829,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend exportEeprom",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -826,7 +853,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "savedialog bin",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -849,7 +877,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "opendialog bin",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -871,7 +900,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -894,7 +924,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend importEeprom",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -925,7 +956,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 560.0, 192.0, 65.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 88.0, 48.0, 56.0, 19.0 ],
+					"presentation_rect" : [ 72.0, 48.0, 40.0, 19.0 ],
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"triangle" : 0,
 					"tricolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
@@ -960,7 +991,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 496.0, 192.0, 65.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 48.0, 56.0, 19.0 ],
+					"presentation_rect" : [ 8.0, 48.0, 40.0, 19.0 ],
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"triangle" : 0,
 					"tricolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],

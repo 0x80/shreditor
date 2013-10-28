@@ -53,13 +53,10 @@ public:
         }
         
         try {
-   //         midiin = new RtMidiIn();
-			//midiin->setCallback(&RtMidiMax::midiInputCallback, this);
-
-
-   //         post("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
+            midiin = new RtMidiIn();
+            post("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
             
-            
+            midiin->setCallback(&RtMidiMax::midiInputCallback, this);
             
             midiout = new RtMidiOut();
             post("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
@@ -167,8 +164,7 @@ public:
 //            error("%s", err.getMessage().c_str());
 //            goto cleanup;
 //        }
-        
-		try{
+        try{
         
         // Program change: 192, 5
         message.push_back( 192 );
@@ -218,12 +214,14 @@ public:
         message.push_back( 3 );
         message.push_back( 2 );
         message.push_back( 247 );
-        midiout->sendMessage( &message );
         
-		}catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
-        }
-
+            
+            midiout->sendMessage( &message );
+            
+		}catch(RtError &err){
+			error("%s", err.getMessage().c_str());
+		}
+        
         // Clean up
 //    cleanup:
 //        delete midiout;
@@ -281,27 +279,20 @@ public:
         message.push_back(7);
         message.push_back(40);
 
-		try{
-        midiout->sendMessage( &message );
-		}catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
-        }
+        try{
+
+            midiout->sendMessage( &message );
+            
+		}catch(RtError &err){
+			error("%s", err.getMessage().c_str());
+		}
 
     }
     
     void setMidiIn(long inlet, t_symbol* portName, long channel){
         locked_ = true;
         try{
-
-			if(midiin){
-				midiin->closePort();
-				delete midiin;
-			}
-
-			midiin = new RtMidiIn();
-			midiin->setCallback(&RtMidiMax::midiInputCallback, this);
-
-
+            midiin->closePort();
             int portindex = findInputPortNumberForName(portName);
             if(portindex == -1)
                 return;
@@ -310,8 +301,8 @@ public:
             midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
             channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
             locked_ = false;
-        }catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
+        }catch(std::exception& e){
+            error("setMidiIn failed: %s", e.what());
         }
     }
     
@@ -329,8 +320,8 @@ public:
             //DPOST("output midi channel %i", channel);
             channelOut_ = channel;
             locked_ = false;
-		}catch ( RtError &err ) {
-            error("%s", err.getMessage().c_str());
+        }catch(std::exception& e){
+            error("setMidiOut failed: %s", e.what());
         }
     }
     

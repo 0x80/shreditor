@@ -47,12 +47,18 @@ ShruthiMidi::ShruthiMidi()
     
     try {
        /* midiin = new RtMidiIn();
-        DPOST("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
+//        DPOST("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
         
         midiin->setCallback(&ShruthiMidi::midiInputCallback, this);*/
         
+        midiaux = new RtMidiIn();
+//        DPOST("Current aux API: %s", apiMap[ midiaux->getCurrentApi() ].c_str());
+        
+        midiaux->setCallback(&ShruthiMidi::midiAuxCallback, this);
+        
+        
         midiout = new RtMidiOut();
-        DPOST("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
+//        DPOST("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
     }
     catch (RtError & err) {
         error("Failed to create midi ports: %s", err.what());
@@ -62,10 +68,17 @@ ShruthiMidi::ShruthiMidi()
 }
 
 ShruthiMidi::~ShruthiMidi(){
-    midiin->closePort();
-    midiout->closePort();
+    
+    try{
+        midiin->closePort();
+        midiaux->closePort();
+        midiout->closePort();
+    }catch(RtError err){
+        // just catching
+    }
     
     delete midiin;
+    delete midiaux;
     delete midiout;
 }
 
@@ -194,6 +207,23 @@ void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
         locked_ = false;
 	}catch(RtError &err){
 		error("setMidiIn failed: %s", err.what());
+	}
+}
+
+void ShruthiMidi::setMidiAuxIn(t_symbol* portName, long channel){
+	locked_ = true;
+	try{
+        midiaux->closePort();
+        int portindex = findInputPortNumberForName(portName);
+        if(portindex == -1)
+            return;
+        
+        midiaux->openPort(portindex);
+        midiaux->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
+        channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+        locked_ = false;
+	}catch(std::exception& e){
+		error("setMidiIn failed: %s", e.what());
 	}
 }
 
@@ -493,6 +523,11 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
     
+    if(x.locked_){
+        DPOST("midi input locked");
+        return;
+    }
+    
     size_t nBytes = msg->size();
     
     if(!nBytes)
@@ -527,6 +562,41 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     }
 }
 
+
+void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
+{
+    DPOST("midi aux callback");
+    
+    ShruthiMidi &x = *(ShruthiMidi*)userData;
+    //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
+    
+    if(x.locked_){
+        DPOST("midi aux locked");
+        return;
+    }
+    
+    size_t nBytes = msg->size();
+    
+    if(!nBytes)
+        return;
+    
+    uint8_t status = msg->at(0) & 0xf0;
+    uint8_t channel = msg->at(0) & 0x0f;
+    
+    if(status == STATUS_SYSEX){
+        DPOST("Sysex ignored on aux input");
+        return;
+    }
+    
+    // skip parsing channel messages which are not on our channel
+    if(status != STATUS_SYSEX && x.channelIn_ != channel){
+        post("Ignored msg for channel %i", channel+1);
+        return;
+    }
+    
+    // forward data to output
+    x.sendMessage(msg);
+}
 
 int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
     t_symbol *portName;
@@ -567,7 +637,7 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
             }
         }
         catch ( RtError &err ) {
-            error("%s", errc);
+            error("%s", err.what());
         }
     }
     

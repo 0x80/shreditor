@@ -27,8 +27,9 @@ Bugs
 
 TODO
 --------------------------
+* remove locks 
+* cache all ports on startup for windows at least
 
-wat is preffilename in standalone en wat is yaml in extensions?
 
 can I detect if a patcher is run as M4L?
 

@@ -3,8 +3,9 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 8
+			"minor" : 1,
+			"revision" : 4,
+			"architecture" : "x86"
 		}
 ,
 		"rect" : [ 715.0, 131.0, 832.0, 880.0 ],
@@ -46,7 +47,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "change",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -69,7 +71,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "speedlim 100",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -91,7 +94,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -114,7 +118,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend loadPatch",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -136,8 +141,9 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 6,
-							"minor" : 0,
-							"revision" : 8
+							"minor" : 1,
+							"revision" : 4,
+							"architecture" : "x86"
 						}
 ,
 						"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
@@ -435,7 +441,8 @@
 					}
 ,
 					"text" : "p init_cellblock",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -458,7 +465,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend max",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -480,7 +488,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toList",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -503,7 +512,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "pack 0 s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -530,6 +540,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "write new name to list",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -553,7 +564,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---patchName",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -575,7 +587,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toList",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -598,7 +611,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t b",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -621,7 +635,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "i",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -645,7 +660,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "set 1 $1 $2",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -668,7 +684,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---currentPatch",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -691,7 +708,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---pgmLoadPatch",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -718,6 +736,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "stackoverflow",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -741,7 +760,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "_",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -763,8 +783,9 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 6,
-							"minor" : 0,
-							"revision" : 8
+							"minor" : 1,
+							"revision" : 4,
+							"architecture" : "x86"
 						}
 ,
 						"rect" : [ 697.0, 465.0, 640.0, 480.0 ],
@@ -957,7 +978,8 @@
 					}
 ,
 					"text" : "p loadPatch",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -984,6 +1006,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "no quotes",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -1011,6 +1034,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "quotes",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -1034,7 +1058,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "sprintf symout %s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1062,6 +1087,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "voor als je typt en dan meteen op store drukt",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -1085,7 +1111,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "+ 1",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1108,7 +1135,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "- 1",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1131,7 +1159,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "- 1",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1154,7 +1183,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "pack 0 s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1177,7 +1207,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "- 1",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1200,7 +1231,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "unpack 0 s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1227,6 +1259,7 @@
 					"presentation_rect" : [ 0.0, 8.0, 40.0, 19.0 ],
 					"text" : "Load",
 					"textcolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -1249,8 +1282,9 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 6,
-							"minor" : 0,
-							"revision" : 8
+							"minor" : 1,
+							"revision" : 4,
+							"architecture" : "x86"
 						}
 ,
 						"rect" : [ 697.0, 465.0, 640.0, 480.0 ],
@@ -1533,7 +1567,8 @@
 					}
 ,
 					"text" : "p loadPatch",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1591,7 +1626,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "sprintf %s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1614,7 +1650,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "pack set 1 0 s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1637,7 +1674,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t b b b",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1659,7 +1697,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toList",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1682,7 +1721,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---toList",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1704,7 +1744,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toList",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1728,7 +1769,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "select 1 $1",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -1786,8 +1828,9 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 6,
-							"minor" : 0,
-							"revision" : 8
+							"minor" : 1,
+							"revision" : 4,
+							"architecture" : "x86"
 						}
 ,
 						"rect" : [ 960.0, 612.0, 640.0, 480.0 ],
@@ -2131,7 +2174,8 @@
 					}
 ,
 					"text" : "p storePatch",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2158,6 +2202,7 @@
 					"presentation_rect" : [ 0.0, 40.0, 38.0, 19.0 ],
 					"text" : "Store",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -2202,7 +2247,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "sprintf %s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2225,7 +2271,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend setPatchName",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2247,7 +2294,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2270,7 +2318,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "itoa",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2293,7 +2342,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "zl slice 8",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2316,7 +2366,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "route text",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2339,7 +2390,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "atoi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2362,7 +2414,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "_",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2385,7 +2438,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---patchName",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2408,7 +2462,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "i",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2431,7 +2486,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend set 1",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2454,7 +2510,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "route patchlist patchcount",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2477,7 +2534,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---fromShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2500,7 +2558,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "sel 1",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2523,7 +2582,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "> 0",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2546,7 +2606,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "unpack 0 0 s",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2569,7 +2630,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "zl reg",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -2606,6 +2668,7 @@
 					"tabmode" : 1,
 					"text" : "moof? ",
 					"textcolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
+					"textjustification" : 0,
 					"wordwrap" : 0
 				}
 
@@ -2647,7 +2710,7 @@
 					"patching_rect" : [ 200.0, 112.0, 160.0, 160.0 ],
 					"precision" : 2,
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 72.0, 136.0, 600.0 ],
+					"presentation_rect" : [ 8.0, 72.0, 136.0, 576.0 ],
 					"readonly" : 0,
 					"rowhead" : 1,
 					"rowheight" : 18,
@@ -2685,7 +2748,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 40.0, 88.0, 37.25, 159.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 152.0, 680.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 152.0, 656.0 ],
 					"rounded" : 10,
 					"shadow" : 0,
 					"shape" : 0,
@@ -3326,11 +3389,7 @@
 
 			}
  ],
-		"dependency_cache" : [ 			{
-				"name" : "_.mxo",
-				"type" : "iLaX"
-			}
- ]
+		"dependency_cache" : [  ]
 	}
 
 }
