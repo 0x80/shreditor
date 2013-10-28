@@ -164,7 +164,7 @@ public:
 //            error("%s", err.getMessage().c_str());
 //            goto cleanup;
 //        }
-        
+        try{
         
         // Program change: 192, 5
         message.push_back( 192 );
@@ -214,7 +214,13 @@ public:
         message.push_back( 3 );
         message.push_back( 2 );
         message.push_back( 247 );
-        midiout->sendMessage( &message );
+        
+            
+            midiout->sendMessage( &message );
+            
+		}catch(RtError &err){
+			error("%s", err.getMessage().c_str());
+		}
         
         // Clean up
 //    cleanup:
@@ -273,11 +279,13 @@ public:
         message.push_back(7);
         message.push_back(40);
 
+        try{
 
-        midiout->sendMessage( &message );
-		//}catch(RtError &err){
-		//	error("%s", err.getMessage().c_str());
-		//}
+            midiout->sendMessage( &message );
+            
+		}catch(RtError &err){
+			error("%s", err.getMessage().c_str());
+		}
 
     }
     

@@ -260,52 +260,43 @@ void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
 
 bool VxShruthi::isExpired(){
 
-//#ifdef WIN_VERSION
-//	// todo figure out time
-//	DPOST("TODO figure out time");
-//	return false;
-//#else
     time_t now = time(0);
-    
     struct tm local;
     struct tm release;
     struct tm expire;
     double secondsSinceRelease;
     double secondsToExpire;
-    
-       
     local = *localtime(&now);
-//    DPOST("local %s", asctime(&local));
-//    expire = *localtime(&now);
     
     // year is since 1900
     // mon range 0-11
     // mday range 1-31
     release = local;
     release.tm_hour = 0;   release.tm_min = 0; release.tm_sec = 0;
-    release.tm_year = 113; release.tm_mon = 9; release.tm_mday = 13;
+    release.tm_year = 113; release.tm_mon = 10; release.tm_mday = 28;
     
     expire = local;
     expire.tm_hour = 0;   expire.tm_min = 0; expire.tm_sec = 0;
-    expire.tm_year = 113; expire.tm_mon = 10; expire.tm_mday = 13;
+    expire.tm_year = 113; expire.tm_mon = 11; expire.tm_mday = 1;
     
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire), now);
     
-    post("\tvx.shruthi version beta 1");
-//    post("\t© vauxlab 2013");
-//    post("\tauthor Thijs Koerselman");
-    post("\texpires %s", asctime(&expire));
+    post("vx.shruthi version beta 2");
+    post("© vauxlab 2013");
+    post("author Thijs Koerselman");
+    post("expires %s", asctime(&expire));
     
 //    DPOST("%.f seconds since release", secondsSinceRelease);
 //    DPOST("%.f seconds to expire", secondsToExpire);
     
-    if(secondsSinceRelease <= 0) return true; // time is reset by user before release time
+    if(secondsSinceRelease <= 0)
+        return true; // time is reset by user before release time
     
-    if(secondsToExpire <= 0) return true;
+    if(secondsToExpire <= 0)
+        return true;
     
     return false;
-//#endif
 }
 
 
@@ -748,6 +739,10 @@ void VxShruthi::setSettingsLegato(long inlet, long v){
 
 void VxShruthi::setMidiIn(long inlet, t_symbol* portName, long channel){
     device_.setMidiIn(portName, channel);
+}
+
+void VxShruthi::setMidiAuxIn(long inlet, t_symbol* portName, long channel){
+    device_.setMidiAuxIn(portName, channel);
 }
 
 void VxShruthi::setMidiOut(long inlet, t_symbol* portName, long channel){
@@ -1560,6 +1555,7 @@ int T_EXPORT main(void) {
     
 
     REGISTER_METHOD_SYMBOL_LONG(VxShruthi, setMidiIn);
+    REGISTER_METHOD_SYMBOL_LONG(VxShruthi, setMidiAuxIn);
     REGISTER_METHOD_SYMBOL_LONG(VxShruthi, setMidiOut);
     
     REGISTER_METHOD_LONG2(VxShruthi, nrpn);

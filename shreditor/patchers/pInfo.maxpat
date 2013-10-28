@@ -39,7 +39,7 @@
 					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"patching_rect" : [ 448.0, 72.0, 20.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 448.0, 72.0, 20.0, 20.0 ],
+					"presentation_rect" : [ 448.0, 56.0, 20.0, 20.0 ],
 					"prototypename" : "shr_dark_circle"
 				}
 
@@ -70,9 +70,9 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 208.0, 48.0, 232.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 48.0, 232.0, 20.0 ],
-					"text" : "For updates see:",
-					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
+					"presentation_rect" : [ 208.0, 40.0, 232.0, 20.0 ],
+					"text" : "For updates visit:",
+					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
 			}
@@ -87,7 +87,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 208.0, 24.0, 231.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 24.0, 231.0, 20.0 ],
+					"presentation_rect" : [ 208.0, 16.0, 231.0, 20.0 ],
 					"text" : "support@vauxlab.com",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -106,7 +106,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 208.0, 0.0, 229.0, 20.0 ],
 					"text" : "For help and bug reports please contact: ",
-					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
+					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
 			}
@@ -119,11 +119,11 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 0.0, 24.0, 139.0, 19.0 ],
+					"patching_rect" : [ 0.0, 24.0, 140.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 24.0, 139.0, 19.0 ],
+					"presentation_rect" : [ 0.0, 24.0, 140.0, 19.0 ],
 					"text" : "Copyright © Vauxlab 2013",
-					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
+					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
 			}
@@ -138,7 +138,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 208.0, 72.0, 248.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 72.0, 248.0, 20.0 ],
+					"presentation_rect" : [ 208.0, 56.0, 248.0, 20.0 ],
 					"text" : "http://www.vauxlab.com/software/shreditor",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -153,11 +153,11 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 0.0, 40.0, 138.0, 19.0 ],
+					"patching_rect" : [ 0.0, 40.0, 139.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 40.0, 138.0, 19.0 ],
+					"presentation_rect" : [ 0.0, 40.0, 139.0, 19.0 ],
 					"text" : "Code by Thijs Koerselman",
-					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
+					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
 			}

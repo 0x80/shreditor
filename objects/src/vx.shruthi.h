@@ -108,6 +108,7 @@ public:
     void setSettingsPortamento(long inlet, long v);
     void setSettingsLegato(long inlet, long v);
     void setMidiIn(long inlet, t_symbol* portName, long channel);
+    void setMidiAuxIn(long inlet, t_symbol* portName, long channel);
     void setMidiOut(long inlet, t_symbol* portName, long channel);
     void setSystemSettings(long inlet, t_symbol *s, long ac, t_atom *av);
         
