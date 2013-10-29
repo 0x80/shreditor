@@ -89,7 +89,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "615"
          endingLineNumber = "615"
-         landmarkName = "ShruthiMidi::findOutputPortNumberForName(t_symbol* name)"
+         landmarkName = "ShruthiMidi::findInputPortNumberForName(t_symbol* name)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

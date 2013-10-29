@@ -29,6 +29,7 @@ TODO
 --------------------------
 * remove locks 
 * cache all ports on startup for windows at least
+* zorg dat aux port niet hetzelfde kan zijn als input, anders krijg je een loop. Ignore sysex?
 
 
 can I detect if a patcher is run as M4L?

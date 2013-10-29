@@ -38,6 +38,7 @@ public:
     
     static void midiInputCallback( double deltatime, std::vector<uint8_t> *msg, void *userData);
     static void midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, void *userData);
+    static void midiVoidCallback( double deltatime, std::vector<uint8_t> *msg, void *userData);
     int findInputPortNumberForName(t_symbol* name);
     int findOutputPortNumberForName(t_symbol* name);
     void printMidiPorts(long inlet);
@@ -53,6 +54,8 @@ public:
     void setMidiOut(t_symbol* portName, long channel);
     void setMidiAuxIn(t_symbol* portName, long channel);
     void setFilterMsb(bool v){ filterMsb_ = v; }
+    
+    void allocatePorts();
     
     uint8_t channelIn_;
     uint8_t channelOut_;
@@ -70,6 +73,10 @@ private:
     RtMidiIn *midiin;
     RtMidiIn *midiaux;
     RtMidiOut *midiout;
+    
+    std::vector<RtMidiIn*> inputPorts_;
+    std::vector<RtMidiOut*> outputPorts_;
+    
     
     void processControlChange(long cc_index, long cc_value);
     void processControlChangeAsNrpn();

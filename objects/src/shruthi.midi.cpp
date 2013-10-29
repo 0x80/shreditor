@@ -45,11 +45,13 @@ ShruthiMidi::ShruthiMidi()
         DPOST("%s", apiMap[ apis[i] ].c_str());
     }
     
+//    allocatePorts();
+//
     try {
-       /* midiin = new RtMidiIn();
+        midiin = new RtMidiIn();
 //        DPOST("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
         
-        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);*/
+        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
         
         midiaux = new RtMidiIn();
 //        DPOST("Current aux API: %s", apiMap[ midiaux->getCurrentApi() ].c_str());
@@ -70,16 +72,49 @@ ShruthiMidi::ShruthiMidi()
 ShruthiMidi::~ShruthiMidi(){
     
     try{
+        for(int i=0; i< inputPorts_.size(); ++i){
+            inputPorts_.at(i)->closePort();
+            delete inputPorts_.at(i);
+        }
+    }catch(RtError err){
+        error("Failed to clean up input ports, %s", err.what());
+    }
+    
+    try{
+        for(int i=0; i< outputPorts_.size(); ++i){
+            outputPorts_.at(i)->closePort();
+            delete outputPorts_.at(i);
+        }
+    }catch(RtError err){
+        error("Failed to clean up output ports, %s", err.what());
+    }
+    
+    try{
         midiin->closePort();
         midiaux->closePort();
         midiout->closePort();
+        
+        delete midiin;
+        delete midiaux;
+        delete midiout;
+        
     }catch(RtError err){
-        // just catching
+        error("Failed to clean up midi ports, %s", err.what());
     }
     
-    delete midiin;
-    delete midiaux;
-    delete midiout;
+}
+
+void ShruthiMidi::allocatePorts(){
+    
+    try {
+        for (size_t i=0; i<midiout->getPortCount(); ++i){
+            
+            
+        }
+    }
+    catch ( RtError &err ) {
+        error("%s", err.what());
+    }
 }
 
 
@@ -190,13 +225,13 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
 void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
 	locked_ = true;
 	try{
-		if(midiin){
+//		if(midiin){
 				midiin->closePort();
-				delete midiin;
-			}
-       
-		midiin = new RtMidiIn();
-        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
+//				delete midiin;
+//			}
+//       
+//		midiin = new RtMidiIn();
+//        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
         int portindex = findInputPortNumberForName(portName);
         if(portindex == -1)
             return;
@@ -223,7 +258,7 @@ void ShruthiMidi::setMidiAuxIn(t_symbol* portName, long channel){
         channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
         locked_ = false;
 	}catch(std::exception& e){
-		error("setMidiIn failed: %s", e.what());
+		error("setMidiAuxIn failed: %s", e.what());
 	}
 }
 
@@ -598,10 +633,17 @@ void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, 
     x.sendMessage(msg);
 }
 
+void ShruthiMidi::midiVoidCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
+{
+    DPOST("midi void callback");
+}
+
 int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
     t_symbol *portName;
-    for (size_t i=0; i<midiin->getPortCount(); ++i){
-        try {
+    
+    try {
+        for (size_t i=0; i<midiin->getPortCount(); ++i){
+        
 #ifdef WIN_VERSION
 			std::string str =  midiin->getPortName(i);
 			std::string fixedname = str.substr(0, str.length()-2);
@@ -616,9 +658,9 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
                 return i;
             }
         }
-        catch ( RtError &err ) {
-            error("%s", err.what());
-        }
+    }
+    catch ( RtError &err ) {
+        error("%s", err.what());
     }
     
     error("%s is not a valid input port name", name->s_name);
@@ -627,8 +669,9 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
 
 int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
     t_symbol *portName;
-    for (size_t i=0; i<midiout->getPortCount(); ++i){
-        try {
+    try {
+        for (size_t i=0; i<midiout->getPortCount(); ++i){
+        
             portName = gensym(midiout->getPortName(i).c_str());
 			DPOST("match output port %s", portName->s_name);
             if(portName == name){
@@ -636,9 +679,9 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
                 return i;
             }
         }
-        catch ( RtError &err ) {
-            error("%s", err.what());
-        }
+    }
+    catch ( RtError &err ) {
+        error("%s", err.what());
     }
     
     error("%s is not a valid output port name", name->s_name);
