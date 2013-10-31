@@ -12,21 +12,23 @@
 ShruthiMidi::ShruthiMidi()
 :   channelIn_(0),
     channelOut_(0),
-    midiin(0),
-    midiout(0),
-    lastNrpnIndex(-1),
-    last_data_msb(-1),
-    running_status(0),
-    index_lsb(0),
-    index_msb(0),
-    value_lsb(0),
-    value_msb(0),
-    valid(false),
-    enable_running_status_(false),
+    midiInput_(0),
+    midiOutput_(0),
+	midiAuxInput_(0),
+    lastNrpnIndex_(-1),
+    lastDataMsb_(-1),
+    runningStatus_(0),
+    indexLsb_(0),
+    indexMsb_(0),
+    valueLsb_(0),
+    valueMsb_(0),
+    isNrpnValid_(false),
+    useRunningStatus_(false),
     filterMsb_(true),
-   // sysexCallback_(NULL),
-    //nrpnCallback_(NULL),
-    locked_(true) // gebruikt nu voor init als poorten nog niet aangemaakt zijn geen berichtjes sturen
+	isInputValid_(false),
+	isOutputValid_(false),
+	isAuxInputValid_(false)
+    //locked_(true) // gebruikt nu voor init als poorten nog niet aangemaakt zijn geen berichtjes sturen
 {
     // Create an api map.
     std::map<int, std::string> apiMap;
@@ -48,24 +50,24 @@ ShruthiMidi::ShruthiMidi()
 //    allocatePorts();
 //
     try {
-        midiin = new RtMidiIn();
-//        DPOST("Current input API: %s", apiMap[ midiin->getCurrentApi() ].c_str());
+        midiInput_ = new RtMidiIn();
+//        DPOST("Current input API: %s", apiMap[ midiInput_->getCurrentApi() ].c_str());
         
-        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
+        midiInput_->setCallback(&ShruthiMidi::midiInputCallback, this);
         
-        midiaux = new RtMidiIn();
-//        DPOST("Current aux API: %s", apiMap[ midiaux->getCurrentApi() ].c_str());
+        midiAuxInput_ = new RtMidiIn();
+//        DPOST("Current aux API: %s", apiMap[ midiAuxInput_->getCurrentApi() ].c_str());
         
-        midiaux->setCallback(&ShruthiMidi::midiAuxCallback, this);
+        midiAuxInput_->setCallback(&ShruthiMidi::midiAuxCallback, this);
         
         
-        midiout = new RtMidiOut();
-//        DPOST("Current output API: %s", apiMap[ midiout->getCurrentApi() ].c_str());
+        midiOutput_ = new RtMidiOut();
+//        DPOST("Current output API: %s", apiMap[ midiOutput_->getCurrentApi() ].c_str());
     }
     catch (RtError & err) {
         error("Failed to create midi ports: %s", err.what());
     }
-    
+  
     
 }
 
@@ -90,13 +92,13 @@ ShruthiMidi::~ShruthiMidi(){
     }
     
     try{
-        midiin->closePort();
-        midiaux->closePort();
-        midiout->closePort();
+        midiInput_->closePort();
+        midiAuxInput_->closePort();
+        midiOutput_->closePort();
         
-        delete midiin;
-        delete midiaux;
-        delete midiout;
+        delete midiInput_;
+        delete midiAuxInput_;
+        delete midiOutput_;
         
     }catch(RtError err){
         error("Failed to clean up midi ports, %s", err.what());
@@ -107,7 +109,7 @@ ShruthiMidi::~ShruthiMidi(){
 void ShruthiMidi::allocatePorts(){
     
     try {
-        for (size_t i=0; i<midiout->getPortCount(); ++i){
+        for (size_t i=0; i<midiOutput_->getPortCount(); ++i){
             
             
         }
@@ -136,8 +138,8 @@ bool ShruthiMidi::validateSysexChecksum(std::vector<uint8_t> *msg, uint8_t check
 }
 
 void ShruthiMidi::testMidiOut(){
-    if(locked_){
-        DPOST("midi output locked for sysex transfer");
+    if(!isOutputValid_){
+        DPOST("midi output not valid");
         return;
     }
     
@@ -148,13 +150,13 @@ void ShruthiMidi::testMidiOut(){
         message.push_back(176 | channelOut_);
         message.push_back(7);
         message.push_back( 100 );
-        midiout->sendMessage( &message );
+        midiOutput_->sendMessage( &message );
         
         // Note On: 144, 64, 90
         message[0] = 144 | channelOut_;
         message[1] = 64;
         message[2] = 90;
-        midiout->sendMessage( &message );
+        midiOutput_->sendMessage( &message );
     } catch ( RtError &err ) {
         error("%s", err.what());
     }
@@ -223,88 +225,71 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
 }
 
 void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
-	locked_ = true;
+	isInputValid_ = false;
 	try{
-//		if(midiin){
-				midiin->closePort();
-//				delete midiin;
-//			}
-//       
-//		midiin = new RtMidiIn();
-//        midiin->setCallback(&ShruthiMidi::midiInputCallback, this);
+		midiInput_->closePort();
         int portindex = findInputPortNumberForName(portName);
         if(portindex == -1)
             return;
 
-        midiin->openPort(portindex);
-        midiin->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
+        midiInput_->openPort(portindex);
+        midiInput_->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
         channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
-        locked_ = false;
+        isInputValid_ = true;
 	}catch(RtError &err){
 		error("setMidiIn failed: %s", err.what());
 	}
 }
 
 void ShruthiMidi::setMidiAuxIn(t_symbol* portName, long channel){
-	locked_ = true;
+	isAuxInputValid_ = false;
 	try{
-        midiaux->closePort();
+        midiAuxInput_->closePort();
         int portindex = findInputPortNumberForName(portName);
         if(portindex == -1)
             return;
         
-        midiaux->openPort(portindex);
-        midiaux->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
+        midiAuxInput_->openPort(portindex);
+        midiAuxInput_->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
         channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
-        locked_ = false;
+        isAuxInputValid_ = true;
 	}catch(std::exception& e){
 		error("setMidiAuxIn failed: %s", e.what());
 	}
 }
 
 void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
-	locked_ = true;
-
+	isOutputValid_ = false;
 	try{
-        midiout->closePort();
+        midiOutput_->closePort();
         int portindex = findOutputPortNumberForName(portName);
         if(portindex == -1)
             return;
 
-        midiout->openPort(portindex);
-        channel = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
-        //DPOST("output midi channel %i", channel);
-        channelOut_ = channel;
-        locked_ = false;
+        midiOutput_->openPort(portindex);
+        channelOut_ = CLAMP(channel-1, 0, 0x0f);
+        isOutputValid_ = true;
 	}catch(RtError &err){
 		error("setMidiOut failed: %s", err.what());
 	}
 }
 
 void ShruthiMidi::sendMessage(std::vector<uint8_t> *msg){
-    if(locked_){
-        DPOST("midi output locked");
+    if(!isOutputValid_){
+        DPOST("midi output not valid");
         return;
     }
     
     try{
-        midiout->sendMessage(msg);
+        midiOutput_->sendMessage(msg);
     }catch(RtError &err){
         error("Midi error: %s", err.what());
     }
 }
 
-void ShruthiMidi::lock(){
-    locked_ = true;
-}
-
-void ShruthiMidi::unlock(){
-    locked_ = false;
-}
-
 void ShruthiMidi::sendSysex(uint8_t* data, uint8_t command, uint8_t argument, size_t size){
-    if(locked_){
-        DPOST("midi output locked");
+    if(!isOutputValid_){
+        DPOST("midi output not valid");
         return;
     }
     
@@ -340,15 +325,15 @@ void ShruthiMidi::sendSysexSafe(uint8_t* data, uint8_t command, uint8_t argument
     msg.push_back(0xf7);
     
     try{
-        midiout->sendMessage(&msg);
+        midiOutput_->sendMessage(&msg);
     }catch(RtError &err){
         error("Midi error: %s", err.what());
     }
 }
 
 void ShruthiMidi::sendSysexCommand(uint8_t command, uint8_t argument) {
-    if(locked_){
-        DPOST("midi output locked");
+    if(!isOutputValid_){
+        DPOST("midi output not valid");
         return;
     }
     std::vector<unsigned char> msg;
@@ -370,7 +355,7 @@ void ShruthiMidi::sendSysexCommand(uint8_t command, uint8_t argument) {
     msg.push_back(0);
     msg.push_back(0xf7);
     try{
-        midiout->sendMessage(&msg);
+        midiOutput_->sendMessage(&msg);
     }catch(RtError &err){
         error("Midi error: %s", err.what());
     }
@@ -491,13 +476,13 @@ void ShruthiMidi::processControlChange(long cc_index, long cc_value){
             // ******************** Parameter INDEX ************* //
         case CC_NRPN_MSB:
             // Save 7 high bits
-            index_msb = cc_value << 7;
-            valid = false;
+            indexMsb_ = cc_value << 7;
+            isNrpnValid_ = false;
             break;
         case CC_NRPN_LSB: // 98
             // Save 7 low bits
-            index_lsb = cc_value;
-            valid = true;
+            indexLsb_ = cc_value;
+            isNrpnValid_ = true;
             break;
             // ******************** Parameter VALUE **************//
         case CC_DATA_MSB:
@@ -506,16 +491,16 @@ void ShruthiMidi::processControlChange(long cc_index, long cc_value){
             // we have no way of knowing if LSB will be provided or not. Apart from buffering ourself but that
             // would impose a delay.
 
-            value_msb = cc_value << 7;
-            value_lsb = 0; // lsb is optional
+            valueMsb_ = cc_value << 7;
+            valueLsb_ = 0; // lsb is optional
             // sends value directy in case LSB is not used
-            //                if(valid){ // only if value is
+            //                if(isNrpnValid_){ // only if value is
             //                    send_nrpn();
             //                }
             break;
         case CC_DATA_LSB:  // OPTIONAL
-            value_lsb = cc_value;
-            if(valid){
+            valueLsb_ = cc_value;
+            if(isNrpnValid_){
                 processControlChangeAsNrpn();
             }
             break;
@@ -529,22 +514,22 @@ void ShruthiMidi::processControlChange(long cc_index, long cc_value){
 }
 
 void ShruthiMidi::processControlChangeAsNrpn(){
-    if(value_msb && value_lsb > 63){
+    if(valueMsb_ && valueLsb_ > 63){
         // negative
-        long v = value_lsb - 0x80;
-//        outputNrpn(index_msb | index_lsb, v);
+        long v = valueLsb_ - 0x80;
+//        outputNrpn(indexMsb_ | indexLsb_, v);
         if(nrpnCallback_){
-//            post("nrpn_callback %x %x", index_msb | index_lsb, v);
-            nrpnCallback_(index_msb | index_lsb, v);
+//            post("nrpn_callback %x %x", indexMsb_ | indexLsb_, v);
+            nrpnCallback_(indexMsb_ | indexLsb_, v);
         }
 
     }else{
         // range 0-127 or positive >127
-        long v = value_msb | value_lsb;
-//        outputNrpn(index_msb | index_lsb, v);
+        long v = valueMsb_ | valueLsb_;
+//        outputNrpn(indexMsb_ | indexLsb_, v);
         if(nrpnCallback_){
-//            post("nrpn_callback %x %x", index_msb | index_lsb, v);
-            nrpnCallback_(index_msb | index_lsb, v);
+//            post("nrpn_callback %x %x", indexMsb_ | indexLsb_, v);
+            nrpnCallback_(indexMsb_ | indexLsb_, v);
         }
     }
 }
@@ -557,11 +542,6 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
-    
-    if(x.locked_){
-        DPOST("midi input locked");
-        return;
-    }
     
     size_t nBytes = msg->size();
     
@@ -605,11 +585,6 @@ void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, 
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
     
-    if(x.locked_){
-        DPOST("midi aux locked");
-        return;
-    }
-    
     size_t nBytes = msg->size();
     
     if(!nBytes)
@@ -642,15 +617,15 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
     t_symbol *portName;
     
     try {
-        for (size_t i=0; i<midiin->getPortCount(); ++i){
+        for (size_t i=0; i<midiInput_->getPortCount(); ++i){
         
-#ifdef WIN_VERSION
-			std::string str =  midiin->getPortName(i);
+			#ifdef WIN_VERSION
+			std::string str =  midiInput_->getPortName(i);
 			std::string fixedname = str.substr(0, str.length()-2);
 			portName = gensym(fixedname.c_str());
-#else
-			portName = gensym(midiin->getPortName(i).c_str());
-#endif
+			#else
+			portName = gensym(midiInput_->getPortName(i).c_str());
+			#endif
             
 			DPOST("match input port %s", portName->s_name);
             if(portName == name){
@@ -663,16 +638,16 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
         error("%s", err.what());
     }
     
-    error("%s is not a valid input port name", name->s_name);
+    error("%s is not a isNrpnValid_ input port name", name->s_name);
     return -1;
 }
 
 int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
     t_symbol *portName;
     try {
-        for (size_t i=0; i<midiout->getPortCount(); ++i){
+        for (size_t i=0; i<midiOutput_->getPortCount(); ++i){
         
-            portName = gensym(midiout->getPortName(i).c_str());
+            portName = gensym(midiOutput_->getPortName(i).c_str());
 			DPOST("match output port %s", portName->s_name);
             if(portName == name){
                 DPOST("Port name %s, matched index %i", name->s_name, i);
@@ -688,15 +663,42 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
     return -1;
 }
 
+void ShruthiMidi::getMidiPortNames(std::vector<std::string> &inputs, std::vector<std::string> &outputs){
+
+	try{
+		inputs.clear();
+		outputs.clear();
+		// Check inputs.
+		unsigned int nPorts = midiInput_->getPortCount();
+		std::string portName;
+		for ( unsigned int i=0; i<nPorts; i++ ) {
+			#ifdef WIN_VERSION
+			std::string str =  midiInput_->getPortName(i);
+			portName = str.substr(0, str.length()-2);
+			#else
+			portName = gensym(midiInput_->getPortName(i).c_str());
+			#endif
+			inputs.push_back(portName);
+		}
+    
+		nPorts = midiOutput_->getPortCount();
+		for ( unsigned int i=0; i<nPorts; i++ ) {
+			outputs.push_back(midiOutput_->getPortName(i));
+		}
+
+	}catch(RtError &err){
+		error("Getting midi port names: %s", err.what());
+	}
+}
 
 void ShruthiMidi::printMidiPorts(long inlet){
     // Check inputs.
-    unsigned int nPorts = midiin->getPortCount();
+    unsigned int nPorts = midiInput_->getPortCount();
     DPOST("There are %i input ports available:", nPorts);
     std::string portName;
     for ( unsigned int i=0; i<nPorts; i++ ) {
         try {
-            portName = midiin->getPortName(i);
+            portName = midiInput_->getPortName(i);
             DPOST("input %i: %s", i+1, portName.c_str());
         }
         catch ( RtError &err ) {
@@ -704,12 +706,11 @@ void ShruthiMidi::printMidiPorts(long inlet){
         }
     }
     
-    
-    nPorts = midiout->getPortCount();
+    nPorts = midiOutput_->getPortCount();
     DPOST("There are %i output ports available:", nPorts);
     for ( unsigned int i=0; i<nPorts; i++ ) {
         try {
-            portName = midiout->getPortName(i);
+            portName = midiOutput_->getPortName(i);
             DPOST("output %i: %s", i+1, portName.c_str());
         }
         catch ( RtError &err ) {
@@ -723,69 +724,68 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
     std::vector<uint8_t> msg;
 
     uint8_t status = STATUS_CC | channelOut_;
-    if(!enable_running_status_ || status != running_status){
+    if(!useRunningStatus_ || status != runningStatus_){
         msg.push_back(status);
-        running_status = status;
+        runningStatus_ = status;
     }
     
-    data_msb = 0;
-    data_lsb = 0;
+    dataMsb_ = 0;
+    dataLsb_ = 0;
     
     if(nrpn_value < 0){
-        data_msb = 1; // msb is only ever 1 or 0 for shruthi
+        dataMsb_ = 1; // msb is only ever 1 or 0 for shruthi
         int8_t sbyte = static_cast<int8_t>(nrpn_value);
-        data_lsb = sbyte ^ 0x80; // twos complement using xor msb
+        dataLsb_ = sbyte ^ 0x80; // twos complement using xor msb
     } else if(nrpn_value > 127){
-        data_msb = 1;
-        data_lsb = nrpn_value & 0x7f;
+        dataMsb_ = 1;
+        dataLsb_ = nrpn_value & 0x7f;
     }else{
-        data_lsb = static_cast<uint8_t>(nrpn_value);
+        dataLsb_ = static_cast<uint8_t>(nrpn_value);
     }
     
     try{
         
     
         // only send out nrpn index if it differs from last
-        if(lastNrpnIndex != nrpn_index){
-            last_data_msb = -1; // sowieso invalid maken
-            nrpn_msb = nrpn_index >> 7;
-            nrpn_lsb = nrpn_index & 0x7f;
+        if(lastNrpnIndex_ != nrpn_index){
+            lastDataMsb_ = -1; // sowieso invalid maken
+            nrpnMsb_ = nrpn_index >> 7;
+            nrpnLsb_ = nrpn_index & 0x7f;
             
-            if(!filterMsb_ || nrpn_msb){
+            if(!filterMsb_ || nrpnMsb_){
                 msg.push_back(CC_NRPN_MSB);
-                msg.push_back(nrpn_msb);
-                midiout->sendMessage(&msg);
+                msg.push_back(nrpnMsb_);
+                midiOutput_->sendMessage(&msg);
                 msg.clear();
             }
             
             msg.push_back(CC_NRPN_LSB);
-            msg.push_back(nrpn_lsb);
-            midiout->sendMessage(&msg);
+            msg.push_back(nrpnLsb_);
+            midiOutput_->sendMessage(&msg);
             msg.clear();
             
             // remember to avoid redundant nrpn messages
-            lastNrpnIndex = nrpn_index;
+            lastNrpnIndex_ = nrpn_index;
         }
         
         // filter redundant data msb.
-        if(!filterMsb_ || data_msb != last_data_msb){
+        if(!filterMsb_ || dataMsb_ != lastDataMsb_){
             msg.push_back(CC_DATA_MSB);
-            msg.push_back(data_msb);
-            midiout->sendMessage(&msg);
+            msg.push_back(dataMsb_);
+            midiOutput_->sendMessage(&msg);
             msg.clear();
         }
         
         msg.push_back(CC_DATA_LSB);
-        msg.push_back(data_lsb);
+        msg.push_back(dataLsb_);
         
-        midiout->sendMessage(&msg);
-        // save data_msb for redundancy check
-        last_data_msb = data_msb;
+        midiOutput_->sendMessage(&msg);
+        // save dataMsb_ for redundancy check
+        lastDataMsb_ = dataMsb_;
         
     }catch ( RtError &err ) {
         error("%s", err.what());
     }
-    
 }
 
 

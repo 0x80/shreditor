@@ -42,6 +42,7 @@ public:
     int findInputPortNumberForName(t_symbol* name);
     int findOutputPortNumberForName(t_symbol* name);
     void printMidiPorts(long inlet);
+	void getMidiPortNames(std::vector<std::string> &inputs, std::vector<std::string> &outputs);
         
     // forward midi
     void sendMessage(std::vector<uint8_t> *msg);
@@ -60,19 +61,16 @@ public:
     uint8_t channelIn_;
     uint8_t channelOut_;
     
-    void lock();
-    void unlock();
-    
-    long lastNrpnIndex;
+    long lastNrpnIndex_;
         
 //    typedef std::tr1::function<void (SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data)> SysexCallbackFun;
 //    void registerCallbacks(VxShruthi &ob);
     
 private:
         
-    RtMidiIn *midiin;
-    RtMidiIn *midiaux;
-    RtMidiOut *midiout;
+    RtMidiIn *midiInput_;
+    RtMidiIn *midiAuxInput_;
+    RtMidiOut *midiOutput_;
     
     std::vector<RtMidiIn*> inputPorts_;
     std::vector<RtMidiOut*> outputPorts_;
@@ -81,28 +79,31 @@ private:
     void processControlChange(long cc_index, long cc_value);
     void processControlChangeAsNrpn();
     
-    uint8_t nrpn_msb;
-    uint8_t nrpn_lsb;
-    uint8_t data_msb;
-    uint8_t data_lsb;
+    uint8_t nrpnMsb_;
+    uint8_t nrpnLsb_;
+    uint8_t dataMsb_;
+    uint8_t dataLsb_;
     
-    uint8_t last_data_msb;
-    uint8_t running_status;
+    uint8_t lastDataMsb_;
+    uint8_t runningStatus_;
     
-    long index_lsb;
-    long index_msb;
-    long value_lsb;
-    long value_msb;
-    bool valid;
+    long indexLsb_;
+    long indexMsb_;
+    long valueLsb_;
+    long valueMsb_;
+    bool isNrpnValid_;
     
 //    uint8_t midiMsgCounter_;
-    bool enable_running_status_;
+    bool useRunningStatus_;
     bool filterMsb_; // TODO fix
     
     SysexCallback sysexCallback_;
     NrpnCallback nrpnCallback_;
     
-    bool locked_; // when transferring eeprom lock all other io
+    //bool locked_; // when transferring eeprom lock all other io
+	bool isInputValid_;
+	bool isOutputValid_;
+	bool isAuxInputValid_;
 
 };
 

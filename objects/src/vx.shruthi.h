@@ -150,6 +150,7 @@ public:
     
     void listPatchNames(long inlet = 0);
     void outputDataroot();
+	void populateMidiPortMenus(long inlet = 0);
     
     void transferProgressReporter(bool finished, uint8_t progress);
     
@@ -174,7 +175,7 @@ public:
         refreshGui();
        
         // clear nrpn cache todo clean way
-        device_.lastNrpnIndex = -1;
+        device_.lastNrpnIndex_ = -1;
     }
     
     void refreshGui(){
@@ -204,14 +205,14 @@ public:
         }
     }
 
-    void *m_clock;
-    bool sequence_dirty_;
+    void *clock_;
+    bool isSequenceDirty_;
     
 private:
 
     uint16_t addressable_space_size();
     inline long getNumPatches(){
-        return num_accessible_banks_ * 64 + 16;
+        return numAccessibleBanks_ * 64 + 16;
     }
     
     int slotIndex_;
@@ -231,17 +232,17 @@ private:
                                 // is allocated, it is just pointing to eeprom_;
     
     uint8_t *eeprom_;
-    uint8_t load_buffer_[sizeof(Patch)];
+    uint8_t loadbuffer_[sizeof(Patch)];
    // uint8_t numBanks_; // number of external eeprom banks
     
     ShruthiMidi device_;
     SysexBulkTransfer transfer_;
     
-    uint8_t num_accessible_banks_;
+    uint8_t numAccessibleBanks_;
     bool useEepromCache_;
     bool hasEepromCache_;
-    uint16_t current_patch_number_;
-    uint16_t current_sequence_number_;
+    uint16_t currentPatchNumber_;
+    uint16_t currentSequenceNumber_;
     
     std::string dataroot_;
     std::string presetfile_;

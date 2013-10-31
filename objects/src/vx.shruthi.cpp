@@ -91,7 +91,7 @@ uint8_t Patch::CheckBuffer(uint8_t* buffer) {
 
 VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
 :   transfer_(device_),
-    num_accessible_banks_(2),
+    numAccessibleBanks_(2),
     useEepromCache_(true),
     hasEepromCache_(false),
     progressCounter_(0),
@@ -122,8 +122,8 @@ slotIndex_(0)
 	device_.registerNrpnCallback(std::bind(&VxShruthi::midiNrpnCallback, this, _1, _2));
     transfer_.registerProgressCallback(std::bind(&VxShruthi::transferProgressReporter, this, _1, _2));
     
-    m_clock = clock_new((t_object *)this, (method)onTick);
-    clock_fdelay(m_clock, SEQUENCE_UPDATE_INTERVAL_MS);
+    clock_ = clock_new((t_object *)this, (method)onTick);
+    clock_fdelay(clock_, SEQUENCE_UPDATE_INTERVAL_MS);
     
     // after io is setup
     initializeSystemStoragePath();
@@ -137,7 +137,7 @@ VxShruthi::~VxShruthi() {
     if(hasEepromCache_) saveDeviceEeprom();
     
     delete[] eeprom_;
-    object_free(m_clock);
+    object_free(clock_);
 }
 
 void VxShruthi::testpaths(const char* rootname){
@@ -240,6 +240,43 @@ void VxShruthi::initializeSystemStoragePath(){
     
 }
 
+void VxShruthi::populateMidiPortMenus(long inlet){
+	std::vector<std::string> inputs;
+	std::vector<std::string> outputs;
+	device_.getMidiPortNames(inputs, outputs);
+
+	DPOST("i/o port count %i %i", inputs.size(), outputs.size());
+
+	// TODO create new midi in and out to list new ports
+	// also create new objects when port is selected
+
+	int c;
+	t_atom *a;
+
+	a = atoms_;
+	atom_setsym(a++, gensym("midiInputMenu"));
+    atom_setsym(a++, gensym("clear"));
+	outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+	
+	for(int i=0; i<inputs.size(); ++i){
+		a = atoms_+1; // leave prefix
+		atom_setsym(a++, gensym("append"));
+		atom_setsym(a++, gensym(inputs.at(i).c_str()));
+		outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+	}
+
+    a = atoms_;
+	atom_setsym(a++, gensym("midiOutputMenu"));
+    atom_setsym(a++, gensym("clear"));
+	outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+	
+	for(int i=0; i<outputs.size(); ++i){
+		a = atoms_+1; // leave prefix
+		atom_setsym(a++, gensym("append"));
+		atom_setsym(a++, gensym(outputs.at(i).c_str()));
+		outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+	}
+}
 
 
 void VxShruthi::outputDataroot(){
@@ -256,6 +293,7 @@ void VxShruthi::outputDataroot(){
 void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
     DPOST("onReady...");
     x->outputDataroot();
+	x->populateMidiPortMenus();
 }
 
 bool VxShruthi::isExpired(){
@@ -301,7 +339,7 @@ bool VxShruthi::isExpired(){
 
 
 uint16_t VxShruthi::addressable_space_size() {
-    return kInternalEepromSize + num_accessible_banks_ * kBankSize;
+    return kInternalEepromSize + numAccessibleBanks_ * kBankSize;
 }
 
 //void VxShruthi::outputProgress(long busy, long progress){
@@ -769,7 +807,7 @@ void VxShruthi::liveStep(long inlet, t_symbol* s, long ac, t_atom *av){
     workingSequencer_[slotIndex_].steps[stepIndex].setControllerValue(atom_getlong(av+4));
     
     // schedule transfer to prevent sending lots of data
-    sequence_dirty_ = true;
+    isSequenceDirty_ = true;
 }
 
 void VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av){
@@ -800,18 +838,18 @@ void VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av){
     }
     
     // schedule transfer to prevent sending lots of data
-    sequence_dirty_ = true;
+    isSequenceDirty_ = true;
 }
 
 void VxShruthi::onTick(VxShruthi *x)
 {
-    if(x->sequence_dirty_){
+    if(x->isSequenceDirty_){
         DPOST("updating sequence on device");
         x->transferSequence();
         x->outputSequence();
-        x->sequence_dirty_ = false;
+        x->isSequenceDirty_ = false;
     }
-    clock_fdelay(x->m_clock, SEQUENCE_UPDATE_INTERVAL_MS);
+    clock_fdelay(x->clock_, SEQUENCE_UPDATE_INTERVAL_MS);
 }
 
 void VxShruthi::storePatch(long inlet, long slot){
@@ -1078,7 +1116,7 @@ void VxShruthi::importEeprom(long inlet, t_symbol* filepath){
         refreshGui();
         
         // clear nrpn cache todo clean way
-        device_.lastNrpnIndex = -1;
+        device_.lastNrpnIndex_ = -1;
         
     }catch(std::exception e){
         
@@ -1149,7 +1187,10 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
 void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
     post("acceptSysexData");
     uint8_t success = 0;
-    uint8_t *sysex_rx_buffer_ = &data[0];
+	// prevent exception when data is 0 and VS bounds check is enabled
+    uint8_t *sysex_rx_buffer_ = 0;
+	if(data.size()) sysex_rx_buffer_ = &data[0];
+
     switch (cmd) {
         case kNumbers:
             if(data.size() == 4){
@@ -1158,12 +1199,12 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
                 uint16_t current_sequence_number = (data[3] << 8) | data[2];
                 DPOST("Current patch and sequence: %i %i",current_patch_number, current_sequence_number );
                 
-                current_patch_number_ = current_patch_number;
-                current_sequence_number_ = current_sequence_number;
+                currentPatchNumber_ = current_patch_number;
+                currentSequenceNumber_ = current_sequence_number;
                 
                 atom_setsym(atoms_, gensym("current"));
-                atom_setlong(atoms_+1, current_patch_number_);
-                atom_setlong(atoms_+2, current_sequence_number_);
+                atom_setlong(atoms_+1, currentPatchNumber_);
+                atom_setlong(atoms_+2, currentSequenceNumber_);
                 outlet_list(m_outlets[1], ps_empty, 3, atoms_);
             }
             break;
@@ -1171,14 +1212,14 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
         case kNumBanks:
             if(data.size() == 0 && arg > 0){
                 success = 1;
-                num_accessible_banks_ = arg;
+                numAccessibleBanks_ = arg;
                 
-                DPOST("Device numbanks: %i", num_accessible_banks_ );
+                DPOST("Device numbanks: %i", numAccessibleBanks_ );
                 
-                if(num_accessible_banks_ > 7){
-                    object_error((t_object *)this, "Invalid eeprom size numbanks: %i", num_accessible_banks_);
+                if(numAccessibleBanks_ > 7){
+                    object_error((t_object *)this, "Invalid eeprom size numbanks: %i", numAccessibleBanks_);
                     DPOST("Resetting storage to default 2 banks");
-                    num_accessible_banks_ = 2;
+                    numAccessibleBanks_ = 2;
                 }
                 
                 listPatchNames();
@@ -1419,7 +1460,7 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
         case 109: workingSequencer_[slotIndex_].pattern_rotation = v; break;
             
         default:
-            object_error((t_object*)this, "Nrpn index %i is not valid", nrpn_index);
+            object_error((t_object*)this, "Nrpn index %i is not isNrpnValid_", nrpn_index);
     }
 
 }
@@ -1428,7 +1469,7 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
 // voor als er iets hangt
 void VxShruthi::stopTransfer(long inlet){
     transfer_.stop();
-    device_.unlock();
+    //device_.unlock();
     
     // misschien nog een all notes off?
     
@@ -1467,7 +1508,7 @@ void VxShruthi::listPatchNames(long inlet){
         atom_setlong(atoms_+1, patchNumber++);
         
         if(p->exclamation_mark_ != '!'){
-//            break; // not valid patch data
+//            break; // not isNrpnValid_ patch data
             atom_setsym(atoms_+2, gensym("_"));
         } else {
             atom_setsym(atoms_+2, gensym((char*)p->name));
@@ -1478,7 +1519,7 @@ void VxShruthi::listPatchNames(long inlet){
     
     
     // for each bank 64 patches
-    for(int k=0; k<num_accessible_banks_; ++k){
+    for(int k=0; k<numAccessibleBanks_; ++k){
     
         pmem = eeprom_ + kInternalEepromSize + (k * kBankSize);
         
@@ -1487,7 +1528,7 @@ void VxShruthi::listPatchNames(long inlet){
             atom_setlong(atoms_+1, patchNumber++);
             
             if(p->exclamation_mark_ != '!'){
-                //            break; // not valid patch data
+                //            break; // not isNrpnValid_ patch data
                 atom_setsym(atoms_+2, gensym("_"));
             } else {
                 atom_setsym(atoms_+2, gensym((char*)p->name));
@@ -1592,6 +1633,7 @@ int T_EXPORT main(void) {
     
     REGISTER_METHOD_LONG(VxShruthi, switchToDevice);
 
+	REGISTER_METHOD(VxShruthi, populateMidiPortMenus);
     
     
 //    #ifdef WIN_VERSION

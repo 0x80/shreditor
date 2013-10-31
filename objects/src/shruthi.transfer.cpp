@@ -70,7 +70,7 @@ void SysexBulkTransfer::stop(){
         x_systhread = NULL;
         post("thread stopped and returned %i", ret);
         x_systhread_cancel = false;
-        device_.unlock();
+       // device_.unlock();
 
     }
 }
@@ -175,7 +175,7 @@ void SysexBulkTransfer::memberproc(SysexBulkTransfer *x)
     
     x->x_systhread_cancel = false;                                                 // reset cancel flag for next time, in case
     
-    x->device_.unlock();
+    //x->device_.unlock();
     
     x->isTransferBusy_ = false;
     
