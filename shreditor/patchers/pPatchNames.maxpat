@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 715.0, 131.0, 832.0, 880.0 ],
+		"rect" : [ 281.0, 107.0, 1048.0, 1011.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -807,7 +807,6 @@
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Arial",
@@ -1082,7 +1081,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 384.0, 648.0, 129.0, 33.0 ],
+					"patching_rect" : [ 384.0, 648.0, 129.0, 34.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "voor als je typt en dan meteen op store drukt",
@@ -1578,7 +1577,7 @@
 					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
 					"bordercolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
 					"cantchange" : 0,
-					"fontface" : 0,
+					"fontface" : 1,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"format" : 0,
@@ -1589,7 +1588,7 @@
 					"id" : "obj-31",
 					"ignoreclick" : 0,
 					"maxclass" : "number",
-					"maximum" : 464,
+					"maximum" : 144,
 					"minimum" : 1,
 					"mouseup" : 0,
 					"numinlets" : 1,
@@ -1791,7 +1790,7 @@
 					"id" : "obj-164",
 					"ignoreclick" : 0,
 					"maxclass" : "number",
-					"maximum" : 464,
+					"maximum" : 144,
 					"minimum" : 1,
 					"mouseup" : 0,
 					"numinlets" : 1,
@@ -2506,7 +2505,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 0.0, 320.0, 147.0, 20.0 ],
+					"patching_rect" : [ 0.0, 316.0, 147.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "route patchlist patchcount",
@@ -2644,7 +2643,7 @@
 					"border" : 2.0,
 					"bordercolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
 					"clickmode" : 1,
-					"fontface" : 0,
+					"fontface" : 1,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"frgb" : 0.0,
@@ -2659,14 +2658,14 @@
 					"outlettype" : [ "", "int", "", "" ],
 					"outputmode" : 1,
 					"parameter_enable" : 0,
-					"patching_rect" : [ 648.0, 560.0, 80.0, 24.0 ],
+					"patching_rect" : [ 648.0, 560.0, 86.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 80.0, 8.0, 64.0, 21.0 ],
+					"presentation_rect" : [ 80.0, 8.0, 69.0, 21.0 ],
 					"readonly" : 0,
 					"rounded" : 8.0,
 					"separator" : "nothing",
 					"tabmode" : 1,
-					"text" : "moof? ",
+					"text" : "simplBra",
 					"textcolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
 					"textjustification" : 0,
 					"wordwrap" : 0
@@ -2714,7 +2713,7 @@
 					"readonly" : 0,
 					"rowhead" : 1,
 					"rowheight" : 18,
-					"rows" : 464,
+					"rows" : 144,
 					"savemode" : 0,
 					"sccolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"selmode" : 3,
@@ -3389,7 +3388,14 @@
 
 			}
  ],
-		"dependency_cache" : [  ]
+		"dependency_cache" : [ 			{
+				"name" : "_.maxpat",
+				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ]
 	}
 
 }

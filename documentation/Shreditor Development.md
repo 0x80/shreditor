@@ -20,17 +20,22 @@ Internal storage is 2048 bytes == 16 blocks of 128 .
 Sequences stored in presets are only the 16 step data. No size or rotation. All other sequencer settings are global and not stored anywhere in eeprom. Moeten size en rotation dan niet buiten seq interface geplaatst worden?
 
 
+###Windows release build
+Met standaard settings krijg je linker errors. Je moet linken tegen de static runtime /MT en de preprocessor definitie gebruiken van MAXAPI_USE_MSCRT. Daarnaast moet je nog de exclude library weghalen voor libcmt.lib.
+
+
 Bugs
 ------------------
 * debugger wil niet attachen
 * make blank (no input) midi port option default
+* slot 1 eeprom wordt overschreven met 0000 bij startup.
+* stopping debugger with attached maxRT causes process to hang for long time
 
 TODO
 --------------------------
-* remove locks 
-* cache all ports on startup for windows at least
+* als er geen mididevices zijn wordt rtmidiin en out ook niet aangemaakt. Zorg dat altijd een check is voor je funtie aanroept
 * zorg dat aux port niet hetzelfde kan zijn als input, anders krijg je een loop. Ignore sysex?
-
+* pgm change + bank select moet nu in object geregeld worden.
 
 can I detect if a patcher is run as M4L?
 
@@ -42,6 +47,15 @@ Core Audio: No such object
 pattr_obex: no such file in collective
 DevicePresets.json: no such file in collective
 DevicePresets.xml: no such file in collective
+
+on windows:
+
+MSP/ad: no ad folder
+ad_mme: No such object
+pattr_obex: no such file in collective
+
+
+
 
 
 overdrive is not on by default

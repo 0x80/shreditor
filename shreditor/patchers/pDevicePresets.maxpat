@@ -1628,7 +1628,7 @@
 					"patching_rect" : [ 296.0, 408.0, 57.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "pipe 500",
+					"text" : "pipe 200",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0
 				}
@@ -2222,6 +2222,7 @@
 			}
 , 			{
 				"box" : 				{
+					"autorestore" : "DevicePresets.json",
 					"background" : 0,
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"color" : [ 1.0, 0.543994, 0.077547, 1.0 ],
@@ -3541,6 +3542,13 @@
 				"name" : "_.maxpat",
 				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "DevicePresets.json",
+				"bootpath" : "/Program Files (x86)/Common Files/Vauxlab/Shreditor",
+				"patcherrelativepath" : "../../../../../../../Program Files (x86)/Common Files/Vauxlab/Shreditor",
 				"type" : "JSON",
 				"implicit" : 1
 			}

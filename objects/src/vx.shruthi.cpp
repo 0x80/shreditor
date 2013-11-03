@@ -18,7 +18,7 @@
 //#define WIN32_LEAN_AND_MEAN
 
 #include <Windows.h>
-#include <Shlwapi.h>
+//#include <Shlwapi.h>
 #include <Shlobj.h>
 
 #include <stdio.h>
@@ -74,6 +74,7 @@ static t_symbol *ps_progress = gensym("progress");
 static t_symbol *ps_liveGrid = gensym("liveGrid");
 
 
+
 uint8_t Patch::CheckBuffer(uint8_t* buffer) {
     for (uint8_t i = 8; i < 24; ++i) {
         if (buffer[i] >= 128) {
@@ -95,8 +96,7 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
     useEepromCache_(true),
     hasEepromCache_(false),
     progressCounter_(0),
-//    slotIndex_(-1)
-slotIndex_(0)
+    slotIndex_(-1)
 {
     
     if(isExpired()){
@@ -104,8 +104,6 @@ slotIndex_(0)
         object_error((t_object *)this, "This copy of Shreditor has expired.");
         return;
     }
-    
-    
     
     eeprom_ = new uint8_t[kEepromSize];
     settings_ = (SystemSettings *)eeprom_; // settings are stored in first part of eeprom
@@ -132,7 +130,7 @@ slotIndex_(0)
 }
 
 VxShruthi::~VxShruthi() {
-    
+     
     // is dit handig?
     if(hasEepromCache_) saveDeviceEeprom();
     
@@ -311,19 +309,19 @@ bool VxShruthi::isExpired(){
     // mday range 1-31
     release = local;
     release.tm_hour = 0;   release.tm_min = 0; release.tm_sec = 0;
-    release.tm_year = 113; release.tm_mon = 9; release.tm_mday = 27;
+    release.tm_year = 113; release.tm_mon = 10; release.tm_mday = 3;
     
     expire = local;
-    expire.tm_hour = 0;   expire.tm_min = 0; expire.tm_sec = 0;
+    expire.tm_hour = 0;   expire.tm_min = 0; expire.tm_sec = 1;
     expire.tm_year = 113; expire.tm_mon = 11; expire.tm_mday = 1;
     
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire), now);
     
     post("vx.shruthi version beta 2");
-    post("© vauxlab 2013");
-    post("author Thijs Koerselman");
-    post("expires %s", asctime(&expire));
+    post("© Vauxlab 2013, Thijs Koerselman");
+   // post("author Thijs Koerselman");
+    post("Beta expires %s", asctime(&expire));
     
     DPOST("%.f seconds since release", secondsSinceRelease);
     DPOST("%.f seconds to expire", secondsToExpire);
@@ -359,7 +357,9 @@ void VxShruthi::outputProgress(long progress){
     if(percentage == 100){
         DPOST("done 100%");
         // switch to self just to output everytying
-        switchToDevice(0, slotIndex_+1); // +1 since v start at 1
+        //switchToDevice(0, slotIndex_+1); // +1 since v start at 1
+		saveDeviceEeprom(); // save current
+		refreshGui(); // list patch names, selection etc.
     }
     
 }
@@ -368,12 +368,14 @@ void VxShruthi::outputPatchData(){
     // Convert name directly to symbol. Both should be char
     
     Patch &p = workingPatch_[slotIndex_];
-    
+    // convert name into 0 terminated string
+	char str[kPatchNameSize+1];
+	memcpy(str, p.name, kPatchNameSize);
+	str[kPatchNameSize] = 0;
+
     atom_setsym(atoms_, psx_name);
-    atom_setsym(atoms_+1, gensym((char*)p.name));
+    atom_setsym(atoms_+1, gensym(str));
     outlet_list(m_outlets[1], ps_empty, 2, atoms_);
-    
-    
     
     outputNrpn(0, p.osc[0].shape);
     outputNrpn(1, p.osc[0].parameter);
@@ -1185,7 +1187,7 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
 }
 
 void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
-    post("acceptSysexData");
+    DPOST("acceptSysexData");
     uint8_t success = 0;
 	// prevent exception when data is 0 and VS bounds check is enabled
     uint8_t *sysex_rx_buffer_ = 0;
@@ -1299,7 +1301,7 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
         case kRawDataDumpC:
         case kRawDataDumpD:
         {
-            post("cmd %d arg %d", cmd, arg);
+            DPOST("cmd %d arg %d", cmd, arg);
             outputProgress(arg);
             uint8_t command = cmd;
             uint16_t address = arg * kSysExBulkDumpBlockSize;
@@ -1511,7 +1513,14 @@ void VxShruthi::listPatchNames(long inlet){
 //            break; // not isNrpnValid_ patch data
             atom_setsym(atoms_+2, gensym("_"));
         } else {
-            atom_setsym(atoms_+2, gensym((char*)p->name));
+			//DPOST("p->name %s", p->name);
+
+			// convert name into 0 terminated string
+			char str[kPatchNameSize+1];
+			memcpy(str, p->name, kPatchNameSize);
+			str[kPatchNameSize] = 0;
+			//DPOST("str %s", str);
+            atom_setsym(atoms_+2, gensym(str));
         }
         outlet_list(m_outlets[1], ps_empty, 3, atoms_);
         ++p;
@@ -1531,7 +1540,12 @@ void VxShruthi::listPatchNames(long inlet){
                 //            break; // not isNrpnValid_ patch data
                 atom_setsym(atoms_+2, gensym("_"));
             } else {
-                atom_setsym(atoms_+2, gensym((char*)p->name));
+				// convert name into 0 terminated string
+				char str[kPatchNameSize+1];
+				memcpy(str, p->name, kPatchNameSize);
+				str[kPatchNameSize] = 0;
+				//DPOST("str %s", str);
+				atom_setsym(atoms_+2, gensym(str));
             }
             outlet_list(m_outlets[1], ps_empty, 3, atoms_);
             ++p;

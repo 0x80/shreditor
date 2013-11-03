@@ -1,5 +1,5 @@
 
-
+#include "vx.shruthi.h"
 #include "shruthi.transfer.h"
 #include "shruthi.midi.h"
 
@@ -45,7 +45,7 @@ void SysexBulkTransfer::transferEeprom(uint8_t *data, size_t size){
         
     // create new thread + begin execution
     if (x_systhread == NULL) {
-        post("starting a new thread");
+        DPOST("starting a new thread");
         systhread_create((method) memberproc, this, 0, 0, 0, &x_systhread);
     }
 }
@@ -54,7 +54,7 @@ void SysexBulkTransfer::start(){
     stop();								// kill thread if, any
     // create new thread + begin execution
     if (x_systhread == NULL) {
-        post("starting a new thread");
+        DPOST("starting a new thread");
         isTransferBusy_ = true;
         systhread_create((method) memberproc, this, 0, 0, 0, &x_systhread);
     }
@@ -64,11 +64,11 @@ void SysexBulkTransfer::stop(){
     unsigned int ret;
     
     if (x_systhread) {
-        post("stopping transfer thread");
+        DPOST("stopping transfer thread");
         x_systhread_cancel = true;                                              // tell the thread to stop
         systhread_join(x_systhread, &ret);                                      // wait for the thread to stop
         x_systhread = NULL;
-        post("thread stopped and returned %i", ret);
+        DPOST("thread stopped and returned %i", ret);
         x_systhread_cancel = false;
        // device_.unlock();
 
@@ -94,7 +94,7 @@ void SysexBulkTransfer::qfn(SysexBulkTransfer *x)
     // *never* wrap outlet calls with systhread_mutex_lock()
     //        outlet_int(x->x_outlet, myfoo);
 //    post("transfer block %i", block);
-    post("dataposition %x, messid %x, nblock %i, size %i", dataposition, message_id, block_counter, kSysExBulkDumpBlockSize);
+    DPOST("dataposition %x, messid %x, nblock %i, size %i", dataposition, message_id, block_counter, kSysExBulkDumpBlockSize);
     
     if(x->progressReporter_){
         x->progressReporter_(isTransferBusy, block_id);

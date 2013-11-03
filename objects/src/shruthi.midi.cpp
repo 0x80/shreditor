@@ -8,9 +8,11 @@
 #include <cstdlib>
 #include <map>
 
+static t_symbol *ps_invalid = gensym("invalid");
 
 ShruthiMidi::ShruthiMidi()
 :   channelIn_(0),
+	channelAuxIn_(0),
     channelOut_(0),
     midiInput_(0),
     midiOutput_(0),
@@ -49,31 +51,31 @@ ShruthiMidi::ShruthiMidi()
     
 //    allocatePorts();
 //
-    try {
-        midiInput_ = new RtMidiIn();
-//        DPOST("Current input API: %s", apiMap[ midiInput_->getCurrentApi() ].c_str());
-        
-        midiInput_->setCallback(&ShruthiMidi::midiInputCallback, this);
-        
-        midiAuxInput_ = new RtMidiIn();
-//        DPOST("Current aux API: %s", apiMap[ midiAuxInput_->getCurrentApi() ].c_str());
-        
-        midiAuxInput_->setCallback(&ShruthiMidi::midiAuxCallback, this);
-        
-        
-        midiOutput_ = new RtMidiOut();
-//        DPOST("Current output API: %s", apiMap[ midiOutput_->getCurrentApi() ].c_str());
-    }
-    catch (RtError & err) {
-        error("Failed to create midi ports: %s", err.what());
-    }
-  
+//    try {
+//        midiInput_ = new RtMidiIn();
+////        DPOST("Current input API: %s", apiMap[ midiInput_->getCurrentApi() ].c_str());
+//        
+//        midiInput_->setCallback(&ShruthiMidi::midiInputCallback, this);
+//        
+//        midiAuxInput_ = new RtMidiIn();
+////        DPOST("Current aux API: %s", apiMap[ midiAuxInput_->getCurrentApi() ].c_str());
+//        
+//        midiAuxInput_->setCallback(&ShruthiMidi::midiAuxCallback, this);
+//        
+//        
+//        midiOutput_ = new RtMidiOut();
+////        DPOST("Current output API: %s", apiMap[ midiOutput_->getCurrentApi() ].c_str());
+//    }
+//    catch (RtError & err) {
+//        error("Failed to create midi ports: %s", err.what());
+//    }
+//  
     
 }
 
 ShruthiMidi::~ShruthiMidi(){
     
-    try{
+  /*  try{
         for(int i=0; i< inputPorts_.size(); ++i){
             inputPorts_.at(i)->closePort();
             delete inputPorts_.at(i);
@@ -89,21 +91,25 @@ ShruthiMidi::~ShruthiMidi(){
         }
     }catch(RtError err){
         error("Failed to clean up output ports, %s", err.what());
-    }
+    }*/
     
     try{
-        midiInput_->closePort();
-        midiAuxInput_->closePort();
-        midiOutput_->closePort();
-        
-        delete midiInput_;
-        delete midiAuxInput_;
-        delete midiOutput_;
+		if(midiInput_){
+			midiInput_->closePort();
+			delete midiInput_;
+		}
+		if(midiAuxInput_){
+			midiAuxInput_->closePort();
+			delete midiAuxInput_;
+		}
+        if(midiOutput_){
+			midiOutput_->closePort();
+			delete midiOutput_;
+		}
         
     }catch(RtError err){
         error("Failed to clean up midi ports, %s", err.what());
     }
-    
 }
 
 void ShruthiMidi::allocatePorts(){
@@ -225,16 +231,30 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
 }
 
 void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
+
+	channelIn_ = CLAMP(channel-1, 0, 0x0f);
+	if(portName == portnameIn_)
+		return; // same port, no realloc
+
 	isInputValid_ = false;
+	portnameIn_ = ps_invalid;
+
 	try{
-		midiInput_->closePort();
+		// recreate needed for Windows because otherwise we don't get new ports after rescan
+		if(midiInput_){
+			midiInput_->closePort();
+			delete midiInput_;
+		}
+		midiInput_ = new RtMidiIn();
+		midiInput_->setCallback(&ShruthiMidi::midiInputCallback, this);
+
         int portindex = findInputPortNumberForName(portName);
         if(portindex == -1)
             return;
 
         midiInput_->openPort(portindex);
         midiInput_->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
-        channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+		portnameIn_ = portName;
         isInputValid_ = true;
 	}catch(RtError &err){
 		error("setMidiIn failed: %s", err.what());
@@ -242,16 +262,31 @@ void ShruthiMidi::setMidiIn(t_symbol* portName, long channel){
 }
 
 void ShruthiMidi::setMidiAuxIn(t_symbol* portName, long channel){
+
+	channelAuxIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+	if(portName == portnameAuxIn_)
+		return; // same port, no realloc
+
 	isAuxInputValid_ = false;
+	portnameAuxIn_ = ps_invalid;
+
 	try{
-        midiAuxInput_->closePort();
+
+		// recreate needed for Windows because otherwise we don't get new ports after rescan
+		if(midiAuxInput_){
+			midiAuxInput_->closePort();
+			delete midiAuxInput_;
+		}
+		midiAuxInput_ = new RtMidiIn();
+		midiAuxInput_->setCallback(&ShruthiMidi::midiAuxCallback, this);
+        
         int portindex = findInputPortNumberForName(portName);
         if(portindex == -1)
             return;
         
         midiAuxInput_->openPort(portindex);
         midiAuxInput_->ignoreTypes( false, true, true ); // Don't ignore sysex, but ignore timing and active sensing messages.
-        channelIn_ = CLAMP(channel-1, 0, 0x0f); // channels start counting at 0 in midi bytes;
+        portnameAuxIn_ = portName;
         isAuxInputValid_ = true;
 	}catch(std::exception& e){
 		error("setMidiAuxIn failed: %s", e.what());
@@ -259,15 +294,28 @@ void ShruthiMidi::setMidiAuxIn(t_symbol* portName, long channel){
 }
 
 void ShruthiMidi::setMidiOut(t_symbol* portName, long channel){
+
+	channelOut_ = CLAMP(channel-1, 0, 0x0f);
+	if(portName == portnameOut_)
+		return; // same port, no realloc
+
 	isOutputValid_ = false;
+	portnameOut_ = ps_invalid;
+
 	try{
-        midiOutput_->closePort();
+		// recreate needed for Windows because otherwise we don't get new ports after rescan
+        if(midiOutput_){
+			midiOutput_->closePort();
+			delete midiOutput_;
+		}
+		midiOutput_ = new RtMidiOut();
+
         int portindex = findOutputPortNumberForName(portName);
         if(portindex == -1)
             return;
 
-        midiOutput_->openPort(portindex);
-        channelOut_ = CLAMP(channel-1, 0, 0x0f);
+        midiOutput_->openPort(portindex);  
+		portnameOut_ = portName;
         isOutputValid_ = true;
 	}catch(RtError &err){
 		error("setMidiOut failed: %s", err.what());
@@ -538,7 +586,7 @@ void ShruthiMidi::processControlChangeAsNrpn(){
 
 void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
 {
-    DPOST("midi input callback");
+    //DPOST("midi input callback");
     
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
@@ -553,7 +601,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     
     // skip parsing channel messages which are not on our channel
     if(status != STATUS_SYSEX && x.channelIn_ != channel){
-        post("Ignored msg for channel %i", channel+1);
+        DPOST("Ignored msg for channel %i", channel+1);
         return;
     }
     
@@ -567,7 +615,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
             uint8_t index = msg->at(1);
             uint8_t value = msg->at(2);
             //               post("cc, chan: %i n: %i", channel, nBytes);
-                            post("index: %i v: %i", index, value);
+                            DPOST("index: %i v: %i", index, value);
             x.processControlChange(index, value);
         }
             break;
@@ -580,7 +628,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
 
 void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
 {
-    DPOST("midi aux callback");
+    //DPOST("midi aux callback");
     
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
@@ -599,8 +647,8 @@ void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, 
     }
     
     // skip parsing channel messages which are not on our channel
-    if(status != STATUS_SYSEX && x.channelIn_ != channel){
-        post("Ignored msg for channel %i", channel+1);
+    if(status != STATUS_SYSEX && x.channelAuxIn_ != channel){
+        DPOST("Ignored msg for channel %i", channel+1);
         return;
     }
     
@@ -665,15 +713,22 @@ int ShruthiMidi::findOutputPortNumberForName(t_symbol* name){
 
 void ShruthiMidi::getMidiPortNames(std::vector<std::string> &inputs, std::vector<std::string> &outputs){
 
+	RtMidiIn *in = 0;
+	RtMidiOut *out = 0;
+
 	try{
 		inputs.clear();
 		outputs.clear();
+
+		in = new RtMidiIn();
+		out = new RtMidiOut();
+
 		// Check inputs.
-		unsigned int nPorts = midiInput_->getPortCount();
+		unsigned int nPorts = in->getPortCount();
 		std::string portName;
 		for ( unsigned int i=0; i<nPorts; i++ ) {
 			#ifdef WIN_VERSION
-			std::string str =  midiInput_->getPortName(i);
+			std::string str =  in->getPortName(i);
 			portName = str.substr(0, str.length()-2);
 			#else
 			portName = gensym(midiInput_->getPortName(i).c_str());
@@ -681,14 +736,17 @@ void ShruthiMidi::getMidiPortNames(std::vector<std::string> &inputs, std::vector
 			inputs.push_back(portName);
 		}
     
-		nPorts = midiOutput_->getPortCount();
+		nPorts = out->getPortCount();
 		for ( unsigned int i=0; i<nPorts; i++ ) {
-			outputs.push_back(midiOutput_->getPortName(i));
+			outputs.push_back(out->getPortName(i));
 		}
 
 	}catch(RtError &err){
 		error("Getting midi port names: %s", err.what());
 	}
+
+	if(in) delete in;
+	if(out) delete out;
 }
 
 void ShruthiMidi::printMidiPorts(long inlet){

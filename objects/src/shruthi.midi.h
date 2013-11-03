@@ -60,6 +60,7 @@ public:
     
     uint8_t channelIn_;
     uint8_t channelOut_;
+	uint8_t channelAuxIn_;
     
     long lastNrpnIndex_;
         
@@ -71,10 +72,6 @@ private:
     RtMidiIn *midiInput_;
     RtMidiIn *midiAuxInput_;
     RtMidiOut *midiOutput_;
-    
-    std::vector<RtMidiIn*> inputPorts_;
-    std::vector<RtMidiOut*> outputPorts_;
-    
     
     void processControlChange(long cc_index, long cc_value);
     void processControlChangeAsNrpn();
@@ -104,6 +101,10 @@ private:
 	bool isInputValid_;
 	bool isOutputValid_;
 	bool isAuxInputValid_;
+	t_symbol *portnameIn_;
+	t_symbol *portnameAuxIn_;
+	t_symbol *portnameOut_;
+
 
 };
 

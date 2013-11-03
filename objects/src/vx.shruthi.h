@@ -12,6 +12,9 @@
 #ifdef _DEBUG
     #define __VAUXLAB_DEBUG__ 1
     #define __RTMIDI_DEBUG__ 0
+#else
+	#define __RTMIDI_DEBUG__ 0
+	#define __VAUXLAB_DEBUG__ 0
 #endif
 
 // a wrapper for cpost() only called for debug builds on Windows
@@ -162,7 +165,7 @@ public:
         DPOST("switch to device (1-8): %i", v);
         
         if(slotIndex_ != -1){
-          saveDeviceEeprom(); // save current
+          saveDeviceEeprom(); // save current, but not first time / startup
         }
         
         slotIndex_ = v-1;

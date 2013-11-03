@@ -68,11 +68,16 @@ public:
     
 	}
 	~RtMidiMax() {
-        midiin->closePort();
-        midiout->closePort();
+
+		if(midiin){
+			midiin->closePort();
+			delete midiin;
+		}
         
-        delete midiin;
-        delete midiout;
+		if(midiout){
+			midiout->closePort();  
+			delete midiout;
+		}
     }
     
     static void midiInputCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
