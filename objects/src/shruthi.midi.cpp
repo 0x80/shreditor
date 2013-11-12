@@ -731,7 +731,7 @@ void ShruthiMidi::getMidiPortNames(std::vector<std::string> &inputs, std::vector
 			std::string str =  in->getPortName(i);
 			portName = str.substr(0, str.length()-2);
 			#else
-			portName = gensym(midiInput_->getPortName(i).c_str());
+			portName = in->getPortName(i);
 			#endif
 			inputs.push_back(portName);
 		}

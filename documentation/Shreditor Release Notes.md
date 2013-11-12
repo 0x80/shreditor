@@ -4,13 +4,15 @@ Changes
 
 Beta 2
 -------------
-* Initial Windows port
-* Moved midiin functionality for aux to object code
-* Integrated midiinfo behavior for pupulating port menus in object code
-* Fixed reversed midi in out port selection
-* Midi port valid flags to prevent crashes with io on invalid ports on Windows
-* 
-
+* Initial Windows release.
+* Integrated midi aux input.
+* Implemented midiinfo like behavior for populating port menus.
+* Refactored midi port handling to adapt to Windows MM behavior.
+* Fixed reversed midi in out port selection.
+* More compact UI to fit Macbook Air screen.
+* Minor UI tweaks.
+* Fixed patch names to proper zero terminate.
+* Limit sequence load/save to device capacity.
 
 Beta 1
 -------------

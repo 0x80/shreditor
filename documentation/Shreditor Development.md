@@ -48,6 +48,39 @@ pattr_obex: no such file in collective
 DevicePresets.json: no such file in collective
 DevicePresets.xml: no such file in collective
 
+en nu:
+
+No midi driver folder or default driver
+MSP/ad: no ad folder
+Core Audio: No such object
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+pattr_obex: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+maxzlib: no such file in collective
+
+
 on windows:
 
 MSP/ad: no ad folder

@@ -15,7 +15,6 @@ These are the steps to get you up and running quickly.
 ###Step 1: Update the Firmware
 The Shreditor will only work with Shruthi-1 firmware versions >= 0.98. At the time of writing this version is not yet released. The correct firmware should be included in the Shreditor software bundle as a midi and sysex file.
 
-
 ###Step 2: Configure the Midi Ports
 A lot of functionality in the Shreditor uses midi sysex commands. Sysex is not tied to a specific channel, which means that all devices with the same device id (like multiple Shruthi's) connected to a port will all respond to the sysex messages passed on that port. So __make sure__ each of your Shruthi devices is connected to a different midi port when using the Shreditor.
 
@@ -27,7 +26,7 @@ After setting up all the midi ports, give the device a label if you haven't alre
 Now we are ready to save these settings in one of the 8 available device slots. At first all of the slots will white, indicating that they are empty. Store the preset in one of the slots by hitting [shift-click]. The slot color will change to dark grey (meaning it is filled) and then blue (which means it is active). Up to 8 different devices can be configured this way.
 
 ###Step 4: Initialize the Mirror
-In order minimizes the transfer of data with the device and to keep the GUI responsive, the Shreditor keeps a mirror of the device eeprom storage at all time. This way, when you load a patch, the editor already knows all of the settings and you can quickly navigate without having to request the data from the device.
+In order minimizes the transfer of data with the device and to keep the UI responsive, the Shreditor keeps a mirror of the device eeprom storage at all time. This way, when you load a patch, the editor already knows all of the settings and you can quickly navigate without having to request the data from the device.
 
 To start editing a device you first need to download the internal storage into the editor. You do this by going to the [Data] tab and click on the [download] button. You will see a progress bar indicating status of the data transfer. 
 
@@ -52,7 +51,7 @@ Shreditor
 * Edit up to 8 devices simultaneously
 * Direct low level communication with hardware, bypassing standard Max MIDI objects.
 * Device data transfer and mirroring
-* Correctly labeled parameters and ranges
+* Labeled parameters and ranges
 * Copy & paste patches and sequences between devices
 * Patch name list for fast browsing and renaming
 * Import and export of backups and patches

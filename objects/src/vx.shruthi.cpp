@@ -248,7 +248,7 @@ void VxShruthi::populateMidiPortMenus(long inlet){
 	// TODO create new midi in and out to list new ports
 	// also create new objects when port is selected
 
-	int c;
+	
 	t_atom *a;
 
 	a = atoms_;

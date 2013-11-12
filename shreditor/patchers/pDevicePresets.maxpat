@@ -262,7 +262,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 832.0, 656.0, 248.0, 48.0 ],
+					"patching_rect" : [ 832.0, 656.0, 248.0, 47.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "stored but not shown, zodat we maar 1x de midi port hoeven aan te maken, en niet bij poort verandering en dan weer op channel.",
@@ -434,7 +434,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 216.0, 792.0, 150.0, 34.0 ],
+					"patching_rect" : [ 216.0, 792.0, 150.0, 33.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "preset recall -> eeprom wordt intern geregeld",
@@ -521,7 +521,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 560.0, 336.0, 150.0, 48.0 ],
+					"patching_rect" : [ 560.0, 336.0, 150.0, 47.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "wait for midi channel to come from system settings",
@@ -1166,8 +1166,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 752.0, 128.0, 74.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 480.0, 56.0, 59.0, 19.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "Receiving",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0,
@@ -1362,8 +1362,8 @@
 					"outlettype" : [ "bang" ],
 					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"patching_rect" : [ 824.0, 128.0, 20.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 544.0, 56.0, 19.0, 19.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"prototypename" : "shr_dark_circle"
 				}
 
@@ -1411,7 +1411,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 568.0, 776.0, 171.0, 34.0 ],
+					"patching_rect" : [ 568.0, 776.0, 171.0, 33.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "send all notes off for selected chan",
@@ -1700,7 +1700,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 240.0, 552.0, 104.0, 34.0 ],
+					"patching_rect" : [ 240.0, 552.0, 104.0, 33.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "preset store also writes to file",
@@ -3539,16 +3539,9 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "_.maxpat",
-				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "DevicePresets.json",
-				"bootpath" : "/Program Files (x86)/Common Files/Vauxlab/Shreditor",
-				"patcherrelativepath" : "../../../../../../../Program Files (x86)/Common Files/Vauxlab/Shreditor",
+				"bootpath" : "/Users/thijskoerselman/Library/Application Support/Vauxlab/Shreditor",
+				"patcherrelativepath" : "../../../../../Library/Application Support/Vauxlab/Shreditor",
 				"type" : "JSON",
 				"implicit" : 1
 			}
