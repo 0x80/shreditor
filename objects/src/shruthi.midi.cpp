@@ -686,7 +686,7 @@ int ShruthiMidi::findInputPortNumberForName(t_symbol* name){
         error("%s", err.what());
     }
     
-    error("%s is not a isNrpnValid_ input port name", name->s_name);
+    error("%s is not a valid input port name", name->s_name);
     return -1;
 }
 
