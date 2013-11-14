@@ -72,6 +72,7 @@ static t_symbol *ps_legato = gensym("legato");
 static t_symbol *ps_rotation = gensym("rotation");
 static t_symbol *ps_progress = gensym("progress");
 static t_symbol *ps_liveGrid = gensym("liveGrid");
+static t_symbol *ps_xtmode = gensym("xtmode");
 
 
 
@@ -1187,6 +1188,48 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
     outputSequence();
 }
 
+void VxShruthi::setXtMode(bool v){
+    xtmode_ = v;
+    atom_setsym(atoms_, ps_xtmode);
+    atom_setlong(atoms_+1, xtmode_ ? 1 : 0);
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+}
+
+void VxShruthi::refreshGui(){
+    // !! numbanks triggers listPatchNames when it returns
+    requestNumBanks();
+    // output the current selected patch and sequence numbers
+    requestNumbers();
+    // output global setting data
+    outputSettingsData();
+    outputSequencerSettings();
+}
+
+// v range 1-8
+void VxShruthi::switchToDevice(long inlet, long v){
+    
+    v = CLAMP(v, 1, 8);
+    
+    DPOST("switch to device (1-8): %i", v);
+    
+    if(slotIndex_ != -1){
+        saveDeviceEeprom(); // save current, but not first time / startup
+    }
+    
+    slotIndex_ = v-1;
+    loadDeviceEeprom(); // load new
+    
+    // get sequencer settings since they are not stored anywhere
+    // and we might have restarted the editor meanwhile
+    requestSequencerSettings();
+    
+    //refreshGui();
+    requestVersion(); // -> then call refresh Gui()
+    
+    // clear nrpn cache todo clean way
+    device_.lastNrpnIndex_ = -1;
+}
+
 void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
     DPOST("acceptSysexData");
     uint8_t success = 0;
@@ -1237,6 +1280,13 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
                 minor = data[1];
                 DPOST("Firmware version %i %i", major, minor);
                 
+                if(major == 0){
+                    setXtMode(false);
+                    refreshGui();
+                }else{
+                    setXtMode(true);
+                    refreshGui();
+                }
             }else{
                 object_error((t_object*)this, "Invalid response from version request");
             }

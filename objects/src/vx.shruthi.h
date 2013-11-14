@@ -158,39 +158,9 @@ public:
     
     void transferProgressReporter(bool finished, uint8_t progress);
     
-    // v range 1-8
-    void switchToDevice(long inlet, long v){
-        
-        v = CLAMP(v, 1, 8);
-        
-        DPOST("switch to device (1-8): %i", v);
-        
-        if(slotIndex_ != -1){
-          saveDeviceEeprom(); // save current, but not first time / startup
-        }
-        
-        slotIndex_ = v-1;
-        loadDeviceEeprom(); // load new
-        
-        // get sequencer settings since they are not stored anywhere
-        // and we might have restarted the editor meanwhile
-        requestSequencerSettings();
-        
-        refreshGui();
-       
-        // clear nrpn cache todo clean way
-        device_.lastNrpnIndex_ = -1;
-    }
-    
-    void refreshGui(){
-        // !! numbanks triggers listPatchNames when it returns
-        requestNumBanks();
-        // output the current selected patch and sequence numbers
-        requestNumbers();
-        // output global setting data
-        outputSettingsData();
-        outputSequencerSettings();
-    }
+    void switchToDevice(long inlet, long v);
+    void refreshGui();
+    void setXtMode(bool v);
      
     template<typename T>
     uint8_t* getAddress(uint16_t slot) {
@@ -252,6 +222,7 @@ private:
     std::string presetfile_;
     
     int progressCounter_;
+    bool xtmode_;
 };
     
 #endif

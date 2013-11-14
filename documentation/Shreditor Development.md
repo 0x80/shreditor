@@ -1,7 +1,3 @@
-Object Function Reference
-------------------------
-Hoe maak je een object reference zodat ie past in het stramien van C74?
-
 
 
 Notes
@@ -24,12 +20,27 @@ Sequences stored in presets are only the 16 step data. No size or rotation. All 
 Met standaard settings krijg je linker errors. Je moet linken tegen de static runtime /MT en de preprocessor definitie gebruiken van MAXAPI_USE_MSCRT. Daarnaast moet je nog de exclude library weghalen voor libcmt.lib.
 
 
+XT changes
+------------------
+* warp knop -> midi clock divider
+* tempo, change range to max 240
+* split mode -> startscreensplash/filter/preset ?? relevant??
+* latch mode (hold encoder) make sysex for this?
+* knob moves are transmitted as CC rather then NRPN
+* midi out mode less setings no ctl
+* Seq mode, remove impro and rec modes
+* Link loading and saving of patch/seq
+* Remove seq+lt and arp+lt seq modes
+* Arpeggiator, portamento/legato and sequencer settings are now saved with the patch.
+* Output midi clock on/off setting
+* single cycle lfo mode
+* modulation destinations add adsr parameters
+
+
+    
 Bugs
 ------------------
-* debugger wil niet attachen
-* make blank (no input) midi port option default
-* slot 1 eeprom wordt overschreven met 0000 bij startup.
-* stopping debugger with attached maxRT causes process to hang for long time
+
 
 TODO
 --------------------------
