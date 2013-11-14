@@ -83,6 +83,7 @@ public:
    
     void requestNumbers(long inlet = 0);
     void requestNumBanks(long inlet = 0);
+    void requestVersion(long inlet = 0);
     void requestPatch(long inlet = 0);
     void requestSequence(long inlet = 0);
     void requestWavetable(long inlet = 0);

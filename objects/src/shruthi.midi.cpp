@@ -48,50 +48,9 @@ ShruthiMidi::ShruthiMidi()
     for ( unsigned int i=0; i<apis.size(); i++ ){
         DPOST("%s", apiMap[ apis[i] ].c_str());
     }
-    
-//    allocatePorts();
-//
-//    try {
-//        midiInput_ = new RtMidiIn();
-////        DPOST("Current input API: %s", apiMap[ midiInput_->getCurrentApi() ].c_str());
-//        
-//        midiInput_->setCallback(&ShruthiMidi::midiInputCallback, this);
-//        
-//        midiAuxInput_ = new RtMidiIn();
-////        DPOST("Current aux API: %s", apiMap[ midiAuxInput_->getCurrentApi() ].c_str());
-//        
-//        midiAuxInput_->setCallback(&ShruthiMidi::midiAuxCallback, this);
-//        
-//        
-//        midiOutput_ = new RtMidiOut();
-////        DPOST("Current output API: %s", apiMap[ midiOutput_->getCurrentApi() ].c_str());
-//    }
-//    catch (RtError & err) {
-//        error("Failed to create midi ports: %s", err.what());
-//    }
-//  
-    
 }
 
 ShruthiMidi::~ShruthiMidi(){
-    
-  /*  try{
-        for(int i=0; i< inputPorts_.size(); ++i){
-            inputPorts_.at(i)->closePort();
-            delete inputPorts_.at(i);
-        }
-    }catch(RtError err){
-        error("Failed to clean up input ports, %s", err.what());
-    }
-    
-    try{
-        for(int i=0; i< outputPorts_.size(); ++i){
-            outputPorts_.at(i)->closePort();
-            delete outputPorts_.at(i);
-        }
-    }catch(RtError err){
-        error("Failed to clean up output ports, %s", err.what());
-    }*/
     
     try{
 		if(midiInput_){
@@ -422,6 +381,10 @@ int ShruthiMidi::expectedSysexPayload(SysexCommand cmd){
         case kNumBanks:
             return 0;
             break;
+        
+        case kVersion:
+            return 2;
+            break;
             
         case kPatch:  // Patch transfer
 //            post("expected size %i", StorageConfiguration<Patch>::size);
@@ -464,59 +427,6 @@ int ShruthiMidi::expectedSysexPayload(SysexCommand cmd){
             break;
     }
 }
-
-
-
-
-//bool ShruthiMidi::expectedSysexLength(SysexCommand cmd){
-////    SysexCommand cmd = (SysexCommand) msg->at(6);
-//    size_t size = (msg->size() - 11) >> 1; // sysex overhead is 11 bytes, bytes are transferred in nibblets
-//    
-//    switch (cmd) {
-//        case kPatch:  // Patch transfer
-////            post("expected size %i", StorageConfiguration<Patch>::size);
-//            return size == StorageConfiguration<Patch>::size;
-//            break;
-//            
-//        case kSequence:  // Sequence transfer
-//            return size ==  StorageConfiguration<SequencerSettings>::size;
-//            break;
-//            
-//        case kWavetable:  // Wavetable dump
-//            return size == kUserWavetableSize;
-//            break;
-//            
-//        case kSystemSettings:  // Settings transfer
-//            return size == SYSTEM_SETTINGS_SIZE;
-//            break;
-//            
-//        case kSequenceStep: // sequence step transfer
-//            return size == 2;
-//            break;
-//            
-//        case kPatchName:
-//            return size == kPatchNameSize;
-//            break;
-//            
-//        case kSequencerState: // Full sequencer state transfer
-//            return size == sizeof(SequencerSettings);
-//            break;
-//            
-//        case kRawDataDumpA:  // Bulk transfer
-//        case kRawDataDumpB:
-//        case kRawDataDumpC:
-//        case kRawDataDumpD:
-//            return size == kSysExBulkDumpBlockSize;
-//            break;
-//            
-//        default:
-//            return false;
-//            break;
-//    }
-//}
-
-
-
 
 void ShruthiMidi::processControlChange(long cc_index, long cc_value){
 

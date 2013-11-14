@@ -318,7 +318,7 @@ bool VxShruthi::isExpired(){
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire), now);
     
-    post("vx.shruthi version beta 3");
+    post("vx.shruthi version beta 4");
     post("© Vauxlab 2013, Thijs Koerselman");
    // post("author Thijs Koerselman");
     post("Beta expires %s", asctime(&expire));
@@ -653,6 +653,7 @@ void VxShruthi::transferRom(long inlet) {
 // requests
 void VxShruthi::requestNumbers(long inlet){ device_.sendSysexCommand(0x1a); }
 void VxShruthi::requestNumBanks(long inlet){ device_.sendSysexCommand(0x1b); }
+void VxShruthi::requestVersion(long inlet){ device_.sendSysexCommand(0x1c); }
 void VxShruthi::requestPatch(long inlet){ device_.sendSysexCommand(0x11); }
 void VxShruthi::requestSequence(long inlet){ device_.sendSysexCommand(0x12); }
 void VxShruthi::requestWavetable(long inlet){ device_.sendSysexCommand(0x13); }
@@ -1225,11 +1226,19 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
                 }
                 
                 listPatchNames();
+            }
+            break;
+            
+        case kVersion:
+            if(data.size() == 2){
+                success = 1;
+                uint8_t major, minor;
+                major = data[0];
+                minor = data[1];
+                DPOST("Firmware version %i %i", major, minor);
                 
-//                
-//                atom_setsym(atoms_, gensym("patchcount"));
-//                atom_setlong(atoms_+1, getNumPatches());
-//                outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+            }else{
+                object_error((t_object*)this, "Invalid response from version request");
             }
             break;
             
@@ -1579,6 +1588,7 @@ int T_EXPORT main(void) {
     
     REGISTER_METHOD(VxShruthi, requestNumbers);
     REGISTER_METHOD(VxShruthi, requestNumBanks);
+    REGISTER_METHOD(VxShruthi, requestVersion);
     REGISTER_METHOD(VxShruthi, requestPatch);
     REGISTER_METHOD(VxShruthi, requestSequence);
     REGISTER_METHOD(VxShruthi, requestWavetable);

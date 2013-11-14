@@ -63,6 +63,7 @@ enum SysexCommand {
     kPatternRotation,
     kNumbers = 0x0a,
     kNumBanks,
+    kVersion,
     
     kPatchRequest = 0x11,
     kSequenceRequest,
