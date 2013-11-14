@@ -1,6 +1,9 @@
 Changes
 =====================
-
+Beta 3
+---------------
+* Windows XP support
+* OSX Mavericks support (Max 6.1.5)
 
 Beta 2
 -------------

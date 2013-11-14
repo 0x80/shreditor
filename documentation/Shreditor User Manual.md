@@ -1,14 +1,14 @@
 Shreditor User Manual
 =================
-Revision: 1 
+*Revision: 2, November 13 2013<br/>*
 Author: Thijs Koerselman
 
 
 ###!! Disclaimer
-Please back up your data first. This is beta software. I will not feel responsible for corrupting or loosing your patches.
+Please back up your data first. This is beta software. I will not feel responsible for corrupting or loosing your precious data.
 
 
-Getting Started
+1. Getting Started
 ------------------
 These are the steps to get you up and running quickly.
 
@@ -30,44 +30,45 @@ In order minimizes the transfer of data with the device and to keep the UI respo
 
 To start editing a device you first need to download the internal storage into the editor. You do this by going to the [Data] tab and click on the [download] button. You will see a progress bar indicating status of the data transfer. 
 
-
 *That's it. Enjoy!*
 
 Please report bugs to __support@vauxlab.com__
 
-###I Want More!
-If you own more than one Shruthi (and you have enough midi ports) you can repeat steps 2-4 for each device. The Shreditor will let you edit these devices simultaneously. You can switch back and forth between devices and it will keep track of your edits.
+###Adding More Devices
+If you own more than one Shruthi, and you have enough physical midi ports, you can repeat steps 2-4 for each device. The Shreditor will let you edit these devices simultaneously. You can switch back and forth and it will keep track of your edits. Please note that you *can not* connect multiple devices to the same midi port, since the software communicates with sysex and sysex messages are global and therefor not tied to any midi channel.
 
-
-
-Shreditor
+2. Shreditor User Manual
 -------------------
-###Introduction
+![screenshot](images/shreditor_screenshot1.png)
+###2.1 Introduction
 ...
 
-###Feature Summary
+###2.2 Feature Summary
+* Clearly laid out, easy to use interface.
 * Control over every (*) available parameter including matrix, sequencer and settings.
 * Bidirectional communication. Active update of patch and sequence data in the interface.
 * Edit up to 8 devices simultaneously
 * Direct low level communication with hardware, bypassing standard Max MIDI objects.
-* Device data transfer and mirroring
-* Labeled parameters and ranges
-* Copy & paste patches and sequences between devices
-* Patch name list for fast browsing and renaming
-* Import and export of backups and patches
+* Device data transfer and mirroring.
+* Labeled parameters and ranges.
+* Copy and paste patches and sequences between devices.
+* Patch list for fast preset browsing and naming.
+* Import and export of backups and patches.
+
+*(*) Some settings are deliberately ignored because I don't think they make sense to expose in an editor, like display pause and parameter snap. Also note triggers and cv input are not exposed at the moment. *
+
+###2.3 Overview
+... (describe all the different functions of the interface)
 
 
-(*) Some settings are deliberately ignored because I don't think they make sense to expose in an editor, like display pause and parameter snap. Also note triggers and cv input are not exposed atm. 
-
-###Firmware
+###2.4 Firmware
 There were numerous additions made to the 0.97 firmware in order to allow the level of control that the Shreditor offers. They will be included in the official 0.98 release when that happens, but until then you can use the supplied firmware midi or hex file that comes with the application bundle.
 
-
-###Caveats
-Here are some things which I think are with knowing when using the Shreditor, because they function differently from what you might expect.
+###2.5 Caveats
+Here are some things which I think are with knowing when using the Shreditor, because they might function differently from what you would expect.
 
 ####Shruthi Midi Channel
-You might have noticed the lack of a midi channel setting in the device midi configuration. That is because the Shreditor can read and control the midi channel of the device via sysex (which is not tied to any channel). So when you set the correct ports, the Shreditor is able to get the current midi channel on which the device is listening. You can change the midi channel from the editor by setting the [Channel] in the [System Settings] section of the Shreditor.
+You may have noticed the lack of a midi channel setting in the device midi configuration at the top. That is because the Shreditor can read and control the midi channel setting of the device via sysex. So when you set the correct ports, the Shreditor is already able to get the current midi channel on which the device is listening. You can change the midi channel from the editor by setting the [Channel] parameter in the [System Settings] section of the Shreditor.
 
 ####Editing on Device
 The editor will reflect most edits you make using the knobs on the device, as long as you have the midi output setting set to CTRL or FULL. I suggest you use CTRL to prevent sysex to be echoes to the output. Beware that system and sequencer settings are not echoed to the output, so you better only edit those from the Shreditor interface or the mirror data will get out of sync. 
@@ -78,23 +79,20 @@ The system settings are configurable from the editor, and edits are immediately 
 ####Patch Names
 * Patch names are max 8 character long. The rest will be truncated. Also Shreditor and Shruthi don't use the same character set for patch names, special characters might differ or show blank on the device.
 
-
-###Known Issues
-* When switching devices any playing notes will hang on the previous device
+###2.6 Known Issues
+* When switching devices any playing notes can hang on the previous device
 * Note trigger settings are not handled at the moment
 
+###2.7 To Be Implemented
+Here is a list of things I would like to implement in the future. 
 
-###Functions
-... (describe all the different functions of the interface)
-
-###To Be Implemented
-Here is a list of things I would like to implement in the future. If you have other suggestions let me know.
-
-* Windows version of Shreditor (soon!)
-* Max4Live version. This will be a slimmed down version with mostly only parameters relevant for realtime modulation. 
+* Max4Live version. This will be a slimmed down version with mostly only parameters relevant for realtime modulation. Sadly this will be for OSX users only. (*) 
+* Support for upcoming XT firmware revision
 * JSON support for easy backup and sharing of patches
 * User wavetable transfer
-* Dirty flag to indicate when a patch has been edited
+* Visual feedback to indicate when a patch has been edited
 
-###Bugs & Help
-You can send bugreports or contact me for help at __support@vauxlab.com__
+*(*) Porting the Shreditor to Windows revealed a clash between the midi drivers and the standard Max midi objects which doesn't occur with the OSX drivers. On Windows the Shreditor core object can not co-exist with any standard Max midi objects. As the Shreditor application is build as a standalone I was able to overcome this limitation, but in Max for Live this will not work.  *
+
+###2.8 Bugs & Support
+Please send any bug reports or support requests to __support@vauxlab.com__
