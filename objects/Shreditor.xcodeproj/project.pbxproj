@@ -49,6 +49,7 @@
 		84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A593A5166A48F300214212 /* shruthi.transfer.cpp */; };
 		84A9647E161112540048B8B5 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
 		84C0D7D418007048004706D1 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C0D7D318007048004706D1 /* CoreServices.framework */; };
+		84CE31951838E3E50050AEF2 /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84CE31941838E3E50050AEF2 /* patch.cpp */; };
 		84EAB6F6161A2214009240D2 /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
 		84EAB6F7161A2214009240D2 /* vx.cc2nrpn.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C635161108C2004C5FFA /* vx.cc2nrpn.mxo */; };
 		84EAB6F8161A2214009240D2 /* vx.nrpn2cc.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84A96487161112540048B8B5 /* vx.nrpn2cc.mxo */; };
@@ -123,9 +124,6 @@
 		8439810217268C1D0022FFE9 /* vx.configure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.configure.cpp; path = src/vx.configure.cpp; sourceTree = "<group>"; };
 		8439810417269B350022FFE9 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml2.cpp; path = external/tinyxml2/tinyxml2.cpp; sourceTree = "<group>"; };
 		8439810517269B350022FFE9 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml2.h; path = external/tinyxml2/tinyxml2.h; sourceTree = "<group>"; };
-		84477FF9171C9DCF00910AEA /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patch.h; sourceTree = "<group>"; };
-		84477FFA171C9DCF00910AEA /* sequencer_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sequencer_settings.h; sourceTree = "<group>"; };
-		84477FFB171C9DCF00910AEA /* system_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system_settings.h; sourceTree = "<group>"; };
 		84477FFC171C9DE900910AEA /* RtMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RtMidi.cpp; path = external/rtmidi/RtMidi.cpp; sourceTree = "<group>"; };
 		84477FFE171C9EB900910AEA /* maxcpp6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maxcpp6.h; path = external/maxcpp6.h; sourceTree = "<group>"; };
 		84477FFF171C9EC900910AEA /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base.h; path = external/avrlib/base.h; sourceTree = "<group>"; };
@@ -147,6 +145,10 @@
 		84C0D7D318007048004706D1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = maxmspsdk.xcconfig; sourceTree = "<group>"; };
 		84C3C13315A84702007FE735 /* commonsyms.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = commonsyms.c; path = "../c74support/max-includes/common/commonsyms.c"; sourceTree = "<group>"; };
+		84CE31911838E3A30050AEF2 /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = patch.h; path = src/patch.h; sourceTree = "<group>"; };
+		84CE31921838E3A30050AEF2 /* sequencer_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sequencer_settings.h; path = src/sequencer_settings.h; sourceTree = "<group>"; };
+		84CE31931838E3A30050AEF2 /* system_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system_settings.h; path = src/system_settings.h; sourceTree = "<group>"; };
+		84CE31941838E3E50050AEF2 /* patch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = patch.cpp; path = src/patch.cpp; sourceTree = "<group>"; };
 		84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.nrpn2cc.cpp; path = src/vx.nrpn2cc.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,10 +219,14 @@
 		08FB77ADFE841716C02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				84CE31911838E3A30050AEF2 /* patch.h */,
+				84CE31941838E3E50050AEF2 /* patch.cpp */,
+				84CE31921838E3A30050AEF2 /* sequencer_settings.h */,
+				84CE31931838E3A30050AEF2 /* system_settings.h */,
 				84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */,
 				8473C6231610FA67004C5FFA /* vx.cc2nrpn.cpp */,
-				8473C6241610FA67004C5FFA /* vx.shruthi.cpp */,
 				84A5939A1668CC2000214212 /* vx.shruthi.h */,
+				8473C6241610FA67004C5FFA /* vx.shruthi.cpp */,
 				84A5939C1668CCDB00214212 /* shruthi.midi.cpp */,
 				84A593A01668DD5E00214212 /* shruthi.midi.h */,
 				84A593A4166A48D700214212 /* shruthi.transfer.h */,
@@ -242,20 +248,8 @@
 				84477FFE171C9EB900910AEA /* maxcpp6.h */,
 				84C3C13315A84702007FE735 /* commonsyms.c */,
 				84477FFC171C9DE900910AEA /* RtMidi.cpp */,
-				84477FF8171C9DCF00910AEA /* shruthi */,
 			);
 			name = External;
-			sourceTree = "<group>";
-		};
-		84477FF8171C9DCF00910AEA /* shruthi */ = {
-			isa = PBXGroup;
-			children = (
-				84477FF9171C9DCF00910AEA /* patch.h */,
-				84477FFA171C9DCF00910AEA /* sequencer_settings.h */,
-				84477FFB171C9DCF00910AEA /* system_settings.h */,
-			);
-			name = shruthi;
-			path = external/shruthi;
 			sourceTree = "<group>";
 		};
 		8473C6341611084C004C5FFA /* Products */ = {
@@ -448,6 +442,7 @@
 				84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */,
 				84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */,
 				84477FFD171C9DE900910AEA /* RtMidi.cpp in Sources */,
+				84CE31951838E3E50050AEF2 /* patch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

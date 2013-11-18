@@ -13,11 +13,45 @@ Internal storage is 2048 bytes == 16 blocks of 128 .
 (*)The unused part is now holding extra System settings for note triggers
 
 
-Sequences stored in presets are only the 16 step data. No size or rotation. All other sequencer settings are global and not stored anywhere in eeprom. Moeten size en rotation dan niet buiten seq interface geplaatst worden?
+
+###Special functions
+Special functions
+While the browse page is displayed, hold S6 and press:
+• S1 to revert the current patch to init.
+• S2 to program random values into all the parameters of the current patch.
+• S3 to dump the current patch to the MIDI output as a SysEx block.
+• S4 to bring up the global backup page.
+• S5 to enable/disable the “combo” feature. When “combo” is enabled, the loading and saving of
+sequences is paired. That is to say, whenever you load sequence 15, patch 15 will be loaded too... Whenever you save patch to location 33, the current sequence will be saved to location 33 too.
+
 
 
 ###Windows release build
 Met standaard settings krijg je linker errors. Je moet linken tegen de static runtime /MT en de preprocessor definitie gebruiken van MAXAPI_USE_MSCRT. Daarnaast moet je nog de exclude library weghalen voor libcmt.lib.
+
+
+
+XT doesn't work
+-----------------
+* shruthi/makefile still has 0.97 version in it
+* midi clock negeren? noten hangen
+* sysex cmd 04 is echoed to output with length 1?
+* knobs are echoed as ctl. grab from input and monitor\
+* portamento/legato saved with patch data?? ipv system settings
+* rename osc balance to mix
+
+
+XT Report to Olivier
+--------------------------
+* sysex message n=1 
+* no progress lights during upload on the shruthi device?? 
+* random bits of 256 byte sysex messages when switching midi out parameter
+* programmer mode messes up whoe thing
+* why midi out ctl mode dissapear?
+* where is Output midi clock on/off setting
+* Individual ADSR parameters are modulation destinations. Can't find them.
+* als patch en sequence gekoppeld zijn. is het dan nog logisch om een program change te sturen voor sequence of alleen voor patch? (remove from firmware evt) Zelfde voor write patch/sequence. In editor zijn ze samengevoegd. Moet writeSequence nu ook bij writePatch in de sysex request?
+* what is the param ctl mapping
 
 
 XT changes
@@ -37,16 +71,42 @@ XT changes
 * modulation destinations add adsr parameters
 
 
-    
+/* static */
+void Editor::OnLoadSaveClick() {
+  if (action_ == ACTION_LOAD) {
+    action_ = ACTION_COMPARE;
+    RestoreEditBuffer();
+  } else if (action_ == ACTION_COMPARE) {
+    action_ = ACTION_LOAD;
+    OnLoadSaveIncrement(0);
+  } else {
+    if (!is_cursor_at_valid_position()) {
+      display_mode_ = DISPLAY_MODE_OVERVIEW;
+    }
+    if (cursor_ >= kLcdWidth - 4) {
+      Storage::WritePatch(edited_item_number());
+      Storage::WriteSequence(edited_item_number());
+      action_ = ACTION_LOAD;
+    }
+  }
+}
+
+  
 Bugs
 ------------------
-
+* upload klopt niet bytes = 35200 ipv 18432
+* sequence verliest kleur bij editen 
+* velocity wordt opgeslaten als 0. get_velocity is NIET range 0-7 maar 0-127 geen scale up dus!!
 
 TODO
 --------------------------
 * als er geen mididevices zijn wordt rtmidiin en out ook niet aangemaakt. Zorg dat altijd een check is voor je funtie aanroept
 * zorg dat aux port niet hetzelfde kan zijn als input, anders krijg je een loop. Ignore sysex?
 * pgm change + bank select moet nu in object geregeld worden.
+
+* opnemen in manual: In xtmode the editor does not know when the sequence is running. If the sequence is running and you send a program change, the sequencer settings in the device will not be touched. Since the editor has no way of knowing, it will always display the sequencer settings from the loaded patch. So it might not correspond to what is currently running on the device.
+
+
 
 can I detect if a patcher is run as M4L?
 

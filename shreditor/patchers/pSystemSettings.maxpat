@@ -3,11 +3,12 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 8
+			"minor" : 1,
+			"revision" : 5,
+			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 310.0, 154.0, 1431.0, 766.0 ],
+		"rect" : [ 102.0, 190.0, 1431.0, 766.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -30,6 +31,103 @@
 		"boxes" : [ 			{
 				"box" : 				{
 					"background" : 0,
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-7",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 696.0, 256.0, 48.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 1023.0, 238.0, 0.0, 0.0 ],
+					"text" : "xtswap",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-9",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 888.0, 240.0, 48.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "xtswap",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"activeneedlecolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
+					"appearance" : 0,
+					"background" : 0,
+					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
+					"dialcolor" : [ 0.752941, 0.784314, 0.839216, 1.0 ],
+					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"fontface" : 1,
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"hidden" : 0,
+					"id" : "obj-2",
+					"ignoreclick" : 0,
+					"maxclass" : "live.dial",
+					"needlecolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "float" ],
+					"panelcolor" : [ 0.955487, 0.975006, 1.0, 1.0 ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 920.0, 304.0, 52.0, 49.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 96.0, 56.0, 54.0, 49.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_linknames" : 1,
+							"parameter_longname" : "SystemMidiModeXt",
+							"parameter_shortname" : "Midi",
+							"parameter_type" : 2,
+							"parameter_mmax" : 16.0,
+							"parameter_enum" : [ "off", "thru", "seq", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ],
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
+						}
+
+					}
+,
+					"showname" : 1,
+					"shownumber" : 1,
+					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"triangle" : 0,
+					"tribordercolor" : [ 0.27451, 0.32549, 0.4, 1.0 ],
+					"tricolor" : [ 0.572549, 0.615686, 0.658824, 1.0 ],
+					"varname" : "SystemMidiModeXt"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
 					"bubble" : 0,
 					"bubblepoint" : 0.5,
@@ -50,6 +148,7 @@
 					"presentation_rect" : [ 152.0, 56.0, 37.0, 19.0 ],
 					"text" : "Filter",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -77,6 +176,7 @@
 					"presentation_rect" : [ 64.0, 120.0, 47.0, 19.0 ],
 					"text" : "Tuning",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -100,7 +200,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t 1 l 0",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -123,7 +224,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "gate 1 1",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -145,7 +247,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---filterType",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -167,7 +270,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---systemSettingsMidiChannel",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -198,13 +302,13 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 16.0,
-							"parameter_type" : 2,
-							"parameter_shortname" : "CV",
-							"parameter_longname" : "SystemCvMode",
 							"parameter_linknames" : 1,
-							"parameter_enum" : [ "4cv in", "programmer", "pedals" ]
+							"parameter_longname" : "SystemCvMode",
+							"parameter_shortname" : "CV",
+							"parameter_type" : 2,
+							"parameter_mmax" : 16.0,
+							"parameter_enum" : [ "4cv in", "programmer", "pedals" ],
+							"parameter_unitstyle" : 0
 						}
 
 					}
@@ -246,14 +350,14 @@
 					"presentation_rect" : [ 144.0, 0.0, 45.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 16.0,
-							"parameter_type" : 2,
-							"parameter_invisible" : 2,
-							"parameter_shortname" : "Split",
-							"parameter_longname" : "SystemSplit",
 							"parameter_linknames" : 1,
-							"parameter_enum" : [ "C-1", "C0", "C1", "C2", "C3", "C4", "C5", "C6" ]
+							"parameter_longname" : "SystemSplit",
+							"parameter_shortname" : "Split",
+							"parameter_type" : 2,
+							"parameter_mmax" : 16.0,
+							"parameter_enum" : [ "C-1", "C0", "C1", "C2", "C3", "C4", "C5", "C6" ],
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -295,14 +399,14 @@
 					"presentation_rect" : [ 96.0, 56.0, 54.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 16.0,
-							"parameter_type" : 2,
-							"parameter_invisible" : 2,
-							"parameter_shortname" : "Midi",
-							"parameter_longname" : "SystemMidiMode",
 							"parameter_linknames" : 1,
-							"parameter_enum" : [ "off", "thru", "seq", "ctrl", "split", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ]
+							"parameter_longname" : "SystemMidiMode",
+							"parameter_shortname" : "Midi",
+							"parameter_type" : 2,
+							"parameter_mmax" : 16.0,
+							"parameter_enum" : [ "off", "thru", "seq", "ctrl", "split", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ],
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -341,6 +445,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "octave\nraga\nportamento\nlegato\nmaster_tuning\nmidi_channel\nmidi_out_mode\nmidi_split_point\nfilter\ncv mode",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -372,13 +477,13 @@
 					"presentation_rect" : [ 48.0, 56.0, 48.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 16.0,
-							"parameter_type" : 1,
-							"parameter_invisible" : 2,
-							"parameter_shortname" : "Channel",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "SystemChannel",
-							"parameter_linknames" : 1
+							"parameter_shortname" : "Channel",
+							"parameter_type" : 1,
+							"parameter_mmax" : 16.0,
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -416,6 +521,7 @@
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "temp block",
 					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
+					"textjustification" : 0,
 					"underline" : 0
 				}
 
@@ -493,14 +599,14 @@
 					"presentation_rect" : [ 0.0, 56.0, 48.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 126.0,
-							"parameter_mmin" : -127.0,
-							"parameter_type" : 1,
-							"parameter_invisible" : 2,
-							"parameter_shortname" : "Tuning",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "SystemTuning",
-							"parameter_linknames" : 1
+							"parameter_shortname" : "Tuning",
+							"parameter_type" : 1,
+							"parameter_mmin" : -127.0,
+							"parameter_mmax" : 126.0,
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -542,13 +648,13 @@
 					"presentation_rect" : [ 96.0, 0.0, 54.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_type" : 2,
-							"parameter_invisible" : 2,
-							"parameter_shortname" : "Legato",
-							"parameter_longname" : "SystemLegato",
 							"parameter_linknames" : 1,
-							"parameter_enum" : [ "off", "on" ]
+							"parameter_longname" : "SystemLegato",
+							"parameter_shortname" : "Legato",
+							"parameter_type" : 2,
+							"parameter_enum" : [ "off", "on" ],
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -590,13 +696,13 @@
 					"presentation_rect" : [ 48.0, 0.0, 48.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 63.0,
-							"parameter_type" : 1,
-							"parameter_invisible" : 2,
-							"parameter_shortname" : "Porta",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "SystemPortamento",
-							"parameter_linknames" : 1
+							"parameter_shortname" : "Porta",
+							"parameter_type" : 1,
+							"parameter_mmax" : 63.0,
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -638,14 +744,14 @@
 					"presentation_rect" : [ 0.0, 0.0, 48.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_unitstyle" : 0,
-							"parameter_mmax" : 2.0,
-							"parameter_mmin" : -2.0,
-							"parameter_type" : 1,
-							"parameter_invisible" : 2,
-							"parameter_shortname" : "Octave",
+							"parameter_linknames" : 1,
 							"parameter_longname" : "SystemOctave",
-							"parameter_linknames" : 1
+							"parameter_shortname" : "Octave",
+							"parameter_type" : 1,
+							"parameter_mmin" : -2.0,
+							"parameter_mmax" : 2.0,
+							"parameter_unitstyle" : 0,
+							"parameter_invisible" : 2
 						}
 
 					}
@@ -679,7 +785,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "pak 0 0 0 0 0 0 0 0 0 0",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -702,7 +809,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend setSystemSettings",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -770,7 +878,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -793,7 +902,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---systemSettings",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -816,7 +926,8 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "unpack 0 0 0 0 0 0 0 0 0 0",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
 				}
 
 			}
@@ -848,6 +959,16 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-18", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-34", 6 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -925,17 +1046,7 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-68", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-21", 6 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-69", 0 ],
+					"destination" : [ "obj-7", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-21", 7 ]
@@ -949,6 +1060,16 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-21", 9 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-9", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-21", 6 ]
 				}
 
 			}
@@ -1105,6 +1226,16 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-69", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-34", 9 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1112,19 +1243,47 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-2", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-9", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-68", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-9", 0 ]
+				}
+
+			}
  ],
 		"parameters" : 		{
-			"obj-56" : [ "SystemTuning", "Tuning", 0 ],
 			"obj-55" : [ "SystemLegato", "Legato", 0 ],
 			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
-			"obj-69" : [ "SystemSplit", "Split", 0 ],
 			"obj-48" : [ "SystemOctave", "Octave", 0 ],
 			"obj-65" : [ "SystemChannel", "Channel", 0 ],
 			"obj-71" : [ "SystemCvMode", "CV", 0 ],
-			"obj-68" : [ "SystemMidiMode", "Midi", 0 ]
+			"obj-68" : [ "SystemMidiMode", "Midi", 0 ],
+			"obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
+			"obj-69" : [ "SystemSplit", "Split", 0 ],
+			"obj-56" : [ "SystemTuning", "Tuning", 0 ]
 		}
 ,
-		"dependency_cache" : [  ]
+		"dependency_cache" : [ 			{
+				"name" : "xtswap.maxpat",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ]
 	}
 
 }

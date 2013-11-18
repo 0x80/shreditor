@@ -11,12 +11,6 @@
 
 #ifdef WIN_VERSION
 
-//#define NTDDI_VERSION NTDDI_WINXP 
-//#define _WIN32_WINNT _WIN32_WINNT_WINXP
-//#define WINVER 0x0502
-//#define _WIN32_WINNT 0x0502
-//#define WIN32_LEAN_AND_MEAN
-
 #include <Windows.h>
 //#include <Shlwapi.h>
 #include <Shlobj.h>
@@ -76,19 +70,19 @@ static t_symbol *ps_xtmode = gensym("xtmode");
 
 
 
-uint8_t Patch::CheckBuffer(uint8_t* buffer) {
-    for (uint8_t i = 8; i < 24; ++i) {
-        if (buffer[i] >= 128) {
-            memset(name, '-', 8);
-            return 0;
-        }
-    }
-    if (buffer[91] != '!') {
-        memset(name, '-', 8);
-        return 0;
-    }
-    return 1;
-}
+//uint8_t Patch::CheckBuffer(uint8_t* buffer) {
+//    for (uint8_t i = 8; i < 24; ++i) {
+//        if (buffer[i] >= 128) {
+//            memset(name, '-', 8);
+//            return 0;
+//        }
+//    }
+//    if (buffer[91] != '!') {
+//        memset(name, '-', 8);
+//        return 0;
+//    }
+//    return 1;
+//}
 
 
 VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
@@ -187,7 +181,6 @@ void VxShruthi::testpaths(const char* rootname){
 }
 
 void VxShruthi::initializeSystemStoragePath(){
-    
 
     #ifdef WIN_VERSION
     
@@ -227,10 +220,8 @@ void VxShruthi::initializeSystemStoragePath(){
     presetfile_ = root + std::string("/DevicePresets.json");
 
 	#endif
-    
 
     DPOST("Shreditor userdata location: %s", dataroot_.c_str());
-    
     testpaths(path);
     
     // Need defer low to output some data from the constructor,
@@ -343,6 +334,7 @@ uint16_t VxShruthi::addressable_space_size() {
 
 //void VxShruthi::outputProgress(long busy, long progress){
 void VxShruthi::outputProgress(long progress){
+    DPOST("progress %i", progress);
     
     int total = addressable_space_size();
     int uploaded = ++progressCounter_ * 128;
@@ -529,7 +521,7 @@ void VxShruthi::outputSequencerSettings(){
     outputNrpn(104, s.arp_direction);
     outputNrpn(105, s.arp_range);
     outputNrpn(106, s.arp_pattern);
-    outputNrpn(107, s.arp_warp);
+    outputNrpn(107, s.arp_clock_division); // warp in pre xt
     // pattern size is not global but extracted from steps
     outputNrpn(109, s.pattern_rotation);
     
@@ -544,31 +536,35 @@ void VxShruthi::outputSequence(){
     // note
     atom_setsym(atoms_+1, ps_note);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, s.steps[i].getNoteValue()); // only first 7 bits
+        atom_setlong(data+i, s.steps[i].note()); // only first 7 bits
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
+    
     
     // velocity
     atom_setsym(atoms_+1, ps_velocity);
-    for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, s.steps[i].getVelocityValue() * VELOCITY_SCALE_UP);
+    for(int i=0; i<kNumSteps; ++i){
+//        DPOST("velocity %d , scale %f", s.steps[i].velocity(), VELOCITY_SCALE_UP);
+        atom_setlong(data+i, s.steps[i].velocity());
+//        atom_setlong(data+i, s.steps[i].velocity() * VELOCITY_SCALE_UP);
+    }
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
-
+    
     // ctrl
     atom_setsym(atoms_+1, ps_ctrl);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, s.steps[i].getControllerValue());
+        atom_setlong(data+i, s.steps[i].controller());
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // gate
     atom_setsym(atoms_+1, ps_gate);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, s.steps[i].getGateValue());
+        atom_setlong(data+i, s.steps[i].gate());
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     // legato / tie
     atom_setsym(atoms_+1, ps_legato);
     for(int i=0; i<kNumSteps; ++i)
-        atom_setlong(data+i, s.steps[i].getLegatoValue());
+        atom_setlong(data+i, s.steps[i].legato());
     outlet_list(m_outlets[1], ps_empty, kNumSteps+2, atoms_);
     
     
@@ -578,14 +574,14 @@ void VxShruthi::outputSequence(){
     for(int i=0; i<16; ++i){
         atom_setlong(atoms_+1, i+1);
         atom_setlong(atoms_+2, 1);
-        atom_setlong(atoms_+3, s.steps[i].getLegatoValue());
+        atom_setlong(atoms_+3, s.steps[i].legato());
         outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     }
     
     for(int i=0; i<16; ++i){
         atom_setlong(atoms_+1, i+1);
         atom_setlong(atoms_+2, 2);
-        atom_setlong(atoms_+3, s.steps[i].getGateValue());
+        atom_setlong(atoms_+3, s.steps[i].gate());
         outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     }
     
@@ -654,7 +650,16 @@ void VxShruthi::transferRom(long inlet) {
 // requests
 void VxShruthi::requestNumbers(long inlet){ device_.sendSysexCommand(0x1a); }
 void VxShruthi::requestNumBanks(long inlet){ device_.sendSysexCommand(0x1b); }
-void VxShruthi::requestVersion(long inlet){ device_.sendSysexCommand(0x1c); }
+void VxShruthi::requestVersion(long inlet){
+    DPOST("_______requestVersion()______");
+    
+    atom_setsym(atoms_, gensym("firmware"));
+    atom_setsym(atoms_, gensym("undefined"));
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    
+    
+    device_.sendSysexCommand(0x1c);
+}
 void VxShruthi::requestPatch(long inlet){ device_.sendSysexCommand(0x11); }
 void VxShruthi::requestSequence(long inlet){ device_.sendSysexCommand(0x12); }
 void VxShruthi::requestWavetable(long inlet){ device_.sendSysexCommand(0x13); }
@@ -681,30 +686,31 @@ void VxShruthi::requestSequenceWrite(long slot){
     device_.sendSysex(payload, 0x22, 0, 2);
 }
 
-void VxShruthi::setSequenceNote(long inlet, long step, long value){
-    workingSequencer_[slotIndex_].steps[step & 0x0f].setNoteValue(value);
-    transferSequenceStep(step);
-}
-
-void VxShruthi::setSequenceController(long inlet, long step, long value){
-    workingSequencer_[slotIndex_].steps[step & 0x0f].setControllerValue(value);
-    transferSequenceStep(step);
-}
-
-void VxShruthi::setSequenceGate(long inlet, long step, long value){
-    workingSequencer_[slotIndex_].steps[step & 0x0f].setGateValue(value);
-    transferSequenceStep(step);
-}
-
-void VxShruthi::setSequenceLegato(long inlet, long step, long value){
-    workingSequencer_[slotIndex_].steps[step & 0x0f].setLegatoValue(value);
-    transferSequenceStep(step);
-}
-
-void VxShruthi::setSequenceVelocity(long inlet, long step, long value){
-    workingSequencer_[slotIndex_].steps[step & 0x0f].setVelocityValue(value);
-    transferSequenceStep(step);
-}
+//void VxShruthi::setSequenceNote(long inlet, long step, long value){
+//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_note(value);
+//    transferSequenceStep(step);
+//}
+//
+//void VxShruthi::setSequenceController(long inlet, long step, long value){
+//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_controller(value);
+//    transferSequenceStep(step);
+//}
+//
+//void VxShruthi::setSequenceGate(long inlet, long step, long value){
+//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_gate(value);
+//    transferSequenceStep(step);
+//}
+//
+//void VxShruthi::setSequenceLegato(long inlet, long step, long value){
+//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_legato(value);
+//    transferSequenceStep(step);
+//}
+//
+//void VxShruthi::setSequenceVelocity(long inlet, long step, long value){
+//    DPOST("setSequenceVelocity() %d", value);
+//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_velocity(value * VELOCITY_SCALE_DOWN + 0.5f);
+//    transferSequenceStep(step);
+//}
 
 void VxShruthi::setPatchName(long inlet, t_symbol *name){
     int c = 0;
@@ -805,10 +811,13 @@ void VxShruthi::liveStep(long inlet, t_symbol* s, long ac, t_atom *av){
     }
     
     uint8_t stepIndex = (atom_getlong(av) - 1) & 0x0f;
-    workingSequencer_[slotIndex_].steps[stepIndex].setNoteValue(atom_getlong(av+1));
+    workingSequencer_[slotIndex_].steps[stepIndex].set_note(atom_getlong(av+1));
     // scale 0-127 to 0-7, round up is important here otherwise downspiral on iteration
-    workingSequencer_[slotIndex_].steps[stepIndex].setVelocityValue(VELOCITY_SCALE_DOWN * atom_getlong(av+2) + 0.5f); 
-    workingSequencer_[slotIndex_].steps[stepIndex].setControllerValue(atom_getlong(av+4));
+    
+//    DPOST("set velocity %f", VELOCITY_SCALE_DOWN * atom_getlong(av+2) + 0.5f);
+//    workingSequencer_[slotIndex_].steps[stepIndex].set_velocity(VELOCITY_SCALE_DOWN * atom_getlong(av+2) + 0.5f);
+    workingSequencer_[slotIndex_].steps[stepIndex].set_velocity(atom_getlong(av+2));
+    workingSequencer_[slotIndex_].steps[stepIndex].set_controller(atom_getlong(av+4));
     
     // schedule transfer to prevent sending lots of data
     isSequenceDirty_ = true;
@@ -837,8 +846,8 @@ void VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av){
     }
     
     for(size_t i=0; i<16; ++i){
-        workingSequencer_[slotIndex_].steps[i].setGateValue(listGate[i]);
-        workingSequencer_[slotIndex_].steps[i].setLegatoValue(listLegato[i]);
+        workingSequencer_[slotIndex_].steps[i].set_gate(listGate[i]);
+        workingSequencer_[slotIndex_].steps[i].set_legato(listLegato[i]);
     }
     
     // schedule transfer to prevent sending lots of data
@@ -850,7 +859,7 @@ void VxShruthi::onTick(VxShruthi *x)
     if(x->isSequenceDirty_){
         DPOST("updating sequence on device");
         x->transferSequence();
-        x->outputSequence();
+//        x->outputSequence();
         x->isSequenceDirty_ = false;
     }
     clock_fdelay(x->clock_, SEQUENCE_UPDATE_INTERVAL_MS);
@@ -859,24 +868,34 @@ void VxShruthi::onTick(VxShruthi *x)
 void VxShruthi::storePatch(long inlet, long slot){
     requestPatchWrite(slot);
     storePatchToEeprom(slot);
+    
+    if(xtmode_){
+        requestSequenceWrite(slot);
+        storeSequenceToEeprom(slot);
+    }
 }
 
 void VxShruthi::storeSequence(long inlet, long slot){
     
     // First we need to use global pattern_length to cut
     // the sequence and clear every step outside length.
-    SequencerSettings &seq = workingSequencer_[slotIndex_];
-
-    // Clear all the notes after the cycle mark.
-    for (uint8_t i = seq.pattern_size; i < kNumSteps; ++i) {
-        seq.steps[i].clear();
+//    SequencerSettings &seq = workingSequencer_[slotIndex_];
+//
+//    // Clear all the notes after the cycle mark.
+//    for (uint8_t i = seq.pattern_size; i < kNumSteps; ++i) {
+//        seq.steps[i].clear();
+//    }
+    
+    if(xtmode_){
+        object_error((t_object*)this, "storeSequence() is not allowed in xt mode");
+        return;
     }
+    requestSequenceWrite(slot);
+    storeSequenceToEeprom(slot);
+    
     // Output the new pattern with cleared steps
     outputSequence();
     
-    
-    requestSequenceWrite(slot);
-    storeSequenceToEeprom(slot);
 }
 
 void VxShruthi::storePatchToEeprom(long slot){
@@ -884,16 +903,16 @@ void VxShruthi::storePatchToEeprom(long slot){
     
     uint8_t *address = getAddress<Patch>(slot);
     
-    DPOST("cutoff src %i", workingPatch_[slotIndex_].filter_cutoff);
-    DPOST("cutoff dst %i", ((Patch *)address)->filter_cutoff);
-    
-    DPOST("cpy size %i", StorageConfiguration<Patch>::size);
+    // update before write
+    if(xtmode_){
+        workingPatch_[slotIndex_].PrepareForWriteXt(*settings_, workingSequencer_[slotIndex_]);
+    }else{
+        workingPatch_[slotIndex_].PrepareForWriteOrig();
+    }
    
     std::memcpy(address,
                 &workingPatch_[slotIndex_],
                 StorageConfiguration<Patch>::size);
-    
-    DPOST("cutoff postdst %i", ((Patch *)address)->filter_cutoff);
 }
 
 void VxShruthi::loadPatchFromEeprom(long slot){
@@ -902,10 +921,26 @@ void VxShruthi::loadPatchFromEeprom(long slot){
     std::memcpy(&workingPatch_[slotIndex_],
                 address,
                 StorageConfiguration<Patch>::size);
+   
+    // update patch data
+    if(xtmode_){
+        // also load sequence with same slot
+        loadSequenceFromEeprom(slot);
+//        calculatePatternSize();
+        
+        workingPatch_[slotIndex_].UpdateXt(*settings_, workingSequencer_[slotIndex_]);
+        
+        
+    }else{
+        workingPatch_[slotIndex_].UpdateOrig();
+    }
 }
 void VxShruthi::storeSequenceToEeprom(long slot){
     DPOST("Store sequence %i to eeprom", slot);
     uint8_t *address = getAddress<SequencerSettings>(slot);
+    
+    workingSequencer_[slotIndex_].PrepareForWrite();
+  
     std::memcpy(address,
                 & workingSequencer_[slotIndex_].steps,
                 StorageConfiguration<SequencerSettings>::size);
@@ -917,32 +952,11 @@ void VxShruthi::loadSequenceFromEeprom(long slot){
     std::memcpy(& workingSequencer_[slotIndex_].steps,
                 address,
                 StorageConfiguration<SequencerSettings>::size);
+    
+    workingSequencer_[slotIndex_].Update();
 }
 
-void VxShruthi::loadPatch(long inlet, long slot){
-    
-    if(workingPatchIndex_[slotIndex_] == slot){
-        DPOST("Slot same as working, using exising data", slot);
-        outputPatchData();
-        return;
-    }
-    
-    workingPatchIndex_[slotIndex_] = slot; // store current active slot
-    
-    sendPatchProgramChange(slot);
-    
-//    if(useEepromCache_ && hasEepromCache_){
-        loadPatchFromEeprom(slot);
-        outputPatchData();
-    
-    
-    
-//    }else{
-//        DPOST("Transferring patch %i from device", slot);
-//        // delay nodig misschien?
-//        requestPatch();
-//    }
-}
+
 
 
 void VxShruthi::calculatePatternSize(){
@@ -961,28 +975,54 @@ void VxShruthi::calculatePatternSize(){
 
 }
 
+
+void VxShruthi::loadPatch(long inlet, long slot){
+    
+    if(workingPatchIndex_[slotIndex_] == slot){
+        DPOST("Slot same as working, using exising data", slot);
+        outputPatchData();
+        return;
+    }
+    
+    workingPatchIndex_[slotIndex_] = slot; // store current active slot
+    
+    sendPatchProgramChange(slot);
+    
+    //    if(useEepromCache_ && hasEepromCache_){
+    loadPatchFromEeprom(slot);
+    outputPatchData();
+    
+    if(xtmode_){
+        // sequences are coupled to patch storage
+        outputSequence();
+        // sequence settings are embedded in patch data
+        outputSequencerSettings();
+    }
+    
+}
 void VxShruthi::loadSequence(long inlet, long slot){
     
+    if(xtmode_){
+        object_error((t_object*)this, "loadSequence is not valid in xt mode");
+        return;
+    }
+    
     if(workingSequencerIndex_[slotIndex_] == slot){
-        DPOST("Slot same as working, using exising seq data", slot);
+        DPOST("Slot same as working, using existing seq data", slot);
         outputSequence();
         return;
     }
     
     workingSequencerIndex_[slotIndex_] = slot; // store current active slot
     
+    // in xt mode zijn patch en sequence al gekoppeld
+ //   if(!xtmode_){
     sendSequenceProgramChange(slot);
-    
-//    if(useEepromCache_ && hasEepromCache_){
-        loadSequenceFromEeprom(slot);
-    
-    calculatePatternSize();
-    outputSequence();
-//    }else{
-//        DPOST("Transferring sequence %i from device", slot);
-//        // delay nodig misschien?
-//        requestSequence();
 //    }
+    
+    loadSequenceFromEeprom(slot);
+//    calculatePatternSize();
+    outputSequence();
 }
 
 void VxShruthi::sendPatchProgramChange(long slot){
@@ -1184,7 +1224,7 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
                 StorageConfiguration<SequencerSettings>::size);
     transferSequence();
     
-    calculatePatternSize();
+//    calculatePatternSize();
     outputSequence();
 }
 
@@ -1202,7 +1242,7 @@ void VxShruthi::refreshGui(){
     requestNumbers();
     // output global setting data
     outputSettingsData();
-    outputSequencerSettings();
+//    outputSequencerSettings();
 }
 
 // v range 1-8
@@ -1221,10 +1261,10 @@ void VxShruthi::switchToDevice(long inlet, long v){
     
     // get sequencer settings since they are not stored anywhere
     // and we might have restarted the editor meanwhile
-    requestSequencerSettings();
+//    requestSequencerSettings();
     
     //refreshGui();
-    requestVersion(); // -> then call refresh Gui()
+    requestVersion(); // -> call refreshGui() and sequencer data on return
     
     // clear nrpn cache todo clean way
     device_.lastNrpnIndex_ = -1;
@@ -1256,13 +1296,13 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
             break;
             
         case kNumBanks:
-            if(data.size() == 0 && arg > 0){
+            if(data.size() == 0 && arg > 1){
                 success = 1;
                 numAccessibleBanks_ = arg;
                 
                 DPOST("Device numbanks: %i", numAccessibleBanks_ );
                 
-                if(numAccessibleBanks_ > 7){
+                if(numAccessibleBanks_ > 7 || numAccessibleBanks_ < 2){
                     object_error((t_object *)this, "Invalid eeprom size numbanks: %i", numAccessibleBanks_);
                     DPOST("Resetting storage to default 2 banks");
                     numAccessibleBanks_ = 2;
@@ -1275,13 +1315,20 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
         case kVersion:
             if(data.size() == 2){
                 success = 1;
-                uint8_t major, minor;
-                major = data[0];
-                minor = data[1];
-                DPOST("Firmware version %i %i", major, minor);
                 
-                if(major == 0){
+                firmware_major_ = data[0];
+                firmware_minor_ = data[1];
+                DPOST("Firmware version %i %i", firmware_major_, firmware_minor_);
+                atom_setsym(atoms_, gensym("firmware"));
+                atom_setlong(atoms_+1, firmware_major_);
+                atom_setlong(atoms_+2, firmware_minor_);
+                outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+                            
+                if(firmware_major_ == 0){
                     setXtMode(false);
+                    // pre xt sequencer settings are not stored anywhere
+                    // we might have restarted the editor
+                    requestSequencerSettings();
                     refreshGui();
                 }else{
                     setXtMode(true);
@@ -1293,7 +1340,11 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
             break;
             
         case kPatch:  // Patch transfer
-            success = workingPatch_[slotIndex_].CheckBuffer(sysex_rx_buffer_);
+            if(xtmode_){
+                success = workingPatch_[slotIndex_].CheckBufferXt(sysex_rx_buffer_);
+            }else{
+                success = workingPatch_[slotIndex_].CheckBufferOrig(sysex_rx_buffer_);
+            }
             if(success){
                 DPOST("Patch data received");
                 std::memcpy(&workingPatch_[slotIndex_],
@@ -1516,7 +1567,7 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
         case 104: workingSequencer_[slotIndex_].arp_direction = v; break;
         case 105: workingSequencer_[slotIndex_].arp_range = v; break;
         case 106: workingSequencer_[slotIndex_].arp_pattern = v; break;
-        case 107: workingSequencer_[slotIndex_].arp_warp = v; break;
+        case 107: workingSequencer_[slotIndex_].arp_clock_division = v; break;
         case 108: workingSequencer_[slotIndex_].pattern_size = v; break;
         case 109: workingSequencer_[slotIndex_].pattern_rotation = v; break;
             
@@ -1568,9 +1619,9 @@ void VxShruthi::listPatchNames(long inlet){
         p = reinterpret_cast<Patch *>(pmem + i*PATCH_SIZE); 
         atom_setlong(atoms_+1, patchNumber++);
         
-        if(p->exclamation_mark_ != '!'){
+        if(p->version_ != '!' && p->version_ !='%'){ // % = xt version
 //            break; // not isNrpnValid_ patch data
-            atom_setsym(atoms_+2, gensym("_"));
+            atom_setsym(atoms_+2, gensym("-"));
         } else {
 			//DPOST("p->name %s", p->name);
 
@@ -1595,9 +1646,9 @@ void VxShruthi::listPatchNames(long inlet){
             p = reinterpret_cast<Patch *>(pmem + i*PATCH_SIZE);
             atom_setlong(atoms_+1, patchNumber++);
             
-            if(p->exclamation_mark_ != '!'){
+            if(p->version_ != '!' && p->version_ !='%'){ // % = xt version
                 //            break; // not isNrpnValid_ patch data
-                atom_setsym(atoms_+2, gensym("_"));
+                atom_setsym(atoms_+2, gensym("-"));
             } else {
 				// convert name into 0 terminated string
 				char str[kPatchNameSize+1];
@@ -1628,11 +1679,11 @@ int T_EXPORT main(void) {
 	// create a class with the given name:
 	VxShruthi::makeMaxClass("vx.shruthi");
     
-    REGISTER_METHOD_LONG2(VxShruthi, setSequenceNote);
-    REGISTER_METHOD_LONG2(VxShruthi, setSequenceGate);
-    REGISTER_METHOD_LONG2(VxShruthi, setSequenceVelocity);
-    REGISTER_METHOD_LONG2(VxShruthi, setSequenceController);
-    REGISTER_METHOD_LONG2(VxShruthi, setSequenceLegato);
+//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceNote);
+//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceGate);
+//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceVelocity);
+//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceController);
+//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceLegato);
     
     REGISTER_METHOD_SYMBOL(VxShruthi, setPatchName);
     

@@ -129,6 +129,10 @@ void ShruthiMidi::testMidiOut(){
 }
 
 bool ShruthiMidi::validateSysex(std::vector<uint8_t> *sysex){
+    if(sysex->size() < 6){
+        error("Received invalid sysex message, length %i", sysex->size());
+        return false;
+    }
     // validate header
     return std::memcmp(sysex_rx_header, sysex, 6);
     
@@ -496,7 +500,7 @@ void ShruthiMidi::processControlChangeAsNrpn(){
 
 void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
 {
-    //DPOST("midi input callback");
+    DPOST("midi input msg size %i", msg->size());
     
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
@@ -512,6 +516,11 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
     // skip parsing channel messages which are not on our channel
     if(status != STATUS_SYSEX && x.channelIn_ != channel){
         DPOST("Ignored msg for channel %i", channel+1);
+        return;
+    }
+    
+    if(status >= STATUS_RT_RANGE_START){
+        DPOST("Ignored realtime msg %x", status);
         return;
     }
     
@@ -538,7 +547,7 @@ void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg
 
 void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
 {
-    //DPOST("midi aux callback");
+    DPOST("midi aux msg size %i", msg->size());//DPOST("midi aux callback");
     
     ShruthiMidi &x = *(ShruthiMidi*)userData;
     //        post("Midi input msg count: %i, delta: %f", ++x.midiMsgCounter_, deltatime);
@@ -556,6 +565,11 @@ void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, 
         return;
     }
     
+    if(status >= STATUS_RT_RANGE_START){
+        DPOST("Ignored realtime msg %x", status);
+        return;
+    }
+    
     // skip parsing channel messages which are not on our channel
     if(status != STATUS_SYSEX && x.channelAuxIn_ != channel){
         DPOST("Ignored msg for channel %i", channel+1);
@@ -568,7 +582,7 @@ void ShruthiMidi::midiAuxCallback( double deltatime, std::vector<uint8_t> *msg, 
 
 void ShruthiMidi::midiVoidCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
 {
-    DPOST("midi void callback");
+    DPOST("midi void msg size %i", msg->size());
 }
 
 int ShruthiMidi::findInputPortNumberForName(t_symbol* name){

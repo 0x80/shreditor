@@ -66,7 +66,6 @@ public:
     inline void mapNrpnToEeprom(long nrpn_index, long v);
     inline void mapSequencerNrpnToEeprom(long nrpn_index, long v);
     inline void outputNrpn(long index, long value);
-    
 
     void acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data);
     
@@ -100,11 +99,11 @@ public:
         
     void setPatternLength(long inlet, long length);
     void setPatternRotation(long inlet, long rotation);
-    void setSequenceNote(long inlet, long step, long value);
-    void setSequenceController(long inlet, long step, long value);
-    void setSequenceGate(long inlet, long step, long value);
-    void setSequenceLegato(long inlet, long step, long value);
-    void setSequenceVelocity(long inlet, long step, long value);
+//    void setSequenceNote(long inlet, long step, long value);
+//    void setSequenceController(long inlet, long step, long value);
+//    void setSequenceGate(long inlet, long step, long value);
+//    void setSequenceLegato(long inlet, long step, long value);
+//    void setSequenceVelocity(long inlet, long step, long value);
     void setPatchName(long inlet, t_symbol *name);
     void setSettingsFilter(long inlet, t_symbol *name);
     void setSettingsOctave(long inlet, long v);
@@ -207,6 +206,7 @@ private:
     
     uint8_t *eeprom_;
     uint8_t loadbuffer_[sizeof(Patch)];
+    uint8_t firmware_major_, firmware_minor_;
    // uint8_t numBanks_; // number of external eeprom banks
     
     ShruthiMidi device_;

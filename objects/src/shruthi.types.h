@@ -2,9 +2,9 @@
 #define MutableSysex_shruthi_types_h
 
 
-#include "shruthi/patch.h"
-#include "shruthi/sequencer_settings.h"
-#include "shruthi/system_settings.h"
+#include "patch.h"
+#include "sequencer_settings.h"
+#include "system_settings.h"
 #include <functional>
 //#include <boost/tr1/functional>
 #include "stdint.h"
@@ -48,6 +48,9 @@ static const uint8_t sysex_rx_header_old[] = {
 #define STATUS_PITCH_BEND 0xe0
 #define STATUS_CC 0xb0
 #define STATUS_SYSEX 0xf0
+#define STATUS_CLOCK 0xf8
+#define STATUS_RT_RANGE_START 0xf8
+#define STATIS_RT_RANGE_END 0xff
 
 
 enum SysexCommand {
