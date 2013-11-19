@@ -301,11 +301,11 @@ bool VxShruthi::isExpired(){
     // mday range 1-31
     release = local;
     release.tm_hour = 0;   release.tm_min = 0; release.tm_sec = 0;
-    release.tm_year = 113; release.tm_mon = 10; release.tm_mday = 3;
+    release.tm_year = 113; release.tm_mon = 10; release.tm_mday = 18;
     
     expire = local;
     expire.tm_hour = 0;   expire.tm_min = 0; expire.tm_sec = 1;
-    expire.tm_year = 113; expire.tm_mon = 11; expire.tm_mday = 11;
+    expire.tm_year = 113; expire.tm_mon = 11; expire.tm_mday = 20;
     
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire), now);
@@ -654,7 +654,7 @@ void VxShruthi::requestVersion(long inlet){
     DPOST("_______requestVersion()______");
     
     atom_setsym(atoms_, gensym("firmware"));
-    atom_setsym(atoms_, gensym("undefined"));
+    atom_setsym(atoms_+1, gensym("undefined"));
     outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
     
@@ -1002,10 +1002,10 @@ void VxShruthi::loadPatch(long inlet, long slot){
 }
 void VxShruthi::loadSequence(long inlet, long slot){
     
-    if(xtmode_){
-        object_error((t_object*)this, "loadSequence is not valid in xt mode");
-        return;
-    }
+    //if(xtmode_){
+    //    object_error((t_object*)this, "loadSequence is not valid in xt mode");
+    //    return;
+    //}
     
     if(workingSequencerIndex_[slotIndex_] == slot){
         DPOST("Slot same as working, using existing seq data", slot);

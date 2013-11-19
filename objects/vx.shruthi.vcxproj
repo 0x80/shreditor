@@ -274,6 +274,7 @@
     <ClCompile Include="..\..\..\c74support\max-includes\common\dllmain_win.c" />
     <ClCompile Include="..\c74support\max-includes\common\commonsyms.c" />
     <ClCompile Include="external\rtmidi\RtMidi.cpp" />
+    <ClCompile Include="src\patch.cpp" />
     <ClCompile Include="src\shruthi.midi.cpp" />
     <ClCompile Include="src\shruthi.transfer.cpp" />
     <ClCompile Include="src\vx.shruthi.cpp">
@@ -284,9 +285,12 @@
   <ItemGroup>
     <ClInclude Include="external\maxcpp6.h" />
     <ClInclude Include="external\rtmidi\RtMidi.h" />
+    <ClInclude Include="src\patch.h" />
+    <ClInclude Include="src\sequencer_settings.h" />
     <ClInclude Include="src\shruthi.midi.h" />
     <ClInclude Include="src\shruthi.transfer.h" />
     <ClInclude Include="src\shruthi.types.h" />
+    <ClInclude Include="src\system_settings.h" />
     <ClInclude Include="src\vx.shruthi.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
