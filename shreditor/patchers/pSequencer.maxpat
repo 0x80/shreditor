@@ -414,7 +414,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 840.0, 432.0, 83.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 408.0, 104.0, 83.0, 19.0 ],
+					"presentation_rect" : [ 416.0, 104.0, 83.0, 19.0 ],
 					"text" : "Edit Loop Only",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"textjustification" : 0,
@@ -438,7 +438,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 816.0, 432.0, 18.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 384.0, 104.0, 19.0, 19.0 ]
+					"presentation_rect" : [ 392.0, 104.0, 19.0, 19.0 ]
 				}
 
 			}
@@ -559,7 +559,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 688.0, 432.0, 41.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 408.0, 32.0, 48.0, 20.0 ],
+					"presentation_rect" : [ 416.0, 32.0, 48.0, 20.0 ],
 					"text" : "< Left",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"textjustification" : 0,
@@ -587,7 +587,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 760.0, 432.0, 49.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 408.0, 56.0, 48.0, 20.0 ],
+					"presentation_rect" : [ 416.0, 56.0, 48.0, 20.0 ],
 					"text" : "> Right",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"textjustification" : 0,
@@ -611,7 +611,7 @@
 					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"patching_rect" : [ 736.0, 432.0, 20.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 384.0, 56.0, 19.0, 19.0 ],
+					"presentation_rect" : [ 392.0, 56.0, 19.0, 19.0 ],
 					"prototypename" : "shr_dark_circle"
 				}
 
@@ -632,7 +632,7 @@
 					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"patching_rect" : [ 664.0, 432.0, 20.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 384.0, 32.0, 19.0, 19.0 ],
+					"presentation_rect" : [ 392.0, 32.0, 19.0, 19.0 ],
 					"prototypename" : "shr_dark_circle"
 				}
 
@@ -657,7 +657,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 13.0, 176.0, 35.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 11.0, 172.0, 25.0, 19.0 ],
+					"presentation_rect" : [ 19.0, 172.0, 25.0, 19.0 ],
 					"text" : "Tie",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0,
@@ -1614,7 +1614,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 384.0, 64.0, 91.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 466.0, 0.0, 35.0, 19.0 ],
+					"presentation_rect" : [ 474.0, 0.0, 35.0, 19.0 ],
 					"text" : "Load",
 					"textcolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
 					"textjustification" : 0,
@@ -1649,7 +1649,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 600.0, 56.0, 40.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 506.0, 24.0, 38.0, 20.0 ],
+					"presentation_rect" : [ 514.0, 24.0, 38.0, 20.0 ],
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"triangle" : 1,
 					"tricolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
@@ -1677,7 +1677,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 672.0, 56.0, 39.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 466.0, 24.0, 37.0, 19.0 ],
+					"presentation_rect" : [ 474.0, 24.0, 37.0, 19.0 ],
 					"text" : "Store",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"textjustification" : 0,
@@ -1701,7 +1701,7 @@
 					"outlinecolor" : [ 1.0, 0.427451, 0.0, 1.0 ],
 					"patching_rect" : [ 648.0, 56.0, 20.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 549.0, 24.0, 19.0, 19.0 ],
+					"presentation_rect" : [ 557.0, 24.0, 19.0, 19.0 ],
 					"prototypename" : "shr_dark_circle"
 				}
 
@@ -1733,7 +1733,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 488.0, 64.0, 50.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 505.0, 0.0, 38.0, 20.0 ],
+					"presentation_rect" : [ 513.0, 0.0, 38.0, 20.0 ],
 					"textcolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
 					"triangle" : 1,
 					"tricolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
@@ -1809,7 +1809,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 144.0, 280.0, 65.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 408.0, 136.0, 64.0, 19.0 ],
+					"presentation_rect" : [ 416.0, 136.0, 64.0, 19.0 ],
 					"text" : "Auto Zoom",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"textjustification" : 0,
@@ -1833,7 +1833,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 120.0, 280.0, 18.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 384.0, 136.0, 19.0, 19.0 ]
+					"presentation_rect" : [ 392.0, 136.0, 19.0, 19.0 ]
 				}
 
 			}
@@ -2025,7 +2025,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 416.0, 688.0, 55.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 408.0, 80.0, 55.0, 19.0 ],
+					"presentation_rect" : [ 416.0, 80.0, 55.0, 19.0 ],
 					"text" : "Scramble",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"textjustification" : 0,
@@ -2053,7 +2053,7 @@
 					"patching_rect" : [ 392.0, 720.0, 244.0, 32.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : ";\r\n---toSequencerGui scramble pitch 1, dump;\r\n",
+					"text" : ";\r---toSequencerGui scramble pitch 1, dump;\r",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
@@ -2075,7 +2075,7 @@
 					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"patching_rect" : [ 392.0, 688.0, 20.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 384.0, 80.0, 19.0, 19.0 ],
+					"presentation_rect" : [ 392.0, 80.0, 19.0, 19.0 ],
 					"prototypename" : "shr_dark_circle"
 				}
 
@@ -2626,7 +2626,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 410.0, 541.0, 35.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 11.0, 157.0, 35.0, 19.0 ],
+					"presentation_rect" : [ 19.0, 157.0, 35.0, 19.0 ],
 					"text" : "Gate ",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0,
@@ -2810,7 +2810,7 @@
 					"prefix" : "",
 					"prefix_mode" : 0,
 					"presentation" : 1,
-					"presentation_rect" : [ 384.0, 0.0, 72.0, 19.0 ],
+					"presentation_rect" : [ 392.0, 0.0, 72.0, 19.0 ],
 					"rounded" : 8,
 					"showdotfiles" : 0,
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
@@ -2900,7 +2900,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 56.0, 544.0, 354.0, 34.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 45.0, 157.0, 332.0, 32.0 ],
+					"presentation_rect" : [ 53.0, 157.0, 332.0, 32.0 ],
 					"prototypename" : "sadgagd",
 					"rounded" : 4.0,
 					"rows" : 2,
@@ -2961,7 +2961,7 @@
 					"patching_rect" : [ 240.0, 176.0, 200.0, 120.0 ],
 					"pitch_active" : 1,
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 378.0, 155.0 ],
+					"presentation_rect" : [ 8.0, 0.0, 378.0, 155.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "sequencerSteps[1]",
@@ -3829,20 +3829,20 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
-			"obj-192" : [ "SequenceGrid", "Grid", 0 ]
+			"obj-192" : [ "SequenceGrid", "Grid", 0 ],
+			"obj-191" : [ "sequencerSteps[1]", "steps", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "_.maxpat",
-				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "xtswap.maxpat",
-				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

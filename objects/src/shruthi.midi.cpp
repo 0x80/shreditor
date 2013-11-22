@@ -308,6 +308,7 @@ void ShruthiMidi::sendSysex(uint8_t* data, uint8_t command, uint8_t argument, si
     
 }
 void ShruthiMidi::sendSysexSafe(uint8_t* data, uint8_t command, uint8_t argument, size_t size) {
+    
     std::vector<unsigned char> msg;
     uint8_t checksum = 0;
     
@@ -702,6 +703,10 @@ void ShruthiMidi::printMidiPorts(long inlet){
 }
 
 void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
+    if(!isOutputValid_){
+        DPOST("midi output not valid");
+        return;
+    }
     
     std::vector<uint8_t> msg;
 

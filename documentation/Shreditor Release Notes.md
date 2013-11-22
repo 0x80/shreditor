@@ -6,9 +6,14 @@ Beta 4
 * Implemented XT compatibility mode, supporting firmware 1.0.
 * Firmware version checks through sysex.
 * Fixed bug where invalid sysex from Shruthi could corrupt editor midi handling.
+* Fixed crash when sending NRPN to invalid midi port.
 * User confirm popup warning when uploading data to device.
+* Fixed bug in sequencer velocity data interpretation.
 * Additional filter settings correctly stored locally.
 * Operator settings correctly stored locally.
+* Sequencer pgm change now uses MSB in 0.98 to match 1.0.
+* Matrix modulation reset buttons.
+* Fixed crashes when using the interface without first selecting a device slot.
 
 Beta 3
 ---------------

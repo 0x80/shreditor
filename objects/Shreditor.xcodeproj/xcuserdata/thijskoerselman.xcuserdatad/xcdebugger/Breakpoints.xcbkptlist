@@ -45,11 +45,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/shruthi.midi.cpp"
-         timestampString = "406137590.500184"
+         timestampString = "406746951.558137"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "619"
-         endingLineNumber = "619"
+         startingLineNumber = "620"
+         endingLineNumber = "620"
          landmarkName = "ShruthiMidi::findOutputPortNumberForName(t_symbol* name)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -75,20 +75,18 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "996"
-         endingLineNumber = "996"
-         landmarkName = "VxShruthi::loadPatch(long inlet, long slot)"
-         landmarkType = "5">
+         endingLineNumber = "996">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/shruthi.midi.cpp"
-         timestampString = "406137590.500184"
+         timestampString = "406746951.558137"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "530"
-         endingLineNumber = "530"
+         startingLineNumber = "531"
+         endingLineNumber = "531"
          landmarkName = "ShruthiMidi::midiInputCallback( double deltatime, std::vector&lt;uint8_t&gt; *msg, void *userData )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -162,37 +160,33 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/vx.shruthi.cpp"
-         timestampString = "406503009.868425"
+         timestampString = "406746951.558137"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1195"
-         endingLineNumber = "1195"
-         landmarkName = "VxShruthi::clearEepromCache(long inlet)"
-         landmarkType = "5">
+         startingLineNumber = "1196"
+         endingLineNumber = "1196">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/vx.shruthi.cpp"
-         timestampString = "406503009.868425"
+         timestampString = "406746951.558137"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1196"
-         endingLineNumber = "1196"
-         landmarkName = "VxShruthi::clearEepromCache(long inlet)"
-         landmarkType = "5">
+         startingLineNumber = "1197"
+         endingLineNumber = "1197">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/shruthi.midi.cpp"
-         timestampString = "406137874.20443"
+         timestampString = "406746951.558137"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "417"
-         endingLineNumber = "417"
+         startingLineNumber = "418"
+         endingLineNumber = "418"
          landmarkName = "ShruthiMidi::expectedSysexPayload(SysexCommand cmd)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -208,6 +202,39 @@
          endingLineNumber = "190"
          landmarkName = "ShruthiMidi::parseSysex(std::vector&lt;uint8_t&gt; *msg)"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "406814170.058165"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1548"
+         endingLineNumber = "1548">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "406814176.061524"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1472"
+         endingLineNumber = "1472">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/vx.shruthi.cpp"
+         timestampString = "406814182.145457"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1467"
+         endingLineNumber = "1467">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

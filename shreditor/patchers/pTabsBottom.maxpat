@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x86"
 		}
 ,
@@ -144,7 +144,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 0.0, 192.0, 568.0, 224.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 200.0, 600.0, 224.0 ],
+					"presentation_rect" : [ 0.0, 200.0, 616.0, 224.0 ],
 					"varname" : "pMatrix"
 				}
 
@@ -185,7 +185,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 0.0, 0.0, 568.0, 176.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 8.0, 600.0, 192.0 ]
+					"presentation_rect" : [ 0.0, 8.0, 616.0, 192.0 ]
 				}
 
 			}
@@ -202,20 +202,18 @@
  ],
 		"parameters" : 		{
 			"obj-34::obj-92" : [ "Mod10Amount", ".", 0 ],
+			"obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
 			"obj-34::obj-50" : [ "Mod3Amount", ".", 0 ],
 			"obj-34::obj-56" : [ "Mod8Amount", ".", 0 ],
 			"obj-34::obj-80" : [ "Mod12Amount", ".", 0 ],
 			"obj-34::obj-74" : [ "Mod5Amount", ".", 0 ],
-			"obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
 			"obj-34::obj-23" : [ "Mod2Amount", ".", 0 ],
 			"obj-34::obj-62" : [ "Mod7Amount", ".", 0 ],
 			"obj-34::obj-86" : [ "Mod11Amount", ".", 0 ],
+			"obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
 			"obj-34::obj-44" : [ "Mod4Amount", ".", 0 ],
 			"obj-34::obj-98" : [ "Mod9Amount", ".", 0 ],
-			"obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
-			"obj-1::obj-29" : [ "PatternSize", "Size", 0 ],
 			"obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
-			"obj-1::obj-34" : [ "PatternRotation", "CtrlRotate", 0 ],
 			"obj-34::obj-68" : [ "Mod6Amount", ".", 0 ]
 		}
 ,
@@ -227,7 +225,14 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "param.maxpat",
+				"name" : "_.maxpat",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "xtswap.maxpat",
 				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -241,8 +246,11 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "_.mxo",
-				"type" : "iLaX"
+				"name" : "param.maxpat",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
 			}
  ]
 	}

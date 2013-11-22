@@ -357,7 +357,8 @@ void VxShruthi::outputProgress(long progress){
     
 }
 
-void VxShruthi::outputPatchData(){    
+void VxShruthi::outputPatchData(){
+    if(slotIndex_ < 0) return;
     // Convert name directly to symbol. Both should be char
     
     Patch &p = workingPatch_[slotIndex_];
@@ -511,6 +512,7 @@ void VxShruthi::outputNrpn(long index, long value){
 }
 
 void VxShruthi::outputSequencerSettings(){
+    if(slotIndex_ < 0) return;
     
     SequencerSettings &s = workingSequencer_[slotIndex_];
     
@@ -528,6 +530,7 @@ void VxShruthi::outputSequencerSettings(){
 }
 
 void VxShruthi::outputSequence(){
+    if(slotIndex_ < 0) return;
     
     SequencerSettings &s = workingSequencer_[slotIndex_];
     atom_setsym(atoms_, ps_sequence);
@@ -593,10 +596,12 @@ void VxShruthi::outputSequence(){
     
 // transfers
 void VxShruthi::transferPatch(long inlet){
+    if(slotIndex_ < 0) return;
     device_.sendSysex((uint8_t*) &workingPatch_[slotIndex_], 0x01, 0, PATCH_SIZE);
 }
 
 void VxShruthi::transferSequence(long inlet){
+    if(slotIndex_ < 0) return;
     device_.sendSysex((uint8_t*) workingSequencer_[slotIndex_].steps, 0x02, 0, sizeof(SequenceStep) * kNumSteps);
 }
 
@@ -609,25 +614,30 @@ void VxShruthi::transferSystemSettings(long inlet){
 }
 
 void VxShruthi::transferSequenceStep(long index){
+    if(slotIndex_ < 0) return;
     uint8_t stepIndex = index & 0x0f;
     device_.sendSysex( workingSequencer_[slotIndex_].steps[stepIndex].data_, 0x05, stepIndex, 2);
 }
 
 void VxShruthi::transferPatchName(long inlet){
+    if(slotIndex_ < 0) return;
     device_.sendSysex(workingPatch_[slotIndex_].name, 0x06, 0, kPatchNameSize);
 }
 
 void VxShruthi::transferSequencerSettings(long inlet){
+    if(slotIndex_ < 0) return;
     device_.sendSysex((uint8_t*) &workingSequencer_[slotIndex_], 0x07, 0, sizeof(SequencerSettings));
 }
 
 void VxShruthi::setPatternLength(long inlet, long length){
+    if(slotIndex_ < 0) return;
     uint8_t v = CLAMP(length, 1, 16);
     workingSequencer_[slotIndex_].pattern_size = v;
     device_.sendSysexCommand(0x08, v);
 }
 
 void VxShruthi::setPatternRotation(long inlet, long rotation){
+    if(slotIndex_ < 0) return;
     uint8_t v = rotation & 0x0f;
     workingSequencer_[slotIndex_].pattern_rotation = v;
     device_.sendSysexCommand(0x09, v);
@@ -686,33 +696,8 @@ void VxShruthi::requestSequenceWrite(long slot){
     device_.sendSysex(payload, 0x22, 0, 2);
 }
 
-//void VxShruthi::setSequenceNote(long inlet, long step, long value){
-//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_note(value);
-//    transferSequenceStep(step);
-//}
-//
-//void VxShruthi::setSequenceController(long inlet, long step, long value){
-//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_controller(value);
-//    transferSequenceStep(step);
-//}
-//
-//void VxShruthi::setSequenceGate(long inlet, long step, long value){
-//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_gate(value);
-//    transferSequenceStep(step);
-//}
-//
-//void VxShruthi::setSequenceLegato(long inlet, long step, long value){
-//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_legato(value);
-//    transferSequenceStep(step);
-//}
-//
-//void VxShruthi::setSequenceVelocity(long inlet, long step, long value){
-//    DPOST("setSequenceVelocity() %d", value);
-//    workingSequencer_[slotIndex_].steps[step & 0x0f].set_velocity(value * VELOCITY_SCALE_DOWN + 0.5f);
-//    transferSequenceStep(step);
-//}
-
 void VxShruthi::setPatchName(long inlet, t_symbol *name){
+    if(slotIndex_ < 0) return;
     int c = 0;
     const char* cname = name->s_name;
     for(c=0; c<kPatchNameSize; ++c){
@@ -804,7 +789,10 @@ void VxShruthi::enableEepromCache(long inlet, long v){
     useEepromCache_ = (v > 0) ? true : false;
 }
 
-void VxShruthi::liveStep(long inlet, t_symbol* s, long ac, t_atom *av){
+void VxShruthi::liveStep(long inlet, t_symbol* s, long ac, t_atom *av)
+{
+    if(slotIndex_ < 0) return;
+    
     if(ac != 6){
         object_error((t_object*)this,"liveStep expects a list of 6 items");
         return;
@@ -823,7 +811,10 @@ void VxShruthi::liveStep(long inlet, t_symbol* s, long ac, t_atom *av){
     isSequenceDirty_ = true;
 }
 
-void VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av){
+void VxShruthi::liveGrid(long inlet, t_symbol* s, long ac, t_atom *av)
+{
+    if(slotIndex_ < 0) return;
+    
     uint8_t listLegato[16] = {}; // init as zero
     uint8_t listGate[16] = {}; // init as zero
     uint8_t stepIndex, row;
@@ -899,6 +890,7 @@ void VxShruthi::storeSequence(long inlet, long slot){
 }
 
 void VxShruthi::storePatchToEeprom(long slot){
+    if(slotIndex_ < 0) return;
     DPOST("Store patch %i to eeprom cache", slot);
     
     uint8_t *address = getAddress<Patch>(slot);
@@ -916,6 +908,7 @@ void VxShruthi::storePatchToEeprom(long slot){
 }
 
 void VxShruthi::loadPatchFromEeprom(long slot){
+    if(slotIndex_ < 0) return;
     DPOST("Fetch patch %i from eeprom cache", slot);
     uint8_t *address = getAddress<Patch>(slot);
     std::memcpy(&workingPatch_[slotIndex_],
@@ -936,6 +929,7 @@ void VxShruthi::loadPatchFromEeprom(long slot){
     }
 }
 void VxShruthi::storeSequenceToEeprom(long slot){
+    if(slotIndex_ < 0) return;
     DPOST("Store sequence %i to eeprom", slot);
     uint8_t *address = getAddress<SequencerSettings>(slot);
     
@@ -947,6 +941,7 @@ void VxShruthi::storeSequenceToEeprom(long slot){
 }
 
 void VxShruthi::loadSequenceFromEeprom(long slot){
+    if(slotIndex_ < 0) return;
     DPOST("Fetch sequence %i from eeprom", slot);
     uint8_t *address = getAddress<SequencerSettings>(slot);
     std::memcpy(& workingSequencer_[slotIndex_].steps,
@@ -960,6 +955,7 @@ void VxShruthi::loadSequenceFromEeprom(long slot){
 
 
 void VxShruthi::calculatePatternSize(){
+    if(slotIndex_ < 0) return;
     // Extract pattern length
     
     SequencerSettings &seq = workingSequencer_[slotIndex_];
@@ -977,6 +973,7 @@ void VxShruthi::calculatePatternSize(){
 
 
 void VxShruthi::loadPatch(long inlet, long slot){
+    if(slotIndex_ < 0) return;
     
     if(workingPatchIndex_[slotIndex_] == slot){
         DPOST("Slot same as working, using exising data", slot);
@@ -1001,6 +998,7 @@ void VxShruthi::loadPatch(long inlet, long slot){
     
 }
 void VxShruthi::loadSequence(long inlet, long slot){
+    if(slotIndex_ < 0) return;
     
     //if(xtmode_){
     //    object_error((t_object*)this, "loadSequence is not valid in xt mode");
@@ -1066,12 +1064,13 @@ void VxShruthi::sendSequenceProgramChange(long slot){
     // Bank select CC
     message.push_back(0xb0 | device_.channelOut_);
     message.push_back(0); // bank MSB
-    message.push_back(0);
+    message.push_back(bank + 0x40);
     device_.sendMessage( &message );
     message.clear();
     
+    // TODO set lsb to 0 once MSB is used in 0.98
     message.push_back(0xb0 | device_.channelOut_);
-    message.push_back(0x20); // bank LSB
+    message.push_back(0x20); // bank LSB 
     message.push_back(bank + 0x40); // offset for shruthi sequence banks
     device_.sendMessage( &message );
     message.clear();
@@ -1199,12 +1198,14 @@ void VxShruthi::clearEepromCache(long inlet){
 }
 
 void VxShruthi::copyPatchToClipboard(long inlet){
+    if(slotIndex_ < 0) return;
     std::memcpy(&clipboardPatch_,
                 &workingPatch_[slotIndex_],
                 StorageConfiguration<Patch>::size);
 }
 
 void VxShruthi::pastePatchFromClipboard(long inlet){
+    if(slotIndex_ < 0) return;
     std::memcpy(&workingPatch_[slotIndex_],
                 &clipboardPatch_,
                 StorageConfiguration<Patch>::size);
@@ -1213,12 +1214,14 @@ void VxShruthi::pastePatchFromClipboard(long inlet){
 }
 
 void VxShruthi::copySequenceToClipboard(long inlet){
+    if(slotIndex_ < 0) return;
     std::memcpy(&clipboardSequencer_.steps,
                 &workingSequencer_[slotIndex_].steps,
                 StorageConfiguration<SequencerSettings>::size);
 }
 
 void VxShruthi::pasteSequenceFromClipboard(long inlet){
+    if(slotIndex_ < 0) return;
     std::memcpy(&workingSequencer_[slotIndex_].steps,
                 &clipboardSequencer_.steps,
                 StorageConfiguration<SequencerSettings>::size);
@@ -1271,6 +1274,9 @@ void VxShruthi::switchToDevice(long inlet, long v){
 }
 
 void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
+    
+    if(slotIndex_ < 0) return;
+    
     DPOST("acceptSysexData");
     uint8_t success = 0;
 	// prevent exception when data is 0 and VS bounds check is enabled
@@ -1458,6 +1464,8 @@ void VxShruthi::midiNrpnCallback(long nrpn_index, long v){
 
 
 void VxShruthi::nrpn(long inlet, long nrpn_index, long v){
+    
+    if(slotIndex_ < 0) return;
     // update internal eeprom
 //    mapSequencerNrpnToEeprom(nrpn_index, v);
     mapNrpnToEeprom(nrpn_index, v);
@@ -1543,7 +1551,10 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
         case 61: p.modulation_matrix.modulation[9].amount = v; break;
         case 62: p.modulation_matrix.modulation[10].source = v; break;
         case 63: p.modulation_matrix.modulation[10].destination = v; break;
-        case 64: p.modulation_matrix.modulation[10].amount = v; break;
+        case 64:
+            p.modulation_matrix.modulation[10].amount = v;
+            
+            break;
         case 65: p.modulation_matrix.modulation[11].source = v; break;
         case 66: p.modulation_matrix.modulation[11].destination = v; break;
         case 67: p.modulation_matrix.modulation[11].amount = v; break;

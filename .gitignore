@@ -10,3 +10,5 @@ objects/bin
 DerivedData
 
 sdk-build
+
+/documentation/node_modules/

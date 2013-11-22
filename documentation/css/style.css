@@ -1,0 +1,36 @@
+/*
+@font-face {
+         font-family: 'ChunkFiveRegular';
+         src: url('Chunkfive-webfont.eot');
+         src: url('Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Chunkfive-webfont.woff') format('woff'),
+         url('Chunkfive-webfont.ttf') format('truetype'),
+         url('Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+         font-weight: normal;
+         font-style: normal;
+}
+*/
+body {
+    font-size: 0.75em;
+}
+
+html {
+    color: #333333;
+    background-color: #ffffff;
+/*    padding: 20px;*/
+    font-family: 'Helvetica Light';
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+img {
+    -webkit-border-radius:20px;
+    -moz-border-radius:20px;
+    -border-radius:20px;
+}
