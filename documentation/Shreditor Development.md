@@ -62,7 +62,7 @@ XT changes
 Bugs
 ------------------
 * upload klopt niet bytes = 35200 ipv 18432
-
+* Shreditor stuurt regelmatig 2 byte messages wat is dat?
 
 TODO
 --------------------------

@@ -301,16 +301,16 @@ bool VxShruthi::isExpired(){
     // mday range 1-31
     release = local;
     release.tm_hour = 0;   release.tm_min = 0; release.tm_sec = 0;
-    release.tm_year = 113; release.tm_mon = 10; release.tm_mday = 18;
+    release.tm_year = 113; release.tm_mon = 11; release.tm_mday = 20;
     
     expire = local;
     expire.tm_hour = 0;   expire.tm_min = 0; expire.tm_sec = 1;
-    expire.tm_year = 113; expire.tm_mon = 11; expire.tm_mday = 20;
+    expire.tm_year = 114; expire.tm_mon = 0; expire.tm_mday = 30;
     
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire), now);
     
-    post("vx.shruthi version beta 4");
+    post("vx.shruthi version beta 5");
     post("© Vauxlab 2013, Thijs Koerselman");
    // post("author Thijs Koerselman");
     post("Beta expires %s", asctime(&expire));
