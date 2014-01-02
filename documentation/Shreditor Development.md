@@ -29,16 +29,59 @@ sequences is paired. That is to say, whenever you load sequence 15, patch 15 wil
 ###Windows release build
 Met standaard settings krijg je linker errors. Je moet linken tegen de static runtime /MT en de preprocessor definitie gebruiken van MAXAPI_USE_MSCRT. Daarnaast moet je nog de exclude library weghalen voor libcmt.lib.
 
+Demo restricties
+------
+* store alleen edits van presets < 32; nadeel dit kan je altijd op device doen, misschien in combinatie met recall. Dus ook niet opvragen van presets 
+* stuur parameter glitch elke zoveel seconden; hier heb je geen last van als je klaar bent met editen
+* force new mirror download na elke application restart; irritant voor gebruikers en kan clashen met m4l versie
+
+
+
+Shreditor4Live Version
+----------
+Hou het simpel. Zorg dat live en standalone samen kunnen werken. Alleen parameters die je zou willen kunnen moduleren; de nrpns. Zo kunnen we altijd later nog een windows versie maken als de nrpns gestuurd worden door normale max objecten.
+
+De mirror wordt gebruikt om de parameters weer te geven.
+
+save functie?? dit kan problemen geven:
+* de save functie is sysex
+* wat als de sequence geedit wordt in de standalone en de patch in de m4l.
+
+oplossing:
+Exclude save functie in m4l. Edits opslaan gebeurt alleen in Shreditor. Maak een "fetch live" knop die de huidige ongesavede stand opvraagt van parameters en sequence, met de juiste index nummers en patch name.
+
+
+Maak de xt non xt switch manual. 
+
+Kan evt een udp poort gebruiken om te communiceren vanaf m4l naar schreditor voor specifieke dingen zoals store patch
+
+?? Wat doen we als de shreditor preset switcht? Hoe pikken we dat op in m4l, of niet? Via een textfile met autowatch? Of een udp connectie?
+
+
+### Include
+* alle nrpns incl matrix
+* mirror selector
+* preset dropdown
+
+
+### Exclude
+* save functie
+* sequencer
+* system settings
+* eeprom down/upload
+* patchlist
+* serial 
+
+### Extra
+* eeprom filewatch -> auto reload, om te zorden dat als edits gesaved worden in shreditor ze ook opgepikt worden in m4l mirror
+
+
 
 
 XT doesn't work
 -----------------
 * shruthi/makefile still has 0.97 version in it
 * knobs are echoed as ctl. grab from input and monitor\
-
-
-XT Report to Olivier
---------------------------
 
 
 XT changes
@@ -66,6 +109,11 @@ Bugs
 
 TODO
 --------------------------
+* gebruik live.line
+* vervang toggle met live.toggle
+* vervangt buttons met textbutton
+* live.tabs?
+* 
 * als er geen mididevices zijn wordt rtmidiin en out ook niet aangemaakt. Zorg dat altijd een check is voor je funtie aanroept
 * zorg dat aux port niet hetzelfde kan zijn als input, anders krijg je een loop. Ignore sysex?
 * pgm change + bank select moet nu in object geregeld worden.

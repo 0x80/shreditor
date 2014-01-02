@@ -244,9 +244,15 @@ void VxShruthi::populateMidiPortMenus(long inlet){
 	t_atom *a;
 
 	a = atoms_;
-	atom_setsym(a++, gensym("midiInputMenu"));
+	atom_setsym(a++, gensym("midiInputMenu")); // prefix
     atom_setsym(a++, gensym("clear"));
 	outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    
+    // send out empty "" for first choice
+    a = atoms_+1; // leave prefix
+    atom_setsym(a++, gensym("append"));
+    atom_setsym(a++, ps_empty);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 	
 	for(int i=0; i<inputs.size(); ++i){
 		a = atoms_+1; // leave prefix
@@ -259,6 +265,12 @@ void VxShruthi::populateMidiPortMenus(long inlet){
 	atom_setsym(a++, gensym("midiOutputMenu"));
     atom_setsym(a++, gensym("clear"));
 	outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    
+    // send out empty "" for first choice
+    a = atoms_+1; // leave prefix
+    atom_setsym(a++, gensym("append"));
+    atom_setsym(a++, ps_empty);
+    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 	
 	for(int i=0; i<outputs.size(); ++i){
 		a = atoms_+1; // leave prefix
@@ -771,14 +783,26 @@ void VxShruthi::setSettingsLegato(long inlet, long v){
 }
 
 void VxShruthi::setMidiIn(long inlet, t_symbol* portName, long channel){
+    if(portName == ps_empty){
+        DPOST("empty port name, skipping lookip");
+        return;
+    }
     device_.setMidiIn(portName, channel);
 }
 
 void VxShruthi::setMidiAuxIn(long inlet, t_symbol* portName, long channel){
+    if(portName == ps_empty){
+        DPOST("empty port name, skipping lookip");
+        return;
+    }
     device_.setMidiAuxIn(portName, channel);
 }
 
 void VxShruthi::setMidiOut(long inlet, t_symbol* portName, long channel){
+    if(portName == ps_empty){
+        DPOST("empty port name, skipping lookip");
+        return;
+    }
     device_.setMidiOut(portName, channel);
 }
 
@@ -1034,15 +1058,16 @@ void VxShruthi::sendPatchProgramChange(long slot){
     // Bank select CC
     message.push_back(0xb0 | device_.channelOut_);
     message.push_back(0); // bank MSB
-    message.push_back(0);
+    message.push_back(bank); // since 0.98 sent in msb
     device_.sendMessage( &message );
     message.clear();
     
-    message.push_back(0xb0 | device_.channelOut_);
-    message.push_back(0x20); // bank LSB
-    message.push_back(bank);
-    device_.sendMessage( &message );
-    message.clear();
+//     // TODO set lsb to 0 once MSB is used in 0.98
+//    message.push_back(0xb0 | device_.channelOut_);
+//    message.push_back(0x20); // bank LSB
+//    message.push_back(bank);
+//    device_.sendMessage( &message );
+//    message.clear();
     
     // Program Change
     message.push_back(0xc0 | device_.channelOut_);
@@ -1068,12 +1093,12 @@ void VxShruthi::sendSequenceProgramChange(long slot){
     device_.sendMessage( &message );
     message.clear();
     
-    // TODO set lsb to 0 once MSB is used in 0.98
-    message.push_back(0xb0 | device_.channelOut_);
-    message.push_back(0x20); // bank LSB 
-    message.push_back(bank + 0x40); // offset for shruthi sequence banks
-    device_.sendMessage( &message );
-    message.clear();
+//    // TODO set lsb to 0 once MSB is used in 0.98
+//    message.push_back(0xb0 | device_.channelOut_);
+//    message.push_back(0x20); // bank LSB 
+//    message.push_back(bank + 0x40); // offset for shruthi sequence banks
+//    device_.sendMessage( &message );
+//    message.clear();
     
     // Program Change
     message.push_back(0xc0 | device_.channelOut_);
