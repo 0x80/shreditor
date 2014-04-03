@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 7,
 			"architecture" : "x86"
 		}
 ,
@@ -189,7 +189,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 7,
 							"architecture" : "x86"
 						}
 ,
@@ -831,7 +831,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 7,
 							"architecture" : "x86"
 						}
 ,
@@ -1329,7 +1329,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 7,
 							"architecture" : "x86"
 						}
 ,
@@ -1875,7 +1875,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 7,
 							"architecture" : "x86"
 						}
 ,
@@ -2246,7 +2246,7 @@
 					"patching_rect" : [ 280.0, 552.0, 62.0, 19.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 40.0, 38.0, 19.0 ],
-					"text" : "Store",
+					"text" : "Save",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0,
 					"underline" : 0
@@ -3458,7 +3458,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "_.maxpat",
-				"bootpath" : "/Users/Gebruiker/Documents/Projects/shreditor/shreditor/patchers",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

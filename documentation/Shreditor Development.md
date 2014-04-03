@@ -106,14 +106,54 @@ Bugs
 ------------------
 * upload klopt niet bytes = 35200 ipv 18432
 * Shreditor stuurt regelmatig 2 byte messages wat is dat?
+* pattr_obex: no such file in collective bij opstarten standalone
+
+
+
+Process:         Shreditor beta4 [9010]
+Path:            /Users/USER/Documents/*/Shreditor beta4.app/Contents/MacOS/Shreditor beta4
+Identifier:      com.cycling74.MaxRuntime
+Version:         6.1.7 [db5f11a] (6.1.7)
+Code Type:       X86 (Native)
+Parent Process:  launchd [155]
+Responsible:     Shreditor beta4 [9010]
+User ID:         505
+
+Date/Time:       2014-04-03 21:30:09.426 +0200
+OS Version:      Mac OS X 10.9.2 (13C64)
+Report Version:  11
+Anonymous UUID:  9D694D1B-27FC-7738-3435-C412929CDD24
+
+Sleep/Wake UUID: 78685549-2D08-4923-85B3-F2CE05A89EE4
+
+Crashed Thread:  0  Dispatch queue: com.apple.main-thread
+
+Exception Type:  EXC_BAD_ACCESS (SIGBUS)
+Exception Codes: KERN_PROTECTION_FAILURE at 0x0000000000000004
+
+VM Regions Near 0x4:
+--> __PAGEZERO             0000000000000000-0000000000001000 [    4K] ---/--- SM=NUL  /Users/USER/Documents/*/Shreditor beta4.app/Contents/MacOS/Shreditor beta4
+    __TEXT                 0000000000001000-00000000005e3000 [ 6024K] r-x/rwx SM=COW  /Users/USER/Documents/*/Shreditor beta4.app/Contents/MacOS/Shreditor beta4
+
+Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
+0   vx.shruthi                    	0x0d5f91bc VxShruthi::populateMidiPortMenus(long) + 170 (vx.shruthi.cpp:249)
+1   vx.shruthi                    	0x0d5ff9e2 MaxCppBase<VxShruthi>::MaxMethod<&(VxShruthi::populateMidiPortMenus(long))>::call(VxShruthi*) + 30 (maxcpp6.h:161)
+2   com.cycling74.MaxRuntime      	0x0000c009 ob_funcall + 74
+3   com.cycling74.MaxRuntime      	0x0001be0e typedmess_fun + 326
+4   com.cycling74.MaxRuntime      	0x000602b8 outlet_anything + 914
+5   com.cycling74.MaxRuntime      	0x0001bd2f typedmess_fun + 103
+6   com.cycling74.MaxRuntime      	0x000602b8 outlet_anything + 914
+7   com.cycling74.MaxRuntime      	0x00050a06 through_sendit + 193
+
+
 
 TODO
 --------------------------
 * gebruik live.line
 * vervang toggle met live.toggle
 * vervangt buttons met textbutton
+* redetect firmware button?
 * live.tabs?
-* 
 * als er geen mididevices zijn wordt rtmidiin en out ook niet aangemaakt. Zorg dat altijd een check is voor je funtie aanroept
 * zorg dat aux port niet hetzelfde kan zijn als input, anders krijg je een loop. Ignore sysex?
 * pgm change + bank select moet nu in object geregeld worden.

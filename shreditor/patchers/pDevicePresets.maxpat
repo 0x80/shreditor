@@ -4,11 +4,11 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 4,
+			"revision" : 7,
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 103.0, 95.0, 1451.0, 941.0 ],
+		"rect" : [ 203.0, 255.0, 1451.0, 941.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -29,6 +29,63 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"active" : 1,
+					"align" : 1,
+					"background" : 0,
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoncolor" : [ 0.55, 0.55, 0.55, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoveroncolor" : [ 0.5, 0.5, 0.5, 1.0 ],
+					"blinktime" : 150,
+					"border" : 2,
+					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"borderoncolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"fontface" : 0,
+					"fontlink" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"hidden" : 0,
+					"id" : "obj-108",
+					"ignoreclick" : 0,
+					"maxclass" : "textbutton",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"outputmode" : 1,
+					"parameter_enable" : 1,
+					"patching_rect" : [ 352.0, 16.0, 64.0, 16.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 504.0, 5.0, 80.0, 16.0 ],
+					"rounded" : 14.0,
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_longname" : "textbutton",
+							"parameter_shortname" : "textbutton",
+							"parameter_type" : 3,
+							"parameter_initial" : [ -1 ],
+							"parameter_invisible" : 1
+						}
+
+					}
+,
+					"spacing_x" : 4.0,
+					"spacing_y" : 4.0,
+					"text" : "Refresh Ports",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"texton" : "Button On",
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"tosymbol" : 1,
+					"truncate" : 1,
+					"underline" : 0,
+					"varname" : "textbutton"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"background" : 0,
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
@@ -770,7 +827,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 4,
+							"revision" : 7,
 							"architecture" : "x86"
 						}
 ,
@@ -2480,55 +2537,6 @@
 					"fontsize" : 11.0,
 					"frgb" : 0.0,
 					"hidden" : 0,
-					"id" : "obj-13",
-					"ignoreclick" : 1,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 353.75, 16.0, 74.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 480.0, 8.0, 64.0, 19.0 ],
-					"text" : "Scan Ports",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"blinkcolor" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"hidden" : 0,
-					"id" : "obj-8",
-					"ignoreclick" : 0,
-					"maxclass" : "button",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"patching_rect" : [ 433.75, 16.0, 20.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 544.0, 8.0, 19.0, 19.0 ],
-					"prototypename" : "shr_dark_circle"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
 					"id" : "obj-6",
 					"ignoreclick" : 1,
 					"maxclass" : "comment",
@@ -2834,6 +2842,16 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-105", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-35", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-108", 0 ]
 				}
 
 			}
@@ -3430,16 +3448,6 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-35", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-8", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-78", 2 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -3538,7 +3546,18 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-108" : [ "textbutton", "textbutton", 0 ]
+		}
+,
 		"dependency_cache" : [ 			{
+				"name" : "_.maxpat",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "DevicePresets.json",
 				"bootpath" : "/Users/thijskoerselman/Library/Application Support/Vauxlab/Shreditor",
 				"patcherrelativepath" : "../../../../../Library/Application Support/Vauxlab/Shreditor",

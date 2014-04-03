@@ -4,11 +4,11 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 4,
+			"revision" : 7,
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 205.0, 210.0, 640.0, 480.0 ],
+		"rect" : [ 205.0, 210.0, 793.0, 511.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -29,18 +29,27 @@
 		"tags" : "",
 		"boxes" : [ 			{
 				"box" : 				{
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"fgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"id" : "obj-12",
-					"maxclass" : "button",
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bordercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"borderoncolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"fontlink" : 1,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-95",
+					"maxclass" : "textbutton",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"patching_rect" : [ 448.0, 72.0, 20.0, 20.0 ],
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 208.0, 68.0, 240.759766, 21.40625 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 448.0, 56.0, 20.0, 20.0 ],
-					"prototypename" : "shr_dark_circle"
+					"presentation_rect" : [ 208.0, 60.0, 240.759766, 21.40625 ],
+					"text" : "http://www.vauxlab.com/software/shreditor",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ]
 				}
 
 			}
@@ -71,7 +80,7 @@
 					"patching_rect" : [ 208.0, 48.0, 232.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 208.0, 40.0, 232.0, 20.0 ],
-					"text" : "For updates visit:",
+					"text" : "For updates and documentation see:",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
@@ -122,25 +131,8 @@
 					"patching_rect" : [ 0.0, 24.0, 140.0, 19.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 24.0, 140.0, 19.0 ],
-					"text" : "Copyright © Vauxlab 2013",
+					"text" : "© Vauxlab 2014",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"frgb" : 0.0,
-					"id" : "obj-4",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 208.0, 72.0, 248.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 56.0, 248.0, 20.0 ],
-					"text" : "http://www.vauxlab.com/software/shreditor",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
 
 			}
@@ -156,7 +148,7 @@
 					"patching_rect" : [ 0.0, 40.0, 139.0, 19.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 40.0, 139.0, 19.0 ],
-					"text" : "Code by Thijs Koerselman",
+					"text" : "by Thijs Koerselman",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
@@ -184,7 +176,7 @@
 					"destination" : [ "obj-8", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-12", 0 ]
+					"source" : [ "obj-95", 0 ]
 				}
 
 			}

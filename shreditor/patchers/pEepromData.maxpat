@@ -4,11 +4,11 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 7,
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 417.0, 74.0, 799.0, 608.0 ],
+		"rect" : [ 555.0, 382.0, 799.0, 608.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -30,6 +30,231 @@
 		"tags" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"active" : 1,
+					"align" : 1,
+					"background" : 0,
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoncolor" : [ 0.55, 0.55, 0.55, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoveroncolor" : [ 0.5, 0.5, 0.5, 1.0 ],
+					"blinktime" : 150,
+					"border" : 2,
+					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"borderoncolor" : [ 0.4, 0.4, 0.4, 1.0 ],
+					"fontface" : 0,
+					"fontlink" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"hidden" : 0,
+					"id" : "obj-13",
+					"ignoreclick" : 0,
+					"maxclass" : "textbutton",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"outputmode" : 1,
+					"parameter_enable" : 0,
+					"patching_rect" : [ 520.0, 63.5, 65.0, 16.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 152.0, 49.5, 96.0, 16.0 ],
+					"rounded" : 14.0,
+					"spacing_x" : 4.0,
+					"spacing_y" : 4.0,
+					"text" : "Cancel Transmit",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"texton" : "Button On",
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"tosymbol" : 1,
+					"truncate" : 1,
+					"underline" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"active" : 1,
+					"align" : 1,
+					"background" : 0,
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoncolor" : [ 0.55, 0.55, 0.55, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoveroncolor" : [ 0.5, 0.5, 0.5, 1.0 ],
+					"blinktime" : 150,
+					"border" : 2,
+					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"borderoncolor" : [ 0.4, 0.4, 0.4, 1.0 ],
+					"fontface" : 0,
+					"fontlink" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"hidden" : 0,
+					"id" : "obj-12",
+					"ignoreclick" : 0,
+					"maxclass" : "textbutton",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"outputmode" : 1,
+					"parameter_enable" : 0,
+					"patching_rect" : [ 360.0, 360.0, 65.0, 16.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 288.0, 28.0, 72.0, 16.0 ],
+					"rounded" : 14.0,
+					"spacing_x" : 4.0,
+					"spacing_y" : 4.0,
+					"text" : "Export File",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"texton" : "Button On",
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"tosymbol" : 1,
+					"truncate" : 1,
+					"underline" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"active" : 1,
+					"align" : 1,
+					"background" : 0,
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoncolor" : [ 0.55, 0.55, 0.55, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoveroncolor" : [ 0.5, 0.5, 0.5, 1.0 ],
+					"blinktime" : 150,
+					"border" : 2,
+					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"borderoncolor" : [ 0.4, 0.4, 0.4, 1.0 ],
+					"fontface" : 0,
+					"fontlink" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"hidden" : 0,
+					"id" : "obj-10",
+					"ignoreclick" : 0,
+					"maxclass" : "textbutton",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"outputmode" : 1,
+					"parameter_enable" : 0,
+					"patching_rect" : [ 552.0, 376.0, 65.0, 16.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 288.0, 8.0, 72.0, 16.0 ],
+					"rounded" : 14.0,
+					"spacing_x" : 4.0,
+					"spacing_y" : 4.0,
+					"text" : "Import File",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"texton" : "Button On",
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"tosymbol" : 1,
+					"truncate" : 1,
+					"underline" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"active" : 1,
+					"align" : 1,
+					"background" : 0,
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoncolor" : [ 0.55, 0.55, 0.55, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoveroncolor" : [ 0.5, 0.5, 0.5, 1.0 ],
+					"blinktime" : 150,
+					"border" : 2,
+					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"borderoncolor" : [ 0.4, 0.4, 0.4, 1.0 ],
+					"fontface" : 0,
+					"fontlink" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"hidden" : 0,
+					"id" : "obj-6",
+					"ignoreclick" : 0,
+					"maxclass" : "textbutton",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"outputmode" : 1,
+					"parameter_enable" : 0,
+					"patching_rect" : [ 392.0, 32.0, 65.0, 16.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 191.0, 8.0, 57.0, 16.0 ],
+					"rounded" : 14.0,
+					"spacing_x" : 4.0,
+					"spacing_y" : 4.0,
+					"text" : "Transmit",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"texton" : "Button On",
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"tosymbol" : 1,
+					"truncate" : 1,
+					"underline" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"active" : 1,
+					"align" : 1,
+					"background" : 0,
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoncolor" : [ 0.55, 0.55, 0.55, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgoveroncolor" : [ 0.5, 0.5, 0.5, 1.0 ],
+					"blinktime" : 150,
+					"border" : 2,
+					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"borderoncolor" : [ 0.4, 0.4, 0.4, 1.0 ],
+					"fontface" : 0,
+					"fontlink" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"hidden" : 0,
+					"id" : "obj-95",
+					"ignoreclick" : 0,
+					"maxclass" : "textbutton",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"outputmode" : 1,
+					"parameter_enable" : 0,
+					"patching_rect" : [ 312.0, 63.5, 65.0, 16.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 112.0, 8.0, 57.0, 16.0 ],
+					"rounded" : 14.0,
+					"spacing_x" : 4.0,
+					"spacing_y" : 4.0,
+					"text" : "Request",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"texton" : "Button On",
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"tosymbol" : 1,
+					"truncate" : 1,
+					"underline" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"background" : 0,
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
@@ -48,7 +273,7 @@
 						"appversion" : 						{
 							"major" : 6,
 							"minor" : 1,
-							"revision" : 5,
+							"revision" : 7,
 							"architecture" : "x86"
 						}
 ,
@@ -120,7 +345,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "bang" ],
+									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 40.0, 25.0, 25.0 ]
 								}
 
@@ -270,55 +495,6 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
-					"id" : "obj-11",
-					"ignoreclick" : 1,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 504.0, 56.0, 54.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 48.0, 54.0, 19.0 ],
-					"text" : "Abort UL",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"blinkcolor" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"hidden" : 0,
-					"id" : "obj-7",
-					"ignoreclick" : 0,
-					"maxclass" : "button",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"patching_rect" : [ 560.0, 57.0, 20.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 232.0, 48.0, 19.0, 19.0 ],
-					"prototypename" : "shr_dark_circle"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
 					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
 					"fontface" : 0,
@@ -382,238 +558,14 @@
 					"fontsize" : 11.0,
 					"frgb" : 0.0,
 					"hidden" : 0,
-					"id" : "obj-31",
-					"ignoreclick" : 1,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 360.0, 248.0, 45.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 288.0, 8.0, 77.0, 19.0 ],
-					"text" : "File i/O",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
-					"id" : "obj-27",
-					"ignoreclick" : 1,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 456.0, 281.0, 41.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 288.0, 32.0, 52.0, 19.0 ],
-					"text" : "Import",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"blinkcolor" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"hidden" : 0,
-					"id" : "obj-28",
-					"ignoreclick" : 0,
-					"maxclass" : "button",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"patching_rect" : [ 512.0, 281.0, 20.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 344.0, 32.0, 19.0, 19.0 ],
-					"prototypename" : "shr_dark_circle"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
-					"id" : "obj-29",
-					"ignoreclick" : 1,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 360.0, 280.0, 52.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 288.0, 56.0, 52.0, 19.0 ],
-					"text" : "Export",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"blinkcolor" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"hidden" : 0,
-					"id" : "obj-30",
-					"ignoreclick" : 0,
-					"maxclass" : "button",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"patching_rect" : [ 417.0, 279.0, 20.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 344.0, 56.0, 19.0, 19.0 ],
-					"prototypename" : "shr_dark_circle"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
-					"id" : "obj-24",
-					"ignoreclick" : 1,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 376.0, 24.0, 45.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 176.0, 8.0, 57.0, 19.0 ],
-					"text" : "Upload",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"blinkcolor" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"hidden" : 0,
-					"id" : "obj-26",
-					"ignoreclick" : 0,
-					"maxclass" : "button",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"patching_rect" : [ 432.0, 24.0, 20.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 232.0, 8.0, 19.0, 19.0 ],
-					"prototypename" : "shr_dark_circle"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
-					"id" : "obj-23",
-					"ignoreclick" : 1,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 280.0, 56.0, 59.0, 19.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 72.0, 8.0, 71.0, 19.0 ],
-					"text" : "Download",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"blinkcolor" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fgcolor" : [ 0.207843, 0.207843, 0.223529, 1.0 ],
-					"hidden" : 0,
-					"id" : "obj-4",
-					"ignoreclick" : 0,
-					"maxclass" : "button",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"outlinecolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"patching_rect" : [ 337.0, 55.0, 20.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 144.0, 8.0, 19.0, 19.0 ],
-					"prototypename" : "shr_dark_circle"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
 					"id" : "obj-36",
 					"ignoreclick" : 1,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 392.0, 168.0, 41.0, 20.0 ],
+					"patching_rect" : [ 392.0, 168.0, 38.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 112.0, 48.0, 41.0, 20.0 ],
+					"presentation_rect" : [ 112.0, 48.0, 38.0, 19.0 ],
 					"text" : "Bytes",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0,
@@ -770,39 +722,9 @@
 					"patching_rect" : [ 24.0, 32.0, 141.0, 105.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 4,
-					"presentation_rect" : [ 376.0, 8.0, 240.0, 56.0 ],
-					"text" : "Import or export full eeprom data to or from an external file. On import the data is loaded into the editor. You still need to tranfer it to the device using the upload function on the left.",
+					"presentation_rect" : [ 368.0, 3.0, 229.0, 56.0 ],
+					"text" : "Import or export full eeprom data to or from an external file. On import the data is loaded into the editor, but you still need to tranfer it to the device by clicking the transmit button.",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0,
-					"underline" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 0.0 ],
-					"bubble" : 0,
-					"bubblepoint" : 0.5,
-					"bubbleside" : 1,
-					"bubbletextmargin" : 5,
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"frgb" : 0.0,
-					"hidden" : 0,
-					"id" : "obj-2",
-					"ignoreclick" : 1,
-					"linecount" : 8,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 160.0, 150.0, 114.0 ],
-					"presentation" : 1,
-					"presentation_linecount" : 5,
-					"presentation_rect" : [ 8.0, 128.0, 256.0, 74.0 ],
-					"text" : "When you start editing a new Shruthi first transfer all eeprom data from the device to create a mirror. Data is automatically saved to disk every 10 seconds, or when you store a preset.",
-					"textcolor" : [ 0.094118, 0.117647, 0.137255, 1.0 ],
 					"textjustification" : 0,
 					"underline" : 0
 				}
@@ -1195,10 +1117,40 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-97", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-113", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-114", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-99", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-9", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-13", 0 ]
 				}
 
 			}
@@ -1295,50 +1247,10 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-16", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-26", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-97", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-28", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-99", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-30", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-135", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-34", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-142", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-4", 0 ]
 				}
 
 			}
@@ -1355,21 +1267,21 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-90", 0 ],
+					"destination" : [ "obj-16", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"midpoints" : [ 560.0, 468.0 ],
-					"source" : [ "obj-61", 0 ]
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-9", 0 ],
+					"destination" : [ "obj-90", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-7", 0 ]
+					"midpoints" : [ 560.0, 468.0 ],
+					"source" : [ "obj-61", 0 ]
 				}
 
 			}
@@ -1390,6 +1302,16 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-9", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-142", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-95", 0 ]
 				}
 
 			}

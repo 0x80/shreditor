@@ -30,6 +30,8 @@
     #include <sys/stat.h>
 #endif
 
+#define SHREDITOR_VERSION "beta 5"
+
 // for using _1 _2 
 using namespace std::placeholders;
 
@@ -93,11 +95,15 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
     progressCounter_(0),
     slotIndex_(-1)
 {
+    setupIO(1, 2); // inlets / outlets
     
     if(isExpired()){
-        setupIO(1, 0); // inlets / outlets
-        object_error((t_object *)this, "This copy of Shreditor has expired.");
+        
+        // Need defer low to output some data from the constructor,
+        // otherwise outputs are not initialized at time of call.
+        defer_low(this, (method)VxShruthi::onExpired, NULL, 0, NULL);
         return;
+
     }
     
     eeprom_ = new uint8_t[kEepromSize];
@@ -292,8 +298,38 @@ void VxShruthi::outputDataroot(){
     
 }
 
+void VxShruthi::onExpired(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
+    
+    t_atom a[2];
+    atom_setsym(a, gensym("version"));
+    atom_setsym(a+1, gensym(SHREDITOR_VERSION));
+    outlet_list(x->m_outlets[1], ps_empty, 2, a);
+    
+    atom_setsym(a, gensym("expires"));
+    atom_setsym(a+1, gensym(asctime(&x->expire_)));
+    outlet_list(x->m_outlets[1], ps_empty, 2, a);
+    
+    object_error((t_object *)x, "This beta version of Shreditor has expired.");
+    
+    atom_setsym(a, gensym("alert"));
+    atom_setsym(a+1, gensym("expired"));
+    outlet_list(x->m_outlets[1], ps_empty, 2, a);
+    return;
+    
+}
+
 void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
     DPOST("onReady...");
+    
+    t_atom a[2];
+    atom_setsym(a, gensym("version"));
+    atom_setsym(a+1, gensym(SHREDITOR_VERSION));
+    outlet_list(x->m_outlets[1], ps_empty, 2, a);
+    
+    atom_setsym(a, gensym("expires"));
+    atom_setsym(a+1, gensym(asctime(&x->expire_)));
+    outlet_list(x->m_outlets[1], ps_empty, 2, a);
+    
     x->outputDataroot();
 	x->populateMidiPortMenus();
 }
@@ -303,7 +339,7 @@ bool VxShruthi::isExpired(){
     time_t now = time(0);
     struct tm local;
     struct tm release;
-    struct tm expire;
+//    struct tm expire;
     double secondsSinceRelease;
     double secondsToExpire;
     local = *localtime(&now);
@@ -313,19 +349,19 @@ bool VxShruthi::isExpired(){
     // mday range 1-31
     release = local;
     release.tm_hour = 0;   release.tm_min = 0; release.tm_sec = 0;
-    release.tm_year = 114; release.tm_mon = 0; release.tm_mday = 29;
+    release.tm_year = 114; release.tm_mon = 3; release.tm_mday = 2;
     
-    expire = local;
-    expire.tm_hour = 0;   expire.tm_min = 0; expire.tm_sec = 1;
-    expire.tm_year = 114; expire.tm_mon = 2; expire.tm_mday = 30;
+    expire_ = local;
+    expire_.tm_hour = 0;   expire_.tm_min = 0; expire_.tm_sec = 0;
+    expire_.tm_year = 114; expire_.tm_mon = 7; expire_.tm_mday = 1;
     
     secondsSinceRelease = difftime(now, mktime(&release));
-    secondsToExpire = difftime(mktime(&expire), now);
+    secondsToExpire = difftime(mktime(&expire_), now);
     
-    post("vx.shruthi version beta 4");
+    post("vx.shruthi version %s", SHREDITOR_VERSION);
     post("© Vauxlab 2013, Thijs Koerselman");
    // post("author Thijs Koerselman");
-    post("Beta expires %s", asctime(&expire));
+    post("Beta expires %s", asctime(&expire_));
     
     DPOST("%.f seconds since release", secondsSinceRelease);
     DPOST("%.f seconds to expire", secondsToExpire);

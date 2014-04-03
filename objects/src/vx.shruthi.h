@@ -50,6 +50,7 @@ public:
     
     static void onTick(VxShruthi *x);
     static void onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
+    static void onExpired(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
     
     void outputProgress(long progress);
     void outputPatchData();
@@ -189,6 +190,8 @@ private:
     }
     
     int slotIndex_;
+    
+    struct tm expire_;
 
     Patch workingPatch_[NUM_DEVICE_SLOTS]; // working patch
     int workingPatchIndex_[NUM_DEVICE_SLOTS];

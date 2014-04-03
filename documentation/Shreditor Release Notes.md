@@ -1,5 +1,11 @@
 Changes
 =====================
+Beta 5
+----------------
+* GUI tweaks
+* Expired alert window
+* Printing version and expiration date from code
+
 
 Beta 4
 ----------------
