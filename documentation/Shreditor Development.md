@@ -101,7 +101,15 @@ XT changes
 * modulation destinations add adsr parameters
 * triggers are removed, so also from modulation source
 
-  
+GIT
+
+git@gitlab.hku.nl:thijs.koerselman/shreditor.git
+username git
+pw ?
+
+id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCij+psIu/zTxgf15gYy2p4k5aOlI+eECHD8H0whMUFc+4/FnrZovIhanVrqV+4xuT6FSCT7m81h9RwxeLg5q9l0L8H2wPYem92cd96fJhL1ofXZzmE+xvrefU1E7B9GHnEk0bkQuEmDmX8JOXZ2b+fGlkhp5qqKgVpkMHJ+kyRY0bzgFDoiYkcX6XGrU10gu0UENo8P66R9R+P3B7guuUAcbj8MCloud3uZ1LQNBG7XXTDOp+PM8Y4eNDZuizyfbcYFGKsJagAIAWPD1talWiBHPv8zbnyKP+vSIOgr3oNIeLIRR0/vi8nen4Ju3SpI0MzXmBU7tdQQquyTUvwViqT thijs.koerselman@kmt.hku.nl
+
 Bugs
 ------------------
 * upload klopt niet bytes = 35200 ipv 18432
