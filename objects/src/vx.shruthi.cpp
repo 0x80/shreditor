@@ -115,7 +115,7 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
     memset(workingPatchIndex_, -1, NUM_DEVICE_SLOTS*sizeof(int));
     memset(workingSequencerIndex_, -1, NUM_DEVICE_SLOTS*sizeof(int));
     
-    setupIO(1, 2); // inlets / outlets
+    //setupIO(1, 2); // inlets / outlets
 
     device_.registerSysexCallback(std::bind(&VxShruthi::acceptSysexData, this, _1, _2, _3));
 	device_.registerNrpnCallback(std::bind(&VxShruthi::midiNrpnCallback, this, _1, _2));
@@ -147,30 +147,14 @@ void VxShruthi::testpaths(const char* rootname){
         object_error((t_object*)this, "path_frompathname failed");
 		return;
     }
+
+	DPOST("rootname %s", rootname);
+	DPOST("rootpath %i", rootpath);
     
-//    short userdocpath = path_userdocfolder();
-//    short defaultpath = path_getdefault();
-    //short newpath;
-    //if(path_createfolder(root, "TeSTfolder", &newpath)){
-    //    
-    //    object_error((t_object*)this, "creatfolder TeSTfolder failed");
-    //    //return;
-    //}else{
-    //
-    //    DPOST("createfolder ok");
-    //}
-//    char userdocname[PATH_MAX];
-//    char defaultname[PATH_MAX];
-//    short outpath;
-//    path_getname(userdocpath, userdocname, &outpath);
-//    path_getname(defaultpath, defaultname, &outpath);
-    
-//    DPOST("userdocname %s", userdocname);
-//    DPOST("defaultname %s", defaultname);
 	short newpath;
-	//short rootpath;
-    if(path_createfolder(rootpath, "Vauxlab", &newpath)){
-        object_error((t_object*)this, "createfolder Vauxlab failed");
+	int err = path_createfolder(rootpath, "Vauxlab", &newpath);
+    if(err){
+        object_error((t_object*)this, "create folder Vauxlab failed: %i", err);
         return;
     }
 
