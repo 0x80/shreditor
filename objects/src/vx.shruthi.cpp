@@ -69,8 +69,8 @@ static t_symbol *ps_rotation = gensym("rotation");
 static t_symbol *ps_progress = gensym("progress");
 static t_symbol *ps_liveGrid = gensym("liveGrid");
 static t_symbol *ps_xtmode = gensym("xtmode");
-static t_symbol *ps_noinput = gensym("__ none __");
-static t_symbol *ps_nooutput = gensym("__ none __");
+static t_symbol *ps_noinput = gensym("--- none ---");
+static t_symbol *ps_nooutput = gensym("--- none ---");
 
 
 //uint8_t Patch::CheckBuffer(uint8_t* buffer) {
@@ -140,13 +140,13 @@ VxShruthi::~VxShruthi() {
     object_free(clock_);
 }
 
-void VxShruthi::testpaths(const char* rootname){
+int VxShruthi::makePaths(const char* rootname){
 
     short rootpath;
     char filename[PATH_MAX];
     if(path_frompathname(rootname, &rootpath, filename)){
-        object_error((t_object*)this, "path_frompathname failed");
-		return;
+		object_post((t_object*)this, "path_frompathname failed");
+		return 1;
     }
 
 	DPOST("rootname %s", rootname);
@@ -155,30 +155,32 @@ void VxShruthi::testpaths(const char* rootname){
 	short newpath;
 	int err = path_createfolder(rootpath, "Vauxlab", &newpath);
     if(err){
-        object_error((t_object*)this, "create folder Vauxlab failed: %i", err);
-        return;
+        object_post((t_object*)this, "create folder Vauxlab failed: %i", err);
+        return 2;
     }
 
 	if(path_createfolder(newpath, "Shreditor", &newpath)){
-        object_error((t_object*)this, "createfolder Shreditor failed");
-        return;
+		object_post((t_object*)this, "createfolder Shreditor failed");
+        return 3;
     }
 
 	if(path_createfolder(newpath, "Eeprom", &newpath)){
-        object_error((t_object*)this, "createfolder Eeprom failed");
-        return;
+		object_post((t_object*)this, "createfolder Eeprom failed");
+        return 4;
     }
 
+	return 0;
 }
 
 void VxShruthi::initializeSystemStoragePath(){
 
     #ifdef WIN_VERSION
-    
+    //CSIDL_APPDATA
+	std::string root;
     TCHAR path[MAX_PATH];
 	TCHAR conformpath[MAX_PATH];
 	if(SUCCEEDED(SHGetFolderPath(NULL, 
-								 CSIDL_PROGRAM_FILES_COMMONX86|CSIDL_FLAG_CREATE, 
+		CSIDL_APPDATA | CSIDL_FLAG_CREATE,
 								 NULL, 
 								 0, 
 								 path))) 
@@ -186,7 +188,7 @@ void VxShruthi::initializeSystemStoragePath(){
 		if(path_nameconform(path, conformpath, PATH_STYLE_MAX_PLAT, PATH_TYPE_ABSOLUTE)){
 			object_error((t_object*)this, "Failed to conform path");
 		}
-		std::string root = std::string(conformpath, strlen(path)) + std::string("/Vauxlab/Shreditor");
+		root = std::string(conformpath, strlen(path)) + std::string("/Vauxlab/Shreditor");
 		//root = std::string(path, strlen(path)) + std::string("\\Vauxlab\\Shreditor");
 		dataroot_ = root + std::string("/Eeprom");
 		presetfile_ = root + std::string("/DevicePresets.json");
@@ -196,6 +198,43 @@ void VxShruthi::initializeSystemStoragePath(){
 		object_error((t_object*)this, "Failed to look up appdata path: %s", path);
 		return;
 	}
+
+	if(makePaths(path)){
+		// error try different location for windows
+
+		if(SUCCEEDED(SHGetFolderPath(NULL, 
+			CSIDL_PROGRAM_FILES_COMMONX86 | CSIDL_FLAG_CREATE,
+								 NULL, 
+								 0, 
+								 path))) 
+		{
+			if(path_nameconform(path, conformpath, PATH_STYLE_MAX_PLAT, PATH_TYPE_ABSOLUTE)){
+				object_error((t_object*)this, "Failed to conform path");
+			}
+			root = std::string(conformpath, strlen(path)) + std::string("/Vauxlab/Shreditor");
+			//root = std::string(path, strlen(path)) + std::string("\\Vauxlab\\Shreditor");
+			dataroot_ = root + std::string("/Eeprom");
+			presetfile_ = root + std::string("/DevicePresets.json");
+
+		}else{
+			DWORD errcode = GetLastError();
+			object_error((t_object*)this, "Failed to look up appdata path: %s", path);
+			return;
+		}
+
+
+		if(makePaths(path)){
+			defer_low(this, (method)VxShruthi::onFail, NULL, 0, NULL);
+			object_error((t_object*)this, "Initialization failed");
+			return;
+		}
+		// send out error from outlet
+	}else{
+		// Need defer low to output some data from the constructor,
+		// otherwise outputs are not initialized at time of call.
+		defer_low(this, (method)VxShruthi::onReady, NULL, 0, NULL);
+		object_post((t_object *)this, "Shreditor userdata location: %s", root.c_str());
+	 };
     
     #else // MAC_VERSION
     
@@ -210,14 +249,24 @@ void VxShruthi::initializeSystemStoragePath(){
     dataroot_ = root + std::string("/Eeprom");
     presetfile_ = root + std::string("/DevicePresets.json");
 
+	 if(makePaths(path)){
+		// error try different location for windows
+		defer_low(this, (method)VxShruthi::onFail, NULL, 0, NULL);
+		object_error((t_object*)this, "Initialization failed");
+		return;
+		// send out error from outlet
+	}else{
+		 // Need defer low to output some data from the constructor,
+    // otherwise outputs are not initialized at time of call.
+		defer_low(this, (method)VxShruthi::onReady, NULL, 0, NULL);
+		DPOST("Shreditor userdata location: %s", dataroot_.c_str());
+	
+	 };
 	#endif
 
-    DPOST("Shreditor userdata location: %s", dataroot_.c_str());
-    testpaths(path);
-    
-    // Need defer low to output some data from the constructor,
-    // otherwise outputs are not initialized at time of call.
-    defer_low(this, (method)VxShruthi::onReady, NULL, 0, NULL);
+   
+   
+   
     
 }
 
@@ -320,6 +369,15 @@ void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
 	x->populateMidiPortMenus();
 }
 
+void VxShruthi::onFail(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
+    DPOST("onFail...");
+    
+    t_atom a[2];
+    atom_setsym(a, gensym("error"));
+    atom_setsym(a+1, gensym("init"));
+    outlet_list(x->m_outlets[1], ps_empty, 2, a);
+}
+
 bool VxShruthi::isExpired(){
 
     time_t now = time(0);
@@ -344,10 +402,10 @@ bool VxShruthi::isExpired(){
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire_), now);
     
-    post("vx.shruthi version %s", SHREDITOR_VERSION);
-    post("© Vauxlab 2013, Thijs Koerselman");
-   // post("author Thijs Koerselman");
-    post("Beta expires %s", asctime(&expire_));
+    object_post((t_object *)this, "vx.shruthi version %s", SHREDITOR_VERSION);
+    object_post((t_object *)this, "© Vauxlab 2013, Thijs Koerselman");
+   // object_post((t_object *)this, "author Thijs Koerselman");
+    object_post((t_object *)this, "Beta expires %s", asctime(&expire_));
     
     DPOST("%.f seconds since release", secondsSinceRelease);
     DPOST("%.f seconds to expire", secondsToExpire);
@@ -539,7 +597,7 @@ void VxShruthi::outputSettingsData(){
 }
 
 void VxShruthi::outputNrpn(long index, long value){
-//    post("outputNrpn %i, %i", index, value);
+//    object_post((t_object *)this, "outputNrpn %i, %i", index, value);
     atom_setlong(atoms_, index);
     atom_setlong(atoms_+1, value);
     outlet_list(m_outlets[0],  ps_nrpn, 2, atoms_);

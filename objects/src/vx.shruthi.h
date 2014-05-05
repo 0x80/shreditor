@@ -46,10 +46,11 @@ public:
 //    void midiInput(long v);
     void initializeSystemStoragePath();
     bool isExpired();
-    void testpaths(const char* root);
+    int makePaths(const char* root);
     
     static void onTick(VxShruthi *x);
     static void onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
+	static void onFail(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
     static void onExpired(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
     
     void outputProgress(long progress);
