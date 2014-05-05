@@ -69,7 +69,8 @@ static t_symbol *ps_rotation = gensym("rotation");
 static t_symbol *ps_progress = gensym("progress");
 static t_symbol *ps_liveGrid = gensym("liveGrid");
 static t_symbol *ps_xtmode = gensym("xtmode");
-
+static t_symbol *ps_noinput = gensym("__ none __");
+static t_symbol *ps_nooutput = gensym("__ none __");
 
 
 //uint8_t Patch::CheckBuffer(uint8_t* buffer) {
@@ -241,7 +242,7 @@ void VxShruthi::populateMidiPortMenus(long inlet){
     // send out empty "" for first choice
     a = atoms_+1; // leave prefix
     atom_setsym(a++, gensym("append"));
-    atom_setsym(a++, ps_empty);
+    atom_setsym(a++, ps_noinput);
     outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 	
 	for(int i=0; i<inputs.size(); ++i){
@@ -259,7 +260,8 @@ void VxShruthi::populateMidiPortMenus(long inlet){
     // send out empty "" for first choice
     a = atoms_+1; // leave prefix
     atom_setsym(a++, gensym("append"));
-    atom_setsym(a++, ps_empty);
+    atom_setsym(a++, ps_nooutput);
+//    atom_setsym(a++, ps_empty);
     outlet_list(m_outlets[1], ps_empty, 3, atoms_);
 	
 	for(int i=0; i<outputs.size(); ++i){
@@ -803,7 +805,7 @@ void VxShruthi::setSettingsLegato(long inlet, long v){
 }
 
 void VxShruthi::setMidiIn(long inlet, t_symbol* portName, long channel){
-    if(portName == ps_empty){
+    if(portName == ps_noinput){
         DPOST("empty port name, skipping lookip");
         return;
     }
@@ -811,7 +813,7 @@ void VxShruthi::setMidiIn(long inlet, t_symbol* portName, long channel){
 }
 
 void VxShruthi::setMidiAuxIn(long inlet, t_symbol* portName, long channel){
-    if(portName == ps_empty){
+    if(portName == ps_noinput){
         DPOST("empty port name, skipping lookip");
         return;
     }
@@ -819,7 +821,7 @@ void VxShruthi::setMidiAuxIn(long inlet, t_symbol* portName, long channel){
 }
 
 void VxShruthi::setMidiOut(long inlet, t_symbol* portName, long channel){
-    if(portName == ps_empty){
+    if(portName == ps_nooutput){
         DPOST("empty port name, skipping lookip");
         return;
     }
