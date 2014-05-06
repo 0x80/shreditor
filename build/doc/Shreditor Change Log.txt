@@ -1,12 +1,14 @@
-Change Log
+Shreditor Change Log
 =====================
 
 Beta 5
 ----------------
+* New data root for Windows, solving user permission issues.
 * GUI tweaks
-* Expired alert window
+* Expired and init fail alert windows
 * Printing version and expiration date from code
-
+* Bug sequence rotate right
+* List option none for midi ports
 
 Beta 4
 ----------------

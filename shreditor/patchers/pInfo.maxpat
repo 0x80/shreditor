@@ -130,7 +130,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 0.0, 24.0, 140.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 24.0, 140.0, 19.0 ],
+					"presentation_rect" : [ 0.0, 43.0, 140.0, 19.0 ],
 					"text" : "© Vauxlab 2014",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
@@ -147,8 +147,8 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 0.0, 40.0, 139.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 40.0, 139.0, 19.0 ],
-					"text" : "by Thijs Koerselman",
+					"presentation_rect" : [ 0.0, 24.0, 139.0, 19.0 ],
+					"text" : "Thijs Koerselman",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
