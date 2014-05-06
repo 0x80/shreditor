@@ -6,7 +6,7 @@
 //#include "shruthi.types.h"
 
 //#include <boost/tr1/functional.hpp>
-#include <functional>
+//#include <functional>
 #include "rtmidi/RtMidi.h"
 #include "ext.h"
 
@@ -16,8 +16,8 @@ class RtMidiOut;
 class SysexBulkTransfer;
 // typedef std::tr1::function<void (SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data)> SysexCallback;
 // typedef std::tr1::function<void (uint8_t index, uint8_t value)> NrpnCallback;
-typedef std::function<void (SysexCommand, uint8_t, std::vector<uint8_t>&)> SysexCallback;
-typedef std::function<void (uint8_t, uint8_t)> NrpnCallback;
+typedef void (*SysexCallback) (SysexCommand, uint8_t, std::vector<uint8_t>&);
+typedef void (*NrpnCallback)(uint8_t, uint8_t);
 
 class ShruthiMidi
 {

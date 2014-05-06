@@ -6,7 +6,7 @@
 #include "ext.h"
 class ShruthiMidi;
 
-typedef std::function<void (bool, int)> ProgressCallback;
+typedef void (*ProgressCallback)(bool, int);
 
 class SysexBulkTransfer
 {
