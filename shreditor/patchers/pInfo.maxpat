@@ -34,7 +34,7 @@
 					"bordercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
 					"borderoncolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
 					"fontlink" : 1,
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 12.0,
 					"id" : "obj-95",
 					"maxclass" : "textbutton",
@@ -42,9 +42,9 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 208.0, 68.0, 240.759766, 21.40625 ],
+					"patching_rect" : [ 208.0, 68.0, 239.832291, 22.157532 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 60.0, 240.759766, 21.40625 ],
+					"presentation_rect" : [ 208.0, 60.0, 239.832291, 22.157532 ],
 					"text" : "http://www.vauxlab.com/software/shreditor",
 					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
 					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
@@ -70,16 +70,16 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-10",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 208.0, 48.0, 232.0, 20.0 ],
+					"patching_rect" : [ 208.0, 48.0, 227.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 40.0, 232.0, 20.0 ],
+					"presentation_rect" : [ 208.0, 40.0, 227.0, 21.0 ],
 					"text" : "For updates and documentation see:",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
@@ -87,16 +87,16 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-9",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 208.0, 24.0, 231.0, 20.0 ],
+					"patching_rect" : [ 208.0, 24.0, 224.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 16.0, 231.0, 20.0 ],
+					"presentation_rect" : [ 208.0, 16.0, 224.0, 21.0 ],
 					"text" : "support@vauxlab.com",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}
@@ -104,16 +104,16 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"id" : "obj-6",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 208.0, 0.0, 229.0, 20.0 ],
+					"patching_rect" : [ 208.0, 0.0, 224.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 208.0, 0.0, 229.0, 20.0 ],
+					"presentation_rect" : [ 208.0, 0.0, 224.0, 21.0 ],
 					"text" : "For help and bug reports please contact: ",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
@@ -121,16 +121,16 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 11.0,
 					"frgb" : 0.0,
 					"id" : "obj-5",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 0.0, 24.0, 140.0, 19.0 ],
+					"patching_rect" : [ 0.0, 24.0, 139.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 43.0, 140.0, 19.0 ],
+					"presentation_rect" : [ 0.0, 43.0, 139.0, 19.0 ],
 					"text" : "© Vauxlab 2014",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
@@ -138,16 +138,16 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 11.0,
 					"frgb" : 0.0,
 					"id" : "obj-3",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 0.0, 40.0, 139.0, 19.0 ],
+					"patching_rect" : [ 0.0, 40.0, 134.0, 19.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 24.0, 139.0, 19.0 ],
+					"presentation_rect" : [ 0.0, 24.0, 134.0, 19.0 ],
 					"text" : "Thijs Koerselman",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
@@ -155,16 +155,16 @@
 			}
 , 			{
 				"box" : 				{
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 16.0,
 					"frgb" : 0.0,
 					"id" : "obj-2",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 0.0, 0.0, 76.0, 24.0 ],
+					"patching_rect" : [ 0.0, 0.0, 74.0, 25.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 76.0, 24.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 74.0, 25.0 ],
 					"text" : "Shreditor",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
 				}

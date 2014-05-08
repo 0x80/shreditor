@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 281.0, 107.0, 1048.0, 1011.0 ],
+		"rect" : [ 327.0, 59.0, 1048.0, 1011.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -2691,7 +2691,7 @@
 					"bordercolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
 					"clickmode" : 1,
 					"fontface" : 1,
-					"fontname" : "Arial",
+					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 12.0,
 					"frgb" : 0.0,
 					"hidden" : 0,
