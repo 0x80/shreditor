@@ -5,8 +5,9 @@
 #include "shruthi.types.h"
 #include "ext.h"
 class ShruthiMidi;
+class VxShruthi;
 
-typedef std::function<void (bool, int)> ProgressCallback;
+typedef void (*ProgressCallback)(VxShruthi*, bool, uint8_t);
 
 class SysexBulkTransfer
 {
@@ -23,11 +24,14 @@ public:
     static void memberproc(SysexBulkTransfer *x);
     
     // een callback voor het teruggeven van progress of finished
-    void registerProgressCallback(ProgressCallback fun){
+    void registerProgressCallback(ProgressCallback fun, VxShruthi* x){
+        x_ = x;
         progressReporter_ = fun;
     }
     
     //private:
+    
+    
     
     uint16_t start_;
     uint8_t message_id_;
@@ -52,6 +56,9 @@ public:
     
     ShruthiMidi &device_;
     ProgressCallback progressReporter_;
+    
+//private:
+    VxShruthi* x_;
     
 };
 

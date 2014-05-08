@@ -36,6 +36,9 @@
 
 #define NUM_DEVICE_SLOTS 8
 
+void midiNrpnCallback(VxShruthi *x, long index, long value);
+void midiSysexCallback(VxShruthi *x, SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data);
+void transferProgressCallback(VxShruthi *x, bool finished, uint8_t progress);
 
 class VxShruthi : public MaxCpp6<VxShruthi> {
 public:
@@ -64,13 +67,13 @@ public:
 //    void outputAllSequencerData();
     void outputSettingsData();
     
-    void midiNrpnCallback(long index, long value);
+    
     inline void mapNrpnToEeprom(long nrpn_index, long v);
     inline void mapSequencerNrpnToEeprom(long nrpn_index, long v);
     inline void outputNrpn(long index, long value);
 
     void acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data);
-    
+
     void transferPatch(long inlet = 0);
     void transferSequence(long inlet = 0);
     void transferWavetable(long inlet = 0);
@@ -157,7 +160,7 @@ public:
     void outputDataroot();
 	void populateMidiPortMenus(long inlet = 0);
     
-    void transferProgressReporter(bool finished, uint8_t progress);
+    
     
     void switchToDevice(long inlet, long v);
     void refreshGui();
