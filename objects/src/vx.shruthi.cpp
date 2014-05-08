@@ -33,7 +33,7 @@
 #define SHREDITOR_VERSION "beta 5"
 
 // for using _1 _2 
-using namespace std::placeholders;
+//using namespace std::placeholders;
 
 
 const float VELOCITY_SCALE_DOWN = 7.f / 127.f;
@@ -104,7 +104,6 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
         // otherwise outputs are not initialized at time of call.
         defer_low(this, (method)VxShruthi::onExpired, NULL, 0, NULL);
         return;
-
     }
     
     eeprom_ = new uint8_t[kEepromSize];
@@ -117,17 +116,18 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
     memset(workingSequencerIndex_, -1, NUM_DEVICE_SLOTS*sizeof(int));
     
     //setupIO(1, 2); // inlets / outlets
+    
+//    VxShruthi *x = this;
 
-    device_.registerSysexCallback(std::bind(&VxShruthi::acceptSysexData, this, _1, _2, _3));
-	device_.registerNrpnCallback(std::bind(&VxShruthi::midiNrpnCallback, this, _1, _2));
-    transfer_.registerProgressCallback(std::bind(&VxShruthi::transferProgressReporter, this, _1, _2));
+    device_.registerSysexCallback(midiSysexCallback, this);
+	device_.registerNrpnCallback(midiNrpnCallback, this);
+    transfer_.registerProgressCallback(transferProgressCallback, this);
     
     clock_ = clock_new((t_object *)this, (method)onTick);
     clock_fdelay(clock_, SEQUENCE_UPDATE_INTERVAL_MS);
     
     // after io is setup
     initializeSystemStoragePath();
-    
 
 }
 
@@ -1378,6 +1378,10 @@ void VxShruthi::switchToDevice(long inlet, long v){
     device_.lastNrpnIndex_ = -1;
 }
 
+void midiSysexCallback(VxShruthi *x, SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
+    x->acceptSysexData(cmd, arg, data);
+}
+
 void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
     
     if(slotIndex_ < 0) return;
@@ -1556,14 +1560,14 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
     }
 }
 
-void VxShruthi::midiNrpnCallback(long nrpn_index, long v){
+void midiNrpnCallback(VxShruthi* x, long nrpn_index, long v){
     
     // update internal eeprom
 //    mapSequencerNrpnToEeprom(nrpn_index, v);
-    mapNrpnToEeprom(nrpn_index, v);
+    x->mapNrpnToEeprom(nrpn_index, v);
     
     // send out to patch
-    outputNrpn(nrpn_index, v);
+    x->outputNrpn(nrpn_index, v);
 }
 
 
@@ -1704,8 +1708,8 @@ void VxShruthi::stopTransfer(long inlet){
     // misschien nog een resetDevice functie met default system settings etc?
 }
 
-void VxShruthi::transferProgressReporter(bool isBusy, uint8_t progress){
-    outputProgress(progress);
+void transferProgressCallback(VxShruthi *x, bool isBusy, uint8_t progress){
+    x->outputProgress(progress);
 }
 
 

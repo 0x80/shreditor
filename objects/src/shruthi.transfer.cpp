@@ -97,7 +97,7 @@ void SysexBulkTransfer::qfn(SysexBulkTransfer *x)
     DPOST("dataposition %x, messid %x, nblock %i, size %i", dataposition, message_id, block_counter, kSysExBulkDumpBlockSize);
     
     if(x->progressReporter_){
-        x->progressReporter_(isTransferBusy, block_id);
+        x->progressReporter_(x->x_, isTransferBusy, block_id);
     }
 }
 

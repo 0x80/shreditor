@@ -11,7 +11,8 @@
 static t_symbol *ps_invalid = gensym("invalid");
 
 ShruthiMidi::ShruthiMidi()
-:   channelIn_(0),
+:
+    channelIn_(0),
 	channelAuxIn_(0),
     channelOut_(0),
     midiInput_(0),
@@ -32,6 +33,7 @@ ShruthiMidi::ShruthiMidi()
 	isAuxInputValid_(false)
     //locked_(true) // gebruikt nu voor init als poorten nog niet aangemaakt zijn geen berichtjes sturen
 {
+//    x_ = x;
     // Create an api map.
     std::map<int, std::string> apiMap;
     apiMap[RtMidi::MACOSX_CORE] = "OS-X CoreMidi";
@@ -85,11 +87,13 @@ void ShruthiMidi::allocatePorts(){
 }
 
 
-void ShruthiMidi::registerSysexCallback(SysexCallback fun){
+void ShruthiMidi::registerSysexCallback(SysexCallback fun, VxShruthi* x){
+    x_ = x;
     sysexCallback_ = fun;
 }
 
-void ShruthiMidi::registerNrpnCallback(NrpnCallback fun){
+void ShruthiMidi::registerNrpnCallback(NrpnCallback fun, VxShruthi* x){
+    x_ = x;
     nrpnCallback_ = fun;
 }
 
@@ -189,7 +193,7 @@ void ShruthiMidi::parseSysex(std::vector<uint8_t> *msg){
     
 
     if(sysexCallback_){
-        sysexCallback_(cmd, arg, data);
+        sysexCallback_(x_, cmd, arg, data);
     }
 }
 
@@ -483,7 +487,7 @@ void ShruthiMidi::processControlChangeAsNrpn(){
 //        outputNrpn(indexMsb_ | indexLsb_, v);
         if(nrpnCallback_){
 //            post("nrpn_callback %x %x", indexMsb_ | indexLsb_, v);
-            nrpnCallback_(indexMsb_ | indexLsb_, v);
+            nrpnCallback_(x_, indexMsb_ | indexLsb_, v);
         }
 
     }else{
@@ -492,7 +496,7 @@ void ShruthiMidi::processControlChangeAsNrpn(){
 //        outputNrpn(indexMsb_ | indexLsb_, v);
         if(nrpnCallback_){
 //            post("nrpn_callback %x %x", indexMsb_ | indexLsb_, v);
-            nrpnCallback_(indexMsb_ | indexLsb_, v);
+            nrpnCallback_(x_, indexMsb_ | indexLsb_, v);
         }
     }
 }
