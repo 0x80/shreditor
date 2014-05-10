@@ -394,18 +394,17 @@ bool VxShruthi::isExpired(){
     // mday range 1-31
     release = local;
     release.tm_hour = 0;   release.tm_min = 0; release.tm_sec = 0;
-    release.tm_year = 114; release.tm_mon = 3; release.tm_mday = 2;
+    release.tm_year = 114; release.tm_mon = 4; release.tm_mday = 10;
     
     expire_ = local;
     expire_.tm_hour = 0;   expire_.tm_min = 0; expire_.tm_sec = 0;
-    expire_.tm_year = 114; expire_.tm_mon = 7; expire_.tm_mday = 1;
+    expire_.tm_year = 114; expire_.tm_mon = 8; expire_.tm_mday = 1;
     
     secondsSinceRelease = difftime(now, mktime(&release));
     secondsToExpire = difftime(mktime(&expire_), now);
     
-    object_post((t_object *)this, "vx.shruthi version %s", SHREDITOR_VERSION);
-    object_post((t_object *)this, "© Vauxlab 2013, Thijs Koerselman");
-   // object_post((t_object *)this, "author Thijs Koerselman");
+    object_post((t_object *)this, "Version %s", SHREDITOR_VERSION);
+    object_post((t_object *)this, "© Vauxlab 2014, Thijs Koerselman");
     object_post((t_object *)this, "Beta expires %s", asctime(&expire_));
     
     DPOST("%.f seconds since release", secondsSinceRelease);
