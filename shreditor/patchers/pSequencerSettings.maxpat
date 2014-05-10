@@ -31,29 +31,6 @@
 		"boxes" : [ 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
-					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"hidden" : 0,
-					"id" : "obj-11",
-					"ignoreclick" : 0,
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 232.0, 232.0, 80.0, 20.0 ],
-					"presentation" : 0,
-					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "print xttempo",
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"textjustification" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
 					"bgcolor" : [ 0.867, 0.867, 0.867, 1.0 ],
 					"bgcolor2" : [ 0.867, 0.867, 0.867, 1.0 ],
 					"fontface" : 0,
@@ -1445,16 +1422,6 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-11", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-31", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-29", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1581,44 +1548,6 @@
 					"source" : [ "obj-8", 0 ]
 				}
 
-			}
- ],
-		"parameters" : 		{
-			"obj-20" : [ "ArpPattern", "Pattern", 0 ],
-			"obj-25" : [ "Division", "Division", 0 ],
-			"obj-4" : [ "SequencerTempo", "Tempo", 0 ],
-			"obj-29" : [ "SequencerTempoXt", "Tempo", 0 ],
-			"obj-24" : [ "ArpDirection", "Direction", 0 ],
-			"obj-28" : [ "ArpWarp", "Warp", 0 ],
-			"obj-16" : [ "PatternRotation", "Rotation", 0 ],
-			"obj-6" : [ "Osc1Range[1]", "Groove", 0 ],
-			"obj-22" : [ "ArpRange", "Range", 0 ],
-			"obj-32" : [ "SequencerModeXt", "Mode", 0 ],
-			"obj-13" : [ "PatternSize", "Size", 0 ],
-			"obj-8" : [ "ModulationOperator[1]", "Amount", 0 ],
-			"obj-1" : [ "SequencerMode", "Mode", 0 ]
-		}
-,
-		"dependency_cache" : [ 			{
-				"name" : "param.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "_.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "xtswap.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
 			}
  ]
 	}

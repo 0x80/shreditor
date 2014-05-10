@@ -86,6 +86,9 @@ l>f h>f f>l f>h >fx
 dsp program:
 distort crusher +cmbflt ringmod delay fbdly dubdly !fbdly !dbdly /16dly /12dly /8dly 3/16dly looper pitch
 
+sp mode:
+lp bp hp ap
+
 
 Parameter CC  NRPN
 SSM Filter highpass 12 84       0-127
@@ -106,6 +109,8 @@ Delay time  12 84               0-127
 Delay level 13 85               0-63
 Delay feedback  94 92           0-15
 Delay EQ flavor 95 93           0-15
+SP mode 96 92                   0-3
+SP feedback 12 84               0-127
 
 
 Deze hebben geen nrpns in xt?:

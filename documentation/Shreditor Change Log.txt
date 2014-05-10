@@ -16,7 +16,7 @@ Beta 5
 * Added labels for DigitalFx mode and program parameters
 * Fixed NRPN sending two invalid 2 byte messages on parameter index change
 * Corrected midi out modes for xt
-
+* Added support for Steiner Parker filter board (xt only)
 
 
 Beta 4

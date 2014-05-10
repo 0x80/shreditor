@@ -728,11 +728,11 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
             // nrpn msb is nooit nodig geloof ik zolang er geen nrpns
             // boven de 127 zijn
 //            if(nrpnMsb_){
-//                msg.push_back(status);
-//                msg.push_back(CC_NRPN_MSB);
-//                msg.push_back(nrpnMsb_);
-//                midiOutput_->sendMessage(&msg);
-//                msg.clear();
+                msg.push_back(status);
+                msg.push_back(CC_NRPN_MSB);
+                msg.push_back(nrpnMsb_);
+                midiOutput_->sendMessage(&msg);
+                msg.clear();
 //            }
             msg.push_back(status);
             msg.push_back(CC_NRPN_LSB);

@@ -72,10 +72,10 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 562.0, 131.0, 67.0, 20.0 ],
+					"patching_rect" : [ 562.0, 131.0, 68.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "param 113",
+					"text" : "param 145",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0
 				}
@@ -96,10 +96,10 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 480.0, 131.0, 67.0, 20.0 ],
+					"patching_rect" : [ 480.0, 131.0, 68.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "param 112",
+					"text" : "param 144",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0
 				}
@@ -120,10 +120,10 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 392.0, 131.0, 66.0, 20.0 ],
+					"patching_rect" : [ 392.0, 131.0, 68.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "param 111",
+					"text" : "param 143",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0
 				}
@@ -144,10 +144,10 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 312.0, 131.0, 67.0, 20.0 ],
+					"patching_rect" : [ 312.0, 131.0, 68.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "param 110",
+					"text" : "param 142",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0
 				}
@@ -1009,7 +1009,7 @@
 					"hltcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
 					"id" : "obj-11",
 					"ignoreclick" : 0,
-					"items" : [ "lpf", ",", "ssm", ",", "svf", ",", "dsp", ",", "pvk", ",", "4pm", ",", "dly" ],
+					"items" : [ "lpf", ",", "ssm", ",", "svf", ",", "dsp", ",", "pvk", ",", "4pm", ",", "dly", ",", "sp" ],
 					"labelclick" : 0,
 					"maxclass" : "umenu",
 					"menumode" : 0,
@@ -1498,15 +1498,15 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
+			"obj-71" : [ "SystemCvMode", "CV", 0 ],
 			"obj-65" : [ "SystemChannel", "Channel", 0 ],
 			"obj-68" : [ "SystemMidiMode", "Midi", 0 ],
-			"obj-56" : [ "SystemTuning", "Tuning", 0 ],
-			"obj-55" : [ "SystemLegato", "Legato", 0 ],
-			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
-			"obj-48" : [ "SystemOctave", "Octave", 0 ],
 			"obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
 			"obj-69" : [ "SystemSplit", "Split", 0 ],
-			"obj-71" : [ "SystemCvMode", "CV", 0 ]
+			"obj-48" : [ "SystemOctave", "Octave", 0 ],
+			"obj-56" : [ "SystemTuning", "Tuning", 0 ],
+			"obj-55" : [ "SystemLegato", "Legato", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

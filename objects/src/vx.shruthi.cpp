@@ -1661,10 +1661,10 @@ void VxShruthi::mapCcToNrpn(long index, long v){
         case 81: midiNrpnCallback(this, 107, convertControlValue(v, 12)); break;
             
             // system settings (fictieve nrpns voor xt, voor nu)
-        case 82: midiNrpnCallback(this, 110, convertControlValue(v, 12)); break;
-        case 83: midiNrpnCallback(this, 111, convertControlValue(v, 33)); break;
-        case 84: midiNrpnCallback(this, 112, convertControlValue(v, 64)); break;
-        case 68: midiNrpnCallback(this, 113, convertControlValue(v, 2)); break;
+        case 82: midiNrpnCallback(this, 142, convertControlValue(v, 12)); break;
+        case 83: midiNrpnCallback(this, 143, convertControlValue(v, 33)); break;
+        case 84: midiNrpnCallback(this, 144, convertControlValue(v, 64)); break;
+        case 68: midiNrpnCallback(this, 145, convertControlValue(v, 2)); break;
             
             // filterboard xtras
         case 12: midiNrpnCallback(this, 84, v); break;
@@ -1810,10 +1810,10 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
         case 109: workingSequencer_[slotIndex_].pattern_rotation = v; break;
             
         // in xt these system settings emit cc and are mapped to (fictive?) nrpns
-        case 110: settings_->octave = v; break;
-        case 111: settings_->raga = v; break;
-        case 112: settings_->portamento = v; break;
-        case 113: settings_->legato = v; break;
+        case 142: settings_->octave = v; break;
+        case 143: settings_->raga = v; break;
+        case 144: settings_->portamento = v; break;
+        case 145: settings_->legato = v; break;
             
         default:
             object_error((t_object*)this, "Nrpn index %i is not valid", nrpn_index);
