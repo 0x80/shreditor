@@ -145,7 +145,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"outputmode" : 1,
 					"parameter_enable" : 0,
-					"patching_rect" : [ 162.0, 242.0, 84.0, 18.0 ],
+					"patching_rect" : [ 136.0, 288.0, 84.0, 18.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 400.0, 137.0, 64.0, 16.0 ],
 					"rounded" : 14.0,
@@ -1812,7 +1812,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 488.0, 64.0, 50.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 521.0, 0.0, 38.0, 20.0 ],
+					"presentation_rect" : [ 522.0, 0.0, 38.0, 20.0 ],
 					"textcolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
 					"triangle" : 1,
 					"tricolor" : [ 0.309804, 0.580392, 1.0, 1.0 ],
@@ -3668,6 +3668,26 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-13", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-61", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-14", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-61", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-43", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -3747,8 +3767,8 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
-			"obj-192" : [ "SequenceGrid", "Grid", 0 ]
+			"obj-192" : [ "SequenceGrid", "Grid", 0 ],
+			"obj-191" : [ "sequencerSteps[1]", "steps", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
