@@ -1,11 +1,22 @@
-Change Log
+Shreditor Change Log
 =====================
 
 Beta 5
 ----------------
-* GUI tweaks
-* Expired alert window
+* New data root for Windows, solving user permission issues.
+* Now supports OS 10.5 and 10.6. Previous use of c++0x made it >=10.6
+* GUI improvements
+* Expired and init fail alert windows
 * Printing version and expiration date from code
+* Added mapping of incoming CC from knob movements for xt firmware.
+* Fix bug sequence rotate right
+* List option --none-- for midi ports
+* Throttle system setting sysex updates to prevent overloading device on mouse drag.
+* Fixed feedback of system settings sysex when selecting midi poly chain modes.
+* Added labels for DigitalFx mode and program parameters
+* Fixed NRPN sending two invalid 2 byte messages on parameter index change
+* Corrected midi out modes for xt
+
 
 
 Beta 4

@@ -121,6 +121,7 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
 
     device_.registerSysexCallback(midiSysexCallback, this);
 	device_.registerNrpnCallback(midiNrpnCallback, this);
+    device_.registerCcCallback(midiCcCallback, this);
     transfer_.registerProgressCallback(transferProgressCallback, this);
     
     clock_ = clock_new((t_object *)this, (method)onTick);
@@ -1560,16 +1561,132 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
     }
 }
 
-void midiNrpnCallback(VxShruthi* x, long nrpn_index, long v){
+void midiNrpnCallback(VxShruthi* x, long index, long v){
     
     // update internal eeprom
 //    mapSequencerNrpnToEeprom(nrpn_index, v);
-    x->mapNrpnToEeprom(nrpn_index, v);
+    x->mapNrpnToEeprom(index, v);
     
     // send out to patch
-    x->outputNrpn(nrpn_index, v);
+    x->outputNrpn(index, v);
 }
 
+/*
+    In xt mode all knob changes come in as cc and need to be mapped to correct nrpns
+    for the editor.
+ */
+void midiCcCallback(VxShruthi* x, long index, long v){
+    x->mapCcToNrpn(index, v);
+}
+
+/*
+ For XT firmware convert the CC to NRPN for the editor controls
+ mapping is like this 128/x = increment,
+ don't round off inc. So for a 6 value nrpn the CC values would be
+ 128 / 6 = 21.333333
+ range in nrpn = 0 tm 5
+ value 0 = 0
+ value 2 = 43
+ value 5 = 107
+ 
+ aantal steps voor negatief:
+ range -6 6 -> 6 + 7 = 13 nsteps
+ */
+
+
+long VxShruthi::convertControlValue(long v, long nsteps, long min){
+    float stepsize = 128.f / nsteps;
+    long step = floor((float)v / stepsize);
+    long result = min + step;
+    DPOST("converted value to %i", result);
+    return result;
+}
+
+/*  map incoming cc to nrpn and act like it was received as such, using the same callback
+    so that behavior is same. Bit of a hack though.
+ */
+void VxShruthi::mapCcToNrpn(long index, long v){
+    
+    switch(index){
+            
+            // oscillators
+        case 20: midiNrpnCallback(this, 0, convertControlValue(v, 34)); break;
+        case 21: midiNrpnCallback(this, 1, v); break;
+        case 22: midiNrpnCallback(this, 2, convertControlValue(v, 49, -24)); break;
+        case 28: midiNrpnCallback(this, 3, convertControlValue(v, 14)); break;
+        case 24: midiNrpnCallback(this, 4, convertControlValue(v, 34)); break;
+        case 25: midiNrpnCallback(this, 5, v); break;
+        case 26: midiNrpnCallback(this, 6, convertControlValue(v, 49, -24)); break;
+        case 27: midiNrpnCallback(this, 7, v); break;
+        case 29: midiNrpnCallback(this, 8, convertControlValue(v, 64)); break;
+        case 30: midiNrpnCallback(this, 9, convertControlValue(v, 64)); break;
+        case 31: midiNrpnCallback(this, 10, convertControlValue(v, 64)); break;
+        case 23: midiNrpnCallback(this, 11, convertControlValue(v, 11)); break;
+            
+            // filter
+        case 14: midiNrpnCallback(this, 12, v); break;
+        case 74: midiNrpnCallback(this, 12, v); break;
+        case 15: midiNrpnCallback(this, 13, convertControlValue(v, 64)); break;
+        case 71: midiNrpnCallback(this, 13, convertControlValue(v, 64)); break;
+        case 102: midiNrpnCallback(this, 14, convertControlValue(v, 64)); break;
+        case 103: midiNrpnCallback(this, 15, convertControlValue(v, 64)); break;
+            
+            // envelopes
+        case 104: midiNrpnCallback(this, 16, v); break;
+        case 105: midiNrpnCallback(this, 17, v); break;
+        case 106: midiNrpnCallback(this, 18, v); break;
+        case 107: midiNrpnCallback(this, 19, v); break;
+        case 108: midiNrpnCallback(this, 20, v); break;
+        case 109: midiNrpnCallback(this, 21, v); break;
+        case 110: midiNrpnCallback(this, 22, v); break;
+        case 111: midiNrpnCallback(this, 23, v); break;
+            
+            // lfos
+        case 112: midiNrpnCallback(this, 24, convertControlValue(v, 21)); break;
+        case 113: midiNrpnCallback(this, 25, convertControlValue(v, 144)); break;
+        case 114: midiNrpnCallback(this, 26, v); break;
+        case 115: midiNrpnCallback(this, 27, convertControlValue(v, 4)); break;
+        case 116: midiNrpnCallback(this, 28, convertControlValue(v, 21)); break;
+        case 117: midiNrpnCallback(this, 29, convertControlValue(v, 144)); break;
+        case 118: midiNrpnCallback(this, 30, v); break;
+        case 119: midiNrpnCallback(this, 31, convertControlValue(v, 4)); break;
+            
+            // sequencer settings
+        case 75: midiNrpnCallback(this, 100, convertControlValue(v, 3)); break;
+        case 76: midiNrpnCallback(this, 102, convertControlValue(v, 6)); break;
+        case 77: midiNrpnCallback(this, 103, v); break;
+        case 78: midiNrpnCallback(this, 104, convertControlValue(v, 4)); break;
+        case 79: midiNrpnCallback(this, 105, convertControlValue(v, 4, 1)); break;
+        case 80: midiNrpnCallback(this, 106, convertControlValue(v, 16)); break;
+        case 81: midiNrpnCallback(this, 107, convertControlValue(v, 12)); break;
+            
+            // system settings (fictieve nrpns voor xt, voor nu)
+        case 82: midiNrpnCallback(this, 110, convertControlValue(v, 12)); break;
+        case 83: midiNrpnCallback(this, 111, convertControlValue(v, 33)); break;
+        case 84: midiNrpnCallback(this, 112, convertControlValue(v, 64)); break;
+        case 68: midiNrpnCallback(this, 113, convertControlValue(v, 2)); break;
+            
+            // filterboard xtras
+        case 12: midiNrpnCallback(this, 84, v); break;
+        case 13: midiNrpnCallback(this, 85, convertControlValue(v, 64)); break;
+        case 85: midiNrpnCallback(this, 92, convertControlValue(v, 6)); break;
+        case 86: midiNrpnCallback(this, 93, convertControlValue(v, 6)); break;
+        case 87: midiNrpnCallback(this, 92, convertControlValue(v, 6)); break;
+        case 88: midiNrpnCallback(this, 93, convertControlValue(v, 16)); break;
+        case 89: midiNrpnCallback(this, 92, convertControlValue(v, 2)); break;
+        case 90: midiNrpnCallback(this, 84, convertControlValue(v, 2)); break;
+        case 91: midiNrpnCallback(this, 85, convertControlValue(v, 2)); break;
+        case 92: midiNrpnCallback(this, 92, convertControlValue(v, 15)); break;
+        case 93: midiNrpnCallback(this, 93, convertControlValue(v, 4)); break;
+        case 94: midiNrpnCallback(this, 92, convertControlValue(v, 16)); break;
+        case 95: midiNrpnCallback(this, 93, convertControlValue(v, 16)); break;
+            
+            
+        default:
+            DPOST("ignored cc %i %i", index, v);
+            // do nothing
+    }
+}
 
 
 void VxShruthi::nrpn(long inlet, long nrpn_index, long v){
@@ -1688,11 +1805,18 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
         case 105: workingSequencer_[slotIndex_].arp_range = v; break;
         case 106: workingSequencer_[slotIndex_].arp_pattern = v; break;
         case 107: workingSequencer_[slotIndex_].arp_clock_division = v; break;
+            
         case 108: workingSequencer_[slotIndex_].pattern_size = v; break;
         case 109: workingSequencer_[slotIndex_].pattern_rotation = v; break;
             
+        // in xt these system settings emit cc and are mapped to (fictive?) nrpns
+        case 110: settings_->octave = v; break;
+        case 111: settings_->raga = v; break;
+        case 112: settings_->portamento = v; break;
+        case 113: settings_->legato = v; break;
+            
         default:
-            object_error((t_object*)this, "Nrpn index %i is not isNrpnValid_", nrpn_index);
+            object_error((t_object*)this, "Nrpn index %i is not valid", nrpn_index);
     }
 
 }

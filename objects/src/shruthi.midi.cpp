@@ -20,13 +20,13 @@ ShruthiMidi::ShruthiMidi()
 	midiAuxInput_(0),
     lastNrpnIndex_(-1),
     lastDataMsb_(-1),
-    runningStatus_(0),
+//    runningStatus_(0),
     indexLsb_(0),
     indexMsb_(0),
     valueLsb_(0),
     valueMsb_(0),
     isNrpnValid_(false),
-    useRunningStatus_(false),
+//    useRunningStatus_(false),
     filterMsb_(true),
 	isInputValid_(false),
 	isOutputValid_(false),
@@ -95,6 +95,11 @@ void ShruthiMidi::registerSysexCallback(SysexCallback fun, VxShruthi* x){
 void ShruthiMidi::registerNrpnCallback(NrpnCallback fun, VxShruthi* x){
     x_ = x;
     nrpnCallback_ = fun;
+}
+
+void ShruthiMidi::registerCcCallback(NrpnCallback fun, VxShruthi* x){
+    x_ = x;
+    ccCallback_ = fun;
 }
 
 
@@ -440,42 +445,30 @@ int ShruthiMidi::expectedSysexPayload(SysexCommand cmd){
 void ShruthiMidi::processControlChange(long cc_index, long cc_value){
 
     switch(cc_index){
-            // ******************** Parameter INDEX ************* //
+
         case CC_NRPN_MSB:
             // Save 7 high bits
             indexMsb_ = cc_value << 7;
             isNrpnValid_ = false;
             break;
-        case CC_NRPN_LSB: // 98
+        case CC_NRPN_LSB:
             // Save 7 low bits
             indexLsb_ = cc_value;
             isNrpnValid_ = true;
             break;
-            // ******************** Parameter VALUE **************//
         case CC_DATA_MSB:
-            // WARNING
-            // Officially LSB is optional, but since Max provides us only separate messages and not a buffer
-            // we have no way of knowing if LSB will be provided or not. Apart from buffering ourself but that
-            // would impose a delay.
-
             valueMsb_ = cc_value << 7;
             valueLsb_ = 0; // lsb is optional
-            // sends value directy in case LSB is not used
-            //                if(isNrpnValid_){ // only if value is
-            //                    send_nrpn();
-            //                }
             break;
-        case CC_DATA_LSB:  // OPTIONAL
+        case CC_DATA_LSB:
             valueLsb_ = cc_value;
             if(isNrpnValid_){
                 processControlChangeAsNrpn();
             }
             break;
         default:
-            // process cc as regular
-            // TODO forward as cc to shruthi?
-            
-//              send_cc(cc_index, cc_value);// output cc to max patch to update parameters?
+            // process cc coming from xt knob movements
+            ccCallback_(x_, cc_index, cc_value);
             break;
     }
 }
@@ -484,24 +477,18 @@ void ShruthiMidi::processControlChangeAsNrpn(){
     if(valueMsb_ && valueLsb_ > 63){
         // negative
         long v = valueLsb_ - 0x80;
-//        outputNrpn(indexMsb_ | indexLsb_, v);
         if(nrpnCallback_){
-//            post("nrpn_callback %x %x", indexMsb_ | indexLsb_, v);
             nrpnCallback_(x_, indexMsb_ | indexLsb_, v);
         }
 
     }else{
         // range 0-127 or positive >127
         long v = valueMsb_ | valueLsb_;
-//        outputNrpn(indexMsb_ | indexLsb_, v);
         if(nrpnCallback_){
-//            post("nrpn_callback %x %x", indexMsb_ | indexLsb_, v);
             nrpnCallback_(x_, indexMsb_ | indexLsb_, v);
         }
     }
 }
-
-
 
 void ShruthiMidi::midiInputCallback( double deltatime, std::vector<uint8_t> *msg, void *userData )
 {
@@ -715,11 +702,6 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
     std::vector<uint8_t> msg;
 
     uint8_t status = STATUS_CC | channelOut_;
-    if(!useRunningStatus_ || status != runningStatus_){
-        msg.push_back(status);
-        runningStatus_ = status;
-    }
-    
     dataMsb_ = 0;
     dataLsb_ = 0;
     
@@ -743,13 +725,16 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
             nrpnMsb_ = nrpn_index >> 7;
             nrpnLsb_ = nrpn_index & 0x7f;
             
-            if(!filterMsb_ || nrpnMsb_){
-                msg.push_back(CC_NRPN_MSB);
-                msg.push_back(nrpnMsb_);
-                midiOutput_->sendMessage(&msg);
-                msg.clear();
-            }
-            
+            // nrpn msb is nooit nodig geloof ik zolang er geen nrpns
+            // boven de 127 zijn
+//            if(nrpnMsb_){
+//                msg.push_back(status);
+//                msg.push_back(CC_NRPN_MSB);
+//                msg.push_back(nrpnMsb_);
+//                midiOutput_->sendMessage(&msg);
+//                msg.clear();
+//            }
+            msg.push_back(status);
             msg.push_back(CC_NRPN_LSB);
             msg.push_back(nrpnLsb_);
             midiOutput_->sendMessage(&msg);
@@ -760,13 +745,15 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
         }
         
         // filter redundant data msb.
-        if(!filterMsb_ || dataMsb_ != lastDataMsb_){
+        if(dataMsb_ != lastDataMsb_){
+            msg.push_back(status);
             msg.push_back(CC_DATA_MSB);
             msg.push_back(dataMsb_);
             midiOutput_->sendMessage(&msg);
             msg.clear();
         }
         
+        msg.push_back(status);
         msg.push_back(CC_DATA_LSB);
         msg.push_back(dataLsb_);
         

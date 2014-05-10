@@ -31,9 +31,11 @@ Met standaard settings krijg je linker errors. Je moet linken tegen de static ru
 
 Demo restricties
 ------
-* store alleen edits van presets < 32; nadeel dit kan je altijd op device doen, misschien in combinatie met recall. Dus ook niet opvragen van presets 
-* stuur parameter glitch elke zoveel seconden; hier heb je geen last van als je klaar bent met editen
-* force new mirror download na elke application restart; irritant voor gebruikers en kan clashen met m4l versie
+Store alleen edits van presets < 32; Je kunt altijd op device store functie gebruiken, maar als we de reload knoppen disablen dan betekend dit dat je eeprom en device uit elkaar lopen en je opnieuw een download moet doen als je weer wil editen. Is dit irritant genoeg?
+
+We kunnen evt ook nog eeprom leeggooien als je de applicatie afsluit of opstart. Maar dat is misschien weer TE irritant.
+
+
 
 
 
@@ -56,6 +58,11 @@ Maak de xt non xt switch manual.
 Kan evt een udp poort gebruiken om te communiceren vanaf m4l naar schreditor voor specifieke dingen zoals store patch
 
 ?? Wat doen we als de shreditor preset switcht? Hoe pikken we dat op in m4l, of niet? Via een textfile met autowatch? Of een udp connectie?
+
+Hoe gaan we om met meerder m4l plugins voor verschillende slots. Laden we de slot data in de plugin ook? Dan moet je als je wil saven dus een "fetch live" doen in de editor.
+
+!! Alleen 1.0 supporten. Alle parameters als CC sturen om bandbreedte te sparen. En geen firmware check nodig dan.
+
 
 
 ### Include

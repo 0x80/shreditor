@@ -37,6 +37,7 @@
 #define NUM_DEVICE_SLOTS 8
 
 void midiNrpnCallback(VxShruthi *x, long index, long value);
+void midiCcCallback(VxShruthi *x, long index, long value);
 void midiSysexCallback(VxShruthi *x, SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data);
 void transferProgressCallback(VxShruthi *x, bool finished, uint8_t progress);
 
@@ -67,7 +68,7 @@ public:
 //    void outputAllSequencerData();
     void outputSettingsData();
     
-    
+    void mapCcToNrpn(long index, long v);
     inline void mapNrpnToEeprom(long nrpn_index, long v);
     inline void mapSequencerNrpnToEeprom(long nrpn_index, long v);
     inline void outputNrpn(long index, long value);
@@ -187,6 +188,9 @@ public:
     bool isSequenceDirty_;
     
 private:
+    
+//    void convertControlChangeToNrpn(long index, long v);
+    long convertControlValue(long v, long nsteps, long min = 0);
 
     uint16_t addressable_space_size();
     inline long getNumPatches(){

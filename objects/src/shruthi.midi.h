@@ -28,6 +28,7 @@ public:
     
     void registerSysexCallback(SysexCallback fun, VxShruthi* x);
     void registerNrpnCallback(NrpnCallback fun, VxShruthi* x);
+    void registerCcCallback(NrpnCallback fun, VxShruthi* x);
     
     void parseSysex(std::vector<uint8_t> *msg);
     
@@ -44,6 +45,9 @@ public:
     int findOutputPortNumberForName(t_symbol* name);
     void printMidiPorts(long inlet);
 	void getMidiPortNames(std::vector<std::string> &inputs, std::vector<std::string> &outputs);
+    
+
+    
         
     // forward midi
     void sendMessage(std::vector<uint8_t> *msg);
@@ -85,7 +89,7 @@ private:
     uint8_t dataLsb_;
     
     uint8_t lastDataMsb_;
-    uint8_t runningStatus_;
+//    uint8_t runningStatus_;
     
     long indexLsb_;
     long indexMsb_;
@@ -94,10 +98,11 @@ private:
     bool isNrpnValid_;
     
 //    uint8_t midiMsgCounter_;
-    bool useRunningStatus_;
+//    bool useRunningStatus_;
     bool filterMsb_; // TODO fix
     
     SysexCallback sysexCallback_;
+    NrpnCallback ccCallback_;
     NrpnCallback nrpnCallback_;
     
     //bool locked_; // when transferring eeprom lock all other io
