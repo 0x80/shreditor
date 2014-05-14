@@ -4,7 +4,7 @@ Shreditor Change Log
 Beta 5
 ----------------
 * New data root for Windows, solving user permission issues.
-* Now supports OS 10.5 and 10.6. Previous use of c++0x made it >=10.6
+* Now supports OS 10.5 and 10.6. Use of c++0x features made it >=10.7
 * GUI improvements
 * Expired and init fail alert popups
 * Printing version and expiration date from code
