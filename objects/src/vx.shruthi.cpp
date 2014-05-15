@@ -30,7 +30,7 @@
     #include <sys/stat.h>
 #endif
 
-#define SHREDITOR_VERSION "beta 5"
+#define SHREDITOR_VERSION "beta 6"
 
 // for using _1 _2 
 //using namespace std::placeholders;
@@ -68,7 +68,7 @@ static t_symbol *ps_legato = gensym("legato");
 static t_symbol *ps_rotation = gensym("rotation");
 static t_symbol *ps_progress = gensym("progress");
 static t_symbol *ps_liveGrid = gensym("liveGrid");
-static t_symbol *ps_xtmode = gensym("xtmode");
+//static t_symbol *ps_xtmode = gensym("xtmode");
 static t_symbol *ps_noinput = gensym("--- none ---");
 static t_symbol *ps_nooutput = gensym("--- none ---");
 
@@ -89,14 +89,22 @@ static t_symbol *ps_nooutput = gensym("--- none ---");
 
 
 VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
-:   transfer_(device_),
+:
+    midi_(*this),
     numAccessibleBanks_(2),
     useEepromCache_(true),
     hasEepromCache_(false),
     progressCounter_(0),
     slotIndex_(-1)
 {
-    setupIO(1, 2); // inlets / outlets
+    setupIO(1, 3); // inlets / outlets
+    
+    // point outlets to right place
+    nrpnOut_ = m_outlets[0];
+    midiOut_ = m_outlets[2];
+    msgOut_ = m_outlets[1];
+    
+    midi_.setOutlets(midiOut_, msgOut_);
     
     if(isExpired()){
         
@@ -114,15 +122,6 @@ VxShruthi::VxShruthi(t_symbol * sym, long ac, t_atom * av)
     // init active indexs to -1
     memset(workingPatchIndex_, -1, NUM_DEVICE_SLOTS*sizeof(int));
     memset(workingSequencerIndex_, -1, NUM_DEVICE_SLOTS*sizeof(int));
-    
-    //setupIO(1, 2); // inlets / outlets
-    
-//    VxShruthi *x = this;
-
-    device_.registerSysexCallback(midiSysexCallback, this);
-	device_.registerNrpnCallback(midiNrpnCallback, this);
-    device_.registerCcCallback(midiCcCallback, this);
-    transfer_.registerProgressCallback(transferProgressCallback, this);
     
     clock_ = clock_new((t_object *)this, (method)onTick);
     clock_fdelay(clock_, SEQUENCE_UPDATE_INTERVAL_MS);
@@ -270,59 +269,6 @@ void VxShruthi::initializeSystemStoragePath(){
    
     
 }
-
-void VxShruthi::populateMidiPortMenus(long inlet){
-	std::vector<std::string> inputs;
-	std::vector<std::string> outputs;
-	device_.getMidiPortNames(inputs, outputs);
-
-	DPOST("i/o port count %i %i", inputs.size(), outputs.size());
-
-	// TODO create new midi in and out to list new ports
-	// also create new objects when port is selected
-
-	
-	t_atom *a;
-
-	a = atoms_;
-	atom_setsym(a++, gensym("midiInputMenu")); // prefix
-    atom_setsym(a++, gensym("clear"));
-	outlet_list(m_outlets[1], ps_empty, 2, atoms_);
-    
-    // send out empty "" for first choice
-    a = atoms_+1; // leave prefix
-    atom_setsym(a++, gensym("append"));
-    atom_setsym(a++, ps_noinput);
-    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-	
-	for(int i=0; i<inputs.size(); ++i){
-		a = atoms_+1; // leave prefix
-		atom_setsym(a++, gensym("append"));
-		atom_setsym(a++, gensym(inputs.at(i).c_str()));
-		outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-	}
-
-    a = atoms_;
-	atom_setsym(a++, gensym("midiOutputMenu"));
-    atom_setsym(a++, gensym("clear"));
-	outlet_list(m_outlets[1], ps_empty, 2, atoms_);
-    
-    // send out empty "" for first choice
-    a = atoms_+1; // leave prefix
-    atom_setsym(a++, gensym("append"));
-    atom_setsym(a++, ps_nooutput);
-//    atom_setsym(a++, ps_empty);
-    outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-	
-	for(int i=0; i<outputs.size(); ++i){
-		a = atoms_+1; // leave prefix
-		atom_setsym(a++, gensym("append"));
-		atom_setsym(a++, gensym(outputs.at(i).c_str()));
-		outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-	}
-}
-
-
 void VxShruthi::outputDataroot(){
     atom_setsym(atoms_, gensym("dataroot"));
     atom_setsym(atoms_+1, gensym(dataroot_.c_str()));
@@ -367,7 +313,7 @@ void VxShruthi::onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
     outlet_list(x->m_outlets[1], ps_empty, 2, a);
     
     x->outputDataroot();
-	x->populateMidiPortMenus();
+//	x->populateMidiPortMenus();
 }
 
 void VxShruthi::onFail(VxShruthi *x, t_symbol* s, short ac, t_atom *av){
@@ -689,55 +635,55 @@ void VxShruthi::outputSequence(){
 // transfers
 void VxShruthi::transferPatch(long inlet){
     if(slotIndex_ < 0) return;
-    device_.sendSysex((uint8_t*) &workingPatch_[slotIndex_], 0x01, 0, PATCH_SIZE);
+    midi_.sendSysex((uint8_t*) &workingPatch_[slotIndex_], 0x01, 0, PATCH_SIZE);
 }
 
 void VxShruthi::transferSequence(long inlet){
     if(slotIndex_ < 0) return;
-    device_.sendSysex((uint8_t*) workingSequencer_[slotIndex_].steps, 0x02, 0, sizeof(SequenceStep) * kNumSteps);
+    midi_.sendSysex((uint8_t*) workingSequencer_[slotIndex_].steps, 0x02, 0, sizeof(SequenceStep) * kNumSteps);
 }
 
 void VxShruthi::transferWavetable(long inlet){
-    device_.sendSysex(wavetable_, 0x03, 0, kUserWavetableSize);
+    midi_.sendSysex(wavetable_, 0x03, 0, kUserWavetableSize);
 }
 
 void VxShruthi::transferSystemSettings(long inlet){
-    device_.sendSysex((uint8_t*) settings_, 0x04, 0, SYSTEM_SETTINGS_SIZE);
+    midi_.sendSysex((uint8_t*) settings_, 0x04, 0, SYSTEM_SETTINGS_SIZE);
 }
 
 void VxShruthi::transferSequenceStep(long index){
     if(slotIndex_ < 0) return;
     uint8_t stepIndex = index & 0x0f;
-    device_.sendSysex( workingSequencer_[slotIndex_].steps[stepIndex].data_, 0x05, stepIndex, 2);
+    midi_.sendSysex( workingSequencer_[slotIndex_].steps[stepIndex].data_, 0x05, stepIndex, 2);
 }
 
 void VxShruthi::transferPatchName(long inlet){
     if(slotIndex_ < 0) return;
-    device_.sendSysex(workingPatch_[slotIndex_].name, 0x06, 0, kPatchNameSize);
+    midi_.sendSysex(workingPatch_[slotIndex_].name, 0x06, 0, kPatchNameSize);
 }
 
 void VxShruthi::transferSequencerSettings(long inlet){
     if(slotIndex_ < 0) return;
-    device_.sendSysex((uint8_t*) &workingSequencer_[slotIndex_], 0x07, 0, sizeof(SequencerSettings));
+    midi_.sendSysex((uint8_t*) &workingSequencer_[slotIndex_], 0x07, 0, sizeof(SequencerSettings));
 }
 
 void VxShruthi::setPatternLength(long inlet, long length){
     if(slotIndex_ < 0) return;
     uint8_t v = CLAMP(length, 1, 16);
     workingSequencer_[slotIndex_].pattern_size = v;
-    device_.sendSysexCommand(0x08, v);
+    midi_.sendSysexCommand(0x08, v);
 }
 
 void VxShruthi::setPatternRotation(long inlet, long rotation){
     if(slotIndex_ < 0) return;
     uint8_t v = rotation & 0x0f;
     workingSequencer_[slotIndex_].pattern_rotation = v;
-    device_.sendSysexCommand(0x09, v);
+    midi_.sendSysexCommand(0x09, v);
 }
 
 void VxShruthi::requestRom(long inlet){
     progressCounter_ = 0;
-    device_.sendSysexCommand(0x50);
+    midi_.sendSysexCommand(0x50);
 //    useEepromCache_ = true;
     // Ga er maar vanuit dat dit goed gaat. We hebben geen aanduiding wanneer de transfer klaar is namelijk.
     hasEepromCache_ = true;
@@ -745,13 +691,14 @@ void VxShruthi::requestRom(long inlet){
 // send out complete eeprom to midi
 void VxShruthi::transferRom(long inlet) {
     progressCounter_ = 0;
-    transfer_.transferEeprom(eeprom_, addressable_space_size());
+    DPOST("transferRom werkt niet");
+//    midi_.transferEeprom(eeprom_, addressable_space_size());
 //    useEepromCache_ = true;
 }
 
 // requests
-void VxShruthi::requestNumbers(long inlet){ device_.sendSysexCommand(0x1a); }
-void VxShruthi::requestNumBanks(long inlet){ device_.sendSysexCommand(0x1b); }
+void VxShruthi::requestNumbers(long inlet){ midi_.sendSysexCommand(0x1a); }
+void VxShruthi::requestNumBanks(long inlet){ midi_.sendSysexCommand(0x1b); }
 void VxShruthi::requestVersion(long inlet){
     DPOST("_______requestVersion()______");
     
@@ -760,24 +707,24 @@ void VxShruthi::requestVersion(long inlet){
     outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
     
-    device_.sendSysexCommand(0x1c);
+    midi_.sendSysexCommand(0x1c);
 }
-void VxShruthi::requestPatch(long inlet){ device_.sendSysexCommand(0x11); }
-void VxShruthi::requestSequence(long inlet){ device_.sendSysexCommand(0x12); }
-void VxShruthi::requestWavetable(long inlet){ device_.sendSysexCommand(0x13); }
-void VxShruthi::requestSystemSettings(long inlet){ device_.sendSysexCommand(0x14); }
-void VxShruthi::requestSequenceStep(long inlet, long index){ device_.sendSysex(NULL, 0x15, index & 0x0f, 0); }
-void VxShruthi::requestPatchName(long inlet){ device_.sendSysexCommand(0x16); }
-void VxShruthi::requestSequencerSettings(long inlet){ device_.sendSysexCommand(0x17); }
-void VxShruthi::requestRandomizePatch(long inlet){ device_.sendSysexCommand(0x31); }
-void VxShruthi::requestRandomizeSequence(long inlet){ device_.sendSysexCommand(0x32); }
+void VxShruthi::requestPatch(long inlet){ midi_.sendSysexCommand(0x11); }
+void VxShruthi::requestSequence(long inlet){ midi_.sendSysexCommand(0x12); }
+void VxShruthi::requestWavetable(long inlet){ midi_.sendSysexCommand(0x13); }
+void VxShruthi::requestSystemSettings(long inlet){ midi_.sendSysexCommand(0x14); }
+void VxShruthi::requestSequenceStep(long inlet, long index){ midi_.sendSysex(NULL, 0x15, index & 0x0f, 0); }
+void VxShruthi::requestPatchName(long inlet){ midi_.sendSysexCommand(0x16); }
+void VxShruthi::requestSequencerSettings(long inlet){ midi_.sendSysexCommand(0x17); }
+void VxShruthi::requestRandomizePatch(long inlet){ midi_.sendSysexCommand(0x31); }
+void VxShruthi::requestRandomizeSequence(long inlet){ midi_.sendSysexCommand(0x32); }
 
 void VxShruthi::requestPatchWrite(long slot){
     long first14Bit = slot & 0x3fff;
     uint8_t payload[2];
     payload[0] = first14Bit >> 8; // msb
     payload[1] = first14Bit & 0xff; // lsb
-    device_.sendSysex(payload, 0x21, 0, 2);
+    midi_.sendSysex(payload, 0x21, 0, 2);
 }
 
 void VxShruthi::requestSequenceWrite(long slot){
@@ -785,7 +732,7 @@ void VxShruthi::requestSequenceWrite(long slot){
     uint8_t payload[2];
     payload[0] = first14Bit >> 8; // msb
     payload[1] = first14Bit & 0xff; // lsb
-    device_.sendSysex(payload, 0x22, 0, 2);
+    midi_.sendSysex(payload, 0x22, 0, 2);
 }
 
 void VxShruthi::setPatchName(long inlet, t_symbol *name){
@@ -862,36 +809,36 @@ void VxShruthi::setSettingsLegato(long inlet, long v){
 //    outputSettingsData();
 }
 
-void VxShruthi::setMidiIn(long inlet, t_symbol* portName, long channel){
-    if(portName == ps_noinput){
-        DPOST("empty port name, skipping lookip");
-        return;
-    }
-    device_.setMidiIn(portName, channel);
-}
+//void VxShruthi::setMidiIn(long inlet, t_symbol* portName, long channel){
+//    if(portName == ps_noinput){
+//        DPOST("empty port name, skipping lookip");
+//        return;
+//    }
+//    midi_.setMidiIn(portName, channel);
+//}
+//
+//void VxShruthi::setMidiAuxIn(long inlet, t_symbol* portName, long channel){
+//    if(portName == ps_noinput){
+//        DPOST("empty port name, skipping lookip");
+//        return;
+//    }
+//    midi_.setMidiAuxIn(portName, channel);
+//}
+//
+//void VxShruthi::setMidiOut(long inlet, t_symbol* portName, long channel){
+//    if(portName == ps_nooutput){
+//        DPOST("empty port name, skipping lookip");
+//        return;
+//    }
+//    midi_.setMidiOut(portName, channel);
+//}
 
-void VxShruthi::setMidiAuxIn(long inlet, t_symbol* portName, long channel){
-    if(portName == ps_noinput){
-        DPOST("empty port name, skipping lookip");
-        return;
-    }
-    device_.setMidiAuxIn(portName, channel);
-}
-
-void VxShruthi::setMidiOut(long inlet, t_symbol* portName, long channel){
-    if(portName == ps_nooutput){
-        DPOST("empty port name, skipping lookip");
-        return;
-    }
-    device_.setMidiOut(portName, channel);
-}
-
-void VxShruthi::enableFilterMsb(long inlet, long v){
-    device_.setFilterMsb((v > 0) ? true : false);
-}
-void VxShruthi::enableEepromCache(long inlet, long v){
-    useEepromCache_ = (v > 0) ? true : false;
-}
+//void VxShruthi::enableFilterMsb(long inlet, long v){
+//    midi_.setFilterMsb((v > 0) ? true : false);
+//}
+//void VxShruthi::enableEepromCache(long inlet, long v){
+//    useEepromCache_ = (v > 0) ? true : false;
+//}
 
 void VxShruthi::liveStep(long inlet, t_symbol* s, long ac, t_atom *av)
 {
@@ -964,48 +911,18 @@ void VxShruthi::storePatch(long inlet, long slot){
     requestPatchWrite(slot);
     storePatchToEeprom(slot);
     
-    if(xtmode_){
-        requestSequenceWrite(slot);
-        storeSequenceToEeprom(slot);
-    }
-}
-
-void VxShruthi::storeSequence(long inlet, long slot){
-    
-    // First we need to use global pattern_length to cut
-    // the sequence and clear every step outside length.
-//    SequencerSettings &seq = workingSequencer_[slotIndex_];
-//
-//    // Clear all the notes after the cycle mark.
-//    for (uint8_t i = seq.pattern_size; i < kNumSteps; ++i) {
-//        seq.steps[i].clear();
-//    }
-    
-    if(xtmode_){
-        object_error((t_object*)this, "storeSequence() is not allowed in xt mode");
-        return;
-    }
     requestSequenceWrite(slot);
     storeSequenceToEeprom(slot);
-    
-    // Output the new pattern with cleared steps
-    outputSequence();
-    
 }
 
 void VxShruthi::storePatchToEeprom(long slot){
     if(slotIndex_ < 0) return;
-    DPOST("Store patch %i to eeprom cache", slot);
     
+    DPOST("Store patch %i to eeprom cache", slot);
     uint8_t *address = getAddress<Patch>(slot);
     
     // update before write
-    if(xtmode_){
-        workingPatch_[slotIndex_].PrepareForWriteXt(*settings_, workingSequencer_[slotIndex_]);
-    }else{
-        workingPatch_[slotIndex_].PrepareForWriteOrig();
-    }
-   
+    workingPatch_[slotIndex_].PrepareForWriteXt(*settings_, workingSequencer_[slotIndex_]);
     std::memcpy(address,
                 &workingPatch_[slotIndex_],
                 StorageConfiguration<Patch>::size);
@@ -1020,25 +937,17 @@ void VxShruthi::loadPatchFromEeprom(long slot){
                 StorageConfiguration<Patch>::size);
    
     // update patch data
-    if(xtmode_){
-        // also load sequence with same slot
-        loadSequenceFromEeprom(slot);
-//        calculatePatternSize();
-        
-        workingPatch_[slotIndex_].UpdateXt(*settings_, workingSequencer_[slotIndex_]);
-        
-        
-    }else{
-        workingPatch_[slotIndex_].UpdateOrig();
-    }
+    // also load sequence with same slot
+    loadSequenceFromEeprom(slot);
+    workingPatch_[slotIndex_].UpdateXt(*settings_, workingSequencer_[slotIndex_]);
 }
+
 void VxShruthi::storeSequenceToEeprom(long slot){
     if(slotIndex_ < 0) return;
     DPOST("Store sequence %i to eeprom", slot);
     uint8_t *address = getAddress<SequencerSettings>(slot);
     
     workingSequencer_[slotIndex_].PrepareForWrite();
-  
     std::memcpy(address,
                 & workingSequencer_[slotIndex_].steps,
                 StorageConfiguration<SequencerSettings>::size);
@@ -1055,9 +964,6 @@ void VxShruthi::loadSequenceFromEeprom(long slot){
     workingSequencer_[slotIndex_].Update();
 }
 
-
-
-
 void VxShruthi::calculatePatternSize(){
     if(slotIndex_ < 0) return;
     // Extract pattern length
@@ -1071,10 +977,7 @@ void VxShruthi::calculatePatternSize(){
             break;
         }
     }
-    
-
 }
-
 
 void VxShruthi::loadPatch(long inlet, long slot){
     if(slotIndex_ < 0) return;
@@ -1089,103 +992,23 @@ void VxShruthi::loadPatch(long inlet, long slot){
     
     sendPatchProgramChange(slot);
     
-    //    if(useEepromCache_ && hasEepromCache_){
     loadPatchFromEeprom(slot);
     outputPatchData();
     
-    if(xtmode_){
-        // sequences are coupled to patch storage
-        outputSequence();
-        // sequence settings are embedded in patch data
-        outputSequencerSettings();
-    }
-    
-}
-void VxShruthi::loadSequence(long inlet, long slot){
-    if(slotIndex_ < 0) return;
-    
-    //if(xtmode_){
-    //    object_error((t_object*)this, "loadSequence is not valid in xt mode");
-    //    return;
-    //}
-    
-    if(workingSequencerIndex_[slotIndex_] == slot){
-        DPOST("Slot same as working, using existing seq data", slot);
-        outputSequence();
-        return;
-    }
-    
-    workingSequencerIndex_[slotIndex_] = slot; // store current active slot
-    
-    // in xt mode zijn patch en sequence al gekoppeld
- //   if(!xtmode_){
-    sendSequenceProgramChange(slot);
-//    }
-    
-    loadSequenceFromEeprom(slot);
-//    calculatePatternSize();
+    // sequences are coupled to patch storage
     outputSequence();
+    // sequence settings are embedded in patch data
+    outputSequencerSettings();
+    
 }
 
 void VxShruthi::sendPatchProgramChange(long slot){
-    uint8_t bank = slot / 128;
-    uint8_t patch = (slot - bank * 128) & 0x7f;
-    if(bank > 8)
-        return;
-    
-    std::vector<uint8_t> message;
-    
-    // Bank select CC
-    message.push_back(0xb0 | device_.channelOut_);
-    message.push_back(0); // bank MSB
-    message.push_back(bank); // since 0.98 sent in msb
-    device_.sendMessage( &message );
-    message.clear();
-    
-//     // TODO set lsb to 0 once MSB is used in 0.98
-//    message.push_back(0xb0 | device_.channelOut_);
-//    message.push_back(0x20); // bank LSB
-//    message.push_back(bank);
-//    device_.sendMessage( &message );
-//    message.clear();
-    
-    // Program Change
-    message.push_back(0xc0 | device_.channelOut_);
-    message.push_back(patch);
-    device_.sendMessage( &message );
+    midi_.sendPatchProgramChange(slot);
 }
-
-
-
 
 void VxShruthi::sendSequenceProgramChange(long slot){
-    uint8_t bank = slot / 128;
-    uint8_t patch = (slot - bank * 128) & 0x7f;
-    if(bank > 8)
-        return;
-    
-    std::vector<uint8_t> message;
-    
-    // Bank select CC
-    message.push_back(0xb0 | device_.channelOut_);
-    message.push_back(0); // bank MSB
-    message.push_back(bank + 0x40);
-    device_.sendMessage( &message );
-    message.clear();
-    
-//    // TODO set lsb to 0 once MSB is used in 0.98
-//    message.push_back(0xb0 | device_.channelOut_);
-//    message.push_back(0x20); // bank LSB 
-//    message.push_back(bank + 0x40); // offset for shruthi sequence banks
-//    device_.sendMessage( &message );
-//    message.clear();
-    
-    // Program Change
-    message.push_back(0xc0 | device_.channelOut_);
-    message.push_back(patch & 0x7f);
-    device_.sendMessage( &message );
+    midi_.sendSequenceProgramChange(slot);
 }
-
 
 void VxShruthi::loadDeviceEeprom(){
     
@@ -1264,7 +1087,7 @@ void VxShruthi::importEeprom(long inlet, t_symbol* filepath){
         refreshGui();
         
         // clear nrpn cache todo clean way
-        device_.lastNrpnIndex_ = -1;
+        midi_.clearCache();
         
     }catch(std::exception e){
         
@@ -1272,8 +1095,6 @@ void VxShruthi::importEeprom(long inlet, t_symbol* filepath){
         object_error((t_object*)this,"Eeprom cache disabled.");
     }
 }
-
-
 
 void VxShruthi::exportEeprom(long inlet, t_symbol* filepath){
     if(! hasEepromCache_){
@@ -1291,8 +1112,6 @@ void VxShruthi::exportEeprom(long inlet, t_symbol* filepath){
         object_error((t_object*)this,"Failed to write file %s", filepath->s_name);
     }
 }
-
-
 
 void VxShruthi::clearEepromCache(long inlet){
     // only clear the external part
@@ -1331,16 +1150,7 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
                 &clipboardSequencer_.steps,
                 StorageConfiguration<SequencerSettings>::size);
     transferSequence();
-    
-//    calculatePatternSize();
     outputSequence();
-}
-
-void VxShruthi::setXtMode(bool v){
-    xtmode_ = v;
-    atom_setsym(atoms_, ps_xtmode);
-    atom_setlong(atoms_+1, xtmode_ ? 1 : 0);
-    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
 }
 
 void VxShruthi::refreshGui(){
@@ -1350,7 +1160,6 @@ void VxShruthi::refreshGui(){
     requestNumbers();
     // output global setting data
     outputSettingsData();
-//    outputSequencerSettings();
 }
 
 // v range 1-8
@@ -1375,14 +1184,17 @@ void VxShruthi::switchToDevice(long inlet, long v){
     requestVersion(); // -> call refreshGui() and sequencer data on return
     
     // clear nrpn cache todo clean way
-    device_.lastNrpnIndex_ = -1;
+    midi_.clearCache();
+    
+    //TIJDELIJKE HACK OMDAT VERSION NOG NIET WERKT
+//    setXtMode(true);
+    // pre xt sequencer settings are not stored anywhere
+    // we might have restarted the editor
+    requestSequencerSettings();
+    refreshGui();
 }
 
-void midiSysexCallback(VxShruthi *x, SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
-    x->acceptSysexData(cmd, arg, data);
-}
-
-void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
+void VxShruthi::processSysexInput(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data) {
     
     if(slotIndex_ < 0) return;
     
@@ -1438,28 +1250,16 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
                 atom_setlong(atoms_+1, firmware_major_);
                 atom_setlong(atoms_+2, firmware_minor_);
                 outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-                            
-                if(firmware_major_ == 0){
-                    setXtMode(false);
-                    // pre xt sequencer settings are not stored anywhere
-                    // we might have restarted the editor
-                    requestSequencerSettings();
-                    refreshGui();
-                }else{
-                    setXtMode(true);
-                    refreshGui();
-                }
+                
             }else{
                 object_error((t_object*)this, "Invalid response from version request");
             }
             break;
             
         case kPatch:  // Patch transfer
-            if(xtmode_){
-                success = workingPatch_[slotIndex_].CheckBufferXt(sysex_rx_buffer_);
-            }else{
-                success = workingPatch_[slotIndex_].CheckBufferOrig(sysex_rx_buffer_);
-            }
+            
+            success = workingPatch_[slotIndex_].CheckBufferXt(sysex_rx_buffer_);
+            
             if(success){
                 DPOST("Patch data received");
                 std::memcpy(&workingPatch_[slotIndex_],
@@ -1560,22 +1360,22 @@ void VxShruthi::acceptSysexData(SysexCommand cmd, uint8_t arg, std::vector<uint8
     }
 }
 
-void midiNrpnCallback(VxShruthi* x, long index, long v){
+void VxShruthi::processNrpnInput(long index, long v){
     
     // update internal eeprom
 //    mapSequencerNrpnToEeprom(nrpn_index, v);
-    x->mapNrpnToEeprom(index, v);
+    mapNrpnToEeprom(index, v);
     
     // send out to patch
-    x->outputNrpn(index, v);
+    outputNrpn(index, v);
 }
 
 /*
     In xt mode all knob changes come in as cc and need to be mapped to correct nrpns
     for the editor.
  */
-void midiCcCallback(VxShruthi* x, long index, long v){
-    x->mapCcToNrpn(index, v);
+void VxShruthi::processCcInput(long index, long v){
+    mapCcToNrpn(index, v);
 }
 
 /*
@@ -1609,76 +1409,76 @@ void VxShruthi::mapCcToNrpn(long index, long v){
     switch(index){
             
             // oscillators
-        case 20: midiNrpnCallback(this, 0, convertControlValue(v, 34)); break;
-        case 21: midiNrpnCallback(this, 1, v); break;
-        case 22: midiNrpnCallback(this, 2, convertControlValue(v, 49, -24)); break;
-        case 28: midiNrpnCallback(this, 3, convertControlValue(v, 14)); break;
-        case 24: midiNrpnCallback(this, 4, convertControlValue(v, 34)); break;
-        case 25: midiNrpnCallback(this, 5, v); break;
-        case 26: midiNrpnCallback(this, 6, convertControlValue(v, 49, -24)); break;
-        case 27: midiNrpnCallback(this, 7, v); break;
-        case 29: midiNrpnCallback(this, 8, convertControlValue(v, 64)); break;
-        case 30: midiNrpnCallback(this, 9, convertControlValue(v, 64)); break;
-        case 31: midiNrpnCallback(this, 10, convertControlValue(v, 64)); break;
-        case 23: midiNrpnCallback(this, 11, convertControlValue(v, 11)); break;
+        case 20: processNrpnInput(0, convertControlValue(v, 34)); break;
+        case 21: processNrpnInput(1, v); break;
+        case 22: processNrpnInput(2, convertControlValue(v, 49, -24)); break;
+        case 28: processNrpnInput(3, convertControlValue(v, 14)); break;
+        case 24: processNrpnInput(4, convertControlValue(v, 34)); break;
+        case 25: processNrpnInput(5, v); break;
+        case 26: processNrpnInput(6, convertControlValue(v, 49, -24)); break;
+        case 27: processNrpnInput(7, v); break;
+        case 29: processNrpnInput(8, convertControlValue(v, 64)); break;
+        case 30: processNrpnInput(9, convertControlValue(v, 64)); break;
+        case 31: processNrpnInput(10, convertControlValue(v, 64)); break;
+        case 23: processNrpnInput(11, convertControlValue(v, 11)); break;
             
             // filter
-        case 14: midiNrpnCallback(this, 12, v); break;
-        case 74: midiNrpnCallback(this, 12, v); break;
-        case 15: midiNrpnCallback(this, 13, convertControlValue(v, 64)); break;
-        case 71: midiNrpnCallback(this, 13, convertControlValue(v, 64)); break;
-        case 102: midiNrpnCallback(this, 14, convertControlValue(v, 64)); break;
-        case 103: midiNrpnCallback(this, 15, convertControlValue(v, 64)); break;
+        case 14: processNrpnInput(12, v); break;
+        case 74: processNrpnInput(12, v); break;
+        case 15: processNrpnInput(13, convertControlValue(v, 64)); break;
+        case 71: processNrpnInput(13, convertControlValue(v, 64)); break;
+        case 102: processNrpnInput(14, convertControlValue(v, 64)); break;
+        case 103: processNrpnInput(15, convertControlValue(v, 64)); break;
             
             // envelopes
-        case 104: midiNrpnCallback(this, 16, v); break;
-        case 105: midiNrpnCallback(this, 17, v); break;
-        case 106: midiNrpnCallback(this, 18, v); break;
-        case 107: midiNrpnCallback(this, 19, v); break;
-        case 108: midiNrpnCallback(this, 20, v); break;
-        case 109: midiNrpnCallback(this, 21, v); break;
-        case 110: midiNrpnCallback(this, 22, v); break;
-        case 111: midiNrpnCallback(this, 23, v); break;
+        case 104: processNrpnInput(16, v); break;
+        case 105: processNrpnInput(17, v); break;
+        case 106: processNrpnInput(18, v); break;
+        case 107: processNrpnInput(19, v); break;
+        case 108: processNrpnInput(20, v); break;
+        case 109: processNrpnInput(21, v); break;
+        case 110: processNrpnInput(22, v); break;
+        case 111: processNrpnInput(23, v); break;
             
             // lfos
-        case 112: midiNrpnCallback(this, 24, convertControlValue(v, 21)); break;
-        case 113: midiNrpnCallback(this, 25, convertControlValue(v, 144)); break;
-        case 114: midiNrpnCallback(this, 26, v); break;
-        case 115: midiNrpnCallback(this, 27, convertControlValue(v, 4)); break;
-        case 116: midiNrpnCallback(this, 28, convertControlValue(v, 21)); break;
-        case 117: midiNrpnCallback(this, 29, convertControlValue(v, 144)); break;
-        case 118: midiNrpnCallback(this, 30, v); break;
-        case 119: midiNrpnCallback(this, 31, convertControlValue(v, 4)); break;
+        case 112: processNrpnInput(24, convertControlValue(v, 21)); break;
+        case 113: processNrpnInput(25, convertControlValue(v, 144)); break;
+        case 114: processNrpnInput(26, v); break;
+        case 115: processNrpnInput(27, convertControlValue(v, 4)); break;
+        case 116: processNrpnInput(28, convertControlValue(v, 21)); break;
+        case 117: processNrpnInput(29, convertControlValue(v, 144)); break;
+        case 118: processNrpnInput(30, v); break;
+        case 119: processNrpnInput(31, convertControlValue(v, 4)); break;
             
             // sequencer settings
-        case 75: midiNrpnCallback(this, 100, convertControlValue(v, 3)); break;
-        case 76: midiNrpnCallback(this, 102, convertControlValue(v, 6)); break;
-        case 77: midiNrpnCallback(this, 103, v); break;
-        case 78: midiNrpnCallback(this, 104, convertControlValue(v, 4)); break;
-        case 79: midiNrpnCallback(this, 105, convertControlValue(v, 4, 1)); break;
-        case 80: midiNrpnCallback(this, 106, convertControlValue(v, 16)); break;
-        case 81: midiNrpnCallback(this, 107, convertControlValue(v, 12)); break;
+        case 75: processNrpnInput(100, convertControlValue(v, 3)); break;
+        case 76: processNrpnInput(102, convertControlValue(v, 6)); break;
+        case 77: processNrpnInput(103, v); break;
+        case 78: processNrpnInput(104, convertControlValue(v, 4)); break;
+        case 79: processNrpnInput(105, convertControlValue(v, 4, 1)); break;
+        case 80: processNrpnInput(106, convertControlValue(v, 16)); break;
+        case 81: processNrpnInput(107, convertControlValue(v, 12)); break;
             
             // system settings (fictieve nrpns voor xt, voor nu)
-        case 82: midiNrpnCallback(this, 142, convertControlValue(v, 12)); break;
-        case 83: midiNrpnCallback(this, 143, convertControlValue(v, 33)); break;
-        case 84: midiNrpnCallback(this, 144, convertControlValue(v, 64)); break;
-        case 68: midiNrpnCallback(this, 145, convertControlValue(v, 2)); break;
+        case 82: processNrpnInput(142, convertControlValue(v, 12)); break;
+        case 83: processNrpnInput(143, convertControlValue(v, 33)); break;
+        case 84: processNrpnInput(144, convertControlValue(v, 64)); break;
+        case 68: processNrpnInput(145, convertControlValue(v, 2)); break;
             
             // filterboard xtras
-        case 12: midiNrpnCallback(this, 84, v); break;
-        case 13: midiNrpnCallback(this, 85, convertControlValue(v, 64)); break;
-        case 85: midiNrpnCallback(this, 92, convertControlValue(v, 6)); break;
-        case 86: midiNrpnCallback(this, 93, convertControlValue(v, 6)); break;
-        case 87: midiNrpnCallback(this, 92, convertControlValue(v, 6)); break;
-        case 88: midiNrpnCallback(this, 93, convertControlValue(v, 16)); break;
-        case 89: midiNrpnCallback(this, 92, convertControlValue(v, 2)); break;
-        case 90: midiNrpnCallback(this, 84, convertControlValue(v, 2)); break;
-        case 91: midiNrpnCallback(this, 85, convertControlValue(v, 2)); break;
-        case 92: midiNrpnCallback(this, 92, convertControlValue(v, 15)); break;
-        case 93: midiNrpnCallback(this, 93, convertControlValue(v, 4)); break;
-        case 94: midiNrpnCallback(this, 92, convertControlValue(v, 16)); break;
-        case 95: midiNrpnCallback(this, 93, convertControlValue(v, 16)); break;
+        case 12: processNrpnInput(84, v); break;
+        case 13: processNrpnInput(85, convertControlValue(v, 64)); break;
+        case 85: processNrpnInput(92, convertControlValue(v, 6)); break;
+        case 86: processNrpnInput(93, convertControlValue(v, 6)); break;
+        case 87: processNrpnInput(92, convertControlValue(v, 6)); break;
+        case 88: processNrpnInput(93, convertControlValue(v, 16)); break;
+        case 89: processNrpnInput(92, convertControlValue(v, 2)); break;
+        case 90: processNrpnInput(84, convertControlValue(v, 2)); break;
+        case 91: processNrpnInput(85, convertControlValue(v, 2)); break;
+        case 92: processNrpnInput(92, convertControlValue(v, 15)); break;
+        case 93: processNrpnInput(93, convertControlValue(v, 4)); break;
+        case 94: processNrpnInput(92, convertControlValue(v, 16)); break;
+        case 95: processNrpnInput(93, convertControlValue(v, 16)); break;
             
             
         default:
@@ -1691,13 +1491,26 @@ void VxShruthi::mapCcToNrpn(long index, long v){
 void VxShruthi::nrpn(long inlet, long nrpn_index, long v){
     
     if(slotIndex_ < 0) return;
+    
     // update internal eeprom
-//    mapSequencerNrpnToEeprom(nrpn_index, v);
     mapNrpnToEeprom(nrpn_index, v);
     
     // send to device
-    device_.sendNrpn(nrpn_index, v);
+    midi_.sendNrpn(nrpn_index, v);
+}
+
+void VxShruthi::cc(long inlet, long index, long v){
+    midi_.parseControlChange(index, v);
+}
+
+void VxShruthi::sysex(long inlet, t_symbol* s, long ac, t_atom *av){
+ 
+    std::vector<uint8_t> data;
+    for(int i=0; i<ac; ++i){
+        data.push_back(static_cast<uint8_t>(atom_getlong(av+i)));
+    }
     
+    midi_.parseSysex(data);
 }
 
 void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
@@ -1823,17 +1636,12 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
 
 // voor als er iets hangt
 void VxShruthi::stopTransfer(long inlet){
-    transfer_.stop();
-    //device_.unlock();
-    
-    // misschien nog een all notes off?
-    
-    // misschien nog een resetDevice functie met default system settings etc?
+    midi_.stopTransfer();
 }
 
-void transferProgressCallback(VxShruthi *x, bool isBusy, uint8_t progress){
-    x->outputProgress(progress);
-}
+//void transferProgressCallback(VxShruthi *x, bool isBusy, uint8_t progress){
+//    x->outputProgress(progress);
+//}
 
 
 // triggered by kNumBanks return, because first we want to know the
@@ -1922,13 +1730,7 @@ int T_EXPORT main(void) {
 	// create a class with the given name:
 	VxShruthi::makeMaxClass("vx.shruthi");
     
-//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceNote);
-//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceGate);
-//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceVelocity);
-//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceController);
-//    REGISTER_METHOD_LONG2(VxShruthi, setSequenceLegato);
     
-    REGISTER_METHOD_SYMBOL(VxShruthi, setPatchName);
     
     REGISTER_METHOD(VxShruthi, requestNumbers);
     REGISTER_METHOD(VxShruthi, requestNumBanks);
@@ -1943,7 +1745,7 @@ int T_EXPORT main(void) {
     REGISTER_METHOD(VxShruthi, requestRandomizePatch);
     REGISTER_METHOD(VxShruthi, requestRandomizeSequence);
     REGISTER_METHOD_LONG(VxShruthi, storePatch);
-    REGISTER_METHOD_LONG(VxShruthi, storeSequence);
+//    REGISTER_METHOD_LONG(VxShruthi, storeSequence);
     
     REGISTER_METHOD(VxShruthi, requestRom);
     
@@ -1962,15 +1764,9 @@ int T_EXPORT main(void) {
     REGISTER_METHOD_LONG(VxShruthi, setSettingsPortamento);
     REGISTER_METHOD_LONG(VxShruthi, setSettingsLegato);
     
-
-    REGISTER_METHOD_SYMBOL_LONG(VxShruthi, setMidiIn);
-    REGISTER_METHOD_SYMBOL_LONG(VxShruthi, setMidiAuxIn);
-    REGISTER_METHOD_SYMBOL_LONG(VxShruthi, setMidiOut);
-    
     REGISTER_METHOD_LONG2(VxShruthi, nrpn);
-    
-    REGISTER_METHOD_LONG(VxShruthi, enableFilterMsb);
-    REGISTER_METHOD_LONG(VxShruthi, enableEepromCache);
+    REGISTER_METHOD_LONG2(VxShruthi, cc);
+    REGISTER_METHOD_GIMME(VxShruthi, sysex);
     
     REGISTER_METHOD_GIMME(VxShruthi, liveStep);
     REGISTER_METHOD_GIMME(VxShruthi, liveGrid);
@@ -1978,21 +1774,18 @@ int T_EXPORT main(void) {
     
     REGISTER_METHOD_LONG(VxShruthi, setPatternLength);
     REGISTER_METHOD_LONG(VxShruthi, setPatternRotation);
+    REGISTER_METHOD_SYMBOL(VxShruthi, setPatchName);
     
     REGISTER_METHOD_LONG(VxShruthi, loadPatch);
-    REGISTER_METHOD_LONG(VxShruthi, loadSequence);
     
     REGISTER_METHOD_SYMBOL(VxShruthi, importEeprom);
     REGISTER_METHOD_SYMBOL(VxShruthi, exportEeprom);
 
     REGISTER_METHOD(VxShruthi, clearEepromCache);
-    
     REGISTER_METHOD(VxShruthi, stopTransfer);
     
-    REGISTER_METHOD_LONG(VxShruthi, enableEepromCache);
-    
     REGISTER_METHOD(VxShruthi, listPatchNames);
-    REGISTER_METHOD(VxShruthi, testMidi);
+//    REGISTER_METHOD(VxShruthi, testMidi);
     
     REGISTER_METHOD(VxShruthi, copyPatchToClipboard);
     REGISTER_METHOD(VxShruthi, pastePatchFromClipboard);
@@ -2001,23 +1794,5 @@ int T_EXPORT main(void) {
     
     REGISTER_METHOD_LONG(VxShruthi, switchToDevice);
 
-	REGISTER_METHOD(VxShruthi, populateMidiPortMenus);
-    
-    
-//    #ifdef WIN_VERSION
-//        char user_name[UNLEN+1];
-//        DWORD user_name_size = sizeof(user_name);
-//        if (GetUserName(user_name, &user_name_size)){
-//            DPOST("Your user name is: %s", user_name);
-//        }else{
-//            object_error((t_object*)this,"Failed to lookup user name");
-//        }
-//        /* Handle error */
-//    #else // MAC_VERSION
-//                // the mac uses the standard gcc syntax, you should also set the -fvisibility=hidden flag to hide the non-marked symbols
-//        char* szUserName;
-//        szUserName = getenv("USER");
-//        DPOST("Your user name is: %s", szUserName);  
-//    #endif
 }
 

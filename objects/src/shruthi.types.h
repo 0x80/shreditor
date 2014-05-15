@@ -15,18 +15,10 @@ const uint16_t kInternalEepromSize = 0x0800;
 const uint16_t kBankSize = 0x2000;
 const uint16_t kMaxNumBanks = 7;
 
-
 // have to make this uint8_t for max
 static const uint8_t sysex_rx_header[] = {
     0xf0,               // <Sysex>
     0x00, 0x21, 0x02,   // Mutable Instruments manufacturer ID.
-    0x00, 0x02,         // Product ID for Shruthi-1.
-};
-
-// have to make this uint8_t for max
-static const uint8_t sysex_rx_header_old[] = {
-    0xf0,               // <Sysex>
-    0x00, 0x20, 0x77,
     0x00, 0x02,         // Product ID for Shruthi-1.
 };
 

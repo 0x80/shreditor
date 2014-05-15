@@ -3,7 +3,8 @@
 #include "shruthi.transfer.h"
 #include "shruthi.midi.h"
 
-SysexBulkTransfer::SysexBulkTransfer(ShruthiMidi &device) :
+SysexBulkTransfer::SysexBulkTransfer(VxShruthi &x) :
+    parent_(x),
     start_(0),
     message_id_(0x40),
     block_id_(0),
@@ -11,9 +12,9 @@ SysexBulkTransfer::SysexBulkTransfer(ShruthiMidi &device) :
     data_(0),
     size_(0),
     dataposition_(0),
-    isTransferBusy_(false),
-    device_(device)
-    
+    isTransferBusy_(false)
+//    midi_(device)
+
 {
     x_systhread = NULL;
     x_systhread_cancel = false;
@@ -21,6 +22,8 @@ SysexBulkTransfer::SysexBulkTransfer(ShruthiMidi &device) :
     x_qelem = qelem_new(this,(method)qfn);
 //    x_foo = 0;
 //    x_sleeptime = 1000;
+//    msgOut_ = msgOut;
+//    midiOut_ = midiOut;
 }
 
 SysexBulkTransfer::~SysexBulkTransfer(){
@@ -70,7 +73,7 @@ void SysexBulkTransfer::stop(){
         x_systhread = NULL;
         DPOST("thread stopped and returned %i", ret);
         x_systhread_cancel = false;
-       // device_.unlock();
+       // midi_.unlock();
 
     }
 }
@@ -96,9 +99,9 @@ void SysexBulkTransfer::qfn(SysexBulkTransfer *x)
 //    post("transfer block %i", block);
     DPOST("dataposition %x, messid %x, nblock %i, size %i", dataposition, message_id, block_counter, kSysExBulkDumpBlockSize);
     
-    if(x->progressReporter_){
-        x->progressReporter_(x->x_, isTransferBusy, block_id);
-    }
+//    if(x->progressReporter_){
+        x->parent_.outputProgress(block_id);
+//    }
 }
 
 
@@ -111,21 +114,11 @@ void SysexBulkTransfer::memberproc(SysexBulkTransfer *x)
     x->message_id_ = 0x40;
     uint16_t delay = 250;//100;
     
-    /// first is system settings 
- //   x->block_id_ = 16; // skip first 16
- //   uint16_t pos = kInternalEepromSize; // start at external eeprom
-   
-    
     x->block_id_ = 0; // skip first 16
     uint16_t pos = 0; // start at external eeprom
     
     x->block_counter_ = 0;
     x->dataposition_ = 0;
-
-    //!!! Is dit wel nodig, sysex zijn blocks met header en footer
-//    x->device_.lock();
-    
-//    for (uint16_t start = 0; start < x->size_; start += kSysExBulkDumpBlockSize) {
     
     // skip internal eeprom
     for (; pos < x->size_; pos += kSysExBulkDumpBlockSize) {
@@ -133,27 +126,10 @@ void SysexBulkTransfer::memberproc(SysexBulkTransfer *x)
         if (x->x_systhread_cancel)
             break;
         
-        
         systhread_mutex_lock(x->x_mutex);
-        
-//        if (start < kInternalEepromSize) {
-////            delay = 500;
-//            
-//            delay = 0;
-//            
-//            // skip internal eeprom entirely
-//
-//        } else {
-//            delay = 100;
-        
-            
-            // First between 0x00 and 0x10 are system settings!!
-            //        if(start < 0x10){
+
             // output block data as sysex
-            x->device_.sendSysexSafe(x->data_ + pos, x->message_id_, x->block_id_ , kSysExBulkDumpBlockSize);
-            
-            
-//        }
+//            outputSysex(x->data_ + pos, x->message_id_, x->block_id_ , kSysExBulkDumpBlockSize);
         
         x->dataposition_ = x->data_ + pos;
         x->block_id_++;
@@ -175,13 +151,53 @@ void SysexBulkTransfer::memberproc(SysexBulkTransfer *x)
     
     x->x_systhread_cancel = false;                                                 // reset cancel flag for next time, in case
     
-    //x->device_.unlock();
-    
     x->isTransferBusy_ = false;
     
     qelem_set(x->x_qelem); // nog 1x om finished door te geven.
     
     // the thread is created again
     systhread_exit(0);															// this can return a value to systhread_join();
+}
+
+void SysexBulkTransfer::outputSysex(uint8_t* data, uint8_t command, uint8_t argument, size_t size) {
+    
+    std::vector<unsigned char> msg;
+    uint8_t checksum = 0;
+    
+    // header
+    msg.push_back(0xf0);
+    msg.push_back(0x00);
+    msg.push_back(0x20);
+    msg.push_back(0x77);
+    msg.push_back(0x00);
+    msg.push_back(0x02);
+    
+    // cmd
+    msg.push_back(command);
+    msg.push_back(argument);
+    
+    // payload
+    for (size_t i = 0; i < size; ++i) {
+        checksum += data[i];
+        msg.push_back(data[i] >> 4);
+        msg.push_back(data[i] & 0x0f);
+    }
+    
+    // footer
+    msg.push_back(checksum >> 4);
+    msg.push_back(checksum & 0x0f);
+    msg.push_back(0xf7);
+    
+    try{
+        outputMidi(msg);
+//        midiOutput_->sendMessage(&msg);
+    }catch(RtError &err){
+        error("Midi error: %s", err.what());
+    }
+}
+
+// TODO get rid of thread all together. output naar outlet kan niet in aparte thread anyway
+void SysexBulkTransfer::outputMidi(std::vector<unsigned char> msg){
+    
 }
 
