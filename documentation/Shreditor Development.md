@@ -1,3 +1,43 @@
+Waar was ik
+-------------------
+
+bugs
+* als midi op full staat lijkt de request niet goed te gaan. Firmware en numbanks requests komen in 1 sysex message terecht lijkt het wel. 0b (numbanke) en 0c (firmware)
+
+
+
+* implement rapidjson library
+
+
+Het is fijn als devices niet perse sysex of een output connectie nodig hebben nadat je de eeprom hebt geladen. Daarvoor moeten er een paar dingen anders:
+* geen firmware check bij switch. Doe firmware check ook als preflight voor eeprom request
+* geen numbanks check bij switch. Numbanks moeten we ergens opslaan, in de device presets denk ik.
+
+
+
+binnenkort
+--------------------
+* sla eeprom op als json, dan hebben we numbanks er ook meteen inzitten, en firmware kan er ook bij
+* implement banks in patchlist
+
+
+
+
+beta 6 changes
+-------------------
+
+* replaced internal midi ports with max native midi handling
+* removed <1.0 support
+* fixed sysex headers and validation
+* removed firmware check on device switch
+* moved numbanks check to eeprom transfer request
+* moved version check to eeprom transfer request
+* improved device switching
+
+
+
+
+
 
 
 Notes
@@ -61,9 +101,6 @@ Kan evt een udp poort gebruiken om te communiceren vanaf m4l naar schreditor voo
 
 Hoe gaan we om met meerder m4l plugins voor verschillende slots. Laden we de slot data in de plugin ook? Dan moet je als je wil saven dus een "fetch live" doen in de editor.
 
-!! Alleen 1.0 supporten. Alle parameters als CC sturen om bandbreedte te sparen. En geen firmware check nodig dan.
-
-
 
 ### Include
 * alle nrpns incl matrix
@@ -84,11 +121,6 @@ Hoe gaan we om met meerder m4l plugins voor verschillende slots. Laden we de slo
 
 
 
-
-XT doesn't work
------------------
-* shruthi/makefile still has 0.97 version in it
-* knobs are echoed as ctl. grab from input and monitor\
 
 
 XT changes
@@ -119,46 +151,8 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCij+psIu/zTxgf15gYy2p4k5aOlI+eECHD8H0whMUF
 
 Bugs
 ------------------
-* upload klopt niet bytes = 35200 ipv 18432
-* Shreditor stuurt regelmatig 2 byte messages wat is dat?
 * pattr_obex: no such file in collective bij opstarten standalone
 
-
-
-Process:         Shreditor beta4 [9010]
-Path:            /Users/USER/Documents/*/Shreditor beta4.app/Contents/MacOS/Shreditor beta4
-Identifier:      com.cycling74.MaxRuntime
-Version:         6.1.7 [db5f11a] (6.1.7)
-Code Type:       X86 (Native)
-Parent Process:  launchd [155]
-Responsible:     Shreditor beta4 [9010]
-User ID:         505
-
-Date/Time:       2014-04-03 21:30:09.426 +0200
-OS Version:      Mac OS X 10.9.2 (13C64)
-Report Version:  11
-Anonymous UUID:  9D694D1B-27FC-7738-3435-C412929CDD24
-
-Sleep/Wake UUID: 78685549-2D08-4923-85B3-F2CE05A89EE4
-
-Crashed Thread:  0  Dispatch queue: com.apple.main-thread
-
-Exception Type:  EXC_BAD_ACCESS (SIGBUS)
-Exception Codes: KERN_PROTECTION_FAILURE at 0x0000000000000004
-
-VM Regions Near 0x4:
---> __PAGEZERO             0000000000000000-0000000000001000 [    4K] ---/--- SM=NUL  /Users/USER/Documents/*/Shreditor beta4.app/Contents/MacOS/Shreditor beta4
-    __TEXT                 0000000000001000-00000000005e3000 [ 6024K] r-x/rwx SM=COW  /Users/USER/Documents/*/Shreditor beta4.app/Contents/MacOS/Shreditor beta4
-
-Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
-0   vx.shruthi                    	0x0d5f91bc VxShruthi::populateMidiPortMenus(long) + 170 (vx.shruthi.cpp:249)
-1   vx.shruthi                    	0x0d5ff9e2 MaxCppBase<VxShruthi>::MaxMethod<&(VxShruthi::populateMidiPortMenus(long))>::call(VxShruthi*) + 30 (maxcpp6.h:161)
-2   com.cycling74.MaxRuntime      	0x0000c009 ob_funcall + 74
-3   com.cycling74.MaxRuntime      	0x0001be0e typedmess_fun + 326
-4   com.cycling74.MaxRuntime      	0x000602b8 outlet_anything + 914
-5   com.cycling74.MaxRuntime      	0x0001bd2f typedmess_fun + 103
-6   com.cycling74.MaxRuntime      	0x000602b8 outlet_anything + 914
-7   com.cycling74.MaxRuntime      	0x00050a06 through_sendit + 193
 
 
 
@@ -166,75 +160,13 @@ TODO
 --------------------------
 * gebruik live.line
 * vervang toggle met live.toggle
-* vervangt buttons met textbutton
-* redetect firmware button?
 * live.tabs?
-* als er geen mididevices zijn wordt rtmidiin en out ook niet aangemaakt. Zorg dat altijd een check is voor je funtie aanroept
-* zorg dat aux port niet hetzelfde kan zijn als input, anders krijg je een loop. Ignore sysex?
+
 * pgm change + bank select moet nu in object geregeld worden.
 
 * opnemen in manual: In xtmode the editor does not know when the sequence is running. If the sequence is running and you send a program change, the sequencer settings in the device will not be touched. Since the editor has no way of knowing, it will always display the sequencer settings from the loaded patch. So it might not correspond to what is currently running on the device.
 
 
-
-
-
-
-audiosupport 0, database 0, searchformissingfiles 0, usesearchpath 0
-...leads to:
-
-MSP/ad: no ad folder
-Core Audio: No such object
-pattr_obex: no such file in collective
-DevicePresets.json: no such file in collective
-DevicePresets.xml: no such file in collective
-
-en nu:
-
-No midi driver folder or default driver
-MSP/ad: no ad folder
-Core Audio: No such object
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-pattr_obex: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-maxzlib: no such file in collective
-
-
-on windows:
-
-MSP/ad: no ad folder
-ad_mme: No such object
-pattr_obex: no such file in collective
-
-
-
-
-
-overdrive is not on by default
-
-project is showing implicit dependencies that are not correct anymore like an old pattrstorage file named ShreditorDevices.json. 
 
 
 license tekst? moet er nog iets bij van een licenswe?
@@ -254,8 +186,6 @@ maak een dirty flag voor elke working copy. output naar interface als indicatie 
 
 undo buffer original patch when fetched from eeprom. for each working slot. so we can reset it...
 
-maak switch om eeprom mirror uit te schakelen, voor als mensen alleen midi in willen gebruiken 
-
 maak defaults voor sequencer note vel ctl using tables die in preset opgeslagen worden. zoals in helpfile dumping data in live.seq
 >> of makkelijke fill empty steps met waardes van de laatste
 
@@ -266,25 +196,11 @@ program change output from shruthi -> request patch in editor. Gebruik != / chan
 
 fontawesome voor icoontjes
 
-###M4L
-Als we mirror data gaan delen tussen max en live, wat doen we dan met edit->save. File watch en reload? Als je in M4L een preset saved, hoe wordt die dan geupdate in de editor? Als workaround gewoon een handmatige mirror reload?
-
-sequencer settings opslaan als extra eeprom on disk? Sequencer settings worden nergens opgeslagen ook niet in device. Voor M4L kan dit in instrument?
-
-import eeprom zonder file naam te veranderen -> overwrite slot eeprom
-cache / niet cache, clear eeprom 
-
-
 
 ###Later
 * globale config met 1 slot in top patcher voor config file enzo
-
 * splits de patch lijst in banks
-* reset knop voor modulation
-* wavetable transfer from buffer
 * backup and import voor mirrors, is dit nodig?
-* forward debug log to void post(C74_CONST char *fmt, ...);
 * reset click op dials vooral matrix 
-* default settings functie: lpf, 0 0 0 0 0 1
-* json i/o of bson?
+* json i/o?
 * extrasystemsettings request (note triggers)

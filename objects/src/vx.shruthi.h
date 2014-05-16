@@ -86,8 +86,8 @@ public:
     void transferSequencerSettings(long inlet = 0);
     void transferRom(long inlet = 0);
    
-    void requestNumbers(long inlet = 0);
-    void requestNumBanks(long inlet = 0);
+    void requestNumbers(long inlet = 0); // get current patch/sequence index
+    void requestNumBanks(long inlet = 0); // get eeprom bank count
     void requestVersion(long inlet = 0);
     void requestPatch(long inlet = 0);
     void requestSequence(long inlet = 0);
@@ -114,7 +114,7 @@ public:
     void setSettingsLegato(long inlet, long v);
 
     void setSystemSettings(long inlet, t_symbol *s, long ac, t_atom *av);
-        
+    void setNumBanks(long inlet, long v);
 
     void liveStep(long inlet, t_symbol* s, long ac, t_atom *av);
     void liveGrid(long inlet, t_symbol* s, long ac, t_atom *av);
@@ -158,15 +158,12 @@ public:
     void pasteSequenceFromClipboard(long inlet);
     
     void listPatchNames(long inlet = 0);
+    void clearPatchNames(long inlet = 0);
     void outputDataroot();
-//	void populateMidiPortMenus(long inlet = 0);
-    
-    
-    
+ 
     void switchToDevice(long inlet, long v);
     void refreshGui();
-//    void setXtMode(bool v);
-    
+
     template<typename T>
     uint8_t* getAddress(uint16_t slot) {
         if (slot < StorageConfiguration<T>::num_internal) {

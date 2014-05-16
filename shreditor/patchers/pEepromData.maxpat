@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 255.0, 369.0, 799.0, 608.0 ],
+		"rect" : [ 356.0, 272.0, 1271.0, 639.0 ],
 		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -29,6 +29,345 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-2",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "bang", "bang" ],
+					"patching_rect" : [ 904.0, 448.0, 57.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "onebang",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
+					"bubble" : 0,
+					"bubblepoint" : 0.5,
+					"bubbleside" : 1,
+					"bubbletextmargin" : 5,
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"frgb" : 0.0,
+					"hidden" : 0,
+					"id" : "obj-4",
+					"ignoreclick" : 1,
+					"linecount" : 3,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1051.0, 168.0, 168.0, 47.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "wacht met request totdat numbanks en jusite firmware binnen zijn",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0,
+					"underline" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-40",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "bang", "" ],
+					"patching_rect" : [ 1002.0, 400.0, 36.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "sel 1",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-37",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 1002.0, 368.0, 179.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "zl compare okfirmware okbanks",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-32",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "okfirmware" ],
+					"patching_rect" : [ 912.0, 290.0, 76.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "t okfirmware",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-31",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 912.0, 264.0, 91.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "r ---firmwareOk",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-30",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "x", "x" ],
+					"patching_rect" : [ 1002.0, 224.5, 33.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "t x x",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-29",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1002.0, 336.0, 66.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "pak s s",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-26",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "okbanks" ],
+					"patching_rect" : [ 1080.0, 272.5, 62.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "t okbanks",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-24",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 1080.0, 248.5, 97.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "route numbanks",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-23",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1080.0, 224.5, 92.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "r ---fromShruthi",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-17",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 866.333313, 224.5, 85.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "s ---toShruthi",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
+					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-11",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 904.0, 506.5, 85.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "s ---toShruthi",
+					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"background" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"hidden" : 0,
+					"id" : "obj-1",
+					"ignoreclick" : 0,
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "bang", "requestVersion", "requestNumBanks", "bang" ],
+					"patching_rect" : [ 800.0, 144.0, 219.0, 20.0 ],
+					"presentation" : 0,
+					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"text" : "t b requestVersion requestNumBanks b",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"textjustification" : 0
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"active" : 1,
 					"align" : 1,
@@ -55,7 +394,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"outputmode" : 1,
 					"parameter_enable" : 0,
-					"patching_rect" : [ 520.0, 63.5, 65.0, 16.0 ],
+					"patching_rect" : [ 296.0, 30.5, 65.0, 16.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 152.0, 49.5, 96.0, 16.0 ],
 					"rounded" : 14.0,
@@ -235,7 +574,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"outputmode" : 1,
 					"parameter_enable" : 0,
-					"patching_rect" : [ 312.0, 63.5, 65.0, 16.0 ],
+					"patching_rect" : [ 800.0, 112.0, 65.0, 16.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 112.0, 8.0, 57.0, 16.0 ],
 					"rounded" : 14.0,
@@ -256,8 +595,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -418,7 +757,7 @@
 					}
 ,
 					"text" : "p confirm",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -426,30 +765,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"hidden" : 0,
-					"id" : "obj-1",
-					"ignoreclick" : 0,
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patching_rect" : [ 656.0, 96.0, 100.0, 20.0 ],
-					"presentation" : 0,
-					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
@@ -464,7 +781,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "conformpath native boot",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -495,8 +812,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -507,11 +824,11 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "stopTransfer" ],
-					"patching_rect" : [ 520.0, 88.0, 84.0, 20.0 ],
+					"patching_rect" : [ 296.0, 55.0, 84.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t stopTransfer",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -535,7 +852,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 184.0, 488.0, 150.0, 89.0 ],
+					"patching_rect" : [ 184.0, 488.0, 150.0, 87.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "first time we store preset, we have probably set the midi connections, so we want to know numbanks before we start initial transfer",
@@ -591,9 +908,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 352.0, 168.0, 20.0, 20.0 ],
+					"patching_rect" : [ 352.0, 168.0, 20.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 48.0, 48.0, 20.0, 20.0 ],
+					"presentation_rect" : [ 48.0, 48.0, 20.0, 21.0 ],
 					"text" : "of",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0,
@@ -631,8 +948,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -647,7 +964,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "unpack 0 0 0",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -655,8 +972,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -671,7 +988,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "sprintf symout %s_eeprom.bin",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -679,8 +996,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -695,7 +1012,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---transferProgress",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -719,10 +1036,10 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 32.0, 139.0, 108.0 ],
+					"patching_rect" : [ 24.0, 32.0, 137.0, 110.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 4,
-					"presentation_rect" : [ 368.0, 3.0, 224.0, 57.0 ],
+					"presentation_rect" : [ 368.0, 3.0, 224.0, 58.0 ],
 					"text" : "Import or export full eeprom data to or from an external file. On import the data is loaded into the editor, but you still need to tranfer it to the device by clicking the transmit button.",
 					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
 					"textjustification" : 0,
@@ -733,8 +1050,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -749,7 +1066,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "r ---deviceName",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -757,8 +1074,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -773,7 +1090,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "conformpath native boot",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -781,8 +1098,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -797,7 +1114,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t transferRom",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -833,8 +1150,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -848,7 +1165,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -868,7 +1185,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "requestRom" ],
-					"patching_rect" : [ 312.0, 88.0, 83.0, 20.0 ],
+					"patching_rect" : [ 904.0, 480.0, 83.0, 20.0 ],
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "t requestRom",
@@ -880,8 +1197,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -896,7 +1213,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend name",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -904,8 +1221,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -919,7 +1236,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -927,8 +1244,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -943,7 +1260,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend exportEeprom",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -951,8 +1268,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
@@ -967,7 +1284,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "savedialog bin",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -975,8 +1292,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -991,7 +1308,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "opendialog bin",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -999,8 +1316,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -1014,7 +1331,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "s ---toShruthi",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -1022,8 +1339,8 @@
 , 			{
 				"box" : 				{
 					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"color" : [ 0.8, 0.84, 0.71, 1.0 ],
 					"fontface" : 0,
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -1038,7 +1355,7 @@
 					"presentation" : 0,
 					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
 					"text" : "prepend importEeprom",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"textjustification" : 0
 				}
 
@@ -1117,6 +1434,46 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-17", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-1", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-17", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-1", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-2", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-30", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-1", 3 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-97", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1177,7 +1534,7 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-143", 0 ],
+					"destination" : [ "obj-11", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-142", 0 ]
@@ -1217,6 +1574,36 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-142", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-24", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-23", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-26", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-35", 1 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1247,10 +1634,90 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-29", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-26", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-37", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-29", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-29", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-30", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-29", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-30", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-32", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-31", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-29", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-32", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-135", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-34", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-40", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-37", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-2", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-40", 0 ]
 				}
 
 			}
@@ -1308,7 +1775,7 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-142", 0 ],
+					"destination" : [ "obj-1", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-95", 0 ]
@@ -1338,7 +1805,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "pUploadPopup.maxpat",
-				"bootpath" : "/Users/student/Documents/shreditor/shreditor/patchers",
+				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

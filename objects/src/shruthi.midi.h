@@ -61,7 +61,7 @@ public:
 private:
     
     void parseControlChangeAsNrpn();
-    t_atom atoms_[128]; // te klein misschien voor SYSEX??
+    t_atom atoms_[140]; // sysex dump blocksize is 128
     
     VxShruthi& x_; // dirty hack
     

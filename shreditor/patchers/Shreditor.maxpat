@@ -8,7 +8,7 @@
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 425.0, 46.0, 1316.0, 884.0 ],
+		"rect" : [ 422.0, 44.0, 1490.0, 949.0 ],
 		"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -29,6 +29,31 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
+					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"borderoncolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
+					"fontname" : "Arial",
+					"fontsize" : 11.0,
+					"id" : "obj-30",
+					"maxclass" : "textbutton",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 1092.75, 32.0, 18.5, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 665.0, 224.0, 20.0, 16.0 ],
+					"text" : "X",
+					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
+					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
+					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ]
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -467,32 +492,6 @@
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
-					"bgovercolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
-					"bordercolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
-					"borderoncolor" : [ 0.342049, 0.342049, 0.342049, 1.0 ],
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"hidden" : 1,
-					"id" : "obj-30",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1092.75, 32.0, 18.5, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 665.0, 224.0, 20.0, 16.0 ],
-					"text" : "X",
-					"textcolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
-					"textoncolor" : [ 0.623529, 0.623529, 0.623529, 1.0 ],
-					"textovercolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ],
-					"textoveroncolor" : [ 0.898039, 0.898039, 0.898039, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-27",
@@ -678,7 +677,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 816.0, 594.0, 64.0, 16.0 ],
+					"patching_rect" : [ 705.0, 519.0, 64.0, 16.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 784.0, 504.0, 72.0, 16.0 ],
 					"text" : "Reload",
@@ -703,7 +702,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 864.0, 496.0, 64.0, 16.0 ],
+					"patching_rect" : [ 705.0, 414.0, 64.0, 16.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 784.0, 355.0, 72.0, 16.0 ],
 					"text" : "Reload",
@@ -803,7 +802,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 904.0, 568.0, 64.0, 16.0 ],
+					"patching_rect" : [ 705.0, 463.0, 64.0, 16.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 784.0, 160.0, 72.0, 16.0 ],
 					"text" : "Reload",
@@ -1081,7 +1080,6 @@
 					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 18.0,
 					"frgb" : 0.0,
-					"hidden" : 1,
 					"id" : "obj-109",
 					"linecount" : 4,
 					"maxclass" : "comment",
@@ -1091,7 +1089,7 @@
 					"presentation" : 1,
 					"presentation_linecount" : 3,
 					"presentation_rect" : [ 280.0, 248.0, 365.0, 70.0 ],
-					"text" : "No compatible Shruthi firmware version was detected on this port. Fix the connection or update the device to version 0.98 or greater.",
+					"text" : "No compatible Shruthi firmware version was detected on this port. Fix the connection or update the device to version 1.0 or newer.",
 					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ]
 				}
 
@@ -1099,7 +1097,6 @@
 , 			{
 				"box" : 				{
 					"bgcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
-					"hidden" : 1,
 					"id" : "obj-127",
 					"maxclass" : "panel",
 					"numinlets" : 1,
@@ -1118,8 +1115,8 @@
 					"id" : "obj-124",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
@@ -1150,83 +1147,80 @@
 						"tags" : "",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 12.0,
+									"id" : "obj-8",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 160.0, 320.0, 93.0, 20.0 ],
+									"text" : "s ---firmwareOk"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 12.0,
+									"frgb" : 0.0,
+									"id" : "obj-7",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 293.0, 248.0, 105.0, 33.0 ],
+									"text" : ">= 1.0 XT firmware"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 12.0,
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "bang", "" ],
+									"patching_rect" : [ 250.0, 248.0, 36.0, 20.0 ],
+									"text" : "sel 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 12.0,
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "int", "int" ],
+									"patching_rect" : [ 250.0, 224.0, 69.0, 20.0 ],
+									"text" : "unpack 0 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"comment" : "",
+									"id" : "obj-2",
+									"maxclass" : "outlet",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 373.0, 416.0, 25.0, 25.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"comment" : "",
 									"id" : "obj-1",
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 409.0, 80.0, 25.0, 25.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 12.0,
-									"id" : "obj-3",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 145.0, 273.0, 43.0, 18.0 ],
-									"text" : "set ??"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 12.0,
-									"id" : "obj-118",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 48.0, 232.0, 19.0, 20.0 ],
-									"text" : "_"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 12.0,
-									"id" : "obj-117",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 116.0, 32.5, 18.0 ],
-									"text" : "1 0"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 12.0,
-									"id" : "obj-115",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 58.0, 140.0, 34.0, 18.0 ],
-									"text" : "0 98"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 12.0,
-									"id" : "obj-113",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 58.0, 172.0, 144.0, 20.0 ],
-									"text" : "sprintf symout %d.%.2d"
+									"patching_rect" : [ 441.0, 88.0, 25.0, 25.0 ]
 								}
 
 							}
@@ -1239,7 +1233,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 426.0, 148.0, 60.0, 20.0 ],
+									"patching_rect" : [ 373.0, 156.0, 60.0, 20.0 ],
 									"text" : "loadbang"
 								}
 
@@ -1253,7 +1247,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 314.0, 180.0, 57.0, 18.0 ],
+									"patching_rect" : [ 373.0, 352.0, 57.0, 18.0 ],
 									"text" : "hidden 1"
 								}
 
@@ -1267,7 +1261,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 234.0, 212.0, 57.0, 18.0 ],
+									"patching_rect" : [ 293.0, 352.0, 57.0, 18.0 ],
 									"text" : "hidden 0"
 								}
 
@@ -1281,7 +1275,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "stop" ],
-									"patching_rect" : [ 194.0, 180.0, 40.0, 20.0 ],
+									"patching_rect" : [ 250.0, 276.0, 40.0, 20.0 ],
 									"text" : "t stop"
 								}
 
@@ -1295,7 +1289,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 234.0, 180.0, 69.0, 20.0 ],
+									"patching_rect" : [ 293.0, 320.0, 69.0, 20.0 ],
 									"text" : "delay 1000"
 								}
 
@@ -1309,7 +1303,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 218.0, 148.0, 112.0, 20.0 ],
+									"patching_rect" : [ 250.0, 156.0, 112.0, 20.0 ],
 									"text" : "route list undefined"
 								}
 
@@ -1323,7 +1317,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 218.0, 96.0, 87.0, 20.0 ],
+									"patching_rect" : [ 250.0, 128.0, 87.0, 20.0 ],
 									"text" : "route firmware"
 								}
 
@@ -1337,30 +1331,8 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 218.0, 72.0, 92.0, 20.0 ],
+									"patching_rect" : [ 250.0, 104.0, 92.0, 20.0 ],
 									"text" : "r ---fromShruthi"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "obj-122",
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 296.0, 25.0, 25.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "obj-123",
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 269.0, 290.0, 25.0, 25.0 ]
 								}
 
 							}
@@ -1394,7 +1366,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-123", 0 ],
+									"destination" : [ "obj-2", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
 									"source" : [ "obj-105", 0 ]
@@ -1403,7 +1375,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-123", 0 ],
+									"destination" : [ "obj-2", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
 									"source" : [ "obj-107", 0 ]
@@ -1421,55 +1393,28 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-3", 0 ],
+									"destination" : [ "obj-5", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
-									"source" : [ "obj-110", 0 ]
+									"source" : [ "obj-4", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-118", 0 ],
+									"destination" : [ "obj-103", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
-									"source" : [ "obj-113", 0 ]
+									"source" : [ "obj-5", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-113", 0 ],
+									"destination" : [ "obj-8", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
-									"source" : [ "obj-115", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-113", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
-									"source" : [ "obj-117", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-122", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
-									"source" : [ "obj-118", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-122", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
-									"source" : [ "obj-3", 0 ]
+									"source" : [ "obj-5", 0 ]
 								}
 
 							}
@@ -1484,19 +1429,19 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-100", 0 ],
+									"destination" : [ "obj-95", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
-									"source" : [ "obj-95", 1 ]
+									"source" : [ "obj-92", 0 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-103", 0 ],
+									"destination" : [ "obj-100", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
-									"source" : [ "obj-95", 0 ]
+									"source" : [ "obj-95", 1 ]
 								}
 
 							}
@@ -1511,19 +1456,10 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-113", 0 ],
+									"destination" : [ "obj-4", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
 									"source" : [ "obj-95", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-3", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
-									"source" : [ "obj-95", 1 ]
 								}
 
 							}
@@ -1545,101 +1481,6 @@
 					}
 ,
 					"text" : "p firmware"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"frgb" : 0.0,
-					"id" : "obj-121",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1088.5, 96.0, 48.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 497.0, 22.0, 34.0, 20.0 ],
-					"text" : "??",
-					"textcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"frgb" : 0.0,
-					"id" : "obj-112",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1024.5, 96.0, 64.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 441.0, 22.0, 64.0, 20.0 ],
-					"text" : "Firmware ",
-					"textcolor" : [ 0.46253, 0.46253, 0.46253, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"color" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-81",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 904.0, 64.0, 72.0, 20.0 ],
-					"text" : "loadmess 0"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"color" : [ 1.0, 0.427451, 0.0, 1.0 ],
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-63",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 904.0, 88.0, 71.0, 20.0 ],
-					"text" : "s ---xtmode"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"id" : "obj-94",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 811.0, 48.0, 48.0, 20.0 ],
-					"text" : "xtswap"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Avenir Next Condensed Regular",
-					"fontsize" : 14.0,
-					"frgb" : 0.0,
-					"hidden" : 1,
-					"id" : "obj-28",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 811.0, 81.0, 26.0, 26.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 681.0, 4.0, 26.0, 26.0 ],
-					"text" : "XT",
-					"textcolor" : [ 1.0, 0.427451, 0.0, 1.0 ]
 				}
 
 			}
@@ -1806,7 +1647,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 464.0, 128.0, 69.0, 20.0 ],
-					"save" : [ "#N", "thispatcher", ";", "#Q", "window", "flags", "grow", "close", "zoom", "nofloat", "menu", "minimize", ";", "#Q", "window", "constrain", 200, 200, 1500, 1500, ";", "#Q", "window", "size", 425, 46, 1741, 930, ";", "#Q", "window", "title", ";", "#Q", "window", "exec", ";", "#Q", "savewindow", 1, ";", "#Q", "end", ";" ],
+					"save" : [ "#N", "thispatcher", ";", "#Q", "window", "flags", "grow", "close", "zoom", "nofloat", "menu", "minimize", ";", "#Q", "window", "constrain", 200, 200, 1500, 1500, ";", "#Q", "window", "size", 422, 44, 1912, 993, ";", "#Q", "window", "title", ";", "#Q", "window", "exec", ";", "#Q", "savewindow", 1, ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
 
@@ -2110,7 +1951,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 904.0, 592.0, 81.0, 18.0 ],
+					"patching_rect" : [ 705.0, 487.0, 81.0, 18.0 ],
 					"text" : "requestPatch"
 				}
 
@@ -2124,7 +1965,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 904.0, 680.0, 99.0, 18.0 ],
+					"patching_rect" : [ 705.0, 583.0, 99.0, 18.0 ],
 					"text" : "requestNumbers"
 				}
 
@@ -2149,8 +1990,8 @@
 					"name" : "pFilterExtrax.maxpat",
 					"numinlets" : 0,
 					"numoutlets" : 0,
-					"offset" : [ 0.0, -448.0 ],
-					"patching_rect" : [ 496.0, 312.0, 168.0, 56.0 ],
+					"offset" : [ 0.0, -192.0 ],
+					"patching_rect" : [ 488.5, 312.0, 168.0, 56.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 584.0, 160.0, 192.0, 56.0 ]
 				}
@@ -2165,7 +2006,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 816.0, 624.0, 152.0, 18.0 ],
+					"patching_rect" : [ 705.0, 539.0, 152.0, 18.0 ],
 					"text" : "requestSequencerSettings"
 				}
 
@@ -2179,7 +2020,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 864.0, 520.0, 134.0, 18.0 ],
+					"patching_rect" : [ 705.0, 438.0, 134.0, 18.0 ],
 					"text" : "requestSystemSettings"
 				}
 
@@ -2192,7 +2033,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 872.0, 712.0, 85.0, 20.0 ],
+					"patching_rect" : [ 675.0, 620.0, 85.0, 20.0 ],
 					"text" : "s ---toShruthi"
 				}
 
@@ -2481,7 +2322,7 @@
 					"name" : "pOperands.maxpat",
 					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 552.0, 512.0, 160.0, 128.0 ],
+					"patching_rect" : [ 488.5, 512.0, 168.0, 128.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 168.0, 352.0, 144.0, 120.0 ]
 				}
@@ -5169,7 +5010,7 @@
 					"name" : "pEnvelopes.maxpat",
 					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 280.0, 376.0, 232.0, 128.0 ],
+					"patching_rect" : [ 280.0, 376.0, 200.0, 128.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 376.0, 216.0, 200.0, 112.0 ],
 					"varname" : "pEnvelopes"
@@ -5183,7 +5024,7 @@
 					"name" : "pLfos.maxpat",
 					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 520.0, 376.0, 232.0, 128.0 ],
+					"patching_rect" : [ 488.5, 376.0, 168.0, 128.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 584.0, 216.0, 192.0, 112.0 ],
 					"varname" : "Lfos"
@@ -5251,7 +5092,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 99.0, 664.0, 39.0, 18.0 ],
-									"presentation_rect" : [ 258.0, 686.0, 0.0, 0.0 ],
 									"text" : "ch all"
 								}
 
@@ -5266,7 +5106,6 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
 									"patching_rect" : [ 99.0, 640.0, 70.0, 20.0 ],
-									"presentation_rect" : [ 258.0, 654.0, 0.0, 0.0 ],
 									"text" : "select 0"
 								}
 
@@ -5281,7 +5120,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 150.0, 664.0, 40.0, 18.0 ],
-									"presentation_rect" : [ 309.0, 686.0, 0.0, 0.0 ],
 									"text" : "ch $1"
 								}
 
@@ -6742,7 +6580,7 @@
 					"name" : "pSystemSettings.maxpat",
 					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 280.0, 512.0, 264.0, 128.0 ],
+					"patching_rect" : [ 280.0, 512.0, 200.0, 128.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 584.0, 352.0, 200.0, 160.0 ]
 				}
@@ -6934,16 +6772,6 @@
 					"destination" : [ "obj-109", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-124", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.46253, 0.46253, 0.46253, 1.0 ],
-					"destination" : [ "obj-121", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
 					"source" : [ "obj-124", 0 ]
 				}
 
@@ -6953,7 +6781,7 @@
 					"destination" : [ "obj-127", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-124", 1 ]
+					"source" : [ "obj-124", 0 ]
 				}
 
 			}
@@ -6962,7 +6790,8 @@
 					"destination" : [ "obj-30", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-124", 1 ]
+					"midpoints" : [ 1098.0, 100.0, 1077.0, 100.0, 1077.0, 22.0, 1102.25, 22.0 ],
+					"source" : [ "obj-124", 0 ]
 				}
 
 			}
@@ -7446,15 +7275,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-63", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-81", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-80", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -7537,15 +7357,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-28", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-94", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-106", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -7573,102 +7384,102 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-6::obj-14" : [ "Env2Decay", "Decay", 0 ],
-			"obj-12::obj-54" : [ "DspMode1", "Mode", 0 ],
-			"obj-10::obj-78" : [ "Resonance", "Reson", 0 ],
-			"obj-11::obj-6" : [ "Osc1Range", "Range", 0 ],
-			"obj-11::obj-1" : [ "Osc1Shape", "Shape", 0 ],
-			"obj-11::obj-31" : [ "SubVolume", "SubVol", 0 ],
-			"obj-11::obj-24" : [ "Osc2Shape", "Shape", 0 ],
-			"obj-55::obj-65" : [ "SystemChannel", "Channel", 0 ],
-			"obj-12::obj-13" : [ "SsmHighpass", "HP", 0 ],
-			"obj-12::obj-24" : [ "DspParam2", "P2", 0 ],
-			"obj-11::obj-35" : [ "SubShape", "Shape", 0 ],
-			"obj-4::obj-4" : [ "Lfo1Waveform", "Shape", 0 ],
-			"obj-12::obj-64" : [ "spFeedback", "Feedback", 0 ],
-			"obj-54::obj-7" : [ "Op2Operator", "Op", 0 ],
-			"obj-69::obj-34::obj-44" : [ "Mod4Amount", ".", 0 ],
-			"obj-22::obj-8" : [ "ModulationOperator[1]", "Amount", 0 ],
-			"obj-12::obj-7" : [ "SvfMode1", "Mode 1", 0 ],
-			"obj-10::obj-80" : [ "Envelope", "Env 1", 0 ],
-			"obj-6::obj-2" : [ "Env1Decay", "Decay", 0 ],
-			"obj-54::obj-9" : [ "Op2Input1", "Input1", 0 ],
-			"obj-12::obj-18" : [ "PvkMode1", "Mode", 0 ],
-			"obj-69::obj-34::obj-98" : [ "Mod9Amount", ".", 0 ],
-			"obj-2::obj-47::obj-108" : [ "textbutton", "textbutton", 0 ],
-			"obj-54::obj-75" : [ "Op1Input1", "Input1", 0 ],
-			"obj-4::obj-6" : [ "Lfo1Attack", "Attack", 0 ],
-			"obj-22::obj-20" : [ "ArpPattern", "Pattern", 0 ],
-			"obj-55::obj-68" : [ "SystemMidiMode", "Midi", 0 ],
-			"obj-69::obj-34::obj-92" : [ "Mod10Amount", ".", 0 ],
-			"obj-54::obj-80" : [ "Op1Operator", "Op", 0 ],
-			"obj-55::obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
-			"obj-6::obj-8" : [ "Env1Release", "Release", 0 ],
-			"obj-11::obj-28" : [ "Osc2Detune", "Detune", 0 ],
-			"obj-22::obj-24" : [ "ArpDirection", "Direction", 0 ],
-			"obj-69::obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
-			"obj-12::obj-39" : [ "DelayFeedback", "Feedback", 0 ],
-			"obj-6::obj-12" : [ "Env2Sustain", "Sustain", 0 ],
-			"obj-69::obj-34::obj-68" : [ "Mod6Amount", ".", 0 ],
-			"obj-11::obj-8" : [ "ModulationOperator", "Operator", 0 ],
-			"obj-11::obj-33" : [ "NoiseVolume", "Noise", 0 ],
-			"obj-69::obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
-			"obj-11::obj-22" : [ "Osc2Parameter", "Param", 0 ],
-			"obj-22::obj-13" : [ "PatternSize", "Size", 0 ],
-			"obj-12::obj-5" : [ "SvfResonance2", "Reson 2", 0 ],
-			"obj-12::obj-43" : [ "DelayTime", "Time", 0 ],
-			"obj-4::obj-20" : [ "Lfo2Attack", "Attack", 0 ],
-			"obj-69::obj-34::obj-80" : [ "Mod12Amount", ".", 0 ],
+			"obj-11::obj-26" : [ "OscMix", "Mix", 0 ],
 			"obj-12::obj-28" : [ "DspParam1", "P1", 0 ],
-			"obj-12::obj-9" : [ "SvfMode2", "Mode 2", 0 ],
-			"obj-12::obj-33" : [ "4pmMode", "Mode", 0 ],
-			"obj-10::obj-82" : [ "Lfo", "LFO 2", 0 ],
-			"obj-22::obj-32" : [ "SequencerModeXt", "Mode", 0 ],
-			"obj-69::obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
-			"obj-69::obj-34::obj-50" : [ "Mod3Amount", ".", 0 ],
-			"obj-11::obj-4" : [ "Osc1Parameter", "Param", 0 ],
-			"obj-22::obj-28" : [ "ArpWarp", "Warp", 0 ],
-			"obj-69::obj-34::obj-56" : [ "Mod8Amount", ".", 0 ],
+			"obj-69::obj-34::obj-98" : [ "Mod9Amount", ".", 0 ],
+			"obj-6::obj-12" : [ "Env2Sustain", "Sustain", 0 ],
+			"obj-54::obj-9" : [ "Op2Input1", "Input1", 0 ],
+			"obj-22::obj-13" : [ "PatternSize", "Size", 0 ],
+			"obj-22::obj-29" : [ "SequencerTempoXt", "Tempo", 0 ],
+			"obj-55::obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
+			"obj-12::obj-37" : [ "DelayFlavour", "Flavour", 0 ],
+			"obj-12::obj-43" : [ "DelayTime", "Time", 0 ],
+			"obj-54::obj-80" : [ "Op1Operator", "Op", 0 ],
+			"obj-12::obj-16" : [ "PvkOverdrive", "Drive", 0 ],
+			"obj-4::obj-20" : [ "Lfo2Attack", "Attack", 0 ],
+			"obj-69::obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
 			"obj-55::obj-69" : [ "SystemSplit", "Split", 0 ],
+			"obj-4::obj-4" : [ "Lfo1Waveform", "Shape", 0 ],
+			"obj-22::obj-25" : [ "Division", "Division", 0 ],
+			"obj-22::obj-6" : [ "Osc1Range[1]", "Groove", 0 ],
+			"obj-69::obj-34::obj-68" : [ "Mod6Amount", ".", 0 ],
+			"obj-12::obj-33" : [ "4pmMode", "Mode", 0 ],
+			"obj-55::obj-48" : [ "SystemOctave", "Octave", 0 ],
+			"obj-22::obj-22" : [ "ArpRange", "Range", 0 ],
+			"obj-12::obj-54" : [ "DspMode1", "Mode", 0 ],
+			"obj-6::obj-4" : [ "Env1Attack", "Attack", 0 ],
+			"obj-6::obj-16" : [ "Env2Attack", "Attack", 0 ],
 			"obj-12::obj-30" : [ "DspProgram", "Program", 0 ],
 			"obj-4::obj-18" : [ "Lfo2Mode", "Mode", 0 ],
-			"obj-6::obj-4" : [ "Env1Attack", "Attack", 0 ],
-			"obj-54::obj-5" : [ "Op2Input2", "Input2", 0 ],
-			"obj-12::obj-16" : [ "PvkOverdrive", "Drive", 0 ],
-			"obj-55::obj-48" : [ "SystemOctave", "Octave", 0 ],
-			"obj-6::obj-16" : [ "Env2Attack", "Attack", 0 ],
-			"obj-11::obj-26" : [ "OscMix", "Mix", 0 ],
-			"obj-4::obj-2" : [ "Lfo1Rate", "Rate", 0 ],
-			"obj-12::obj-35" : [ "4pmFlavour", "Flavour", 0 ],
-			"obj-4::obj-24" : [ "Lfo2Waveform", "Shape", 0 ],
-			"obj-12::obj-37" : [ "DelayFlavour", "Flavour", 0 ],
-			"obj-6::obj-10" : [ "Env2Release", "Release", 0 ],
-			"obj-22::obj-16" : [ "PatternRotation", "Rotation", 0 ],
+			"obj-4::obj-6" : [ "Lfo1Attack", "Attack", 0 ],
+			"obj-10::obj-82" : [ "Lfo", "LFO 2", 0 ],
+			"obj-12::obj-64" : [ "spFeedback", "Feedback", 0 ],
+			"obj-11::obj-1" : [ "Osc1Shape", "Shape", 0 ],
 			"obj-6::obj-6" : [ "Env1Sustain", "Sustain", 0 ],
-			"obj-69::obj-34::obj-74" : [ "Mod5Amount", ".", 0 ],
-			"obj-12::obj-47" : [ "spMode", "Mode", 0 ],
-			"obj-22::obj-29" : [ "SequencerTempoXt", "Tempo", 0 ],
-			"obj-22::obj-25" : [ "Division", "Division", 0 ],
-			"obj-55::obj-56" : [ "SystemTuning", "Tuning", 0 ],
-			"obj-4::obj-8" : [ "Lfo1Mode", "Mode", 0 ],
-			"obj-55::obj-55" : [ "SystemLegato", "Legato", 0 ],
-			"obj-55::obj-50" : [ "SystemPortamento", "Porta", 0 ],
-			"obj-54::obj-3" : [ "Op1Input2", "Input2", 0 ],
-			"obj-22::obj-6" : [ "Osc1Range[1]", "Groove", 0 ],
-			"obj-22::obj-1" : [ "SequencerMode", "Mode", 0 ],
-			"obj-44" : [ "SystemPortamento[1]", "Porta", 0 ],
-			"obj-69::obj-34::obj-86" : [ "Mod11Amount", ".", 0 ],
+			"obj-12::obj-35" : [ "4pmFlavour", "Flavour", 0 ],
 			"obj-12::obj-3" : [ "SvfCutoff2", "Cut 2", 0 ],
-			"obj-10::obj-75" : [ "Cutoff", "Cutoff", 0 ],
-			"obj-22::obj-22" : [ "ArpRange", "Range", 0 ],
-			"obj-4::obj-22" : [ "Lfo2Rate", "Rate", 0 ],
-			"obj-69::obj-34::obj-23" : [ "Mod2Amount", ".", 0 ],
-			"obj-12::obj-20" : [ "PvkFmFeedback", "Feedback", 0 ],
+			"obj-44" : [ "SystemPortamento[1]", "Porta", 0 ],
+			"obj-55::obj-56" : [ "SystemTuning", "Tuning", 0 ],
+			"obj-11::obj-31" : [ "SubVolume", "SubVol", 0 ],
+			"obj-69::obj-34::obj-50" : [ "Mod3Amount", ".", 0 ],
+			"obj-55::obj-55" : [ "SystemLegato", "Legato", 0 ],
 			"obj-11::obj-20" : [ "Osc2Range", "Range", 0 ],
-			"obj-22::obj-4" : [ "SequencerTempo", "Tempo", 0 ],
+			"obj-22::obj-16" : [ "PatternRotation", "Rotation", 0 ],
+			"obj-55::obj-50" : [ "SystemPortamento", "Porta", 0 ],
+			"obj-6::obj-10" : [ "Env2Release", "Release", 0 ],
+			"obj-69::obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
+			"obj-69::obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
+			"obj-69::obj-34::obj-56" : [ "Mod8Amount", ".", 0 ],
+			"obj-11::obj-35" : [ "SubShape", "Shape", 0 ],
+			"obj-11::obj-6" : [ "Osc1Range", "Range", 0 ],
+			"obj-12::obj-20" : [ "PvkFmFeedback", "Feedback", 0 ],
+			"obj-11::obj-24" : [ "Osc2Shape", "Shape", 0 ],
+			"obj-54::obj-5" : [ "Op2Input2", "Input2", 0 ],
+			"obj-22::obj-8" : [ "ModulationOperator[1]", "Amount", 0 ],
+			"obj-22::obj-1" : [ "SequencerMode", "Mode", 0 ],
+			"obj-69::obj-34::obj-80" : [ "Mod12Amount", ".", 0 ],
 			"obj-55::obj-71" : [ "SystemCvMode", "CV", 0 ],
+			"obj-22::obj-20" : [ "ArpPattern", "Pattern", 0 ],
+			"obj-54::obj-75" : [ "Op1Input1", "Input1", 0 ],
+			"obj-12::obj-24" : [ "DspParam2", "P2", 0 ],
+			"obj-12::obj-13" : [ "SsmHighpass", "HP", 0 ],
+			"obj-4::obj-22" : [ "Lfo2Rate", "Rate", 0 ],
+			"obj-69::obj-34::obj-74" : [ "Mod5Amount", ".", 0 ],
+			"obj-69::obj-34::obj-86" : [ "Mod11Amount", ".", 0 ],
+			"obj-6::obj-14" : [ "Env2Decay", "Decay", 0 ],
+			"obj-2::obj-47::obj-108" : [ "textbutton", "textbutton", 0 ],
+			"obj-55::obj-65" : [ "SystemChannel", "Channel", 0 ],
+			"obj-22::obj-4" : [ "SequencerTempo", "Tempo", 0 ],
+			"obj-10::obj-75" : [ "Cutoff", "Cutoff", 0 ],
+			"obj-11::obj-28" : [ "Osc2Detune", "Detune", 0 ],
+			"obj-22::obj-24" : [ "ArpDirection", "Direction", 0 ],
+			"obj-12::obj-7" : [ "SvfMode1", "Mode 1", 0 ],
+			"obj-12::obj-41" : [ "DelayLevel", "Level", 0 ],
+			"obj-54::obj-3" : [ "Op1Input2", "Input2", 0 ],
+			"obj-12::obj-18" : [ "PvkMode1", "Mode", 0 ],
+			"obj-11::obj-33" : [ "NoiseVolume", "Noise", 0 ],
+			"obj-4::obj-2" : [ "Lfo1Rate", "Rate", 0 ],
+			"obj-4::obj-24" : [ "Lfo2Waveform", "Shape", 0 ],
+			"obj-69::obj-34::obj-23" : [ "Mod2Amount", ".", 0 ],
+			"obj-12::obj-39" : [ "DelayFeedback", "Feedback", 0 ],
+			"obj-6::obj-2" : [ "Env1Decay", "Decay", 0 ],
+			"obj-10::obj-78" : [ "Resonance", "Reson", 0 ],
+			"obj-11::obj-8" : [ "ModulationOperator", "Operator", 0 ],
 			"obj-69::obj-34::obj-62" : [ "Mod7Amount", ".", 0 ],
-			"obj-12::obj-41" : [ "DelayLevel", "Level", 0 ]
+			"obj-55::obj-68" : [ "SystemMidiMode", "Midi", 0 ],
+			"obj-11::obj-22" : [ "Osc2Parameter", "Param", 0 ],
+			"obj-4::obj-8" : [ "Lfo1Mode", "Mode", 0 ],
+			"obj-22::obj-32" : [ "SequencerModeXt", "Mode", 0 ],
+			"obj-11::obj-4" : [ "Osc1Parameter", "Param", 0 ],
+			"obj-6::obj-8" : [ "Env1Release", "Release", 0 ],
+			"obj-12::obj-5" : [ "SvfResonance2", "Reson 2", 0 ],
+			"obj-22::obj-28" : [ "ArpWarp", "Warp", 0 ],
+			"obj-10::obj-80" : [ "Envelope", "Env 1", 0 ],
+			"obj-12::obj-47" : [ "spMode", "Mode", 0 ],
+			"obj-69::obj-34::obj-92" : [ "Mod10Amount", ".", 0 ],
+			"obj-69::obj-34::obj-44" : [ "Mod4Amount", ".", 0 ],
+			"obj-54::obj-7" : [ "Op2Operator", "Op", 0 ],
+			"obj-12::obj-9" : [ "SvfMode2", "Mode 2", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

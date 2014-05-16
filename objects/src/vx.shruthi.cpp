@@ -682,8 +682,14 @@ void VxShruthi::setPatternRotation(long inlet, long rotation){
 }
 
 void VxShruthi::requestRom(long inlet){
+//    // vraag eerst numbanks op DIT DOEN WE IN MAX
+    // ANDERS RACE CONDITIE OF ZOIETS
+//    requestNumBanks();
+    
     progressCounter_ = 0;
     midi_.sendSysexCommand(0x50);
+    
+    
 //    useEepromCache_ = true;
     // Ga er maar vanuit dat dit goed gaat. We hebben geen aanduiding wanneer de transfer klaar is namelijk.
     hasEepromCache_ = true;
@@ -1154,8 +1160,12 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
 }
 
 void VxShruthi::refreshGui(){
+    // als request numbanks niet terug komt willen we wel een lege lijst
+//    clearPatchNames();
+    
+    listPatchNames();
     // !! numbanks triggers listPatchNames when it returns
-    requestNumBanks();
+//    requestNumBanks();
     // output the current selected patch and sequence numbers
     requestNumbers();
     // output global setting data
@@ -1166,31 +1176,22 @@ void VxShruthi::refreshGui(){
 void VxShruthi::switchToDevice(long inlet, long v){
     
     v = CLAMP(v, 1, 8);
-    
     DPOST("switch to device (1-8): %i", v);
     
+    // save current eeprom, but not when first time / startup
     if(slotIndex_ != -1){
-        saveDeviceEeprom(); // save current, but not first time / startup
+        saveDeviceEeprom();
     }
     
     slotIndex_ = v-1;
     loadDeviceEeprom(); // load new
-    
-    // get sequencer settings since they are not stored anywhere
-    // and we might have restarted the editor meanwhile
-//    requestSequencerSettings();
-    
-    //refreshGui();
-    requestVersion(); // -> call refreshGui() and sequencer data on return
-    
+   
     // clear nrpn cache todo clean way
     midi_.clearCache();
     
-    //TIJDELIJKE HACK OMDAT VERSION NOG NIET WERKT
-//    setXtMode(true);
     // pre xt sequencer settings are not stored anywhere
     // we might have restarted the editor
-    requestSequencerSettings();
+//    requestSequencerSettings();
     refreshGui();
 }
 
@@ -1234,8 +1235,11 @@ void VxShruthi::processSysexInput(SysexCommand cmd, uint8_t arg, std::vector<uin
                     DPOST("Resetting storage to default 2 banks");
                     numAccessibleBanks_ = 2;
                 }
+                atom_setsym(atoms_, gensym("numbanks"));
+                atom_setlong(atoms_+1, numAccessibleBanks_);
+                outlet_list(m_outlets[1], ps_empty, 2, atoms_);
                 
-                listPatchNames();
+//                listPatchNames();
             }
             break;
             
@@ -1358,6 +1362,11 @@ void VxShruthi::processSysexInput(SysexCommand cmd, uint8_t arg, std::vector<uin
     if(!success){
         object_error((t_object*)this,"Sysex transfer error cmd %x, arg %x, data length %i", cmd, arg, data.size());
     }
+}
+                            
+void VxShruthi::setNumBanks(long inlet, long v){
+    DPOST("setNumBanks %i", v);
+    numAccessibleBanks_ = CLAMP(v, 2, 7);
 }
 
 void VxShruthi::processNrpnInput(long index, long v){
@@ -1506,11 +1515,27 @@ void VxShruthi::cc(long inlet, long index, long v){
 void VxShruthi::sysex(long inlet, t_symbol* s, long ac, t_atom *av){
  
     std::vector<uint8_t> data;
+    std::vector<uint8_t>::iterator it;
+    
     for(int i=0; i<ac; ++i){
         data.push_back(static_cast<uint8_t>(atom_getlong(av+i)));
     }
     
-    midi_.parseSysex(data);
+    // split data if multiple sysex messages
+    // komt alleen voor bij sysex echo door midi "full" setting
+    // dan zijn het 2 messages. Nog niet voorgekomen dat het er meer zijn
+    it = std::find(data.begin(), data.end(), 0xf7);
+    
+    if(it != data.end() && ++it != data.end()){
+        DPOST("Found a second sysex message in data");
+        std::vector<uint8_t> msg1(data.begin(), it);
+        std::vector<uint8_t> msg2(it, data.end());
+        midi_.parseSysex(msg1);
+        midi_.parseSysex(msg2);
+    }else{
+    
+        midi_.parseSysex(data);
+    }
 }
 
 void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v){
@@ -1639,11 +1664,6 @@ void VxShruthi::stopTransfer(long inlet){
     midi_.stopTransfer();
 }
 
-//void transferProgressCallback(VxShruthi *x, bool isBusy, uint8_t progress){
-//    x->outputProgress(progress);
-//}
-
-
 // triggered by kNumBanks return, because first we want to know the
 // total number of slots to init the list
 void VxShruthi::listPatchNames(long inlet){
@@ -1715,6 +1735,33 @@ void VxShruthi::listPatchNames(long inlet){
 
 }
 
+void VxShruthi::clearPatchNames(long inlet){
+    
+    int patchNumber = 1; // starting at 1max
+    
+    // first output how many patches there will be
+    atom_setsym(atoms_, gensym("patchcount"));
+    atom_setlong(atoms_+1, getNumPatches());
+    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    
+    // then build the list
+    atom_setsym(atoms_, gensym("patchlist"));
+    atom_setsym(atoms_+2, gensym("...")); // altijd zelfde
+    
+    for(size_t i=0; i<16; ++i ){
+        atom_setlong(atoms_+1, patchNumber++);
+        outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+    }
+    
+    // for each bank 64 patches
+    for(int k=0; k<numAccessibleBanks_; ++k){
+        for(size_t i=0; i<64; ++i ){
+            atom_setlong(atoms_+1, patchNumber++);
+            outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+        }
+    }
+}
+
 // a macro to mark exported symbols in the code without requiring an external file to define them
 #ifdef WIN_VERSION
 // note that this is the required syntax on windows regardless of whether the compiler is msvc or gcc
@@ -1730,8 +1777,6 @@ int T_EXPORT main(void) {
 	// create a class with the given name:
 	VxShruthi::makeMaxClass("vx.shruthi");
     
-    
-    
     REGISTER_METHOD(VxShruthi, requestNumbers);
     REGISTER_METHOD(VxShruthi, requestNumBanks);
     REGISTER_METHOD(VxShruthi, requestVersion);
@@ -1745,8 +1790,7 @@ int T_EXPORT main(void) {
     REGISTER_METHOD(VxShruthi, requestRandomizePatch);
     REGISTER_METHOD(VxShruthi, requestRandomizeSequence);
     REGISTER_METHOD_LONG(VxShruthi, storePatch);
-//    REGISTER_METHOD_LONG(VxShruthi, storeSequence);
-    
+ 
     REGISTER_METHOD(VxShruthi, requestRom);
     
     REGISTER_METHOD(VxShruthi, transferPatch);
@@ -1783,10 +1827,9 @@ int T_EXPORT main(void) {
 
     REGISTER_METHOD(VxShruthi, clearEepromCache);
     REGISTER_METHOD(VxShruthi, stopTransfer);
-    
+    REGISTER_METHOD_LONG(VxShruthi, setNumBanks);
     REGISTER_METHOD(VxShruthi, listPatchNames);
-//    REGISTER_METHOD(VxShruthi, testMidi);
-    
+ 
     REGISTER_METHOD(VxShruthi, copyPatchToClipboard);
     REGISTER_METHOD(VxShruthi, pastePatchFromClipboard);
     REGISTER_METHOD(VxShruthi, copySequenceToClipboard);

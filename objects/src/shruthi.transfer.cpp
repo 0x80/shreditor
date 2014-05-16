@@ -128,8 +128,8 @@ void SysexBulkTransfer::memberproc(SysexBulkTransfer *x)
         
         systhread_mutex_lock(x->x_mutex);
 
-            // output block data as sysex
-//            outputSysex(x->data_ + pos, x->message_id_, x->block_id_ , kSysExBulkDumpBlockSize);
+        // output block data as sysex
+        x->outputSysex(x->data_ + pos, x->message_id_, x->block_id_ , kSysExBulkDumpBlockSize);
         
         x->dataposition_ = x->data_ + pos;
         x->block_id_++;
