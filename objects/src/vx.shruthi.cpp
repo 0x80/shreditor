@@ -400,14 +400,15 @@ void VxShruthi::outputPatchData(){
     // Convert name directly to symbol. Both should be char
     
     Patch &p = workingPatch_[slotIndex_];
-    // convert name into 0 terminated string
-	char str[kPatchNameSize+1];
-	memcpy(str, p.name, kPatchNameSize);
-	str[kPatchNameSize] = 0;
-
-    atom_setsym(atoms_, psx_name);
-    atom_setsym(atoms_+1, gensym(str));
-    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    
+    // PATCH NAME WETEN WE AL ALS EEN PATCH GELADEN WORDT
+//    // convert name into 0 terminated string
+//	char str[kPatchNameSize+1];
+//	memcpy(str, p.name, kPatchNameSize);
+//	str[kPatchNameSize] = 0;
+//    atom_setsym(atoms_, psx_name);
+//    atom_setsym(atoms_+1, gensym(str));
+//    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
     outputNrpn(0, p.osc[0].shape);
     outputNrpn(1, p.osc[0].parameter);
@@ -1160,16 +1161,16 @@ void VxShruthi::pasteSequenceFromClipboard(long inlet){
 }
 
 void VxShruthi::refreshGui(){
-    // als request numbanks niet terug komt willen we wel een lege lijst
-//    clearPatchNames();
+    // clear want banks kjasdfl
+    clearPatchNames();
     
     listPatchNames();
-    // !! numbanks triggers listPatchNames when it returns
-//    requestNumBanks();
+
     // output the current selected patch and sequence numbers
-    requestNumbers();
+    requestNumbers(); //hoort dit wel hier
+    
     // output global setting data
-    outputSettingsData();
+    outputSettingsData(); // hoort dit wel hier?
 }
 
 // v range 1-8
@@ -1671,7 +1672,8 @@ void VxShruthi::listPatchNames(long inlet){
     Patch *p;
 //    size_t numPatches;
     uint8_t *pmem;
-    int patchNumber = 1; // starting at 1max
+    int patchNumber = 0;
+    int rowNumber = 0;
     
     
     // first output how many patches there will be
@@ -1687,12 +1689,13 @@ void VxShruthi::listPatchNames(long inlet){
     pmem = eeprom_ + 0x0010;
         
     for(size_t i=0; i<16; ++i ){
-        p = reinterpret_cast<Patch *>(pmem + i*PATCH_SIZE); 
-        atom_setlong(atoms_+1, patchNumber++);
+        p = reinterpret_cast<Patch *>(pmem + i*PATCH_SIZE);
+        atom_setlong(atoms_+1, (float)patchNumber++/32.f);
+        atom_setlong(atoms_+2, rowNumber++);
         
         if(p->version_ != '!' && p->version_ !='%'){ // % = xt version
 //            break; // not isNrpnValid_ patch data
-            atom_setsym(atoms_+2, gensym("-"));
+            atom_setsym(atoms_+3, gensym("-"));
         } else {
 			//DPOST("p->name %s", p->name);
 
@@ -1701,9 +1704,10 @@ void VxShruthi::listPatchNames(long inlet){
 			memcpy(str, p->name, kPatchNameSize);
 			str[kPatchNameSize] = 0;
 			//DPOST("str %s", str);
-            atom_setsym(atoms_+2, gensym(str));
+            
+            atom_setsym(atoms_+3, gensym(str));
         }
-        outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+        outlet_list(m_outlets[1], ps_empty, 4, atoms_);
         ++p;
     }
     
@@ -1715,21 +1719,26 @@ void VxShruthi::listPatchNames(long inlet){
         
         for(size_t i=0; i<64; ++i ){
             p = reinterpret_cast<Patch *>(pmem + i*PATCH_SIZE);
-            atom_setlong(atoms_+1, patchNumber++);
+            atom_setlong(atoms_+1, (float)patchNumber++/32.f);
+            atom_setlong(atoms_+2, rowNumber++);
             
             if(p->version_ != '!' && p->version_ !='%'){ // % = xt version
                 //            break; // not isNrpnValid_ patch data
-                atom_setsym(atoms_+2, gensym("-"));
+                atom_setsym(atoms_+3, gensym("-"));
             } else {
 				// convert name into 0 terminated string
 				char str[kPatchNameSize+1];
 				memcpy(str, p->name, kPatchNameSize);
 				str[kPatchNameSize] = 0;
 				//DPOST("str %s", str);
-				atom_setsym(atoms_+2, gensym(str));
+				atom_setsym(atoms_+3, gensym(str));
             }
-            outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+            outlet_list(m_outlets[1], ps_empty, 4, atoms_);
             ++p;
+            
+            if(rowNumber >= 32){
+                rowNumber = 0;
+            }
         }
     }
 
@@ -1737,27 +1746,37 @@ void VxShruthi::listPatchNames(long inlet){
 
 void VxShruthi::clearPatchNames(long inlet){
     
-    int patchNumber = 1; // starting at 1max
+    int patchNumber = 0;
+    int rowNumber = 0;
     
     // first output how many patches there will be
-    atom_setsym(atoms_, gensym("patchcount"));
-    atom_setlong(atoms_+1, getNumPatches());
-    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+//    atom_setsym(atoms_, gensym("patchcount"));
+//    atom_setlong(atoms_+1, getNumPatches());
+//    outlet_list(m_outlets[1], ps_empty, 2, atoms_);
     
     // then build the list
     atom_setsym(atoms_, gensym("patchlist"));
-    atom_setsym(atoms_+2, gensym("...")); // altijd zelfde
+    atom_setsym(atoms_+3, ps_empty); // altijd zelfde
     
     for(size_t i=0; i<16; ++i ){
-        atom_setlong(atoms_+1, patchNumber++);
-        outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+        atom_setlong(atoms_+1, (float)patchNumber++/32.f);
+        atom_setlong(atoms_+2, rowNumber++);
+        outlet_list(m_outlets[1], ps_empty, 4, atoms_);
     }
     
     // for each bank 64 patches
-    for(int k=0; k<numAccessibleBanks_; ++k){
+    // kan wel maar dan wel de vorige device niet van huidige anders
+    // schiet je er niks mee ok
+    //for(int k=0; k<numAccessibleBanks_; ++k){
+    for(int k=0; k<7; ++k){
         for(size_t i=0; i<64; ++i ){
-            atom_setlong(atoms_+1, patchNumber++);
-            outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+            atom_setlong(atoms_+1, (float)patchNumber++/32.f);
+            atom_setlong(atoms_+2, rowNumber++);
+            outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+            
+            if(rowNumber >= 32){
+                rowNumber = 0;
+            }
         }
     }
 }

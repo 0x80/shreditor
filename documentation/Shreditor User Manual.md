@@ -49,6 +49,14 @@ If you own more than one Shruthi, and you have enough physical midi ports, you c
 * Import and export of data.
 * Compatible with both the current v0.98 and upcoming v1.0 / XT firmware modes
 
+Some things you can't do directly on the device
+* Load/browse a sequence of one patch while keeping the sound of the current one (xt)
+* Copy-paste patches and sequences between slots and different devices
+* Scramble sequence notes (keeping the pitch and velocity but randomize its position)
+* Rotate sequence notes within the loop
+* 
+
+
 ###2.3 Overview
 ... (describe all the different functions of the interface)
 

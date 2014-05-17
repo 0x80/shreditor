@@ -4,11 +4,12 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 5,
+			"revision" : 7,
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 626.0, 269.0, 974.0, 841.0 ],
+		"rect" : [ 611.0, 146.0, 974.0, 841.0 ],
+		"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -28,6 +29,49 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-14",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 784.0, 120.0, 77.0, 18.0 ],
+					"presentation_rect" : [ 839.0, 198.0, 0.0, 0.0 ],
+					"text" : "offset 0 -200"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-13",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 720.0, 120.0, 60.0, 18.0 ],
+					"text" : "offset 0 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 4,
+					"numoutlets" : 4,
+					"outlettype" : [ "bang", "bang", "bang", "" ],
+					"patching_rect" : [ 720.0, 78.0, 72.0, 20.0 ],
+					"text" : "select 0 1 2"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -158,7 +202,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 720.0, 80.0, 69.0, 20.0 ],
+					"patching_rect" : [ 720.0, 160.0, 69.0, 20.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
@@ -171,7 +215,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 720.0, 40.0, 25.0, 25.0 ]
 				}
 
@@ -195,62 +239,45 @@
 					"destination" : [ "obj-3", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
 					"source" : [ "obj-2", 0 ]
 				}
 
 			}
- ],
-		"parameters" : 		{
-			"obj-34::obj-92" : [ "Mod10Amount", ".", 0 ],
-			"obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
-			"obj-34::obj-50" : [ "Mod3Amount", ".", 0 ],
-			"obj-34::obj-56" : [ "Mod8Amount", ".", 0 ],
-			"obj-34::obj-80" : [ "Mod12Amount", ".", 0 ],
-			"obj-34::obj-74" : [ "Mod5Amount", ".", 0 ],
-			"obj-34::obj-23" : [ "Mod2Amount", ".", 0 ],
-			"obj-34::obj-62" : [ "Mod7Amount", ".", 0 ],
-			"obj-34::obj-86" : [ "Mod11Amount", ".", 0 ],
-			"obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
-			"obj-34::obj-44" : [ "Mod4Amount", ".", 0 ],
-			"obj-34::obj-98" : [ "Mod9Amount", ".", 0 ],
-			"obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
-			"obj-34::obj-68" : [ "Mod6Amount", ".", 0 ]
-		}
-,
-		"dependency_cache" : [ 			{
-				"name" : "pSequencer.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-4", 0 ]
+				}
+
 			}
 , 			{
-				"name" : "_.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "xtswap.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "pMatrix.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "param.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-4", 1 ]
+				}
+
 			}
  ]
 	}

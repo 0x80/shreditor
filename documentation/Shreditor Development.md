@@ -1,19 +1,30 @@
 Waar was ik
 -------------------
+bij selectie uit lijst of numbox
 
-bugs
-* als midi op full staat lijkt de request niet goed te gaan. Firmware en numbanks requests komen in 1 sysex message terecht lijkt het wel. 0b (numbanke) en 0c (firmware)
+selected: 4 virgin  patchname: virgin   Fetch patch 4 from eeprom cacheFetch sequence 4 from eeprompatchname: virgin xpn: virgin selected: 4 virgin  patchname: virgin   ignored cc 0 0
 
 
+* maakt een dirty flag, voor elke device simultaan, handig om te weten of je patch geedit is, maar vooral handig om te weten of een device via M4L geedit is terwijl we in Shreditor niet dat device geselecteerd hadden. Dan komen de updates namelijk niet door.
+
+* verify connection button, doe firmware check
+* reload button oranje maken als dirty flag gezet is. 
+* is reload voor sequence nu gekoppeld aan patch bij XT, zo ja button weghalen. Sowieso is locatie verwarrend met de matrix ernaast.
 
 * implement rapidjson library
+* neem autozoom op in pattr van device presets
+
+* is maximum for xt still 7 banks?
 
 
 Het is fijn als devices niet perse sysex of een output connectie nodig hebben nadat je de eeprom hebt geladen. Daarvoor moeten er een paar dingen anders:
 * geen firmware check bij switch. Doe firmware check ook als preflight voor eeprom request
 * geen numbanks check bij switch. Numbanks moeten we ergens opslaan, in de device presets denk ik.
 
+* test pgmchange
+* loadmess wordt niet opnieuw afgevuurd als je een bestaande patch edit en savet, loadbang wel??
 
+* note sequencer -> pgm change :)
 
 binnenkort
 --------------------
@@ -30,11 +41,12 @@ beta 6 changes
 * removed <1.0 support
 * fixed sysex headers and validation
 * removed firmware check on device switch
-* moved numbanks check to eeprom transfer request
-* moved version check to eeprom transfer request
+* moved numbanks and version checks to eeprom transfer request
 * improved device switching
-
-
+* implemented banks instead to replace single scrolling list
+* fixed bug in patch naming when hitting enter
+* fast autozoom for sequencer notes
+* 
 
 
 
