@@ -49,6 +49,11 @@ public:
 
     void sendMessage(const std::vector<uint8_t> &msg);
     void sendNrpn(long nrpn_index, long nrpn_value);
+    
+    void setOutputChannel(long v){
+        channelOut_ = CLAMP(v-1, 0, 15); // 0 en 1 zijn beiden 1 op shruthi
+        DPOST("Set output channel %d", v);
+    }
 
     void testMidiOut();
     bool isValidSysex(const std::vector<uint8_t> &sysex);

@@ -2,8 +2,9 @@ Waar was ik
 -------------------
 bij selectie uit lijst of numbox
 
-selected: 4 virgin  patchname: virgin   Fetch patch 4 from eeprom cacheFetch sequence 4 from eeprompatchname: virgin xpn: virgin selected: 4 virgin  patchname: virgin   ignored cc 0 0
-
+selected: 4 virgin  patchname: virgin   Fetch patch 4 from eeprom cacheFetch sequence 4 from eeprompatchname: virgin xpn: virgin selected: 4 virgin  patchname: virgin   ignored cc 0 0
+* check hoe je strak program changes kunt sturen, waarom lijkt m4l zo traag?
+* init van cellblock zorgt nog steeds dat patches geladen worden. 0 32 64 96 etc.
 
 * maakt een dirty flag, voor elke device simultaan, handig om te weten of je patch geedit is, maar vooral handig om te weten of een device via M4L geedit is terwijl we in Shreditor niet dat device geselecteerd hadden. Dan komen de updates namelijk niet door.
 
@@ -25,6 +26,15 @@ Het is fijn als devices niet perse sysex of een output connectie nodig hebben na
 * loadmess wordt niet opnieuw afgevuurd als je een bestaande patch edit en savet, loadbang wel??
 
 * note sequencer -> pgm change :)
+
+
+Bugs
+----------
+* loadSequence message wordt niet meer herkent
+* er gaat niet niet goed met rotation in sequencer settings. You lijkt niet opgeslagen te worden, en na terughalen is de sequence niet zelfde. Rotate zou altijd bij laden op 0 gezet moeten worden denk ik, want hij wordt gebruikt bij het vormen van de sequence die wordt opgeslagen, maar daarna is de sequence vast als je hem terughaalt.
+* matrix keuze beinvloed de lfo sync setting wat vreemd?
+
+
 
 binnenkort
 --------------------

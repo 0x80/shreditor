@@ -120,6 +120,7 @@ public:
     void liveGrid(long inlet, t_symbol* s, long ac, t_atom *av);
     
     void loadPatch(long inlet, long slot);
+    void loadSequence(long inlet, long slot);
     void sendPatchProgramChange(long slot);
 
     void sendSequenceProgramChange(long slot);

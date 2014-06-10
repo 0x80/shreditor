@@ -203,54 +203,6 @@
 			}
 , 			{
 				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"hidden" : 0,
-					"id" : "obj-7",
-					"ignoreclick" : 0,
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 696.0, 256.0, 48.0, 20.0 ],
-					"presentation" : 0,
-					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "xtswap",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 0,
-					"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"color" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"fontface" : 0,
-					"fontname" : "Arial",
-					"fontsize" : 12.0,
-					"hidden" : 0,
-					"id" : "obj-9",
-					"ignoreclick" : 0,
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 888.0, 240.0, 48.0, 20.0 ],
-					"presentation" : 0,
-					"presentation_rect" : [ 0.0, 0.0, 0.0, 0.0 ],
-					"text" : "xtswap",
-					"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ],
-					"textjustification" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"activeneedlecolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
 					"appearance" : 0,
@@ -271,7 +223,7 @@
 					"outlettype" : [ "", "float" ],
 					"panelcolor" : [ 0.955487, 0.975006, 1.0, 1.0 ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 920.0, 304.0, 52.0, 49.0 ],
+					"patching_rect" : [ 640.0, 312.0, 52.0, 49.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 96.0, 56.0, 54.0, 49.0 ],
 					"saved_attribute_attributes" : 					{
@@ -493,104 +445,6 @@
 					"tribordercolor" : [ 0.27451, 0.32549, 0.4, 1.0 ],
 					"tricolor" : [ 0.572549, 0.615686, 0.658824, 1.0 ],
 					"varname" : "SystemCvMode"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"activeneedlecolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
-					"appearance" : 0,
-					"background" : 0,
-					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"dialcolor" : [ 0.752941, 0.784314, 0.839216, 1.0 ],
-					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"fontface" : 1,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"hidden" : 1,
-					"id" : "obj-69",
-					"ignoreclick" : 0,
-					"maxclass" : "live.dial",
-					"needlecolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "float" ],
-					"panelcolor" : [ 0.955487, 0.975006, 1.0, 1.0 ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 696.0, 312.0, 45.0, 49.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 144.0, 0.0, 45.0, 49.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_linknames" : 1,
-							"parameter_longname" : "SystemSplit",
-							"parameter_shortname" : "Split",
-							"parameter_type" : 2,
-							"parameter_mmax" : 16.0,
-							"parameter_enum" : [ "C-1", "C0", "C1", "C2", "C3", "C4", "C5", "C6" ],
-							"parameter_unitstyle" : 0,
-							"parameter_invisible" : 2
-						}
-
-					}
-,
-					"showname" : 1,
-					"shownumber" : 1,
-					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"triangle" : 0,
-					"tribordercolor" : [ 0.27451, 0.32549, 0.4, 1.0 ],
-					"tricolor" : [ 0.572549, 0.615686, 0.658824, 1.0 ],
-					"varname" : "SystemSplit"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"activedialcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"activeneedlecolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
-					"appearance" : 0,
-					"background" : 0,
-					"bordercolor" : [ 0.701087, 0.701087, 0.701087, 1.0 ],
-					"dialcolor" : [ 0.752941, 0.784314, 0.839216, 1.0 ],
-					"focusbordercolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
-					"fontface" : 1,
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"hidden" : 1,
-					"id" : "obj-68",
-					"ignoreclick" : 0,
-					"maxclass" : "live.dial",
-					"needlecolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ],
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "float" ],
-					"panelcolor" : [ 0.955487, 0.975006, 1.0, 1.0 ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 640.0, 312.0, 52.0, 49.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 96.0, 56.0, 54.0, 49.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_linknames" : 1,
-							"parameter_longname" : "SystemMidiMode",
-							"parameter_shortname" : "Midi",
-							"parameter_type" : 2,
-							"parameter_mmax" : 16.0,
-							"parameter_enum" : [ "off", "thru", "seq", "ctrl", "split", "full", "1>l", "2>1", "3>2", "4>3", "5>4", "6>5", "7>6", "8>7" ],
-							"parameter_unitstyle" : 0,
-							"parameter_invisible" : 2
-						}
-
-					}
-,
-					"showname" : 1,
-					"shownumber" : 1,
-					"textcolor" : [ 0.77551, 0.77551, 0.77551, 1.0 ],
-					"triangle" : 0,
-					"tribordercolor" : [ 0.27451, 0.32549, 0.4, 1.0 ],
-					"tricolor" : [ 0.572549, 0.615686, 0.658824, 1.0 ],
-					"varname" : "SystemMidiMode"
 				}
 
 			}
@@ -1198,6 +1052,16 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
+					"destination" : [ "obj-2", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-21", 6 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-48", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1259,30 +1123,10 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-7", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-21", 7 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-71", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-21", 9 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-9", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-21", 6 ]
 				}
 
 			}
@@ -1429,36 +1273,6 @@
 , 			{
 				"patchline" : 				{
 					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-34", 6 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-68", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-34", 7 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-69", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-69", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-7", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
 					"destination" : [ "obj-34", 9 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1476,47 +1290,18 @@
 				}
 
 			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-2", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-9", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.8, 0.8, 0.8, 0.9 ],
-					"destination" : [ "obj-68", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-9", 0 ]
-				}
-
-			}
  ],
 		"parameters" : 		{
-			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
-			"obj-71" : [ "SystemCvMode", "CV", 0 ],
-			"obj-65" : [ "SystemChannel", "Channel", 0 ],
-			"obj-68" : [ "SystemMidiMode", "Midi", 0 ],
-			"obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
-			"obj-69" : [ "SystemSplit", "Split", 0 ],
-			"obj-48" : [ "SystemOctave", "Octave", 0 ],
 			"obj-56" : [ "SystemTuning", "Tuning", 0 ],
-			"obj-55" : [ "SystemLegato", "Legato", 0 ]
+			"obj-55" : [ "SystemLegato", "Legato", 0 ],
+			"obj-50" : [ "SystemPortamento", "Porta", 0 ],
+			"obj-48" : [ "SystemOctave", "Octave", 0 ],
+			"obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
+			"obj-65" : [ "SystemChannel", "Channel", 0 ],
+			"obj-71" : [ "SystemCvMode", "CV", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "xtswap.maxpat",
-				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "param.maxpat",
 				"bootpath" : "/Users/thijskoerselman/Documents/Projects/Shreditor/shreditor/patchers",
 				"patcherrelativepath" : ".",

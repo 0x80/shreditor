@@ -649,6 +649,8 @@ void VxShruthi::transferWavetable(long inlet){
 }
 
 void VxShruthi::transferSystemSettings(long inlet){
+//    DPOST("setOutputChannel() %d",settings_->midi_channel);
+    midi_.setOutputChannel(settings_->midi_channel);
     midi_.sendSysex((uint8_t*) settings_, 0x04, 0, SYSTEM_SETTINGS_SIZE);
 }
 
@@ -1008,6 +1010,8 @@ void VxShruthi::loadPatch(long inlet, long slot){
     outputSequencerSettings();
     
 }
+
+
 
 void VxShruthi::sendPatchProgramChange(long slot){
     midi_.sendPatchProgramChange(slot);
@@ -1840,6 +1844,7 @@ int T_EXPORT main(void) {
     REGISTER_METHOD_SYMBOL(VxShruthi, setPatchName);
     
     REGISTER_METHOD_LONG(VxShruthi, loadPatch);
+    REGISTER_METHOD_LONG(VxShruthi, loadSequence);
     
     REGISTER_METHOD_SYMBOL(VxShruthi, importEeprom);
     REGISTER_METHOD_SYMBOL(VxShruthi, exportEeprom);
