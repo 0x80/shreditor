@@ -1011,7 +1011,31 @@ void VxShruthi::loadPatch(long inlet, long slot){
     
 }
 
-
+void VxShruthi::loadSequence(long inlet, long slot){
+    if(slotIndex_ < 0) return;
+    
+    //if(xtmode_){
+    //    object_error((t_object*)this, "loadSequence is not valid in xt mode");
+    //    return;
+    //}
+    
+    if(workingSequencerIndex_[slotIndex_] == slot){
+        DPOST("Slot same as working, using existing seq data", slot);
+        outputSequence();
+        return;
+    }
+    
+    workingSequencerIndex_[slotIndex_] = slot; // store current active slot
+    
+    // in xt mode zijn patch en sequence al gekoppeld
+    //   if(!xtmode_){
+    sendSequenceProgramChange(slot);
+    //    }
+    
+    loadSequenceFromEeprom(slot);
+    //    calculatePatternSize();
+    outputSequence();
+}
 
 void VxShruthi::sendPatchProgramChange(long slot){
     midi_.sendPatchProgramChange(slot);

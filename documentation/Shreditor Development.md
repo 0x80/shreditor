@@ -30,7 +30,7 @@ Het is fijn als devices niet perse sysex of een output connectie nodig hebben na
 
 Bugs
 ----------
-* loadSequence message wordt niet meer herkent
+* sequencer tempo en mode worden niet opgeslagen/teruggehaald
 * er gaat niet niet goed met rotation in sequencer settings. You lijkt niet opgeslagen te worden, en na terughalen is de sequence niet zelfde. Rotate zou altijd bij laden op 0 gezet moeten worden denk ik, want hij wordt gebruikt bij het vormen van de sequence die wordt opgeslagen, maar daarna is de sequence vast als je hem terughaalt.
 * matrix keuze beinvloed de lfo sync setting wat vreemd?
 
