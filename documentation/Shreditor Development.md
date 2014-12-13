@@ -2,29 +2,18 @@ Waar was ik
 -------------------
 bij selectie uit lijst of numbox
 
-selected: 4 virgin  patchname: virgin   Fetch patch 4 from eeprom cacheFetch sequence 4 from eeprompatchname: virgin xpn: virgin selected: 4 virgin  patchname: virgin   ignored cc 0 0
-* check hoe je strak program changes kunt sturen, waarom lijkt m4l zo traag?
-* init van cellblock zorgt nog steeds dat patches geladen worden. 0 32 64 96 etc.
+selected: 4 virgin  patchname: virginFetch patch 4 from eeprom cacheFetch sequence 4 from eeprompatchname: virginxpn: virginselected: 4 virgin  patchname: virginignored cc 0 0
+* check hoe je strak program changes kunt sturen, waarom lijkt m4l zo traag?* init van cellblock zorgt nog steeds dat patches geladen worden. 0 32 64 96 etc.
 
 * maakt een dirty flag, voor elke device simultaan, handig om te weten of je patch geedit is, maar vooral handig om te weten of een device via M4L geedit is terwijl we in Shreditor niet dat device geselecteerd hadden. Dan komen de updates namelijk niet door.
 
-* verify connection button, doe firmware check
-* reload button oranje maken als dirty flag gezet is. 
+* reload button oranje maken als dirty flag gezet is.
 * is reload voor sequence nu gekoppeld aan patch bij XT, zo ja button weghalen. Sowieso is locatie verwarrend met de matrix ernaast.
 
 * implement rapidjson library
 * neem autozoom op in pattr van device presets
 
-* is maximum for xt still 7 banks?
-
-
-Het is fijn als devices niet perse sysex of een output connectie nodig hebben nadat je de eeprom hebt geladen. Daarvoor moeten er een paar dingen anders:
-* geen firmware check bij switch. Doe firmware check ook als preflight voor eeprom request
-* geen numbanks check bij switch. Numbanks moeten we ergens opslaan, in de device presets denk ik.
-
 * test pgmchange
-* loadmess wordt niet opnieuw afgevuurd als je een bestaande patch edit en savet, loadbang wel??
-
 * note sequencer -> pgm change :)
 
 
@@ -36,38 +25,15 @@ Bugs
 
 
 
-binnenkort
---------------------
-* sla eeprom op als json, dan hebben we numbanks er ook meteen inzitten, en firmware kan er ook bij
-* implement banks in patchlist
-
-
-
-
-beta 6 changes
--------------------
-
-* replaced internal midi ports with max native midi handling
-* removed <1.0 support
-* fixed sysex headers and validation
-* removed firmware check on device switch
-* moved numbanks and version checks to eeprom transfer request
-* improved device switching
-* implemented banks instead to replace single scrolling list
-* fixed bug in patch naming when hitting enter
-* fast autozoom for sequencer notes
-* 
-
-
 
 
 
 Notes
 -----------------------
 ###eeprom
-Internal storage is 2048 bytes == 16 blocks of 128 .    
+Internal storage is 2048 bytes == 16 blocks of 128 .
 
-	0x0000 – 0x0010	 System settings   
+	0x0000 – 0x0010	 System settings
 	0x0010 – 0x05d0	 16 internal patches  
 	0x05d0 – 0x07d0	 16 internal sequences  
 	0x07f0 – 0x0800	 	 unused*  
@@ -76,50 +42,94 @@ Internal storage is 2048 bytes == 16 blocks of 128 .
 
 
 
-###Special functions
-Special functions
-While the browse page is displayed, hold S6 and press:
-• S1 to revert the current patch to init.
-• S2 to program random values into all the parameters of the current patch.
-• S3 to dump the current patch to the MIDI output as a SysEx block.
-• S4 to bring up the global backup page.
-• S5 to enable/disable the “combo” feature. When “combo” is enabled, the loading and saving of
-sequences is paired. That is to say, whenever you load sequence 15, patch 15 will be loaded too... Whenever you save patch to location 33, the current sequence will be saved to location 33 too.
-
-
 
 ###Windows release build
 Met standaard settings krijg je linker errors. Je moet linken tegen de static runtime /MT en de preprocessor definitie gebruiken van MAXAPI_USE_MSCRT. Daarnaast moet je nog de exclude library weghalen voor libcmt.lib.
 
-Demo restricties
-------
-Store alleen edits van presets < 32; Je kunt altijd op device store functie gebruiken, maar als we de reload knoppen disablen dan betekend dit dat je eeprom en device uit elkaar lopen en je opnieuw een download moet doen als je weer wil editen. Is dit irritant genoeg?
 
-We kunnen evt ook nog eeprom leeggooien als je de applicatie afsluit of opstart. Maar dat is misschien weer TE irritant.
 
+Betaalde versie
+------------------------------
+
+# wat is er nodig
+
+* m4l device met udp sync verbinding
+* manier vinden om multiple devices te supporten. mogelijk weer extra code voor get request van willekeurige patch in
+* decrypt in windows en mac external
+(http://stackoverflow.com/questions/12306956/example-of-aes-using-crypto)
+* paypal opzetten met hook naar serial generator / mail server
+* demo restrictie zetten op de shreditor (save helemaal disabled, max 1 device)
+* gedoe met VAT voor buitenland
+* instructie videos maken
+
+# wat levert het op
+* 5000?
+
+
+# Moeilijkheden
+* M4L is simultaan, maar shreditor kan maar 1 bijhouden. Hoe ga je dan de eeprom updaten van degene die niet in focus zijn? Misschien helemaal niet updaten: bij switch in shreditor vraag je de huidige parameters op van M4L? Maar als je nu nog niet in focus bent geweest dan weet M4L ook nog niet de juiste parameter standen-> in andere woorden hoe kan M4L de parameters opvragen van een device die niet in de Shreditor focus is? Dat kan dus niet. Moet M4L dan toch zijn eigen vx.shruthi instance hebben voor iedere track? Of maken we een get request voor vx.shruthi waarbij je de patch van iedere eeprom slot kan opvragen ongeacht de device focus.
+* editen m4l + shreditor is misschien niet heel intuitief voor andere gebruikers. Lastig om goede workflow te creeren
+* editor naast m4l draaien als must ook niet echt lekker
+* ga je de patch index koppelen tussen shreditor en m4l? Misschien ook niet echt praktisch.
+* (zie alt 2) edits die vanaf live gestreamed komen moeten wel eeprom aanpassen maar niet ook nog voor de tweede keer naar device gestuurd worden. Dan moet er wellicht een aparte input message komen voor vx.shruthi die dan de eeprom en ui update zonder midi uit te sturen. Een "sync" message ofzo.
+
+
+
+# Alternatief
+* wachten tot m4l sysex aankan en dan een device maken die gewoon 1 op 1 communiceert wel zo makkelijk
+* een mac only m4l versie met rtmidi intern
+* verder gaan met je leven en niet meer omkijken
+
+# Alternatief 2
+een uitgekleede m4l versie maken die niet samen met shreditor gebruikt hoeft te worden:
+
+* je gaat uit van eeprom zoals die al op disk is, dus je moet eerst in shreditor eeprom downloaden.
+* midi gaat gewoon rechtstreeks naar device
+* je kiest een preset en begint te tweaken
+* geen save in m4l
+* in schreditor maak een "fetch from device" zodat je getweakte patches wel weer kan saven daar. (misschien zelfde als huidige refresh kop?) (als device in focus is zou je de veranderingen kunnen streamen over udp)
+* je maakt een eeprom "refresh" knop in m4l zodat je een geedite patch van schreditor kunt "ophalen" (dit kan ook via udp getriggered worden)
+* je zou zelfs de device focus van live kunnen koppelen aan de slot selectie in shreditor, zodat als je in live editing de veranderingen altijd opgepikt worden in shreditor. Dat geldt dan niet voor modulatie van devices die niet in focus zijn in live maar is dat erg?
 
 
 
 
 Shreditor4Live Version
 ----------
-Hou het simpel. Zorg dat live en standalone samen kunnen werken. Alleen parameters die je zou willen kunnen moduleren; de nrpns. Zo kunnen we altijd later nog een windows versie maken als de nrpns gestuurd worden door normale max objecten.
+* Alleen parameters die je zou willen kunnen moduleren. Evt matrix ook, maar dan de mapping niet moduleerbaar.
+*
 
 De mirror wordt gebruikt om de parameters weer te geven.
 
-save functie?? dit kan problemen geven:
-* de save functie is sysex
-* wat als de sequence geedit wordt in de standalone en de patch in de m4l.
-
-oplossing:
-Exclude save functie in m4l. Edits opslaan gebeurt alleen in Shreditor. Maak een "fetch live" knop die de huidige ongesavede stand opvraagt van parameters en sequence, met de juiste index nummers en patch name.
+*  
 
 
-Maak de xt non xt switch manual. 
+### device selection
+In live selecteer je per instrument maar 1 device.
 
-Kan evt een udp poort gebruiken om te communiceren vanaf m4l naar schreditor voor specifieke dingen zoals store patch
 
-?? Wat doen we als de shreditor preset switcht? Hoe pikken we dat op in m4l, of niet? Via een textfile met autowatch? Of een udp connectie?
+### save
+Save functie is alleen beschikbaar vanuit de editor omdat het sysex is. Exclude save functie in m4l. Edits opslaan gebeurt alleen in Shreditor. Maak een "reload / fetch live" knop die de huidige stand opvraagt van parameters
+
+### Comminicatie
+UDP poort is een idee. Maar moet niet verplicht zijn. Live instrumenten moeten ook gewoon op zichzelf kunnen draaien. Een apart device maken voor de communicatie met de shreditor, die kan dan 1 server hebben en via s/r communiceren met de devices.
+
+Elke parameter modulatie in live zou doorgestuurd kunnen worden naar shreditor, alles is meteen zichtbaar. De dirty state is dan nog steeds nodig om te weten of je een patch opnieuw wil opslaan of niet. Wel een throttle op zetten wellicht omdat modulatie in live heel snel kan gaan en dat is niet nodig voor weergave in shreditor. Andersom zou ook kunnen. Dat als je edit in shreditor de parameter in live ook meegaat.
+
+### dirty state
+De dirty vlag zou ook intelligent geimplementeerd kunnen worden. Dan moet je voor elke patch bijhouden welke parameter er verandert is en vergelijken met de preset. Als de parameter dan, na modulatie of editing weer terug staat op de originele waarde, dan zou je de dirty vlag dus weer uit kunnen zetten. Dit is wel meer werk uiteraard maar voor toekomst misschien wel tof omdat de modulatie van live dan niet perse altijd lijkt op edits.
+
+### Live output
+* device x preset switch
+*
+
+
+### Nice to have
+* De reload knop moet oplichten als de patch in live verandert. Dit zou kunnen door in vx.shruthi een dirty flag bij te houden. Het is alleen wel zo dat je in live meerdere shruthis kan aansturen, dus de dirty flag van elk instrument moet in een array opgeslagen worden in de shreditor. Zodat als je in de shreditor van device switched de reload knop aan of uit kan gaan voor dat device. De dirty state kan gecommuniceerd worden over udp maar evt ook gewoon een file die gepolled wordt.
+* Kan evt een udp poort gebruiken om te communiceren vanaf m4l naar schreditor voor specifieke dingen zoals store patch
+
+### ??
+* Wat doen we als de shreditor preset switcht? Hoe pikken we dat op in m4l, of niet? Via een textfile met autowatch? Of een udp connectie?
 
 Hoe gaan we om met meerder m4l plugins voor verschillende slots. Laden we de slot data in de plugin ook? Dan moet je als je wil saven dus een "fetch live" doen in de editor.
 
@@ -136,7 +146,7 @@ Hoe gaan we om met meerder m4l plugins voor verschillende slots. Laden we de slo
 * system settings
 * eeprom down/upload
 * patchlist
-* serial 
+* serial
 
 ### Extra
 * eeprom filewatch -> auto reload, om te zorden dat als edits gesaved worden in shreditor ze ook opgepikt worden in m4l mirror
@@ -223,6 +233,6 @@ fontawesome voor icoontjes
 * globale config met 1 slot in top patcher voor config file enzo
 * splits de patch lijst in banks
 * backup and import voor mirrors, is dit nodig?
-* reset click op dials vooral matrix 
+* reset click op dials vooral matrix
 * json i/o?
 * extrasystemsettings request (note triggers)

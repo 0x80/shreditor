@@ -1,6 +1,26 @@
 Shreditor Change Log
 =====================
 
+Beta 7
+-------------------
+* Windows version is back
+* Updated to Max7
+* Fixed "pattr_obex: no such file in collective" error
+
+
+Beta 6
+-------------------
+* Implemented patch banks to replace single scrolling list
+* Replaced vx.shruthi internal midi ports with external Max native midi handling
+* Removed <1.0 support
+* Fixed sysex headers and validation
+* Removed firmware check on device switch
+* Moved numbanks and version checks to eeprom transfer mechanism
+* Implemented banks to replace patch scrolling list
+* Fixed bug in patch naming when hitting enter
+* Faster autozoom for sequencer interface
+
+
 Beta 5
 ----------------
 * New data root for Windows, solving user permission issues.

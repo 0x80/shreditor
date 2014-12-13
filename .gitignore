@@ -12,3 +12,5 @@ DerivedData
 sdk-build
 
 /documentation/node_modules/
+
+/objects/Shreditor.sdf

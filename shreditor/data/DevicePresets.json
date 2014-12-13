@@ -5,35 +5,18 @@
 			"1" : 			{
 				"id" : 1,
 				"data" : 				{
-					"deviceName" : [ "smr" ],
-					"midiInputPort" : [ "Fireface 400 (B21) Port 1" ],
-					"midiOutputPort" : [ "Fireface 400 (B21) Port 1" ],
-					"midiControllerChannel" : [ 0 ],
-					"midiControllerPort" : [ "MPK mini" ],
-					"firmware" : [ 1, 0 ],
-					"numbanks" : [ 2 ],
+					"deviceName" : [ "__empty__" ],
+					"midiInputPort" : [ "__empty__" ],
+					"midiOutputPort" : [ "__empty__" ],
+					"midiControllerChannel" : [ ],
+					"midiControllerPort" : [ ],
+					"firmware" : [  ],
+					"numbanks" : [  ],
 					"midiChannel" : [ 0 ]
 				}
 
 			}
-,
-			"2" : 			{
-				"id" : 2,
-				"data" : 				{
-					"deviceName" : [ "4pm" ],
-					"midiInputPort" : [ "Fireface 400 (B21) Port 2" ],
-					"midiOutputPort" : [ "Fireface 400 (B21) Port 2" ],
-					"midiControllerChannel" : [  ],
-					"midiControllerPort" : [  ],
-					"firmware" : [ 1, 0 ],
-					"numbanks" : [ 7 ],
-					"midiChannel" : [ 0 ]
-				}
-
-			}
-
-		}
-
+    }
 	}
 
 }

@@ -96,7 +96,7 @@ void ShruthiMidi::testMidiOut(){
 }
 
 bool ShruthiMidi::isValidSysex(const std::vector<uint8_t> &msg){
-    if(msg.size() < 6){
+    if(msg.size() < 11){ // sysex zonder payload is 11 bytes
         error("Received invalid sysex message, length %i", msg.size());
         return false;
     }

@@ -11,8 +11,8 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 369474430FD5C90000A5E9FD /* Build configuration list for PBXAggregateTarget "All" */;
 			buildPhases = (
-				84EAB6F5161A2208009240D2 /* CopyFiles */,
 				840088CF16D18801001D2D5B /* CopyFiles */,
+				8439FF3F19F6905A00CF8981 /* CopyFiles */,
 			);
 			dependencies = (
 				369474320FD5C8E700A5E9FD /* PBXTargetDependency */,
@@ -24,6 +24,7 @@
 
 /* Begin PBXBuildFile section */
 		840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
+		8439FF4019F6909A00CF8981 /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
 		84477FFD171C9DE900910AEA /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84477FFC171C9DE900910AEA /* RtMidi.cpp */; };
 		84478001171CA6BF00910AEA /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266BCE05E6E9780000000C /* MaxAPI.framework */; };
 		846B9B5E163467CD00718272 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846B9B5D163467CD00718272 /* CoreMIDI.framework */; };
@@ -35,7 +36,6 @@
 		84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A593A5166A48F300214212 /* shruthi.transfer.cpp */; };
 		84C0D7D418007048004706D1 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C0D7D318007048004706D1 /* CoreServices.framework */; };
 		84CE31951838E3E50050AEF2 /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84CE31941838E3E50050AEF2 /* patch.cpp */; };
-		84EAB6F6161A2214009240D2 /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,20 +52,20 @@
 		840088CF16D18801001D2D5B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "Applications/Max 6.1/Cycling '74/_vauxlab";
+			dstPath = /Users/thijskoerselman/Documents/Max/Packages/_vauxlab/externals;
 			dstSubfolderSpec = 0;
 			files = (
 				840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		84EAB6F5161A2208009240D2 /* CopyFiles */ = {
+		8439FF3F19F6905A00CF8981 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "Applications/Max6/Cycling '74/_vauxlab";
+			dstPath = "/Users/thijskoerselman/Documents/Max 7/Packages/_vauxlab/externals";
 			dstSubfolderSpec = 0;
 			files = (
-				84EAB6F6161A2214009240D2 /* vx.shruthi.mxo in CopyFiles */,
+				8439FF4019F6909A00CF8981 /* vx.shruthi.mxo in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
