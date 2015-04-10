@@ -1,6 +1,11 @@
 Shreditor Change Log
 =====================
 
+Beta 8
+-------------------
+* Removed demo expiration. Shreditor will be free.
+* Bumped Max version to 7.0.3
+
 Beta 7
 -------------------
 * Windows version is back

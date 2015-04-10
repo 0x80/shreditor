@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 7,
 			"minor" : 0,
-			"revision" : 1,
+			"revision" : 3,
 			"architecture" : "x86",
 			"modernui" : 1
 		}
@@ -141,7 +141,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 43.0, 169.0, 19.0 ],
 					"style" : "",
-					"text" : "© Vauxlab 2014",
+					"text" : "@ Vauxlab 2015",
 					"textcolor" : [ 0.622449, 0.622449, 0.622449, 1.0 ]
 				}
 
