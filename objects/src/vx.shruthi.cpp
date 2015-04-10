@@ -1702,7 +1702,6 @@ void VxShruthi::stopTransfer(long inlet){
 void VxShruthi::listPatchNames(long inlet){
     
     Patch *p;
-//    size_t numPatches;
     uint8_t *pmem;
     int patchNumber = 0;
     int rowNumber = 0;
@@ -1726,17 +1725,12 @@ void VxShruthi::listPatchNames(long inlet){
         atom_setlong(atoms_+2, rowNumber++);
         
         if(p->version_ != '!' && p->version_ !='%'){ // % = xt version
-//            break; // not isNrpnValid_ patch data
             atom_setsym(atoms_+3, gensym("-"));
         } else {
-			//DPOST("p->name %s", p->name);
-
 			// convert name into 0 terminated string
 			char str[kPatchNameSize+1];
 			memcpy(str, p->name, kPatchNameSize);
 			str[kPatchNameSize] = 0;
-			//DPOST("str %s", str);
-            
             atom_setsym(atoms_+3, gensym(str));
         }
         outlet_list(m_outlets[1], ps_empty, 4, atoms_);
@@ -1755,14 +1749,12 @@ void VxShruthi::listPatchNames(long inlet){
             atom_setlong(atoms_+2, rowNumber++);
             
             if(p->version_ != '!' && p->version_ !='%'){ // % = xt version
-                //            break; // not isNrpnValid_ patch data
                 atom_setsym(atoms_+3, gensym("-"));
             } else {
 				// convert name into 0 terminated string
 				char str[kPatchNameSize+1];
 				memcpy(str, p->name, kPatchNameSize);
 				str[kPatchNameSize] = 0;
-				//DPOST("str %s", str);
 				atom_setsym(atoms_+3, gensym(str));
             }
             outlet_list(m_outlets[1], ps_empty, 4, atoms_);
