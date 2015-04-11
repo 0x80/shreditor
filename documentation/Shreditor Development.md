@@ -1,3 +1,8 @@
+app bouwen
+* remove resources/max/clang
+* remove externals/msp + jitter
+
+
 Waar was ik
 -------------------
 bij selectie uit lijst of numbox
