@@ -14,3 +14,5 @@ sdk-build
 /documentation/node_modules/
 
 /objects/Shreditor.sdf
+build/osx/
+build/windows/
