@@ -7,12 +7,12 @@
 class ShruthiMidi;
 class VxShruthi;
 
-typedef void (*ProgressCallback)(VxShruthi*, bool, uint8_t);
+//typedef void (*ProgressCallback)(VxShruthi*, bool, uint8_t);
 
 class SysexBulkTransfer
 {
 public:
-    SysexBulkTransfer(ShruthiMidi &device);
+    SysexBulkTransfer(VxShruthi &x);
        
     ~SysexBulkTransfer();
         
@@ -24,14 +24,14 @@ public:
     static void memberproc(SysexBulkTransfer *x);
     
     // een callback voor het teruggeven van progress of finished
-    void registerProgressCallback(ProgressCallback fun, VxShruthi* x){
-        x_ = x;
-        progressReporter_ = fun;
-    }
+//    void registerProgressCallback(ProgressCallback fun, VxShruthi* x){
+//        x_ = x;
+//        progressReporter_ = fun;
+//    }
     
     //private:
-    
-    
+    void outputSysex(uint8_t* data, uint8_t command, uint8_t argument, size_t size);
+    void outputMidi(std::vector<unsigned char> msg);
     
     uint16_t start_;
     uint8_t message_id_;
@@ -46,6 +46,9 @@ public:
     
     void *transferclock_;
     
+//    void *msgOut_;
+//    void *midiOut_;
+    
     t_systhread         x_systhread;                            // thread reference
 	t_systhread_mutex	x_mutex;                                // mutual exclusion lock for threadsafety
 	int                 x_systhread_cancel;                     // thread cancel flag
@@ -54,11 +57,11 @@ public:
 //	int                 x_foo;                                  // simple data to pass between threads
 //	int                 x_sleeptime;                            // how many milliseconds to sleep
     
-    ShruthiMidi &device_;
-    ProgressCallback progressReporter_;
+//    ShruthiMidi &midi_;
+//    ProgressCallback progressReporter_;
     
-//private:
-    VxShruthi* x_;
+private:
+    VxShruthi &parent_;
     
 };
 

@@ -1,0 +1,16 @@
+http://mutable-instruments.net/static/pcb/shruthi_control_bottom.png
+
+4. 68 ohm
+8. 220
+8. 10k
+(display) 8. 2.2k (alleen voor display niet nodig dus)
+  20. 100n (mist 20) X7R-2,5 100N
+  8. 18p (mist 2) KERKO 18P
+4. 4148 diode
+
+  8. stapelleiste 4599113-820 (reichelt)
+4. 6n137
+4. at24cp
+(display) 4. 5k resistor 4183946-741 (mist er 1)
+
+dip40 GS40

@@ -1,0 +1,22 @@
+{
+	"pattrstorage" : 	{
+		"name" : "DevicePresets",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"deviceName" : [ "__empty__" ],
+					"midiInputPort" : [ "__empty__" ],
+					"midiOutputPort" : [ "__empty__" ],
+					"midiControllerChannel" : [ ],
+					"midiControllerPort" : [ ],
+					"firmware" : [  ],
+					"numbanks" : [  ],
+					"midiChannel" : [ 0 ]
+				}
+
+			}
+    }
+	}
+
+}

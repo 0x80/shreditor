@@ -42,6 +42,15 @@
       <PathRunnable
          FilePath = "/Applications/Max 6.1/Max Runtime.app">
       </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3694742E0FD5C8DC00A5E9FD"
+            BuildableName = "All"
+            BlueprintName = "All"
+            ReferencedContainer = "container:Shreditor.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

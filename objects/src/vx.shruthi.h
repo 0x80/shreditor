@@ -49,18 +49,18 @@ public:
     
 //    void midiInput(long v);
     void initializeSystemStoragePath();
-    bool isExpired();
+//    bool isExpired();
     int makePaths(const char* root);
     
     static void onTick(VxShruthi *x);
     static void onReady(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
 	static void onFail(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
-    static void onExpired(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
+//    static void onExpired(VxShruthi *x, t_symbol* s, short ac, t_atom *av);
     
     void outputProgress(long progress);
     void outputPatchData();
     void testMidi(long inlet){
-        device_.testMidiOut();
+        midi_.testMidiOut();
     }
     
     void outputSequence();
@@ -86,8 +86,8 @@ public:
     void transferSequencerSettings(long inlet = 0);
     void transferRom(long inlet = 0);
    
-    void requestNumbers(long inlet = 0);
-    void requestNumBanks(long inlet = 0);
+    void requestNumbers(long inlet = 0); // get current patch/sequence index
+    void requestNumBanks(long inlet = 0); // get eeprom bank count
     void requestVersion(long inlet = 0);
     void requestPatch(long inlet = 0);
     void requestSequence(long inlet = 0);
@@ -105,30 +105,24 @@ public:
         
     void setPatternLength(long inlet, long length);
     void setPatternRotation(long inlet, long rotation);
-//    void setSequenceNote(long inlet, long step, long value);
-//    void setSequenceController(long inlet, long step, long value);
-//    void setSequenceGate(long inlet, long step, long value);
-//    void setSequenceLegato(long inlet, long step, long value);
-//    void setSequenceVelocity(long inlet, long step, long value);
+
     void setPatchName(long inlet, t_symbol *name);
     void setSettingsFilter(long inlet, t_symbol *name);
     void setSettingsOctave(long inlet, long v);
     void setSettingsRaga(long inlet, long v);
     void setSettingsPortamento(long inlet, long v);
     void setSettingsLegato(long inlet, long v);
-    void setMidiIn(long inlet, t_symbol* portName, long channel);
-    void setMidiAuxIn(long inlet, t_symbol* portName, long channel);
-    void setMidiOut(long inlet, t_symbol* portName, long channel);
+
     void setSystemSettings(long inlet, t_symbol *s, long ac, t_atom *av);
-        
-    void enableFilterMsb(long inlet, long v);
-    void enableEepromCache(long inlet, long v);
+    void setNumBanks(long inlet, long v);
+
     void liveStep(long inlet, t_symbol* s, long ac, t_atom *av);
     void liveGrid(long inlet, t_symbol* s, long ac, t_atom *av);
     
     void loadPatch(long inlet, long slot);
-    void sendPatchProgramChange(long slot);
     void loadSequence(long inlet, long slot);
+    void sendPatchProgramChange(long slot);
+
     void sendSequenceProgramChange(long slot);
     
     void storePatch(long inlet, long slot);
@@ -150,6 +144,13 @@ public:
     void calculatePatternSize();
     
     void nrpn(long inlet, long nrpn_index, long nrpn_value);
+    void cc(long inlet, long cc_index, long cc_value);
+    void sysex(long inlet, t_symbol* s, long ac, t_atom *av);
+    
+    void processNrpnInput(long index, long v);
+    void processCcInput(long index, long v);
+    void processSysexInput(SysexCommand cmd, uint8_t arg, std::vector<uint8_t> &data);
+    
     void stopTransfer(long inlet=0);
     
     void copyPatchToClipboard(long inlet);
@@ -158,15 +159,12 @@ public:
     void pasteSequenceFromClipboard(long inlet);
     
     void listPatchNames(long inlet = 0);
+    void clearPatchNames(long inlet = 0);
     void outputDataroot();
-	void populateMidiPortMenus(long inlet = 0);
-    
-    
-    
+ 
     void switchToDevice(long inlet, long v);
     void refreshGui();
-    void setXtMode(bool v);
-     
+
     template<typename T>
     uint8_t* getAddress(uint16_t slot) {
         if (slot < StorageConfiguration<T>::num_internal) {
@@ -215,13 +213,18 @@ private:
     SystemSettings* settings_;  // settings are stored at beginning of eeprom so no extra memory
                                 // is allocated, it is just pointing to eeprom_;
     
+    
+    void *midiOut_;
+    void *nrpnOut_;
+    void *msgOut_;
+    
     uint8_t *eeprom_;
     uint8_t loadbuffer_[sizeof(Patch)];
     uint8_t firmware_major_, firmware_minor_;
    // uint8_t numBanks_; // number of external eeprom banks
     
-    ShruthiMidi device_;
-    SysexBulkTransfer transfer_;
+    ShruthiMidi midi_;
+    
     
     uint8_t numAccessibleBanks_;
     bool useEepromCache_;
