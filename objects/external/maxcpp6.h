@@ -36,6 +36,11 @@ THE SOFTWARE.
 
 */
 
+/* 
+ Edited by Thijs Koerselman
+ DSP base class removed and added some extra macros
+*/
+
 #ifndef MAXMSP_CPP_6_H
 #define MAXMSP_CPP_6_H
 
@@ -43,7 +48,6 @@ THE SOFTWARE.
 #include "ext_obex.h"
 #include "ext_common.h"
 #include "commonsyms.h"
-#include "z_dsp.h"
 
 #include <new>
 
@@ -79,15 +83,6 @@ THE SOFTWARE.
 	A_LONG,												\
 	0);
 	
-// for DSP
-#define REGISTER_PERFORM(CLASS, METHOD) object_method( \
-	dsp64, \
-	gensym("dsp_add64"), \
-	(t_object *)this, \
-	MaxMethodPerform64<&CLASS::METHOD>::call,\
-	0, \
-	NULL);
-
 
 // START EDIT THIJS
 #define REGISTER_METHOD_SYMBOL(CLASS, METHOD) class_addmethod(\
@@ -259,72 +254,5 @@ public:
 	// C++ operator overload to treat MaxCpp6 objects as t_objects
 	operator t_object & () { return m_ob; }
 };
-
-// inherit from this one for audio objects
-template <typename T>
-class MspCpp6 : public MaxCppBase<T> {
-public:
-
-	typedef void (T::*maxmethod_perform64)(double **ins, long numins, double **outs, long numouts, long sampleframes);
-	template<maxmethod_perform64 F>
-	struct MaxMethodPerform64 {
-		static void call(T *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long sampleframes, long flags, void *userparam) { 
-			((x)->*F)(ins, numins, outs, numouts, sampleframes); 
-		}
-	};
-
-	t_pxobject m_ob; 
-	
-	
-	static t_class * makeMaxClass(const char * classname) {
-		common_symbols_init();
-		t_class * c = class_new(classname, (method)MspCpp6<T>::maxcpp_create, (method)MspCpp6<T>::maxcpp_destroy, sizeof(T), NULL, A_GIMME, 0);
-		class_dspinit(c);
-		
-		class_addmethod(c, (method)MspCpp6<T>::maxcpp_dsp64, "dsp64", A_CANT, 0);
-		
-		class_register(CLASS_BOX, c);
-		MaxCppBase<T>::m_class = c;
-		return c;
-	}
-	
-	static void * maxcpp_create(t_symbol * sym, long ac, t_atom * av) {
-		void * x = object_alloc(MaxCppBase<T>::m_class);
-		new(x) T(sym, ac, av);
-		return (T *)x; 
-	}
-	
-	void setupIO(unsigned int signal_inlets, unsigned int signal_outlets) {
-		dsp_setup((t_pxobject *)this, signal_inlets);
-		// prevent recycling of inputs for outputs
-		m_ob.z_misc = Z_NO_INPLACE;
-		for (unsigned int i=0; i < signal_outlets; i++) {
-			outlet_new((t_object *)this, "signal");
-		}
-	}
-	
-	static void maxcpp_destroy(t_object * x) {
-		dsp_free((t_pxobject *)x);
-		((T *)x)->~T();
-	}
-	
-	static void maxcpp_dsp64(t_object *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags) {
-		((T *)x)->dsp(dsp64, count, samplerate, maxvectorsize, flags);
-	}
-	
-	static void maxcpp_perform64(t_object *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long sampleframes, long flags, void *userparam) {
-        ((T *)x)->perform(ins, numins, outs, numouts, sampleframes);
-    }
-	
-	// stub functions in case the user doesn't supply them:
-	void dsp(t_object * dsp64, short *count, double samplerate, long maxvectorsize, long flags) {
-		REGISTER_PERFORM(T, perform);
-	}
-	void perform(double **ins, long numins, double **outs, long numouts, long sampleframes) {}
-	
-	// C++ operator overload to treat MaxCpp6 objects as t_objects
-	operator t_object & () { return m_ob; }
-};
-
 
 #endif
