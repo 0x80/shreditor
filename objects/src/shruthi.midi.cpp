@@ -24,8 +24,6 @@ ShruthiMidi::ShruthiMidi(VxShruthi &x)
     isNrpnValid_(false)
 {
     
-//    midiOutlet_ = midiOutlet;
-//    x_ = x;
     // Create an api map.
     std::map<int, std::string> apiMap;
     apiMap[RtMidi::MACOSX_CORE] = "OS-X CoreMidi";

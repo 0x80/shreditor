@@ -11,11 +11,6 @@
 #include "system_settings.h"
 #include "vx.shruthi.h"
 
-//
-//void Patch::Update(bool xtmode, const SystemSettings &sys, const SequencerSettings &seq) { return xtmode ? UpdateOrig(), UpdateXt(); }
-//void Patch::PrepareForWrite(bool xtmode, const SystemSettings &sys, const SequencerSettings &seq) { return xtmode ? PrepareForWriteOrig(), PrepareForWriteXt(); }
-//
-
 
 void Patch::PrepareForWriteOrig() {
     version_ = '!';

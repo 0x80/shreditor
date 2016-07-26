@@ -74,10 +74,6 @@
 /* Begin PBXFileReference section */
 		22CF116D0EE9A7700054F513 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = SOURCE_ROOT; };
 		54266BCE05E6E9780000000C /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../c74support/max-includes/MaxAPI.framework"; sourceTree = SOURCE_ROOT; };
-		8439810117268BC50022FFE9 /* vx.configure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vx.configure.h; path = src/vx.configure.h; sourceTree = "<group>"; };
-		8439810217268C1D0022FFE9 /* vx.configure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vx.configure.cpp; path = src/vx.configure.cpp; sourceTree = "<group>"; };
-		8439810417269B350022FFE9 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxml2.cpp; path = external/tinyxml2/tinyxml2.cpp; sourceTree = "<group>"; };
-		8439810517269B350022FFE9 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml2.h; path = external/tinyxml2/tinyxml2.h; sourceTree = "<group>"; };
 		84477FFC171C9DE900910AEA /* RtMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RtMidi.cpp; path = external/rtmidi/RtMidi.cpp; sourceTree = "<group>"; };
 		84477FFE171C9EB900910AEA /* maxcpp6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maxcpp6.h; path = external/maxcpp6.h; sourceTree = "<group>"; };
 		84477FFF171C9EC900910AEA /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base.h; path = external/avrlib/base.h; sourceTree = "<group>"; };
@@ -161,8 +157,6 @@
 				84A593A4166A48D700214212 /* shruthi.transfer.h */,
 				84A593A5166A48F300214212 /* shruthi.transfer.cpp */,
 				84A593A7166A4AC100214212 /* shruthi.types.h */,
-				8439810117268BC50022FFE9 /* vx.configure.h */,
-				8439810217268C1D0022FFE9 /* vx.configure.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -170,8 +164,6 @@
 		84477E9B171C9DA000910AEA /* External */ = {
 			isa = PBXGroup;
 			children = (
-				8439810417269B350022FFE9 /* tinyxml2.cpp */,
-				8439810517269B350022FFE9 /* tinyxml2.h */,
 				84478000171C9EE000910AEA /* RtMidi.h */,
 				84477FFF171C9EC900910AEA /* base.h */,
 				84477FFE171C9EB900910AEA /* maxcpp6.h */,
