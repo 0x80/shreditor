@@ -216,7 +216,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = 2FBBEACF08F335010078DB84 /* Build configuration list for PBXProject "Shreditor" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -288,8 +288,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libc++";
+				ENABLE_TESTABILITY = YES;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					"\"DEBUG = 1\"",
 					"\"DENORM_WANT_FIX = 1\"",
@@ -304,6 +304,7 @@
 					"\"$(C74SUPPORT)/jit-includes\"",
 					/usr/local/include,
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(C74_SYM_LINKER_FLAGS)";
 			};
 			name = Development;
@@ -312,7 +313,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "";
@@ -331,9 +331,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DSTROOT = "$(SRCROOT)/bin";
@@ -367,9 +367,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libstdc++";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DSTROOT = "$(SRCROOT)/bin";
