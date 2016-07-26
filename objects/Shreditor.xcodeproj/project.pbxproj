@@ -72,7 +72,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		22CF116D0EE9A7700054F513 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = SOURCE_ROOT; };
 		54266BCE05E6E9780000000C /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../c74support/max-includes/MaxAPI.framework"; sourceTree = SOURCE_ROOT; };
 		84477FFC171C9DE900910AEA /* RtMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RtMidi.cpp; path = external/rtmidi/RtMidi.cpp; sourceTree = "<group>"; };
 		84477FFE171C9EB900910AEA /* maxcpp6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maxcpp6.h; path = external/maxcpp6.h; sourceTree = "<group>"; };
@@ -136,7 +135,6 @@
 				846B9B5F163467EB00718272 /* CoreAudio.framework */,
 				846B9B5D163467CD00718272 /* CoreMIDI.framework */,
 				54266BCE05E6E9780000000C /* MaxAPI.framework */,
-				22CF116D0EE9A7700054F513 /* MaxAudioAPI.framework */,
 			);
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";

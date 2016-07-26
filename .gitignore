@@ -1,19 +1,16 @@
-objects/bin
 .DS_Store
-/objects/DerivedData/
-/objects/.DS_Store
-/objects/Shreditor.xcodeproj/
-/objects/build/
+objects/DerivedData/
+objects/Shreditor.xcodeproj/
+objects/build/
 *.opensln
 
-
 DerivedData
-
 sdk-build
 
-/documentation/node_modules/
+documentation/node_modules/
 
-/objects/Shreditor.sdf
+objects/Shreditor.sdf
 build/osx/
 build/windows/
 shreditor.zip
+shreditor/externals

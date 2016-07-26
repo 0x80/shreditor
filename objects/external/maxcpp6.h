@@ -37,7 +37,7 @@ THE SOFTWARE.
 */
 
 /* 
- Edited by Thijs Koerselman
+ Modified by Thijs Koerselman
  DSP base class removed and added some extra macros
 */
 

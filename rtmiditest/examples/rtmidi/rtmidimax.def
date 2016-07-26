@@ -1,4 +1,0 @@
-LIBRARY rtmidi.mxe
-
-EXPORTS
-	main
