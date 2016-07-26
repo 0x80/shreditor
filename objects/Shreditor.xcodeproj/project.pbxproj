@@ -11,8 +11,6 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 369474430FD5C90000A5E9FD /* Build configuration list for PBXAggregateTarget "All" */;
 			buildPhases = (
-				840088CF16D18801001D2D5B /* CopyFiles */,
-				8439FF3F19F6905A00CF8981 /* CopyFiles */,
 			);
 			dependencies = (
 				369474320FD5C8E700A5E9FD /* PBXTargetDependency */,
@@ -23,8 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
-		8439FF4019F6909A00CF8981 /* vx.shruthi.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8473C6331611084C004C5FFA /* vx.shruthi.mxo */; };
 		84477FFD171C9DE900910AEA /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84477FFC171C9DE900910AEA /* RtMidi.cpp */; };
 		84478001171CA6BF00910AEA /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54266BCE05E6E9780000000C /* MaxAPI.framework */; };
 		846B9B5E163467CD00718272 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846B9B5D163467CD00718272 /* CoreMIDI.framework */; };
@@ -47,29 +43,6 @@
 			remoteInfo = "vx.circular~";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		840088CF16D18801001D2D5B /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /Users/thijskoerselman/Documents/Max/Packages/_vauxlab/externals;
-			dstSubfolderSpec = 0;
-			files = (
-				840088D016D1881C001D2D5B /* vx.shruthi.mxo in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8439FF3F19F6905A00CF8981 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "/Users/thijskoerselman/Documents/Max 7/Packages/_vauxlab/externals";
-			dstSubfolderSpec = 0;
-			files = (
-				8439FF4019F6909A00CF8981 /* vx.shruthi.mxo in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		54266BCE05E6E9780000000C /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../c74support/max-includes/MaxAPI.framework"; sourceTree = SOURCE_ROOT; };
@@ -279,9 +252,9 @@
 			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "libc++";
+				DSTROOT = "$(SRCROOT)/bin";
 				ENABLE_TESTABILITY = YES;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
-					"\"DEBUG = 1\"",
 					"\"DENORM_WANT_FIX = 1\"",
 					"\"NO_TRANSLATION_SUPPORT = 1\"",
 				);
@@ -294,7 +267,7 @@
 					"\"$(C74SUPPORT)/jit-includes\"",
 					/usr/local/include,
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(C74_SYM_LINKER_FLAGS)";
 			};
 			name = Development;
@@ -304,6 +277,7 @@
 			baseConfigurationReference = 84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "libc++";
+				DSTROOT = "$(SRCROOT)/bin";
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
@@ -313,6 +287,7 @@
 					"\"$(C74SUPPORT)/jit-includes\"",
 					/usr/local/include,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(C74_SYM_LINKER_FLAGS)";
 			};
 			name = Deployment;
