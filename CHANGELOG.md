@@ -1,7 +1,7 @@
 Shreditor Change Log
 =====================
 
-Alpha 1
+1.0
 -------------------
 * Released as open source
 

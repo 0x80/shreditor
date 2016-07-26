@@ -30,7 +30,7 @@
     #include <sys/stat.h>
 #endif
 
-#define SHREDITOR_VERSION "beta 8"
+#define SHREDITOR_VERSION "1.0"
 
 // for using _1 _2 
 //using namespace std::placeholders;
