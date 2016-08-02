@@ -1,12 +1,12 @@
 #ifndef MutableSysex_shruthi_types_h
 #define MutableSysex_shruthi_types_h
 
-
 #include "patch.h"
 #include "sequencer_settings.h"
 #include "system_settings.h"
 #include <functional>
-//#include <boost/tr1/functional>
+#include <vector>
+
 #include "stdint.h"
 
 const uint16_t kUserWavetableSize = 8 * 129;
@@ -21,6 +21,16 @@ static const uint8_t sysex_rx_header[] = {
     0x00, 0x21, 0x02,   // Mutable Instruments manufacturer ID.
     0x00, 0x02,         // Product ID for Shruthi-1.
 };
+
+
+// a wrapper for cpost() only called for debug builds on Windows
+// to see these console posts, run the DbgView program (part of the SysInternals
+// package distributed by Microsoft)
+#ifdef _DEBUG
+#define DPOST post
+#else
+#define DPOST
+#endif
 
 
 #define SYSEX_START 0xF0
@@ -46,7 +56,7 @@ static const uint8_t sysex_rx_header[] = {
 
 
 enum SysexCommand {
-    
+
     kPatch = 0x01,
     kSequence,
     kWavetable,
@@ -59,20 +69,20 @@ enum SysexCommand {
     kNumbers = 0x0a,
     kNumBanks,
     kVersion,
-    
+
     kPatchRequest = 0x11,
     kSequenceRequest,
-    
+
     kSystemSettingsRequest = 0x14,
     kSequenceStepRequest,
     kPatchNameRequest,
     kSequencerStateRequest,
     kNumbersRequest = 0x1a,
     kNumBanksRequest,
-    
+
     kRandomizePatchRequest = 0x31,
     kRandomizeSequenceRequest,
-    
+
     kWritePatchRequest = 0x21,
     kWriteSequenceRequest = 0x22,
     kRawDataDumpA = 0x40,

@@ -75,7 +75,7 @@ struct ParameterAssignment {
 
 #define PATCH_SIZE (sizeof(Patch) - 8)
 
-//class Patch {
+// class Patch {
 // public:
 //  // Offset: 0-8
 //  OscillatorSettings osc[2];
@@ -105,19 +105,19 @@ struct ParameterAssignment {
 //
 //  // Offset: 76-84
 //  ParameterAssignment assigned_parameters[4];
-//  
+//
 //  // Offset: 84-92
 //  uint8_t filter_cutoff_2;
 //  uint8_t filter_resonance_2;
 //  uint8_t filter_topology_;
 //  uint8_t op_data_[4];
 //  uint8_t exclamation_mark_;
-//  
+//
 //  // 8 bytes of decompressed patch data.
 //  uint8_t filter_1_mode_;
 //  uint8_t filter_2_mode_;
 //  Operation ops_[2];
-//  
+//
 //  uint8_t* saved_data() { return (uint8_t*)(this); }
 //  void PrepareForWrite();
 //  uint8_t CheckBuffer(uint8_t* buffer);
@@ -128,70 +128,69 @@ class SystemSettings;
 struct SequencerSettings;
 
 class Patch {
-public:
-    // Offset: 0-8
-    OscillatorSettings osc[2];
-    
-    // Offset: 8-12
-    uint8_t mix_balance;
-    uint8_t mix_sub_osc;
-    uint8_t mix_noise;
-    uint8_t mix_sub_osc_shape;
-    
-    // Offset: 12-16
-    uint8_t filter_cutoff;
-    uint8_t filter_resonance;
-    int8_t filter_env;
-    int8_t filter_lfo;
-    
-    // Offset: 16-24
-    EnvelopeSettings env[2];
-    
-    // Offset: 24-32
-    LfoSettings lfo[2];
-    
-    // Offset: 32-68
-    ModulationMatrix modulation_matrix;
-    // Offset: 68-76
-    uint8_t name[kPatchNameSize];
-    
-    // Offset: 76-84
-    uint8_t extra_data_[8];
-    
-    // Offset: 84-92
-    uint8_t filter_cutoff_2;
-    uint8_t filter_resonance_2;
-    uint8_t filter_topology_;
-    uint8_t op_data_[4];
-    uint8_t version_;
-    
-    // 8 bytes of decompressed patch data.
-    uint8_t filter_1_mode_;
-    uint8_t filter_2_mode_;
-    Operation ops_[2];
-    
-    uint8_t* saved_data() { return (uint8_t*)(this); }
-    
-//    void PrepareForWrite(bool xtmode, const SystemSettings &sys, const SequencerSettings &seq);
-//    uint8_t CheckBuffer(uint8_t* buffer, bool xtmode);
-//    void Update(bool xtmode, const SystemSettings &sys, const SequencerSettings &seq);
-    
-    void PrepareForWriteXt(const SystemSettings &sys, const SequencerSettings &seq);
-    uint8_t CheckBufferXt(uint8_t* buffer);
-    void UpdateXt(SystemSettings &sys, SequencerSettings &seq);
-    
-    void PrepareForWriteOrig();
-    uint8_t CheckBufferOrig(uint8_t* buffer);
-    void UpdateOrig();
+ public:
+  // Offset: 0-8
+  OscillatorSettings osc[2];
 
+  // Offset: 8-12
+  uint8_t mix_balance;
+  uint8_t mix_sub_osc;
+  uint8_t mix_noise;
+  uint8_t mix_sub_osc_shape;
+
+  // Offset: 12-16
+  uint8_t filter_cutoff;
+  uint8_t filter_resonance;
+  int8_t filter_env;
+  int8_t filter_lfo;
+
+  // Offset: 16-24
+  EnvelopeSettings env[2];
+
+  // Offset: 24-32
+  LfoSettings lfo[2];
+
+  // Offset: 32-68
+  ModulationMatrix modulation_matrix;
+  // Offset: 68-76
+  uint8_t name[kPatchNameSize];
+
+  // Offset: 76-84
+  uint8_t extra_data_[8];
+
+  // Offset: 84-92
+  uint8_t filter_cutoff_2;
+  uint8_t filter_resonance_2;
+  uint8_t filter_topology_;
+  uint8_t op_data_[4];
+  uint8_t version_;
+
+  // 8 bytes of decompressed patch data.
+  uint8_t filter_1_mode_;
+  uint8_t filter_2_mode_;
+  Operation ops_[2];
+
+  uint8_t *saved_data() { return (uint8_t *)(this); }
+
+  //    void PrepareForWrite(bool xtmode, const SystemSettings &sys, const
+  //    SequencerSettings &seq);
+  //    uint8_t CheckBuffer(uint8_t* buffer, bool xtmode);
+  //    void Update(bool xtmode, const SystemSettings &sys, const
+  //    SequencerSettings &seq);
+
+  void PrepareForWriteXt(const SystemSettings &sys,
+                         const SequencerSettings &seq);
+  uint8_t CheckBufferXt(uint8_t *buffer);
+  void UpdateXt(SystemSettings &sys, SequencerSettings &seq);
+
+  void PrepareForWriteOrig();
+  uint8_t CheckBufferOrig(uint8_t *buffer);
+  void UpdateOrig();
 };
 
+// static const uint8_t kNumModulationSources = MOD_SRC_LAST;
 
-
-
-//static const uint8_t kNumModulationSources = MOD_SRC_LAST;
-
-//enum ModulationDestination {
+// enum ModulationDestination {
 //  MOD_DST_FILTER_CUTOFF = 0,
 //  MOD_DST_VCA,
 //  MOD_DST_PWM_1,
@@ -214,9 +213,9 @@ public:
 //  MOD_DST_LAST
 //};
 
-//static const uint8_t kNumModulationDestinations = MOD_DST_LAST;
+// static const uint8_t kNumModulationDestinations = MOD_DST_LAST;
 
-//enum PatchParameter {
+// enum PatchParameter {
 //  PRM_OSC_SHAPE_1,
 //  PRM_OSC_PARAMETER_1,
 //  PRM_OSC_RANGE_1,
@@ -261,35 +260,35 @@ public:
 //  PRM_MOD_DESTINATION,
 //  PRM_MOD_AMOUNT,
 //  PRM_MOD_ROW,
-//  
+//
 //  PRM_FILTER_CUTOFF_2 = 84,
 //  PRM_FILTER_RESONANCE_2 = 85,
 //  PRM_FILTER_MODE_1 = 92,
 //  PRM_FILTER_MODE_2 = 93,
-//  
+//
 //  PRM_OP_OP1 = 94,
 //  PRM_OP_OP2 = 95,
 //  PRM_OP_OPERATOR = 96,
 //  PRM_OP_ROW = 97,
-//  
+//
 //  PRM_FX_PROGRAM = PRM_FILTER_MODE_2,
 //  PRM_FX_PARAM_1 = PRM_FILTER_CUTOFF_2,
 //  PRM_FX_PARAM_2 = PRM_FILTER_RESONANCE_2,
-//  
+//
 //  PRM_PV_MODE = PRM_FILTER_MODE_1,
 //  PRM_PV_OVERDRIVE = PRM_FILTER_CUTOFF_2,
 //  PRM_PV_FM_FEEDBACK = PRM_FILTER_RESONANCE_2,
-//  
+//
 //  PRM_4P_MODE = PRM_FILTER_MODE_1,
 //  PRM_4P_FLAVOUR = PRM_FILTER_MODE_2,
-//  
+//
 //  PRM_DELAY_TIME = PRM_FILTER_CUTOFF_2,
 //  PRM_DELAY_LEVEL = PRM_FILTER_RESONANCE_2,
 //  PRM_DELAY_FEEDBACK = PRM_FILTER_MODE_1,
 //  PRM_DELAY_FLAVOUR = PRM_FILTER_MODE_2
 //};
 //
-//enum OscillatorAlgorithm {
+// enum OscillatorAlgorithm {
 //  WAVEFORM_NONE,
 //  WAVEFORM_SAW,
 //  WAVEFORM_SQUARE,
@@ -320,9 +319,9 @@ public:
 //  WAVEFORM_LAST
 //};
 
-//static const uint8_t kNumHiResWavetables = 1;
+// static const uint8_t kNumHiResWavetables = 1;
 //
-//enum SubOscillatorAlgorithm {
+// enum SubOscillatorAlgorithm {
 //  WAVEFORM_SUB_OSC_SQUARE_1,
 //  WAVEFORM_SUB_OSC_TRIANGLE_1,
 //  WAVEFORM_SUB_OSC_PULSE_1,
@@ -337,7 +336,7 @@ public:
 //  WAVEFORM_SUB_OSC_LAST
 //};
 //
-//enum LfoWave {
+// enum LfoWave {
 //  // For oscillators.
 //  LFO_WAVEFORM_TRIANGLE,
 //  LFO_WAVEFORM_SQUARE,
@@ -363,7 +362,7 @@ public:
 //  LFO_WAVEFORM_LAST
 //};
 //
-//enum LfoMode {
+// enum LfoMode {
 //  // For oscillators.
 //  LFO_MODE_FREE,
 //  LFO_MODE_SLAVE,
@@ -371,12 +370,12 @@ public:
 //  LFO_MODE_LAST
 //};
 //
-//enum Status {
+// enum Status {
 //  OFF = 0,
 //  ON
 //};
 //
-//enum Operator {
+// enum Operator {
 //  OP_SUM,
 //  OP_SYNC,
 //  OP_RING_MOD,
@@ -394,7 +393,7 @@ public:
 //  OP_LAST
 //};
 //
-//enum CvOperator {
+// enum CvOperator {
 //  OP_CV_NONE,
 //  OP_CV_SUM,
 //  OP_CV_PRODUCT,
@@ -408,17 +407,17 @@ public:
 //  OP_CV_LAST
 //};
 //
-//enum MainFilterMode {
+// enum MainFilterMode {
 //  FILTER_MODE_LP,
 //  FILTER_MODE_BP,
 //  FILTER_MODE_HP,
-//  
+//
 //  FILTER_MODE_LP_COUPLED,
 //  FILTER_MODE_BP_COUPLED,
 //  FILTER_MODE_HP_COUPLED
 //};
 //
-//enum SecondaryFilterMode {
+// enum SecondaryFilterMode {
 //  FILTER_MODE_PARALLEL_LP,
 //  FILTER_MODE_PARALLEL_BP,
 //  FILTER_MODE_PARALLEL_HP,
@@ -429,4 +428,4 @@ public:
 
 //}  // namespace shruthi
 
-#endif // SHRUTHI_PATCH_H_
+#endif  // SHRUTHI_PATCH_H_
