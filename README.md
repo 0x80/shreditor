@@ -74,7 +74,15 @@ At this point you are already able to use the Shreditor, but if you want to buil
 
 The resulting file should be an .app bundle containing an export of all the files plus the runtime core of Max to form a standalone application.
 
+Addionally you can strip the app bundle of some unneccesary files to make it smaller. Right-click -> Show package content, and then remove:
+
+* resources/c74/extensions/max/clang
+* resources/c74/externals/msp
+* resources/c74/externals/jitter
+
 ## Build the Shreditor for Windows
+
+
 
 
 ## Update the device firmware
