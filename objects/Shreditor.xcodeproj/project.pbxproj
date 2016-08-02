@@ -115,10 +115,10 @@
 		08FB77ADFE841716C02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				84CE31911838E3A30050AEF2 /* patch.h */,
-				84CE31941838E3E50050AEF2 /* patch.cpp */,
 				84CE31921838E3A30050AEF2 /* sequencer_settings.h */,
 				84CE31931838E3A30050AEF2 /* system_settings.h */,
+				84CE31911838E3A30050AEF2 /* patch.h */,
+				84CE31941838E3E50050AEF2 /* patch.cpp */,
 				84EAB6F2161A1DC4009240D2 /* vx.nrpn2cc.cpp */,
 				8473C6231610FA67004C5FFA /* vx.cc2nrpn.cpp */,
 				84A5939A1668CC2000214212 /* vx.shruthi.h */,

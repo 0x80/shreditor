@@ -1,23 +1,6 @@
 #ifndef MutableSysex_vx_shruthi_h
 #define MutableSysex_vx_shruthi_h
 
-#ifdef _DEBUG
-#define __VAUXLAB_DEBUG__ 1
-#define __RTMIDI_DEBUG__ 0
-#else
-#define __RTMIDI_DEBUG__ 0
-#define __VAUXLAB_DEBUG__ 0
-#endif
-
-// a wrapper for cpost() only called for debug builds on Windows
-// to see these console posts, run the DbgView program (part of the SysInternals
-// package distributed by Microsoft)
-#ifdef _DEBUG
-#define DPOST post
-#else
-#define DPOST
-#endif
-
 #include "maxcpp6.h"
 #include "shruthi.midi.h"
 #include "shruthi.transfer.h"
@@ -32,7 +15,7 @@ void midiSysexCallback(VxShruthi *x, SysexCommand cmd, uint8_t arg,
 void transferProgressCallback(VxShruthi *x, bool finished, uint8_t progress);
 
 class VxShruthi : public MaxCpp6<VxShruthi> {
- public:
+public:
   VxShruthi(t_symbol *sym, long ac, t_atom *av);
   ~VxShruthi();
 
@@ -70,8 +53,8 @@ class VxShruthi : public MaxCpp6<VxShruthi> {
   void transferSequencerSettings(long inlet = 0);
   void transferRom(long inlet = 0);
 
-  void requestNumbers(long inlet = 0);   // get current patch/sequence index
-  void requestNumBanks(long inlet = 0);  // get eeprom bank count
+  void requestNumbers(long inlet = 0);  // get current patch/sequence index
+  void requestNumBanks(long inlet = 0); // get eeprom bank count
   void requestVersion(long inlet = 0);
   void requestPatch(long inlet = 0);
   void requestSequence(long inlet = 0);
@@ -150,8 +133,7 @@ class VxShruthi : public MaxCpp6<VxShruthi> {
   void switchToDevice(long inlet, long v);
   void refreshGui();
 
-  template <typename T>
-  uint8_t *getAddress(uint16_t slot) {
+  template <typename T> uint8_t *getAddress(uint16_t slot) {
     if (slot < StorageConfiguration<T>::num_internal) {
       return (uint8_t *)(eeprom_ + StorageConfiguration<T>::offset_internal +
                          StorageConfiguration<T>::size * slot);
@@ -170,7 +152,7 @@ class VxShruthi : public MaxCpp6<VxShruthi> {
   void *clock_;
   bool isSequenceDirty_;
 
- private:
+private:
   long convertControlValue(long v, long nsteps, long min = 0);
 
   uint16_t addressable_space_size();
@@ -180,7 +162,7 @@ class VxShruthi : public MaxCpp6<VxShruthi> {
 
   struct tm expire_;
 
-  Patch workingPatch_[NUM_DEVICE_SLOTS];  // working patch
+  Patch workingPatch_[NUM_DEVICE_SLOTS]; // working patch
   int workingPatchIndex_[NUM_DEVICE_SLOTS];
   Patch clipboardPatch_;
 
@@ -188,12 +170,12 @@ class VxShruthi : public MaxCpp6<VxShruthi> {
   int workingSequencerIndex_[NUM_DEVICE_SLOTS];
   SequencerSettings clipboardSequencer_;
 
-  uint8_t wavetable_[kUserWavetableSize + 1];  // waarom +1?
+  uint8_t wavetable_[kUserWavetableSize + 1]; // waarom +1?
   t_atom atoms_[128];
 
-  SystemSettings *settings_;  // settings are stored at beginning of eeprom so
-                              // no extra memory
-                              // is allocated, it is just pointing to eeprom_;
+  SystemSettings *settings_; // settings are stored at beginning of eeprom so
+                             // no extra memory
+                             // is allocated, it is just pointing to eeprom_;
 
   void *midiOut_;
   void *nrpnOut_;

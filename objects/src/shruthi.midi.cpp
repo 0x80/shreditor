@@ -11,15 +11,8 @@ static t_symbol *ps_invalid = gensym("invalid");
 static t_symbol *ps_empty = gensym("");
 
 ShruthiMidi::ShruthiMidi(VxShruthi &x)
-    : x_(x),
-      transfer_(x),
-      channelOut_(0),
-      lastDataMsb_(-1),
-      lastNrpnIndex_(-1),
-      indexLsb_(0),
-      indexMsb_(0),
-      valueLsb_(0),
-      valueMsb_(0),
+    : x_(x), transfer_(x), channelOut_(0), lastDataMsb_(-1), lastNrpnIndex_(-1),
+      indexLsb_(0), indexMsb_(0), valueLsb_(0), valueMsb_(0),
       isNrpnValid_(false) {
   // Create an api map.
   std::map<int, std::string> apiMap;
@@ -89,7 +82,7 @@ void ShruthiMidi::testMidiOut() {
 }
 
 bool ShruthiMidi::isValidSysex(const std::vector<uint8_t> &msg) {
-  if (msg.size() < 11) {  // sysex zonder payload is 11 bytes
+  if (msg.size() < 11) { // sysex zonder payload is 11 bytes
     error("Received invalid sysex message, length %i", msg.size());
     return false;
   }
@@ -125,7 +118,7 @@ void ShruthiMidi::parseSysex(const std::vector<uint8_t> &msg) {
   }
 
   std::vector<uint8_t>::const_iterator it =
-      msg.begin() + 8;  // first 8 bytes are not payload
+      msg.begin() + 8; // first 8 bytes are not payload
   int counter = 0;
   std::vector<uint8_t> data;
 
@@ -225,85 +218,85 @@ int ShruthiMidi::expectedSysexPayload(SysexCommand cmd) {
   //    bytes are transferred in nibblets
 
   switch (cmd) {
-    case kNumbers:
-      return sizeof(uint16_t) * 2;
-      break;
+  case kNumbers:
+    return sizeof(uint16_t) * 2;
+    break;
 
-    case kNumBanks:
-      return 0;
-      break;
+  case kNumBanks:
+    return 0;
+    break;
 
-    case kVersion:
-      return 2;
-      break;
+  case kVersion:
+    return 2;
+    break;
 
-    case kPatch:  // Patch transfer
-      return StorageConfiguration<Patch>::size;
-      break;
+  case kPatch: // Patch transfer
+    return StorageConfiguration<Patch>::size;
+    break;
 
-    case kSequence:  // Sequence transfer
-      return StorageConfiguration<SequencerSettings>::size;
-      break;
+  case kSequence: // Sequence transfer
+    return StorageConfiguration<SequencerSettings>::size;
+    break;
 
-    case kWavetable:  // Wavetable dump
-      return kUserWavetableSize;
-      break;
+  case kWavetable: // Wavetable dump
+    return kUserWavetableSize;
+    break;
 
-    case kSystemSettings:  // Settings transfer
-      return SYSTEM_SETTINGS_SIZE;
-      break;
+  case kSystemSettings: // Settings transfer
+    return SYSTEM_SETTINGS_SIZE;
+    break;
 
-    case kSequenceStep:  // sequence step transfer
-      return 2;
-      break;
+  case kSequenceStep: // sequence step transfer
+    return 2;
+    break;
 
-    case kPatchName:
-      return kPatchNameSize;
-      break;
+  case kPatchName:
+    return kPatchNameSize;
+    break;
 
-    case kSequencerState:  // Full sequencer state transfer
-      return sizeof(SequencerSettings);
-      break;
+  case kSequencerState: // Full sequencer state transfer
+    return sizeof(SequencerSettings);
+    break;
 
-    case kRawDataDumpA:  // Bulk transfer
-    case kRawDataDumpB:
-    case kRawDataDumpC:
-    case kRawDataDumpD:
-      return kSysExBulkDumpBlockSize;
-      break;
+  case kRawDataDumpA: // Bulk transfer
+  case kRawDataDumpB:
+  case kRawDataDumpC:
+  case kRawDataDumpD:
+    return kSysExBulkDumpBlockSize;
+    break;
 
-    default:
-      return -1;  // command not supported
-      break;
+  default:
+    return -1; // command not supported
+    break;
   }
 }
 
 void ShruthiMidi::parseControlChange(long cc_index, long cc_value) {
   switch (cc_index) {
-    case CC_NRPN_MSB:
-      // Save 7 high bits
-      indexMsb_ = cc_value << 7;
-      isNrpnValid_ = false;
-      break;
-    case CC_NRPN_LSB:
-      // Save 7 low bits
-      indexLsb_ = cc_value;
-      isNrpnValid_ = true;
-      break;
-    case CC_DATA_MSB:
-      valueMsb_ = cc_value << 7;
-      valueLsb_ = 0;  // lsb is optional
-      break;
-    case CC_DATA_LSB:
-      valueLsb_ = cc_value;
-      if (isNrpnValid_) {
-        parseControlChangeAsNrpn();
-      }
-      break;
-    default:
-      // process cc coming from xt knob movements
-      x_.processCcInput(cc_index, cc_value);
-      break;
+  case CC_NRPN_MSB:
+    // Save 7 high bits
+    indexMsb_ = cc_value << 7;
+    isNrpnValid_ = false;
+    break;
+  case CC_NRPN_LSB:
+    // Save 7 low bits
+    indexLsb_ = cc_value;
+    isNrpnValid_ = true;
+    break;
+  case CC_DATA_MSB:
+    valueMsb_ = cc_value << 7;
+    valueLsb_ = 0; // lsb is optional
+    break;
+  case CC_DATA_LSB:
+    valueLsb_ = cc_value;
+    if (isNrpnValid_) {
+      parseControlChangeAsNrpn();
+    }
+    break;
+  default:
+    // process cc coming from xt knob movements
+    x_.processCcInput(cc_index, cc_value);
+    break;
   }
 }
 
@@ -328,9 +321,9 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
   dataLsb_ = 0;
 
   if (nrpn_value < 0) {
-    dataMsb_ = 1;  // msb is only ever 1 or 0 for shruthi
+    dataMsb_ = 1; // msb is only ever 1 or 0 for shruthi
     int8_t sbyte = static_cast<int8_t>(nrpn_value);
-    dataLsb_ = sbyte ^ 0x80;  // twos complement using xor msb
+    dataLsb_ = sbyte ^ 0x80; // twos complement using xor msb
   } else if (nrpn_value > 127) {
     dataMsb_ = 1;
     dataLsb_ = nrpn_value & 0x7f;
@@ -386,14 +379,15 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
 void ShruthiMidi::sendPatchProgramChange(long slot) {
   uint8_t bank = slot / 128;
   uint8_t patch = (slot - bank * 128) & 0x7f;
-  if (bank > 8) return;
+  if (bank > 8)
+    return;
 
   std::vector<uint8_t> msg;
 
   // Bank select CC
   msg.push_back(0xb0 | channelOut_);
-  msg.push_back(0);     // bank MSB
-  msg.push_back(bank);  // since 0.98 sent in msb
+  msg.push_back(0);    // bank MSB
+  msg.push_back(bank); // since 0.98 sent in msb
   sendMessage(msg);
   msg.clear();
 
@@ -406,13 +400,14 @@ void ShruthiMidi::sendPatchProgramChange(long slot) {
 void ShruthiMidi::sendSequenceProgramChange(long slot) {
   uint8_t bank = slot / 128;
   uint8_t patch = (slot - bank * 128) & 0x7f;
-  if (bank > 8) return;
+  if (bank > 8)
+    return;
 
   std::vector<uint8_t> msg;
 
   // Bank select CC
   msg.push_back(0xb0 | channelOut_);
-  msg.push_back(0);  // bank MSB
+  msg.push_back(0); // bank MSB
   msg.push_back(bank + 0x40);
   sendMessage(msg);
   msg.clear();

@@ -17,11 +17,10 @@ const uint16_t kMaxNumBanks = 7;
 
 // have to make this uint8_t for max
 static const uint8_t sysex_rx_header[] = {
-    0xf0,               // <Sysex>
-    0x00, 0x21, 0x02,   // Mutable Instruments manufacturer ID.
-    0x00, 0x02,         // Product ID for Shruthi-1.
+    0xf0,             // <Sysex>
+    0x00, 0x21, 0x02, // Mutable Instruments manufacturer ID.
+    0x00, 0x02,       // Product ID for Shruthi-1.
 };
-
 
 // a wrapper for cpost() only called for debug builds on Windows
 // to see these console posts, run the DbgView program (part of the SysInternals
@@ -31,7 +30,6 @@ static const uint8_t sysex_rx_header[] = {
 #else
 #define DPOST
 #endif
-
 
 #define SYSEX_START 0xF0
 #define SYSEX_END 0xF7
@@ -54,79 +52,74 @@ static const uint8_t sysex_rx_header[] = {
 #define STATUS_RT_RANGE_START 0xf8
 #define STATIS_RT_RANGE_END 0xff
 
-
 enum SysexCommand {
 
-    kPatch = 0x01,
-    kSequence,
-    kWavetable,
-    kSystemSettings,
-    kSequenceStep,
-    kPatchName,
-    kSequencerState,
-    kPatternSize ,
-    kPatternRotation,
-    kNumbers = 0x0a,
-    kNumBanks,
-    kVersion,
+  kPatch = 0x01,
+  kSequence,
+  kWavetable,
+  kSystemSettings,
+  kSequenceStep,
+  kPatchName,
+  kSequencerState,
+  kPatternSize,
+  kPatternRotation,
+  kNumbers = 0x0a,
+  kNumBanks,
+  kVersion,
 
-    kPatchRequest = 0x11,
-    kSequenceRequest,
+  kPatchRequest = 0x11,
+  kSequenceRequest,
 
-    kSystemSettingsRequest = 0x14,
-    kSequenceStepRequest,
-    kPatchNameRequest,
-    kSequencerStateRequest,
-    kNumbersRequest = 0x1a,
-    kNumBanksRequest,
+  kSystemSettingsRequest = 0x14,
+  kSequenceStepRequest,
+  kPatchNameRequest,
+  kSequencerStateRequest,
+  kNumbersRequest = 0x1a,
+  kNumBanksRequest,
 
-    kRandomizePatchRequest = 0x31,
-    kRandomizeSequenceRequest,
+  kRandomizePatchRequest = 0x31,
+  kRandomizeSequenceRequest,
 
-    kWritePatchRequest = 0x21,
-    kWriteSequenceRequest = 0x22,
-    kRawDataDumpA = 0x40,
-    kRawDataDumpB = 0x41,
-    kRawDataDumpC = 0x42,
-    kRawDataDumpD = 0x43,
-    kRawDataDumpRequest = 0x50
+  kWritePatchRequest = 0x21,
+  kWriteSequenceRequest = 0x22,
+  kRawDataDumpA = 0x40,
+  kRawDataDumpB = 0x41,
+  kRawDataDumpC = 0x42,
+  kRawDataDumpD = 0x43,
+  kRawDataDumpRequest = 0x50
 };
 
-//const size_t SYSTEM_SETTINGS_SIZE = sizeof(SystemSettings)-1;
+// const size_t SYSTEM_SETTINGS_SIZE = sizeof(SystemSettings)-1;
 const size_t SYSTEM_SETTINGS_SIZE = sizeof(SystemSettings);
 
-template<typename T>
-class StorageConfiguration { };
+template <typename T> class StorageConfiguration {};
 
-template<> class StorageConfiguration<Patch> {
+template <> class StorageConfiguration<Patch> {
 public:
-    enum {
-        num_internal = 16,
-        num_external = 64,
-        offset_internal = 16,
-        offset_external = 0,
-        size = PATCH_SIZE,
-        sysex_object_id = 0x01,
-        undo_buffer_offset = 0,
-    };
+  enum {
+    num_internal = 16,
+    num_external = 64,
+    offset_internal = 16,
+    offset_external = 0,
+    size = PATCH_SIZE,
+    sysex_object_id = 0x01,
+    undo_buffer_offset = 0,
+  };
 };
 
-template<> class StorageConfiguration<SequencerSettings> {
+template <> class StorageConfiguration<SequencerSettings> {
 public:
-    enum {
-        num_internal = 16,
-        num_external = 64,
-        offset_internal = StorageConfiguration<Patch>::offset_internal + \
-        StorageConfiguration<Patch>::num_internal * PATCH_SIZE,
-        offset_external = StorageConfiguration<Patch>::offset_external + \
-        StorageConfiguration<Patch>::num_external * PATCH_SIZE,
-        size = sizeof(SequenceStep) * kNumSteps,
-        sysex_object_id = 0x02,
-        undo_buffer_offset = PATCH_SIZE,
-    };
+  enum {
+    num_internal = 16,
+    num_external = 64,
+    offset_internal = StorageConfiguration<Patch>::offset_internal +
+                      StorageConfiguration<Patch>::num_internal * PATCH_SIZE,
+    offset_external = StorageConfiguration<Patch>::offset_external +
+                      StorageConfiguration<Patch>::num_external * PATCH_SIZE,
+    size = sizeof(SequenceStep) * kNumSteps,
+    sysex_object_id = 0x02,
+    undo_buffer_offset = PATCH_SIZE,
+  };
 };
-
-
-
 
 #endif

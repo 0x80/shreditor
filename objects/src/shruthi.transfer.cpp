@@ -3,15 +3,8 @@
 #include "vx.shruthi.h"
 
 SysexBulkTransfer::SysexBulkTransfer(VxShruthi &x)
-    : parent_(x),
-      start_(0),
-      message_id_(0x40),
-      block_id_(0),
-      delay_(100),
-      data_(0),
-      size_(0),
-      dataposition_(0),
-      isTransferBusy_(false) {
+    : parent_(x), start_(0), message_id_(0x40), block_id_(0), delay_(100),
+      data_(0), size_(0), dataposition_(0), isTransferBusy_(false) {
   x_systhread = NULL;
   x_systhread_cancel = false;
   systhread_mutex_new(&x_mutex, 0);
@@ -20,14 +13,16 @@ SysexBulkTransfer::SysexBulkTransfer(VxShruthi &x)
 
 SysexBulkTransfer::~SysexBulkTransfer() {
   // free our qelem
-  if (x_qelem) qelem_free(x_qelem);
+  if (x_qelem)
+    qelem_free(x_qelem);
 
   // free out mutex
-  if (x_mutex) systhread_mutex_free(x_mutex);
+  if (x_mutex)
+    systhread_mutex_free(x_mutex);
 };
 
 void SysexBulkTransfer::transferEeprom(uint8_t *data, size_t size) {
-  stop();  // kill thread if, any
+  stop(); // kill thread if, any
 
   data_ = data;
   size_ = size;
@@ -42,7 +37,7 @@ void SysexBulkTransfer::transferEeprom(uint8_t *data, size_t size) {
 }
 
 void SysexBulkTransfer::start() {
-  stop();  // kill thread if, any
+  stop(); // kill thread if, any
   // create new thread + begin execution
   if (x_systhread == NULL) {
     DPOST("starting a new thread");
@@ -56,8 +51,8 @@ void SysexBulkTransfer::stop() {
 
   if (x_systhread) {
     DPOST("stopping transfer thread");
-    x_systhread_cancel = true;          // tell the thread to stop
-    systhread_join(x_systhread, &ret);  // wait for the thread to stop
+    x_systhread_cancel = true;         // tell the thread to stop
+    systhread_join(x_systhread, &ret); // wait for the thread to stop
     x_systhread = NULL;
     DPOST("thread stopped and returned %i", ret);
     x_systhread_cancel = false;
@@ -88,17 +83,18 @@ void SysexBulkTransfer::qfn(SysexBulkTransfer *x) {
 // TODO figure out how to skip system settings / internal eeprom
 void SysexBulkTransfer::memberproc(SysexBulkTransfer *x) {
   x->message_id_ = 0x40;
-  uint16_t delay = 250;  // 100;
+  uint16_t delay = 250; // 100;
 
-  x->block_id_ = 0;  // skip first 16
-  uint16_t pos = 0;  // start at external eeprom
+  x->block_id_ = 0; // skip first 16
+  uint16_t pos = 0; // start at external eeprom
 
   x->block_counter_ = 0;
   x->dataposition_ = 0;
 
   // skip internal eeprom
   for (; pos < x->size_; pos += kSysExBulkDumpBlockSize) {
-    if (x->x_systhread_cancel) break;
+    if (x->x_systhread_cancel)
+      break;
 
     systhread_mutex_lock(x->x_mutex);
 
@@ -124,14 +120,14 @@ void SysexBulkTransfer::memberproc(SysexBulkTransfer *x) {
     systhread_sleep(delay);
   }
 
-  x->x_systhread_cancel = false;  // reset cancel flag for next time, in case
+  x->x_systhread_cancel = false; // reset cancel flag for next time, in case
 
   x->isTransferBusy_ = false;
 
-  qelem_set(x->x_qelem);  // nog 1x om finished door te geven.
+  qelem_set(x->x_qelem); // nog 1x om finished door te geven.
 
   // the thread is created again
-  systhread_exit(0);  // this can return a value to systhread_join();
+  systhread_exit(0); // this can return a value to systhread_join();
 }
 
 void SysexBulkTransfer::outputSysex(uint8_t *data, uint8_t command,
@@ -170,6 +166,5 @@ void SysexBulkTransfer::outputSysex(uint8_t *data, uint8_t command,
   }
 }
 
-// TODO get rid of thread all together. output naar outlet kan niet in aparte
-// thread anyway
+// TODO get rid of thread all together.
 void SysexBulkTransfer::outputMidi(std::vector<unsigned char> msg) {}

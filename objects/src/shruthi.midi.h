@@ -1,7 +1,6 @@
 #ifndef MutableSysex_shruthi_midi_h
 #define MutableSysex_shruthi_midi_h
 
-
 #ifdef _DEBUG
 #define __RTMIDI_DEBUG__ 0
 #else
@@ -11,8 +10,8 @@
 #include "ext.h"
 #include "maxcpp6.h"
 #include "rtmidi/RtMidi.h"
-#include "shruthi.types.h"
 #include "shruthi.transfer.h"
+#include "shruthi.types.h"
 
 class RtMidiIn;
 class RtMidiOut;
@@ -21,7 +20,7 @@ class VxShruthi;
 class SysexBulkTransfer;
 
 class ShruthiMidi {
- public:
+public:
   ShruthiMidi(VxShruthi &x);
   ~ShruthiMidi();
 
@@ -44,7 +43,7 @@ class ShruthiMidi {
   void sendNrpn(long nrpn_index, long nrpn_value);
 
   void setOutputChannel(long v) {
-    channelOut_ = CLAMP(v - 1, 0, 15);  // 0 en 1 zijn beiden 1 op shruthi
+    channelOut_ = CLAMP(v - 1, 0, 15); // 0 en 1 zijn beiden 1 op shruthi
     DPOST("Set output channel %d", v);
   }
 
@@ -56,11 +55,11 @@ class ShruthiMidi {
     msgOutlet_ = msgOutlet;
   }
 
- private:
+private:
   void parseControlChangeAsNrpn();
-  t_atom atoms_[140];  // sysex dump blocksize is 128
+  t_atom atoms_[140]; // sysex dump blocksize is 128
 
-  VxShruthi &x_;  // dirty hack
+  VxShruthi &x_; // dirty hack
 
   SysexBulkTransfer transfer_;
 

@@ -21,7 +21,7 @@
 #define snprintf _snprintf
 #endif
 
-#else  // MAC_VERSION
+#else // MAC_VERSION
 #include <CoreServices/CoreServices.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -65,13 +65,9 @@ static t_symbol *ps_noinput = gensym("--- none ---");
 static t_symbol *ps_nooutput = gensym("--- none ---");
 
 VxShruthi::VxShruthi(t_symbol *sym, long ac, t_atom *av)
-    : midi_(*this),
-      numAccessibleBanks_(2),
-      useEepromCache_(true),
-      hasEepromCache_(false),
-      progressCounter_(0),
-      slotIndex_(-1) {
-  setupIO(1, 3);  // inlets / outlets
+    : midi_(*this), numAccessibleBanks_(2), useEepromCache_(true),
+      hasEepromCache_(false), progressCounter_(0), slotIndex_(-1) {
+  setupIO(1, 3); // inlets / outlets
 
   // point outlets to right place
   nrpnOut_ = m_outlets[0];
@@ -82,9 +78,9 @@ VxShruthi::VxShruthi(t_symbol *sym, long ac, t_atom *av)
 
   eeprom_ = new uint8_t[kEepromSize];
   settings_ =
-      (SystemSettings *)eeprom_;  // settings are stored in first part of eeprom
+      (SystemSettings *)eeprom_; // settings are stored in first part of eeprom
 
-  memset(eeprom_, 0, kEepromSize * sizeof(uint8_t));  // init to zero
+  memset(eeprom_, 0, kEepromSize * sizeof(uint8_t)); // init to zero
 
   // init active indexs to -1
   memset(workingPatchIndex_, -1, NUM_DEVICE_SLOTS * sizeof(int));
@@ -99,7 +95,8 @@ VxShruthi::VxShruthi(t_symbol *sym, long ac, t_atom *av)
 
 VxShruthi::~VxShruthi() {
   // is dit handig?
-  if (hasEepromCache_) saveDeviceEeprom();
+  if (hasEepromCache_)
+    saveDeviceEeprom();
 
   delete[] eeprom_;
   object_free(clock_);
@@ -163,9 +160,9 @@ void VxShruthi::initializeSystemStoragePath() {
   if (makePaths(path)) {
     // error try different location for windows
 
-    if (SUCCEEDED(SHGetFolderPath(
-            NULL, CSIDL_PROGRAM_FILES_COMMONX86 | CSIDL_FLAG_CREATE, NULL, 0,
-            path))) {
+    if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PROGRAM_FILES_COMMONX86 |
+                                            CSIDL_FLAG_CREATE,
+                                  NULL, 0, path))) {
       if (path_nameconform(path, conformpath, PATH_STYLE_MAX_PLAT,
                            PATH_TYPE_ABSOLUTE)) {
         object_error((t_object *)this, "Failed to conform path");
@@ -197,7 +194,7 @@ void VxShruthi::initializeSystemStoragePath() {
                 root.c_str());
   };
 
-#else  // MAC_VERSION
+#else // MAC_VERSION
 
   FSRef ref;
   OSType folderType = kApplicationSupportFolderType;
@@ -274,25 +271,26 @@ void VxShruthi::outputProgress(long progress) {
 
   if (percentage == 100) {
     DPOST("done 100%");
-    saveDeviceEeprom();  // save current
-    refreshGui();        // list patch names, selection etc.
+    saveDeviceEeprom(); // save current
+    refreshGui();       // list patch names, selection etc.
   }
 }
 
 void VxShruthi::outputPatchData() {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   Patch &p = workingPatch_[slotIndex_];
 
   outputNrpn(0, p.osc[0].shape);
   outputNrpn(1, p.osc[0].parameter);
   outputNrpn(2, p.osc[0].range);
-  outputNrpn(3, p.osc[0].option);  // modulation operator?
+  outputNrpn(3, p.osc[0].option); // modulation operator?
 
   outputNrpn(4, p.osc[1].shape);
   outputNrpn(5, p.osc[1].parameter);
   outputNrpn(6, p.osc[1].range);
-  outputNrpn(7, p.osc[1].option);  // detune?
+  outputNrpn(7, p.osc[1].option); // detune?
 
   outputNrpn(8, p.mix_balance);
   outputNrpn(9, p.mix_sub_osc);
@@ -421,7 +419,8 @@ void VxShruthi::outputNrpn(long index, long value) {
 }
 
 void VxShruthi::outputSequencerSettings() {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   SequencerSettings &s = workingSequencer_[slotIndex_];
 
@@ -432,13 +431,14 @@ void VxShruthi::outputSequencerSettings() {
   outputNrpn(104, s.arp_direction);
   outputNrpn(105, s.arp_range);
   outputNrpn(106, s.arp_pattern);
-  outputNrpn(107, s.arp_clock_division);  // warp in pre xt
+  outputNrpn(107, s.arp_clock_division); // warp in pre xt
   // pattern size is not global but extracted from steps
   outputNrpn(109, s.pattern_rotation);
 }
 
 void VxShruthi::outputSequence() {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   SequencerSettings &s = workingSequencer_[slotIndex_];
   atom_setsym(atoms_, ps_sequence);
@@ -447,7 +447,7 @@ void VxShruthi::outputSequence() {
   // note
   atom_setsym(atoms_ + 1, ps_note);
   for (int i = 0; i < kNumSteps; ++i)
-    atom_setlong(data + i, s.steps[i].note());  // only first 7 bits
+    atom_setlong(data + i, s.steps[i].note()); // only first 7 bits
   outlet_list(m_outlets[1], ps_empty, kNumSteps + 2, atoms_);
 
   // velocity
@@ -465,7 +465,8 @@ void VxShruthi::outputSequence() {
 
   // gate
   atom_setsym(atoms_ + 1, ps_gate);
-  for (int i = 0; i < kNumSteps; ++i) atom_setlong(data + i, s.steps[i].gate());
+  for (int i = 0; i < kNumSteps; ++i)
+    atom_setlong(data + i, s.steps[i].gate());
   outlet_list(m_outlets[1], ps_empty, kNumSteps + 2, atoms_);
 
   // legato / tie
@@ -497,12 +498,14 @@ void VxShruthi::outputSequence() {
 
 // transfers
 void VxShruthi::transferPatch(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   midi_.sendSysex((uint8_t *)&workingPatch_[slotIndex_], 0x01, 0, PATCH_SIZE);
 }
 
 void VxShruthi::transferSequence(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   midi_.sendSysex((uint8_t *)workingSequencer_[slotIndex_].steps, 0x02, 0,
                   sizeof(SequenceStep) * kNumSteps);
 }
@@ -517,32 +520,37 @@ void VxShruthi::transferSystemSettings(long inlet) {
 }
 
 void VxShruthi::transferSequenceStep(long index) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   uint8_t stepIndex = index & 0x0f;
   midi_.sendSysex(workingSequencer_[slotIndex_].steps[stepIndex].data_, 0x05,
                   stepIndex, 2);
 }
 
 void VxShruthi::transferPatchName(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   midi_.sendSysex(workingPatch_[slotIndex_].name, 0x06, 0, kPatchNameSize);
 }
 
 void VxShruthi::transferSequencerSettings(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   midi_.sendSysex((uint8_t *)&workingSequencer_[slotIndex_], 0x07, 0,
                   sizeof(SequencerSettings));
 }
 
 void VxShruthi::setPatternLength(long inlet, long length) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   uint8_t v = CLAMP(length, 1, 16);
   workingSequencer_[slotIndex_].pattern_size = v;
   midi_.sendSysexCommand(0x08, v);
 }
 
 void VxShruthi::setPatternRotation(long inlet, long rotation) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   uint8_t v = rotation & 0x0f;
   workingSequencer_[slotIndex_].pattern_rotation = v;
   midi_.sendSysexCommand(0x09, v);
@@ -600,21 +608,22 @@ void VxShruthi::requestRandomizeSequence(long inlet) {
 void VxShruthi::requestPatchWrite(long slot) {
   long first14Bit = slot & 0x3fff;
   uint8_t payload[2];
-  payload[0] = first14Bit >> 8;    // msb
-  payload[1] = first14Bit & 0xff;  // lsb
+  payload[0] = first14Bit >> 8;   // msb
+  payload[1] = first14Bit & 0xff; // lsb
   midi_.sendSysex(payload, 0x21, 0, 2);
 }
 
 void VxShruthi::requestSequenceWrite(long slot) {
   long first14Bit = slot & 0x3fff;
   uint8_t payload[2];
-  payload[0] = first14Bit >> 8;    // msb
-  payload[1] = first14Bit & 0xff;  // lsb
+  payload[0] = first14Bit >> 8;   // msb
+  payload[1] = first14Bit & 0xff; // lsb
   midi_.sendSysex(payload, 0x22, 0, 2);
 }
 
 void VxShruthi::setPatchName(long inlet, t_symbol *name) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   int c = 0;
   const char *cname = name->s_name;
   for (c = 0; c < kPatchNameSize; ++c) {
@@ -681,7 +690,8 @@ void VxShruthi::setSettingsLegato(long inlet, long v) {
 }
 
 void VxShruthi::liveStep(long inlet, t_symbol *s, long ac, t_atom *av) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   if (ac != 6) {
     object_error((t_object *)this, "liveStep expects a list of 6 items");
@@ -700,10 +710,11 @@ void VxShruthi::liveStep(long inlet, t_symbol *s, long ac, t_atom *av) {
 }
 
 void VxShruthi::liveGrid(long inlet, t_symbol *s, long ac, t_atom *av) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
-  uint8_t listLegato[16] = {};  // init as zero
-  uint8_t listGate[16] = {};    // init as zero
+  uint8_t listLegato[16] = {}; // init as zero
+  uint8_t listGate[16] = {};   // init as zero
   uint8_t stepIndex, row;
   uint8_t nItems = ac / 2;
 
@@ -711,16 +722,15 @@ void VxShruthi::liveGrid(long inlet, t_symbol *s, long ac, t_atom *av) {
     stepIndex = (atom_getlong(av + (i * 2)) - 1) & 0x0f;
     row = atom_getlong(av + (i * 2 + 1));
     switch (row) {
-      case 2:
-        listGate[stepIndex] = 1;
-        break;
-      case 1:
-        listLegato[stepIndex] = 1;
-        break;
-      default:
-        object_error((t_object *)this, "Invalid row index for liveGrid: %i",
-                     row);
-        break;
+    case 2:
+      listGate[stepIndex] = 1;
+      break;
+    case 1:
+      listLegato[stepIndex] = 1;
+      break;
+    default:
+      object_error((t_object *)this, "Invalid row index for liveGrid: %i", row);
+      break;
     }
   }
 
@@ -751,7 +761,8 @@ void VxShruthi::storePatch(long inlet, long slot) {
 }
 
 void VxShruthi::storePatchToEeprom(long slot) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   DPOST("Store patch %i to eeprom cache", slot);
   uint8_t *address = getAddress<Patch>(slot);
@@ -764,7 +775,8 @@ void VxShruthi::storePatchToEeprom(long slot) {
 }
 
 void VxShruthi::loadPatchFromEeprom(long slot) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   DPOST("Fetch patch %i from eeprom cache", slot);
   uint8_t *address = getAddress<Patch>(slot);
   std::memcpy(&workingPatch_[slotIndex_], address,
@@ -777,7 +789,8 @@ void VxShruthi::loadPatchFromEeprom(long slot) {
 }
 
 void VxShruthi::storeSequenceToEeprom(long slot) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   DPOST("Store sequence %i to eeprom", slot);
   uint8_t *address = getAddress<SequencerSettings>(slot);
 
@@ -787,7 +800,8 @@ void VxShruthi::storeSequenceToEeprom(long slot) {
 }
 
 void VxShruthi::loadSequenceFromEeprom(long slot) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   DPOST("Fetch sequence %i from eeprom", slot);
   uint8_t *address = getAddress<SequencerSettings>(slot);
   std::memcpy(&workingSequencer_[slotIndex_].steps, address,
@@ -797,7 +811,8 @@ void VxShruthi::loadSequenceFromEeprom(long slot) {
 }
 
 void VxShruthi::calculatePatternSize() {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   SequencerSettings &seq = workingSequencer_[slotIndex_];
 
@@ -812,7 +827,8 @@ void VxShruthi::calculatePatternSize() {
 }
 
 void VxShruthi::loadPatch(long inlet, long slot) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   if (workingPatchIndex_[slotIndex_] == slot) {
     DPOST("Slot same as working, using exising data", slot);
@@ -820,7 +836,7 @@ void VxShruthi::loadPatch(long inlet, long slot) {
     return;
   }
 
-  workingPatchIndex_[slotIndex_] = slot;  // store current active slot
+  workingPatchIndex_[slotIndex_] = slot; // store current active slot
 
   sendPatchProgramChange(slot);
 
@@ -834,7 +850,8 @@ void VxShruthi::loadPatch(long inlet, long slot) {
 }
 
 void VxShruthi::loadSequence(long inlet, long slot) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   if (workingSequencerIndex_[slotIndex_] == slot) {
     DPOST("Slot same as working, using existing seq data", slot);
@@ -842,7 +859,7 @@ void VxShruthi::loadSequence(long inlet, long slot) {
     return;
   }
 
-  workingSequencerIndex_[slotIndex_] = slot;  // store current active slot
+  workingSequencerIndex_[slotIndex_] = slot; // store current active slot
 
   sendSequenceProgramChange(slot);
   loadSequenceFromEeprom(slot);
@@ -955,18 +972,20 @@ void VxShruthi::exportEeprom(long inlet, t_symbol *filepath) {
 }
 
 void VxShruthi::clearEepromCache(long inlet) {
-  memset(eeprom_, 0, kEepromSize * sizeof(uint8_t));  // init to zero
+  memset(eeprom_, 0, kEepromSize * sizeof(uint8_t)); // init to zero
   hasEepromCache_ = false;
 }
 
 void VxShruthi::copyPatchToClipboard(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   std::memcpy(&clipboardPatch_, &workingPatch_[slotIndex_],
               StorageConfiguration<Patch>::size);
 }
 
 void VxShruthi::pastePatchFromClipboard(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   std::memcpy(&workingPatch_[slotIndex_], &clipboardPatch_,
               StorageConfiguration<Patch>::size);
   transferPatch();
@@ -974,13 +993,15 @@ void VxShruthi::pastePatchFromClipboard(long inlet) {
 }
 
 void VxShruthi::copySequenceToClipboard(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   std::memcpy(&clipboardSequencer_.steps, &workingSequencer_[slotIndex_].steps,
               StorageConfiguration<SequencerSettings>::size);
 }
 
 void VxShruthi::pasteSequenceFromClipboard(long inlet) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
   std::memcpy(&workingSequencer_[slotIndex_].steps, &clipboardSequencer_.steps,
               StorageConfiguration<SequencerSettings>::size);
   transferSequence();
@@ -1010,7 +1031,7 @@ void VxShruthi::switchToDevice(long inlet, long v) {
   }
 
   slotIndex_ = v - 1;
-  loadDeviceEeprom();  // load new
+  loadDeviceEeprom(); // load new
 
   // clear nrpn cache todo clean way
   midi_.clearCache();
@@ -1020,155 +1041,157 @@ void VxShruthi::switchToDevice(long inlet, long v) {
 
 void VxShruthi::processSysexInput(SysexCommand cmd, uint8_t arg,
                                   std::vector<uint8_t> &data) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   DPOST("acceptSysexData");
   uint8_t success = 0;
   // prevent exception when data is 0 and VS bounds check is enabled
   uint8_t *sysex_rx_buffer_ = 0;
-  if (data.size()) sysex_rx_buffer_ = &data[0];
+  if (data.size())
+    sysex_rx_buffer_ = &data[0];
 
   switch (cmd) {
-    case kNumbers:
-      if (data.size() == 4) {
-        success = 1;
-        uint16_t current_patch_number = (data[1] << 8) | data[0];
-        uint16_t current_sequence_number = (data[3] << 8) | data[2];
-        DPOST("Current patch and sequence: %i %i", current_patch_number,
-              current_sequence_number);
-
-        currentPatchNumber_ = current_patch_number;
-        currentSequenceNumber_ = current_sequence_number;
-
-        atom_setsym(atoms_, gensym("current"));
-        atom_setlong(atoms_ + 1, currentPatchNumber_);
-        atom_setlong(atoms_ + 2, currentSequenceNumber_);
-        outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-      }
-      break;
-
-    case kNumBanks:
-      if (data.size() == 0 && arg > 1) {
-        success = 1;
-        numAccessibleBanks_ = arg;
-
-        DPOST("Device numbanks: %i", numAccessibleBanks_);
-
-        if (numAccessibleBanks_ > 7 || numAccessibleBanks_ < 2) {
-          object_error((t_object *)this, "Invalid eeprom size numbanks: %i",
-                       numAccessibleBanks_);
-          DPOST("Resetting storage to default 2 banks");
-          numAccessibleBanks_ = 2;
-        }
-        atom_setsym(atoms_, gensym("numbanks"));
-        atom_setlong(atoms_ + 1, numAccessibleBanks_);
-        outlet_list(m_outlets[1], ps_empty, 2, atoms_);
-      }
-      break;
-
-    case kVersion:
-      if (data.size() == 2) {
-        success = 1;
-
-        firmware_major_ = data[0];
-        firmware_minor_ = data[1];
-        DPOST("Firmware version %i %i", firmware_major_, firmware_minor_);
-        atom_setsym(atoms_, gensym("firmware"));
-        atom_setlong(atoms_ + 1, firmware_major_);
-        atom_setlong(atoms_ + 2, firmware_minor_);
-        outlet_list(m_outlets[1], ps_empty, 3, atoms_);
-
-      } else {
-        object_error((t_object *)this, "Invalid response from version request");
-      }
-      break;
-
-    case kPatch:  // Patch transfer
-
-      success = workingPatch_[slotIndex_].CheckBufferXt(sysex_rx_buffer_);
-
-      if (success) {
-        DPOST("Patch data received");
-        std::memcpy(&workingPatch_[slotIndex_], sysex_rx_buffer_,
-                    StorageConfiguration<Patch>::size);
-        outputPatchData();
-      }
-      break;
-
-    case kSequence:  // Sequence transfer
+  case kNumbers:
+    if (data.size() == 4) {
       success = 1;
-      DPOST("Sequence data received");
-      std::memcpy(workingSequencer_[slotIndex_].saved_data(), sysex_rx_buffer_,
-                  StorageConfiguration<SequencerSettings>::size);
-      outputSequence();
-      break;
+      uint16_t current_patch_number = (data[1] << 8) | data[0];
+      uint16_t current_sequence_number = (data[3] << 8) | data[2];
+      DPOST("Current patch and sequence: %i %i", current_patch_number,
+            current_sequence_number);
 
-    case kWavetable:  // wavetable transfer
-      // streams directly to destination so no copying
-      success = 1;
-      DPOST("Wavetable data received");
-      break;
+      currentPatchNumber_ = current_patch_number;
+      currentSequenceNumber_ = current_sequence_number;
 
-    case kSystemSettings:  // Settings transfer
-      std::memcpy(settings_, sysex_rx_buffer_, SYSTEM_SETTINGS_SIZE);
-      success = 1;
-      DPOST("Settings data received");
-      outputSettingsData();
-      break;
-
-    case kSequenceStep: {
-      uint8_t stepIndex = arg & 0x0f;
-      workingSequencer_[slotIndex_].steps[stepIndex].data_[0] =
-          sysex_rx_buffer_[0];
-      workingSequencer_[slotIndex_].steps[stepIndex].data_[1] =
-          sysex_rx_buffer_[1];
-      DPOST("Sequencer step data received, index: %i", stepIndex);
+      atom_setsym(atoms_, gensym("current"));
+      atom_setlong(atoms_ + 1, currentPatchNumber_);
+      atom_setlong(atoms_ + 2, currentSequenceNumber_);
+      outlet_list(m_outlets[1], ps_empty, 3, atoms_);
     }
-      success = 1;
-      outputSequence();
-      break;
-    case kPatchName:
-      std::memcpy(workingPatch_[slotIndex_].name, sysex_rx_buffer_,
-                  kPatchNameSize);
-      success = 1;
-      DPOST("Patch name received");
-      break;
-    case kSequencerState:  // full sequencer state transfer
-      success = 1;
-      DPOST("Full sequencer state received");
-      std::memcpy(&workingSequencer_[slotIndex_], sysex_rx_buffer_,
-                  sizeof(SequencerSettings));
+    break;
 
-      outputSequence();
-      outputSequencerSettings();
-      break;
+  case kNumBanks:
+    if (data.size() == 0 && arg > 1) {
+      success = 1;
+      numAccessibleBanks_ = arg;
 
-    case kRawDataDumpA:  // Raw data dump
-    case kRawDataDumpB:
-    case kRawDataDumpC:
-    case kRawDataDumpD: {
-      DPOST("cmd %d arg %d", cmd, arg);
-      outputProgress(arg);
-      uint8_t command = cmd;
-      uint16_t address = arg * kSysExBulkDumpBlockSize;
-      while (command > kRawDataDumpA) {
-        address += (kSysExBulkDumpBlockSize * 128);
-        --command;
+      DPOST("Device numbanks: %i", numAccessibleBanks_);
+
+      if (numAccessibleBanks_ > 7 || numAccessibleBanks_ < 2) {
+        object_error((t_object *)this, "Invalid eeprom size numbanks: %i",
+                     numAccessibleBanks_);
+        DPOST("Resetting storage to default 2 banks");
+        numAccessibleBanks_ = 2;
       }
-      success = address < kEepromSize;
-      if (!success) {
-        break;
-      }
+      atom_setsym(atoms_, gensym("numbanks"));
+      atom_setlong(atoms_ + 1, numAccessibleBanks_);
+      outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+    }
+    break;
 
-      std::memcpy(eeprom_ + address, sysex_rx_buffer_, kSysExBulkDumpBlockSize);
-
-    } break;
-
-    default:
-      // do nothing
-      DPOST("Ignored incoming sysex cmd %i", cmd);
+  case kVersion:
+    if (data.size() == 2) {
       success = 1;
+
+      firmware_major_ = data[0];
+      firmware_minor_ = data[1];
+      DPOST("Firmware version %i %i", firmware_major_, firmware_minor_);
+      atom_setsym(atoms_, gensym("firmware"));
+      atom_setlong(atoms_ + 1, firmware_major_);
+      atom_setlong(atoms_ + 2, firmware_minor_);
+      outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+
+    } else {
+      object_error((t_object *)this, "Invalid response from version request");
+    }
+    break;
+
+  case kPatch: // Patch transfer
+
+    success = workingPatch_[slotIndex_].CheckBufferXt(sysex_rx_buffer_);
+
+    if (success) {
+      DPOST("Patch data received");
+      std::memcpy(&workingPatch_[slotIndex_], sysex_rx_buffer_,
+                  StorageConfiguration<Patch>::size);
+      outputPatchData();
+    }
+    break;
+
+  case kSequence: // Sequence transfer
+    success = 1;
+    DPOST("Sequence data received");
+    std::memcpy(workingSequencer_[slotIndex_].saved_data(), sysex_rx_buffer_,
+                StorageConfiguration<SequencerSettings>::size);
+    outputSequence();
+    break;
+
+  case kWavetable: // wavetable transfer
+    // streams directly to destination so no copying
+    success = 1;
+    DPOST("Wavetable data received");
+    break;
+
+  case kSystemSettings: // Settings transfer
+    std::memcpy(settings_, sysex_rx_buffer_, SYSTEM_SETTINGS_SIZE);
+    success = 1;
+    DPOST("Settings data received");
+    outputSettingsData();
+    break;
+
+  case kSequenceStep: {
+    uint8_t stepIndex = arg & 0x0f;
+    workingSequencer_[slotIndex_].steps[stepIndex].data_[0] =
+        sysex_rx_buffer_[0];
+    workingSequencer_[slotIndex_].steps[stepIndex].data_[1] =
+        sysex_rx_buffer_[1];
+    DPOST("Sequencer step data received, index: %i", stepIndex);
+  }
+    success = 1;
+    outputSequence();
+    break;
+  case kPatchName:
+    std::memcpy(workingPatch_[slotIndex_].name, sysex_rx_buffer_,
+                kPatchNameSize);
+    success = 1;
+    DPOST("Patch name received");
+    break;
+  case kSequencerState: // full sequencer state transfer
+    success = 1;
+    DPOST("Full sequencer state received");
+    std::memcpy(&workingSequencer_[slotIndex_], sysex_rx_buffer_,
+                sizeof(SequencerSettings));
+
+    outputSequence();
+    outputSequencerSettings();
+    break;
+
+  case kRawDataDumpA: // Raw data dump
+  case kRawDataDumpB:
+  case kRawDataDumpC:
+  case kRawDataDumpD: {
+    DPOST("cmd %d arg %d", cmd, arg);
+    outputProgress(arg);
+    uint8_t command = cmd;
+    uint16_t address = arg * kSysExBulkDumpBlockSize;
+    while (command > kRawDataDumpA) {
+      address += (kSysExBulkDumpBlockSize * 128);
+      --command;
+    }
+    success = address < kEepromSize;
+    if (!success) {
       break;
+    }
+
+    std::memcpy(eeprom_ + address, sysex_rx_buffer_, kSysExBulkDumpBlockSize);
+
+  } break;
+
+  default:
+    // do nothing
+    DPOST("Ignored incoming sysex cmd %i", cmd);
+    success = 1;
+    break;
   }
 
   if (!success) {
@@ -1226,202 +1249,203 @@ long VxShruthi::convertControlValue(long v, long nsteps, long min) {
  */
 void VxShruthi::mapCcToNrpn(long index, long v) {
   switch (index) {
-    // oscillators
-    case 20:
-      processNrpnInput(0, convertControlValue(v, 34));
-      break;
-    case 21:
-      processNrpnInput(1, v);
-      break;
-    case 22:
-      processNrpnInput(2, convertControlValue(v, 49, -24));
-      break;
-    case 28:
-      processNrpnInput(3, convertControlValue(v, 14));
-      break;
-    case 24:
-      processNrpnInput(4, convertControlValue(v, 34));
-      break;
-    case 25:
-      processNrpnInput(5, v);
-      break;
-    case 26:
-      processNrpnInput(6, convertControlValue(v, 49, -24));
-      break;
-    case 27:
-      processNrpnInput(7, v);
-      break;
-    case 29:
-      processNrpnInput(8, convertControlValue(v, 64));
-      break;
-    case 30:
-      processNrpnInput(9, convertControlValue(v, 64));
-      break;
-    case 31:
-      processNrpnInput(10, convertControlValue(v, 64));
-      break;
-    case 23:
-      processNrpnInput(11, convertControlValue(v, 11));
-      break;
+  // oscillators
+  case 20:
+    processNrpnInput(0, convertControlValue(v, 34));
+    break;
+  case 21:
+    processNrpnInput(1, v);
+    break;
+  case 22:
+    processNrpnInput(2, convertControlValue(v, 49, -24));
+    break;
+  case 28:
+    processNrpnInput(3, convertControlValue(v, 14));
+    break;
+  case 24:
+    processNrpnInput(4, convertControlValue(v, 34));
+    break;
+  case 25:
+    processNrpnInput(5, v);
+    break;
+  case 26:
+    processNrpnInput(6, convertControlValue(v, 49, -24));
+    break;
+  case 27:
+    processNrpnInput(7, v);
+    break;
+  case 29:
+    processNrpnInput(8, convertControlValue(v, 64));
+    break;
+  case 30:
+    processNrpnInput(9, convertControlValue(v, 64));
+    break;
+  case 31:
+    processNrpnInput(10, convertControlValue(v, 64));
+    break;
+  case 23:
+    processNrpnInput(11, convertControlValue(v, 11));
+    break;
 
-    // filter
-    case 14:
-      processNrpnInput(12, v);
-      break;
-    case 74:
-      processNrpnInput(12, v);
-      break;
-    case 15:
-      processNrpnInput(13, convertControlValue(v, 64));
-      break;
-    case 71:
-      processNrpnInput(13, convertControlValue(v, 64));
-      break;
-    case 102:
-      processNrpnInput(14, convertControlValue(v, 64));
-      break;
-    case 103:
-      processNrpnInput(15, convertControlValue(v, 64));
-      break;
+  // filter
+  case 14:
+    processNrpnInput(12, v);
+    break;
+  case 74:
+    processNrpnInput(12, v);
+    break;
+  case 15:
+    processNrpnInput(13, convertControlValue(v, 64));
+    break;
+  case 71:
+    processNrpnInput(13, convertControlValue(v, 64));
+    break;
+  case 102:
+    processNrpnInput(14, convertControlValue(v, 64));
+    break;
+  case 103:
+    processNrpnInput(15, convertControlValue(v, 64));
+    break;
 
-    // envelopes
-    case 104:
-      processNrpnInput(16, v);
-      break;
-    case 105:
-      processNrpnInput(17, v);
-      break;
-    case 106:
-      processNrpnInput(18, v);
-      break;
-    case 107:
-      processNrpnInput(19, v);
-      break;
-    case 108:
-      processNrpnInput(20, v);
-      break;
-    case 109:
-      processNrpnInput(21, v);
-      break;
-    case 110:
-      processNrpnInput(22, v);
-      break;
-    case 111:
-      processNrpnInput(23, v);
-      break;
+  // envelopes
+  case 104:
+    processNrpnInput(16, v);
+    break;
+  case 105:
+    processNrpnInput(17, v);
+    break;
+  case 106:
+    processNrpnInput(18, v);
+    break;
+  case 107:
+    processNrpnInput(19, v);
+    break;
+  case 108:
+    processNrpnInput(20, v);
+    break;
+  case 109:
+    processNrpnInput(21, v);
+    break;
+  case 110:
+    processNrpnInput(22, v);
+    break;
+  case 111:
+    processNrpnInput(23, v);
+    break;
 
-    // lfos
-    case 112:
-      processNrpnInput(24, convertControlValue(v, 21));
-      break;
-    case 113:
-      processNrpnInput(25, convertControlValue(v, 144));
-      break;
-    case 114:
-      processNrpnInput(26, v);
-      break;
-    case 115:
-      processNrpnInput(27, convertControlValue(v, 4));
-      break;
-    case 116:
-      processNrpnInput(28, convertControlValue(v, 21));
-      break;
-    case 117:
-      processNrpnInput(29, convertControlValue(v, 144));
-      break;
-    case 118:
-      processNrpnInput(30, v);
-      break;
-    case 119:
-      processNrpnInput(31, convertControlValue(v, 4));
-      break;
+  // lfos
+  case 112:
+    processNrpnInput(24, convertControlValue(v, 21));
+    break;
+  case 113:
+    processNrpnInput(25, convertControlValue(v, 144));
+    break;
+  case 114:
+    processNrpnInput(26, v);
+    break;
+  case 115:
+    processNrpnInput(27, convertControlValue(v, 4));
+    break;
+  case 116:
+    processNrpnInput(28, convertControlValue(v, 21));
+    break;
+  case 117:
+    processNrpnInput(29, convertControlValue(v, 144));
+    break;
+  case 118:
+    processNrpnInput(30, v);
+    break;
+  case 119:
+    processNrpnInput(31, convertControlValue(v, 4));
+    break;
 
-    // sequencer settings
-    case 75:
-      processNrpnInput(100, convertControlValue(v, 3));
-      break;
-    case 76:
-      processNrpnInput(102, convertControlValue(v, 6));
-      break;
-    case 77:
-      processNrpnInput(103, v);
-      break;
-    case 78:
-      processNrpnInput(104, convertControlValue(v, 4));
-      break;
-    case 79:
-      processNrpnInput(105, convertControlValue(v, 4, 1));
-      break;
-    case 80:
-      processNrpnInput(106, convertControlValue(v, 16));
-      break;
-    case 81:
-      processNrpnInput(107, convertControlValue(v, 12));
-      break;
+  // sequencer settings
+  case 75:
+    processNrpnInput(100, convertControlValue(v, 3));
+    break;
+  case 76:
+    processNrpnInput(102, convertControlValue(v, 6));
+    break;
+  case 77:
+    processNrpnInput(103, v);
+    break;
+  case 78:
+    processNrpnInput(104, convertControlValue(v, 4));
+    break;
+  case 79:
+    processNrpnInput(105, convertControlValue(v, 4, 1));
+    break;
+  case 80:
+    processNrpnInput(106, convertControlValue(v, 16));
+    break;
+  case 81:
+    processNrpnInput(107, convertControlValue(v, 12));
+    break;
 
-    // system settings (fictieve nrpns voor xt, voor nu)
-    case 82:
-      processNrpnInput(142, convertControlValue(v, 12));
-      break;
-    case 83:
-      processNrpnInput(143, convertControlValue(v, 33));
-      break;
-    case 84:
-      processNrpnInput(144, convertControlValue(v, 64));
-      break;
-    case 68:
-      processNrpnInput(145, convertControlValue(v, 2));
-      break;
+  // system settings (fictieve nrpns voor xt, voor nu)
+  case 82:
+    processNrpnInput(142, convertControlValue(v, 12));
+    break;
+  case 83:
+    processNrpnInput(143, convertControlValue(v, 33));
+    break;
+  case 84:
+    processNrpnInput(144, convertControlValue(v, 64));
+    break;
+  case 68:
+    processNrpnInput(145, convertControlValue(v, 2));
+    break;
 
-    // filterboard xtras
-    case 12:
-      processNrpnInput(84, v);
-      break;
-    case 13:
-      processNrpnInput(85, convertControlValue(v, 64));
-      break;
-    case 85:
-      processNrpnInput(92, convertControlValue(v, 6));
-      break;
-    case 86:
-      processNrpnInput(93, convertControlValue(v, 6));
-      break;
-    case 87:
-      processNrpnInput(92, convertControlValue(v, 6));
-      break;
-    case 88:
-      processNrpnInput(93, convertControlValue(v, 16));
-      break;
-    case 89:
-      processNrpnInput(92, convertControlValue(v, 2));
-      break;
-    case 90:
-      processNrpnInput(84, convertControlValue(v, 2));
-      break;
-    case 91:
-      processNrpnInput(85, convertControlValue(v, 2));
-      break;
-    case 92:
-      processNrpnInput(92, convertControlValue(v, 15));
-      break;
-    case 93:
-      processNrpnInput(93, convertControlValue(v, 4));
-      break;
-    case 94:
-      processNrpnInput(92, convertControlValue(v, 16));
-      break;
-    case 95:
-      processNrpnInput(93, convertControlValue(v, 16));
-      break;
+  // filterboard xtras
+  case 12:
+    processNrpnInput(84, v);
+    break;
+  case 13:
+    processNrpnInput(85, convertControlValue(v, 64));
+    break;
+  case 85:
+    processNrpnInput(92, convertControlValue(v, 6));
+    break;
+  case 86:
+    processNrpnInput(93, convertControlValue(v, 6));
+    break;
+  case 87:
+    processNrpnInput(92, convertControlValue(v, 6));
+    break;
+  case 88:
+    processNrpnInput(93, convertControlValue(v, 16));
+    break;
+  case 89:
+    processNrpnInput(92, convertControlValue(v, 2));
+    break;
+  case 90:
+    processNrpnInput(84, convertControlValue(v, 2));
+    break;
+  case 91:
+    processNrpnInput(85, convertControlValue(v, 2));
+    break;
+  case 92:
+    processNrpnInput(92, convertControlValue(v, 15));
+    break;
+  case 93:
+    processNrpnInput(93, convertControlValue(v, 4));
+    break;
+  case 94:
+    processNrpnInput(92, convertControlValue(v, 16));
+    break;
+  case 95:
+    processNrpnInput(93, convertControlValue(v, 16));
+    break;
 
-    default:
-      DPOST("ignored cc %i %i", index, v);
-      // do nothing
+  default:
+    DPOST("ignored cc %i %i", index, v);
+    // do nothing
   }
 }
 
 void VxShruthi::nrpn(long inlet, long nrpn_index, long v) {
-  if (slotIndex_ < 0) return;
+  if (slotIndex_ < 0)
+    return;
 
   // update internal eeprom
   mapNrpnToEeprom(nrpn_index, v);
@@ -1462,300 +1486,300 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v) {
   Patch &p = workingPatch_[slotIndex_];
 
   switch (nrpn_index) {
-    case 0:
-      p.osc[0].shape = v;
-      break;
-    case 1:
-      p.osc[0].parameter = v;
-      break;
-    case 2:
-      p.osc[0].range = v;
-      break;
-    case 3:
-      p.osc[0].option = v;
-      break;
+  case 0:
+    p.osc[0].shape = v;
+    break;
+  case 1:
+    p.osc[0].parameter = v;
+    break;
+  case 2:
+    p.osc[0].range = v;
+    break;
+  case 3:
+    p.osc[0].option = v;
+    break;
 
-    case 4:
-      p.osc[1].shape = v;
-      break;
-    case 5:
-      p.osc[1].parameter = v;
-      break;
-    case 6:
-      p.osc[1].range = v;
-      break;
-    case 7:
-      p.osc[1].option = v;
-      break;
+  case 4:
+    p.osc[1].shape = v;
+    break;
+  case 5:
+    p.osc[1].parameter = v;
+    break;
+  case 6:
+    p.osc[1].range = v;
+    break;
+  case 7:
+    p.osc[1].option = v;
+    break;
 
-    case 8:
-      p.mix_balance = v;
-      break;
-    case 9:
-      p.mix_sub_osc = v;
-      break;
-    case 10:
-      p.mix_noise = v;
-      break;
-    case 11:
-      p.mix_sub_osc_shape = v;
-      break;
+  case 8:
+    p.mix_balance = v;
+    break;
+  case 9:
+    p.mix_sub_osc = v;
+    break;
+  case 10:
+    p.mix_noise = v;
+    break;
+  case 11:
+    p.mix_sub_osc_shape = v;
+    break;
 
-    case 12:
-      p.filter_cutoff = v;
-      break;
-    case 13:
-      p.filter_resonance = v;
-      break;
-    case 14:
-      p.filter_env = v;
-      break;
-    case 15:
-      p.filter_lfo = v;
-      break;
+  case 12:
+    p.filter_cutoff = v;
+    break;
+  case 13:
+    p.filter_resonance = v;
+    break;
+  case 14:
+    p.filter_env = v;
+    break;
+  case 15:
+    p.filter_lfo = v;
+    break;
 
-    case 16:
-      p.env[0].attack = v;
-      break;
-    case 17:
-      p.env[0].decay = v;
-      break;
-    case 18:
-      p.env[0].sustain = v;
-      break;
-    case 19:
-      p.env[0].release = v;
-      break;
+  case 16:
+    p.env[0].attack = v;
+    break;
+  case 17:
+    p.env[0].decay = v;
+    break;
+  case 18:
+    p.env[0].sustain = v;
+    break;
+  case 19:
+    p.env[0].release = v;
+    break;
 
-    case 20:
-      p.env[1].attack = v;
-      break;
-    case 21:
-      p.env[1].decay = v;
-      break;
-    case 22:
-      p.env[1].sustain = v;
-      break;
-    case 23:
-      p.env[1].release = v;
-      break;
+  case 20:
+    p.env[1].attack = v;
+    break;
+  case 21:
+    p.env[1].decay = v;
+    break;
+  case 22:
+    p.env[1].sustain = v;
+    break;
+  case 23:
+    p.env[1].release = v;
+    break;
 
-    case 24:
-      p.lfo[0].waveform = v;
-      break;
-    case 25:
-      p.lfo[0].rate = v;
-      break;
-    case 26:
-      p.lfo[0].attack = v;
-      break;
-    case 27:
-      p.lfo[0].retrigger_mode = v;
-      break;
+  case 24:
+    p.lfo[0].waveform = v;
+    break;
+  case 25:
+    p.lfo[0].rate = v;
+    break;
+  case 26:
+    p.lfo[0].attack = v;
+    break;
+  case 27:
+    p.lfo[0].retrigger_mode = v;
+    break;
 
-    case 28:
-      p.lfo[1].waveform = v;
-      break;
-    case 29:
-      p.lfo[1].rate = v;
-      break;
-    case 30:
-      p.lfo[1].attack = v;
-      break;
-    case 31:
-      p.lfo[1].retrigger_mode = v;
-      break;
+  case 28:
+    p.lfo[1].waveform = v;
+    break;
+  case 29:
+    p.lfo[1].rate = v;
+    break;
+  case 30:
+    p.lfo[1].attack = v;
+    break;
+  case 31:
+    p.lfo[1].retrigger_mode = v;
+    break;
 
-    case 32:
-      p.modulation_matrix.modulation[0].source = v;
-      break;
-    case 33:
-      p.modulation_matrix.modulation[0].destination = v;
-      break;
-    case 34:
-      p.modulation_matrix.modulation[0].amount = v;
-      break;
-    case 35:
-      p.modulation_matrix.modulation[1].source = v;
-      break;
-    case 36:
-      p.modulation_matrix.modulation[1].destination = v;
-      break;
-    case 37:
-      p.modulation_matrix.modulation[1].amount = v;
-      break;
-    case 38:
-      p.modulation_matrix.modulation[2].source = v;
-      break;
-    case 39:
-      p.modulation_matrix.modulation[2].destination = v;
-      break;
-    case 40:
-      p.modulation_matrix.modulation[2].amount = v;
-      break;
-    case 41:
-      p.modulation_matrix.modulation[3].source = v;
-      break;
-    case 42:
-      p.modulation_matrix.modulation[3].destination = v;
-      break;
-    case 43:
-      p.modulation_matrix.modulation[3].amount = v;
-      break;
-    case 44:
-      p.modulation_matrix.modulation[4].source = v;
-      break;
-    case 45:
-      p.modulation_matrix.modulation[4].destination = v;
-      break;
-    case 46:
-      p.modulation_matrix.modulation[4].amount = v;
-      break;
-    case 47:
-      p.modulation_matrix.modulation[5].source = v;
-      break;
-    case 48:
-      p.modulation_matrix.modulation[5].destination = v;
-      break;
-    case 49:
-      p.modulation_matrix.modulation[5].amount = v;
-      break;
-    case 50:
-      p.modulation_matrix.modulation[6].source = v;
-      break;
-    case 51:
-      p.modulation_matrix.modulation[6].destination = v;
-      break;
-    case 52:
-      p.modulation_matrix.modulation[6].amount = v;
-      break;
-    case 53:
-      p.modulation_matrix.modulation[7].source = v;
-      break;
-    case 54:
-      p.modulation_matrix.modulation[7].destination = v;
-      break;
-    case 55:
-      p.modulation_matrix.modulation[7].amount = v;
-      break;
-    case 56:
-      p.modulation_matrix.modulation[8].source = v;
-      break;
-    case 57:
-      p.modulation_matrix.modulation[8].destination = v;
-      break;
-    case 58:
-      p.modulation_matrix.modulation[8].amount = v;
-      break;
-    case 59:
-      p.modulation_matrix.modulation[9].source = v;
-      break;
-    case 60:
-      p.modulation_matrix.modulation[9].destination = v;
-      break;
-    case 61:
-      p.modulation_matrix.modulation[9].amount = v;
-      break;
-    case 62:
-      p.modulation_matrix.modulation[10].source = v;
-      break;
-    case 63:
-      p.modulation_matrix.modulation[10].destination = v;
-      break;
-    case 64:
-      p.modulation_matrix.modulation[10].amount = v;
+  case 32:
+    p.modulation_matrix.modulation[0].source = v;
+    break;
+  case 33:
+    p.modulation_matrix.modulation[0].destination = v;
+    break;
+  case 34:
+    p.modulation_matrix.modulation[0].amount = v;
+    break;
+  case 35:
+    p.modulation_matrix.modulation[1].source = v;
+    break;
+  case 36:
+    p.modulation_matrix.modulation[1].destination = v;
+    break;
+  case 37:
+    p.modulation_matrix.modulation[1].amount = v;
+    break;
+  case 38:
+    p.modulation_matrix.modulation[2].source = v;
+    break;
+  case 39:
+    p.modulation_matrix.modulation[2].destination = v;
+    break;
+  case 40:
+    p.modulation_matrix.modulation[2].amount = v;
+    break;
+  case 41:
+    p.modulation_matrix.modulation[3].source = v;
+    break;
+  case 42:
+    p.modulation_matrix.modulation[3].destination = v;
+    break;
+  case 43:
+    p.modulation_matrix.modulation[3].amount = v;
+    break;
+  case 44:
+    p.modulation_matrix.modulation[4].source = v;
+    break;
+  case 45:
+    p.modulation_matrix.modulation[4].destination = v;
+    break;
+  case 46:
+    p.modulation_matrix.modulation[4].amount = v;
+    break;
+  case 47:
+    p.modulation_matrix.modulation[5].source = v;
+    break;
+  case 48:
+    p.modulation_matrix.modulation[5].destination = v;
+    break;
+  case 49:
+    p.modulation_matrix.modulation[5].amount = v;
+    break;
+  case 50:
+    p.modulation_matrix.modulation[6].source = v;
+    break;
+  case 51:
+    p.modulation_matrix.modulation[6].destination = v;
+    break;
+  case 52:
+    p.modulation_matrix.modulation[6].amount = v;
+    break;
+  case 53:
+    p.modulation_matrix.modulation[7].source = v;
+    break;
+  case 54:
+    p.modulation_matrix.modulation[7].destination = v;
+    break;
+  case 55:
+    p.modulation_matrix.modulation[7].amount = v;
+    break;
+  case 56:
+    p.modulation_matrix.modulation[8].source = v;
+    break;
+  case 57:
+    p.modulation_matrix.modulation[8].destination = v;
+    break;
+  case 58:
+    p.modulation_matrix.modulation[8].amount = v;
+    break;
+  case 59:
+    p.modulation_matrix.modulation[9].source = v;
+    break;
+  case 60:
+    p.modulation_matrix.modulation[9].destination = v;
+    break;
+  case 61:
+    p.modulation_matrix.modulation[9].amount = v;
+    break;
+  case 62:
+    p.modulation_matrix.modulation[10].source = v;
+    break;
+  case 63:
+    p.modulation_matrix.modulation[10].destination = v;
+    break;
+  case 64:
+    p.modulation_matrix.modulation[10].amount = v;
 
-      break;
-    case 65:
-      p.modulation_matrix.modulation[11].source = v;
-      break;
-    case 66:
-      p.modulation_matrix.modulation[11].destination = v;
-      break;
-    case 67:
-      p.modulation_matrix.modulation[11].amount = v;
-      break;
+    break;
+  case 65:
+    p.modulation_matrix.modulation[11].source = v;
+    break;
+  case 66:
+    p.modulation_matrix.modulation[11].destination = v;
+    break;
+  case 67:
+    p.modulation_matrix.modulation[11].amount = v;
+    break;
 
-    case 84:
-      p.filter_cutoff_2 = v;
-      break;
-    case 85:
-      p.filter_resonance_2 = v;
-      break;
-    case 92:
-      p.filter_1_mode_ = v;
-      break;
-    case 93:
-      p.filter_2_mode_ = v;
-      break;
+  case 84:
+    p.filter_cutoff_2 = v;
+    break;
+  case 85:
+    p.filter_resonance_2 = v;
+    break;
+  case 92:
+    p.filter_1_mode_ = v;
+    break;
+  case 93:
+    p.filter_2_mode_ = v;
+    break;
 
-    case 94:
-      p.ops_[0].operands[0] = v;
-      break;
-    case 95:
-      p.ops_[0].operands[1] = v;
-      break;
-    case 96:
-      p.ops_[0].op = v;
-      break;
-    case 97:
-      p.ops_[1].operands[0] = v;
-      break;
-    case 98:
-      p.ops_[1].operands[1] = v;
-      break;
-    case 99:
-      p.ops_[1].op = v;
-      break;
+  case 94:
+    p.ops_[0].operands[0] = v;
+    break;
+  case 95:
+    p.ops_[0].operands[1] = v;
+    break;
+  case 96:
+    p.ops_[0].op = v;
+    break;
+  case 97:
+    p.ops_[1].operands[0] = v;
+    break;
+  case 98:
+    p.ops_[1].operands[1] = v;
+    break;
+  case 99:
+    p.ops_[1].op = v;
+    break;
 
-    case 100:
-      workingSequencer_[slotIndex_].seq_mode = v;
-      break;
-    case 101:
-      workingSequencer_[slotIndex_].seq_tempo = v;
-      break;
-    case 102:
-      workingSequencer_[slotIndex_].seq_groove_template = v;
-      break;
-    case 103:
-      workingSequencer_[slotIndex_].seq_groove_amount = v;
-      break;
-    case 104:
-      workingSequencer_[slotIndex_].arp_direction = v;
-      break;
-    case 105:
-      workingSequencer_[slotIndex_].arp_range = v;
-      break;
-    case 106:
-      workingSequencer_[slotIndex_].arp_pattern = v;
-      break;
-    case 107:
-      workingSequencer_[slotIndex_].arp_clock_division = v;
-      break;
+  case 100:
+    workingSequencer_[slotIndex_].seq_mode = v;
+    break;
+  case 101:
+    workingSequencer_[slotIndex_].seq_tempo = v;
+    break;
+  case 102:
+    workingSequencer_[slotIndex_].seq_groove_template = v;
+    break;
+  case 103:
+    workingSequencer_[slotIndex_].seq_groove_amount = v;
+    break;
+  case 104:
+    workingSequencer_[slotIndex_].arp_direction = v;
+    break;
+  case 105:
+    workingSequencer_[slotIndex_].arp_range = v;
+    break;
+  case 106:
+    workingSequencer_[slotIndex_].arp_pattern = v;
+    break;
+  case 107:
+    workingSequencer_[slotIndex_].arp_clock_division = v;
+    break;
 
-    case 108:
-      workingSequencer_[slotIndex_].pattern_size = v;
-      break;
-    case 109:
-      workingSequencer_[slotIndex_].pattern_rotation = v;
-      break;
+  case 108:
+    workingSequencer_[slotIndex_].pattern_size = v;
+    break;
+  case 109:
+    workingSequencer_[slotIndex_].pattern_rotation = v;
+    break;
 
-    // in xt these system settings emit cc and are mapped to (fictive?) nrpns
-    case 142:
-      settings_->octave = v;
-      break;
-    case 143:
-      settings_->raga = v;
-      break;
-    case 144:
-      settings_->portamento = v;
-      break;
-    case 145:
-      settings_->legato = v;
-      break;
+  // in xt these system settings emit cc and are mapped to (fictive?) nrpns
+  case 142:
+    settings_->octave = v;
+    break;
+  case 143:
+    settings_->raga = v;
+    break;
+  case 144:
+    settings_->portamento = v;
+    break;
+  case 145:
+    settings_->legato = v;
+    break;
 
-    default:
-      object_error((t_object *)this, "Nrpn index %i is not valid", nrpn_index);
+  default:
+    object_error((t_object *)this, "Nrpn index %i is not valid", nrpn_index);
   }
 }
 
@@ -1785,7 +1809,7 @@ void VxShruthi::listPatchNames(long inlet) {
     atom_setlong(atoms_ + 1, (float)patchNumber++ / 32.f);
     atom_setlong(atoms_ + 2, rowNumber++);
 
-    if (p->version_ != '!' && p->version_ != '%') {  // % = xt version
+    if (p->version_ != '!' && p->version_ != '%') { // % = xt version
       atom_setsym(atoms_ + 3, gensym("-"));
     } else {
       // convert name into 0 terminated string
@@ -1807,7 +1831,7 @@ void VxShruthi::listPatchNames(long inlet) {
       atom_setlong(atoms_ + 1, (float)patchNumber++ / 32.f);
       atom_setlong(atoms_ + 2, rowNumber++);
 
-      if (p->version_ != '!' && p->version_ != '%') {  // % = xt version
+      if (p->version_ != '!' && p->version_ != '%') { // % = xt version
         atom_setsym(atoms_ + 3, gensym("-"));
       } else {
         // convert name into 0 terminated string
@@ -1831,7 +1855,7 @@ void VxShruthi::clearPatchNames(long inlet) {
   int rowNumber = 0;
 
   atom_setsym(atoms_, gensym("patchlist"));
-  atom_setsym(atoms_ + 3, ps_empty);  // altijd zelfde
+  atom_setsym(atoms_ + 3, ps_empty); // altijd zelfde
 
   for (size_t i = 0; i < 16; ++i) {
     atom_setlong(atoms_ + 1, (float)patchNumber++ / 32.f);
@@ -1858,7 +1882,7 @@ void VxShruthi::clearPatchNames(long inlet) {
 // note that this is the required syntax on windows regardless of whether the
 // compiler is msvc or gcc
 #define T_EXPORT __declspec(dllexport)
-#else  // MAC_VERSION
+#else // MAC_VERSION
 // the mac uses the standard gcc syntax, you should also set the
 // -fvisibility=hidden flag to hide the non-marked symbols
 #define T_EXPORT __attribute__((visibility("default")))
