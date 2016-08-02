@@ -3,7 +3,8 @@ Shreditor Change Log
 
 1.0
 -------------------
-* Released as open source
+* Firmware and banks check on device switch
+* Code cleanup and release
 
 Beta 8
 -------------------
