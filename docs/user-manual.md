@@ -1,18 +1,12 @@
 Shreditor User Manual
 =================
-*Revision 4, December 4 2014<br/>*
 
 ![screenshot](images/shreditor_beta7.png =800x)
 
 1. Overview
 ------------------
 
-###Introduction
-...
-
-
-#### Features
-* Clear and responsive UI.
+### Features
 * Control all relevant parameters including matrix, sequencer and settings.
 * Bidirectional communication. Active update of patch and sequence data in the interface.
 * Edit up to 8 devices simultaneously
@@ -27,8 +21,8 @@ There are some things you can not do on a Shruthi without the Shreditor:
 * Rotate sequence notes within the loop
 
 
-####Firmware
-The Shreditor only supports firmware 1.0 and up.
+###Firmware
+Shreditor only supports firmware 1.0 and up.
 
 2. Setting Up
 ------------------
@@ -58,25 +52,15 @@ After the transfer has completed you should see all of your patches show up in t
 If you own more than one Shruthi, and you have enough physical midi ports, you can repeat steps 2-4 for each device. The Shreditor will let you edit these devices simultaneously. You can switch back and forth and it will keep track of your edits. Please note that you *can not* connect multiple devices to the same midi port, since the editor communicates with sysex and sysex messages are not tied to any midi channel.
 
 
-###2. Caveats
+3. Caveats
+------------
 Listed here are some things worth knowing when using the Shreditor, because they might function differently from what you would expect.
 
-####Shruthi MIDI Channel
+###Shruthi MIDI Channel
 You may have noticed the lack of a midi channel setting in the device midi configuration at the top. That is because the Shreditor can read and control the midi channel setting of the device via sysex. So when you set the correct ports, the Shreditor is already able to get the current midi channel on which the device is listening. You can change the midi channel from the editor by setting the [Channel] parameter in the [System Settings] section of the Shreditor main UI.
 
-####Editing on Device
+###Editing on Device
 The editor will reflect most edits you make using the knobs on the device, as long as you have the midi output setting set to CTRL or FULL. I suggest you use CTRL to prevent sysex to be echoed to the output. Beware that system and sequencer settings are not echoed to the output, so you better only edit those from the Shreditor interface or the mirror data will get out of sync.
 
-####Patch Names
+###Patch Names
 Patch names can be maximum 8 character long, the rest will be truncated. The Shreditor and Shruthi don't use the same character set for patch names, special characters might show up blank on with a different character on the device.
-
-###3. Functions
-TODO describe all the different functions of the interface
-
-
-###4. Contact & Support
-If you run into a bug, send a message to __support@vauxlab.com__
-
-
-#### Known Issues
-...

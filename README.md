@@ -1,20 +1,25 @@
 # Shreditor
 
+An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer.
+
+![screenshot](docs/images/shreditor_beta7.png =800x)
+
 ## TODO before release
 * clean up documentation development notes
-* update into tab in shreditor to point to github instead of support
+* update info tab in shreditor to point to github instead of support
 * what happened to shruthi4live?
 * document @mode live?
-* clean / format code
-* rewrite dutch comments to english
 * move the docs to github readme
 * test eeprom transfer
+* put new builds on vauxlab
+* firmware check always returns 1.00
+* licentie toevoegen en boven files plaatsen
 
-An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer.
 
 The editor itself is built with [Max](https://cycling74.com/products/max). The core of the software is a custom Max object written in C++ called vx.shruthi which takes care of the MIDI communication and data management.
 
 The patches and externals should work with both Max v6 and v7
+
 
 ## Requirements
 Shruthi-1 with firmware >= v1.0
@@ -37,7 +42,10 @@ There are also some things you can not do on a Shruthi without the Shreditor:
 * Rotate sequence notes within the loop
 
 ## Usage
-Build instructions for OSX and Windows are given below. The documentation on how to use the software can be fount in __build/doc__.
+Build instructions for OSX and Windows are given below. The documentation on how to use the software can be found in __docs/user-manual.md__.
+
+## Known Issues
+* Firmware check for >1.0 for example 1.02 is wrongly reported as 1.00 in the interface.
 
 ## Troubleshooting
 ### No compatible Shruthi firmware version was detected on this port.
@@ -95,3 +103,13 @@ In the C6 settings you'll have to set the "delay ticks" to something like 15, ot
 The patch (and all of its abstractions) opens in __presentation mode__. Hit __cmd + alt + e__ to switch to patching mode.
 
 In order to prevent window resizing by the user, the maximum window dimensions are limited to 980x830 to neatly contain just the UI and fit it on a 12" laptop screen. You can increase the maximum size by clicking on the message in the top right corner saying `window constrain 200 200 1500 1500, window exec` which sets the maximum dimensions to 1500x1500.
+
+## Additional Notes
+
+###eeprom
+Internal storage is 2048 bytes == 16 blocks of 128 .
+
+  0x0000 – 0x0010  System settings
+  0x0010 – 0x05d0  16 internal patches
+  0x05d0 – 0x07d0  16 internal sequences
+  0x07f0 – 0x0800    unused*
