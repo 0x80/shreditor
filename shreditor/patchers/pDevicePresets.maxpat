@@ -164,8 +164,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 456.0, 408.0, 91.0, 22.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 481.5, -1.0, 91.0, 22.0 ],
 					"style" : "",
 					"text" : "storagewindow",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]

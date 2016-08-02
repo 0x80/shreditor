@@ -325,6 +325,8 @@
 					"-D__MACOSX_CORE__",
 				);
 				PRODUCT_NAME = $TARGET_NAME;
+				STRIP_INSTALLED_PRODUCT = NO;
+				_DEBUG = 1;
 			};
 			name = Development;
 		};
@@ -360,6 +362,7 @@
 				);
 				PRODUCT_NAME = $TARGET_NAME;
 				STRIP_INSTALLED_PRODUCT = YES;
+				_DEBUG = "";
 			};
 			name = Deployment;
 		};
