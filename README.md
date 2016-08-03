@@ -1,9 +1,5 @@
 # Shreditor
 
-An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer.
-
-![screenshot](docs/images/shreditor_beta7.png =800x)
-
 ## TODO before release
 * clean up documentation development notes
 * update info tab in shreditor to point to github instead of support
@@ -16,15 +12,14 @@ An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synth
 * licentie toevoegen en boven files plaatsen
 
 
-The editor itself is built with [Max](https://cycling74.com/products/max). The core of the software is a custom Max object written in C++ called vx.shruthi which takes care of the MIDI communication and data management.
+## Description
+An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer.
+
+![screenshot](docs/images/shreditor-ui.png =800x)
+
+The editor application is built with [Max](https://cycling74.com/products/max), but the core of the software is a custom Max object written in C++ called vx.shruthi. The object takes care of all the MIDI communication and data management.
 
 The patches and externals should work with both Max v6 and v7
-
-
-## Requirements
-Shruthi-1 with firmware >= v1.0
-
-For firmware update instructions see below.
 
 ## Features
 * Control all relevant parameters including matrix, sequencer and settings
@@ -41,11 +36,14 @@ There are also some things you can not do on a Shruthi without the Shreditor:
 * Scramble sequence notes (keeping the pitch and velocity but randomize its position)
 * Rotate sequence notes within the loop
 
+## Requirements
+Shruthi-1 with firmware >= v1.0. The firmware update instructions are found below.
+
 ## Usage
-Build instructions for OSX and Windows are given below. The documentation on how to use the software can be found in __docs/user-manual.md__.
+The documentation on how to use the application can be found in __docs/user-manual.md__. Build instructions for OSX and Windows are listed below.
 
 ## Known Issues
-* Firmware check for >1.0 for example 1.02 is wrongly reported as 1.00 in the interface.
+* Firmware version, for example 1.02, is wrongly reported as 1.00 in the interface.
 
 ## Troubleshooting
 ### No compatible Shruthi firmware version was detected on this port.
@@ -62,10 +60,10 @@ Don't connect multiple Shruthi devices on the same physical MIDI port. The Shred
 ## Folder Structure
 .
 ├── build : Prebuilt documentation and Shruthi-1 firmware
-├── c74support : Max object SDK
-├── documentation
-├── notes
-├── objects : XCode & VS projects for building the vx.shruthi object
+├── c74support : Max object SDK, as copied from Cycling '74
+├── docs : User manual
+├── notes : Some development related notes
+├── objects : XCode & Visual Studio projects for building the vx.shruthi object
 └── shreditor : Max Shreditor project files
 
 ## Build the Shreditor for OSX
@@ -97,7 +95,6 @@ Addionally you can strip the app bundle of some unneccesary files to make it sma
 The most up to date official firmware (v1.02) can be found in the build/firmware folder. To transfer the firmware, hold the rightmost switch on the device while powering on. Use a sysex tool like Elektron's C6 to transfer the firmware.
 
 In the C6 settings you'll have to set the "delay ticks" to something like 15, otherwise the transfer goes too fast and the last few leds on the Shruthi-1 won't get to blinking.
-
 
 ## Editing the Shreditor patch
 The patch (and all of its abstractions) opens in __presentation mode__. Hit __cmd + alt + e__ to switch to patching mode.

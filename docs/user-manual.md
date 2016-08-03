@@ -1,7 +1,7 @@
 Shreditor User Manual
 =================
 
-![screenshot](images/shreditor_beta7.png =800x)
+![screenshot](images/shreditor-ui.png =800x)
 
 1. Overview
 ------------------
