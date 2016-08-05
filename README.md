@@ -42,6 +42,7 @@ Shruthi-1 with firmware >= v1.0. The firmware update instructions are found belo
 The documentation on how to use the application can be found in __docs/user-manual.md__. Build instructions for OSX and Windows are listed below.
 
 ## Known Issues
+* Transfer eeprom from computer to device is broken and leeds to crash. See development notes.
 * Firmware version, for example 1.02, is wrongly reported as 1.00 in the interface.
 
 ## Troubleshooting

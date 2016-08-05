@@ -1,5 +1,10 @@
 # This need work
 
+## Transfer EEPROM to device crash
+The midi outlet or data accessed from the transfer queue function results in a crash. I used to successfully use RtMidi directly, but removed that library because of clash with regular Max objects. Now all midi streams through inlets/outlets and is handled by Max standard midi objects.
+
+I'm leaving it for now since it's not a crucial feature. Maybe we should just remove threading all together. See below.
+
 ## Threading
 
 I used a seperate thread to output the sysex bulk data to the device. I don't think this is really neccecary and it complicates things massively so in the future we should get rid of it.
