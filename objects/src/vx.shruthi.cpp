@@ -29,8 +29,8 @@
 
 #define SHREDITOR_VERSION "1.0"
 
-const float VELOCITY_SCALE_DOWN = 7.f / 127.f;
-const float VELOCITY_SCALE_UP = 1.f / VELOCITY_SCALE_DOWN;
+//const float VELOCITY_SCALE_DOWN = 7.f / 127.f;
+//const float VELOCITY_SCALE_UP = 1.f / VELOCITY_SCALE_DOWN;
 
 //#define WAVETABLE_NSAMPS 129
 //#define WAVETABLE_SIZE 129 << 3 // 8 * 129
@@ -71,10 +71,10 @@ VxShruthi::VxShruthi(t_symbol *sym, long ac, t_atom *av)
 
   // point outlets to right place
   nrpnOut_ = m_outlets[0];
-  midiOut_ = m_outlets[2];
   msgOut_ = m_outlets[1];
+  midiOut_ = m_outlets[2];
 
-  midi_.setOutlets(midiOut_, msgOut_);
+  midi_.setOutlets(midiOut_);
 
   eeprom_ = new uint8_t[kEepromSize];
   settings_ =
@@ -568,9 +568,9 @@ void VxShruthi::requestRom(long inlet) {
 // send out complete eeprom to midi
 void VxShruthi::transferRom(long inlet) {
   progressCounter_ = 0;
-  DPOST("transferRom werkt niet");
-  //    midi_.transferEeprom(eeprom_, addressable_space_size());
-  //    useEepromCache_ = true;
+  // DPOST("transferRom werkt niet");
+  midi_.transferEeprom(eeprom_, addressable_space_size());
+  // useEepromCache_ = true;
 }
 
 // requests

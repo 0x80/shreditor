@@ -5,6 +5,7 @@ Shreditor Change Log
 -------------------
 * Firmware and banks check on device switch
 * Code cleanup and release
+* Fix transfer of eeprom back to the device
 
 Beta 8
 -------------------

@@ -10,7 +10,7 @@ class VxShruthi;
 
 class SysexBulkTransfer {
 public:
-  SysexBulkTransfer(VxShruthi &x);
+  SysexBulkTransfer(VxShruthi &maxob, ShruthiMidi &midi);
 
   ~SysexBulkTransfer();
 
@@ -45,6 +45,8 @@ public:
 
 private:
   VxShruthi &parent_;
+  ShruthiMidi &midi_;
+  uint8_t *midiBuffer_;
 };
 
 #endif

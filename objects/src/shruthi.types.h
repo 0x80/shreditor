@@ -6,6 +6,7 @@
 #include "system_settings.h"
 #include <functional>
 #include <vector>
+#include <string>
 
 #include "stdint.h"
 

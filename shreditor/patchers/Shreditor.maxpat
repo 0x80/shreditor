@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 287.0, 79.0, 1212.0, 740.0 ],
+		"rect" : [ 190.0, 79.0, 1212.0, 740.0 ],
 		"bgcolor" : [ 0.282353, 0.286275, 0.298039, 1.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
@@ -567,6 +567,7 @@
 					"bgcolor" : [ 0.270588, 0.270588, 0.270588, 1.0 ],
 					"bgoncolor" : [ 0.55, 0.55, 0.55, 1.0 ],
 					"fontsize" : 11.0,
+					"hidden" : 1,
 					"id" : "obj-30",
 					"legacytextcolor" : 1,
 					"maxclass" : "textbutton",
@@ -1123,6 +1124,7 @@
 				"box" : 				{
 					"fontname" : "Helvetica Neue Light",
 					"fontsize" : 13.0,
+					"hidden" : 1,
 					"id" : "obj-109",
 					"linecount" : 6,
 					"maxclass" : "comment",
@@ -1142,6 +1144,7 @@
 				"box" : 				{
 					"angle" : 0.0,
 					"bgcolor" : [ 0.163043, 0.163043, 0.163043, 1.0 ],
+					"hidden" : 1,
 					"id" : "obj-127",
 					"maxclass" : "panel",
 					"mode" : 0,
@@ -1718,7 +1721,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 569.5, 118.0, 69.0, 22.0 ],
-					"save" : [ "#N", "thispatcher", ";", "#Q", "window", "flags", "grow", "close", "zoom", "nofloat", "menu", "minimize", ";", "#Q", "window", "constrain", 200, 200, 980, 830, ";", "#Q", "window", "size", 287, 79, 1499, 819, ";", "#Q", "window", "title", ";", "#Q", "window", "exec", ";", "#Q", "savewindow", 1, ";", "#Q", "end", ";" ],
+					"save" : [ "#N", "thispatcher", ";", "#Q", "window", "flags", "grow", "close", "zoom", "nofloat", "menu", "minimize", ";", "#Q", "window", "constrain", 200, 200, 980, 830, ";", "#Q", "window", "size", 190, 79, 1402, 819, ";", "#Q", "window", "title", ";", "#Q", "window", "exec", ";", "#Q", "savewindow", 1, ";", "#Q", "end", ";" ],
 					"style" : "",
 					"text" : "thispatcher"
 				}
@@ -4122,7 +4125,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 562.0, 273.0, 917.0, 564.0 ],
+						"rect" : [ 326.0, 143.0, 917.0, 564.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4149,6 +4152,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Arial",
@@ -4158,7 +4162,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 248.0, 40.0, 92.0, 20.0 ],
+									"patching_rect" : [ 248.0, 40.0, 92.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---fromShruthi"
 								}
@@ -4172,7 +4176,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 93.0, 124.0, 116.0, 20.0 ],
+									"patching_rect" : [ 93.0, 124.0, 116.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---fromShruthiMidi"
 								}
@@ -4186,7 +4190,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 805.333313, 136.0, 71.0, 20.0 ],
+									"patching_rect" : [ 805.333313, 136.0, 71.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---version"
 								}
@@ -4200,7 +4204,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 754.666687, 208.0, 71.0, 20.0 ],
+									"patching_rect" : [ 754.666687, 208.0, 71.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---expires"
 								}
@@ -4214,7 +4218,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 704.0, 124.0, 55.0, 20.0 ],
+									"patching_rect" : [ 704.0, 124.0, 55.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---alert"
 								}
@@ -4228,7 +4232,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 653.333313, 152.0, 71.0, 20.0 ],
+									"patching_rect" : [ 653.333313, 152.0, 71.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---xtmode"
 								}
@@ -4242,7 +4246,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 602.666687, 184.0, 131.0, 20.0 ],
+									"patching_rect" : [ 602.666687, 184.0, 131.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---sequencerSettings"
 								}
@@ -4257,7 +4261,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 552.0, 224.0, 79.999969, 20.0 ],
+									"patching_rect" : [ 552.0, 224.0, 79.999969, 22.0 ],
 									"style" : "",
 									"text" : "unpack 0 0"
 								}
@@ -4271,7 +4275,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 613.0, 260.0, 123.0, 20.0 ],
+									"patching_rect" : [ 613.0, 260.0, 123.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---currentSequence"
 								}
@@ -4285,7 +4289,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 552.0, 288.0, 100.0, 20.0 ],
+									"patching_rect" : [ 552.0, 288.0, 100.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---currentPatch"
 								}
@@ -4299,7 +4303,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 450.666656, 104.0, 121.0, 20.0 ],
+									"patching_rect" : [ 450.666656, 104.0, 121.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---transferProgress"
 								}
@@ -4313,7 +4317,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 71.5, 152.0, 99.0, 20.0 ],
+									"patching_rect" : [ 71.5, 152.0, 99.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---fromShruthi"
 								}
@@ -4327,7 +4331,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 298.666656, 196.0, 118.0, 20.0 ],
+									"patching_rect" : [ 298.666656, 196.0, 118.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---systemSettings"
 								}
@@ -4342,7 +4346,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 144.0, 40.0, 82.0, 20.0 ],
+									"patching_rect" : [ 144.0, 40.0, 82.0, 22.0 ],
 									"style" : "",
 									"text" : "prepend nrpn"
 								}
@@ -4357,7 +4361,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 144.0, 16.0, 75.0, 20.0 ],
+									"patching_rect" : [ 144.0, 16.0, 75.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---nrpnout"
 								}
@@ -4371,7 +4375,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 400.0, 136.0, 137.0, 20.0 ],
+									"patching_rect" : [ 400.0, 136.0, 137.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---toSequencerMatrix"
 								}
@@ -4386,7 +4390,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 40.0, 83.0, 20.0 ],
+									"patching_rect" : [ 50.0, 40.0, 83.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---toShruthi"
 								}
@@ -4400,7 +4404,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 349.333344, 168.0, 109.0, 20.0 ],
+									"patching_rect" : [ 349.333344, 168.0, 109.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---sequenceData"
 								}
@@ -4415,7 +4419,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 248.0, 104.0, 73.0, 20.0 ],
+									"patching_rect" : [ 248.0, 104.0, 73.0, 22.0 ],
 									"style" : "",
 									"text" : "fromsymbol"
 								}
@@ -4430,7 +4434,7 @@
 									"numinlets" : 13,
 									"numoutlets" : 13,
 									"outlettype" : [ "", "", "", "", "", "", "", "", "", "", "", "", "" ],
-									"patching_rect" : [ 248.0, 72.0, 627.0, 20.0 ],
+									"patching_rect" : [ 248.0, 72.0, 627.0, 22.0 ],
 									"style" : "",
 									"text" : "route name settings sequence liveGrid progress midilock current seqsettings xtmode alert expires version"
 								}
@@ -4444,7 +4448,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 248.0, 136.0, 98.0, 20.0 ],
+									"patching_rect" : [ 248.0, 136.0, 98.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---patchName"
 								}
@@ -4460,7 +4464,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 50.0, 88.0, 62.0, 20.0 ],
+									"patching_rect" : [ 50.0, 88.0, 62.0, 22.0 ],
 									"style" : "",
 									"text" : "vx.shruthi"
 								}
@@ -4475,7 +4479,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 50.0, 232.0, 40.0, 20.0 ],
+									"patching_rect" : [ 50.0, 232.0, 40.0, 22.0 ],
 									"style" : "",
 									"text" : "t b l"
 								}
@@ -4490,7 +4494,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 82.0, 280.0, 32.5, 20.0 ],
+									"patching_rect" : [ 82.0, 280.0, 32.5, 22.0 ],
 									"style" : "",
 									"text" : "i"
 								}
@@ -4504,7 +4508,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 320.0, 51.0, 20.0 ],
+									"patching_rect" : [ 50.0, 320.0, 51.0, 22.0 ],
 									"style" : "",
 									"text" : "forward"
 								}
@@ -4519,7 +4523,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 208.0, 117.0, 20.0 ],
+									"patching_rect" : [ 50.0, 208.0, 117.0, 22.0 ],
 									"style" : "",
 									"text" : "sprintf send %i.nrpn"
 								}
@@ -4534,7 +4538,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 50.0, 184.0, 69.0, 20.0 ],
+									"patching_rect" : [ 50.0, 184.0, 69.0, 22.0 ],
 									"style" : "",
 									"text" : "unpack 0 0"
 								}
@@ -4908,7 +4912,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 328.0, 102.0, 1097.0, 910.0 ],
+						"rect" : [ 305.0, 102.0, 1097.0, 910.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4935,7 +4939,20 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"visible" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 380.0, 514.0, 86.0, 22.0 ],
+									"style" : "",
+									"text" : "print toMidiout"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontname" : "Arial",
 									"fontsize" : 12.0,
@@ -4944,7 +4961,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 99.0, 664.0, 39.0, 18.0 ],
+									"patching_rect" : [ 99.0, 664.0, 39.0, 22.0 ],
 									"style" : "",
 									"text" : "ch all"
 								}
@@ -4959,7 +4976,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 99.0, 640.0, 70.0, 20.0 ],
+									"patching_rect" : [ 99.0, 640.0, 70.0, 22.0 ],
 									"style" : "",
 									"text" : "select 0"
 								}
@@ -4974,7 +4991,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 150.0, 664.0, 40.0, 18.0 ],
+									"patching_rect" : [ 150.0, 664.0, 40.0, 22.0 ],
 									"style" : "",
 									"text" : "ch $1"
 								}
@@ -4989,7 +5006,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 595.0, 416.0, 39.0, 18.0 ],
+									"patching_rect" : [ 595.0, 416.0, 39.0, 22.0 ],
 									"style" : "",
 									"text" : "ch all"
 								}
@@ -5004,7 +5021,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 595.0, 384.0, 70.0, 20.0 ],
+									"patching_rect" : [ 595.0, 384.0, 70.0, 22.0 ],
 									"style" : "",
 									"text" : "select 0"
 								}
@@ -5019,7 +5036,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 122.0, 448.0, 54.0, 20.0 ],
+									"patching_rect" : [ 122.0, 448.0, 54.0, 22.0 ],
 									"style" : "",
 									"text" : "thresh 5"
 								}
@@ -5034,7 +5051,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 64.0, 752.0, 70.0, 20.0 ],
+									"patching_rect" : [ 64.0, 752.0, 70.0, 22.0 ],
 									"style" : "",
 									"text" : "prepend cc"
 								}
@@ -5050,7 +5067,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 64.0, 784.0, 80.0, 20.0 ],
+									"patching_rect" : [ 64.0, 784.0, 80.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---toShruthi",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5068,7 +5085,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 99.0, 608.0, 97.0, 20.0 ],
+									"patching_rect" : [ 99.0, 608.0, 97.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---midiChannel",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5084,7 +5101,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 8,
 									"outlettype" : [ "", "", "", "int", "int", "int", "int", "int" ],
-									"patching_rect" : [ 64.0, 704.0, 115.0, 21.0 ],
+									"patching_rect" : [ 64.0, 704.0, 115.0, 23.0 ],
 									"style" : "",
 									"text" : "midiselect @ctl all"
 								}
@@ -5100,7 +5117,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 444.0, 608.0, 133.0, 20.0 ],
+									"patching_rect" : [ 444.0, 608.0, 133.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---midiControllerInput",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5118,7 +5135,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 800.0, 536.0, 97.0, 20.0 ],
+									"patching_rect" : [ 800.0, 536.0, 97.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---midiChannel",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5134,7 +5151,7 @@
 									"numinlets" : 7,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 539.0, 568.0, 228.0, 21.0 ],
+									"patching_rect" : [ 539.0, 568.0, 228.0, 23.0 ],
 									"style" : "",
 									"text" : "midiformat"
 								}
@@ -5149,7 +5166,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 646.0, 416.0, 40.0, 18.0 ],
+									"patching_rect" : [ 646.0, 416.0, 40.0, 22.0 ],
 									"style" : "",
 									"text" : "ch $1"
 								}
@@ -5166,7 +5183,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 595.0, 352.0, 149.0, 20.0 ],
+									"patching_rect" : [ 595.0, 352.0, 149.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---midiControllerChannel",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5184,7 +5201,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 539.0, 296.0, 126.0, 20.0 ],
+									"patching_rect" : [ 539.0, 296.0, 126.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---midiControllerPort",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5200,7 +5217,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 539.0, 336.0, 42.0, 20.0 ],
+									"patching_rect" : [ 539.0, 336.0, 42.0, 22.0 ],
 									"style" : "",
 									"text" : "midiin"
 								}
@@ -5215,7 +5232,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 8,
 									"outlettype" : [ "", "", "", "int", "int", "int", "int", "int" ],
-									"patching_rect" : [ 539.0, 472.0, 342.0, 21.0 ],
+									"patching_rect" : [ 539.0, 472.0, 342.0, 23.0 ],
 									"style" : "",
 									"text" : "midiselect @ctl all @note all @bend 1 @pgm 1 @touch 1"
 								}
@@ -5230,7 +5247,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 122.0, 480.0, 89.0, 20.0 ],
+									"patching_rect" : [ 122.0, 480.0, 89.0, 22.0 ],
 									"style" : "",
 									"text" : "prepend sysex"
 								}
@@ -5245,7 +5262,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 327.0, 416.0, 79.0, 20.0 ],
+									"patching_rect" : [ 327.0, 416.0, 79.0, 22.0 ],
 									"style" : "",
 									"text" : "prepend port"
 								}
@@ -5262,7 +5279,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 327.0, 384.0, 93.0, 20.0 ],
+									"patching_rect" : [ 327.0, 384.0, 93.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---midiOutPort",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5280,7 +5297,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 64.0, 368.0, 84.0, 20.0 ],
+									"patching_rect" : [ 64.0, 368.0, 84.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---midiInPort",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5298,7 +5315,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 362.0, 464.0, 114.0, 20.0 ],
+									"patching_rect" : [ 362.0, 464.0, 114.0, 22.0 ],
 									"style" : "",
 									"text" : "r ---fromShruthiMidi",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5315,7 +5332,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 122.0, 514.0, 80.0, 20.0 ],
+									"patching_rect" : [ 122.0, 514.0, 80.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---toShruthi",
 									"textcolor" : [ 0.863854, 0.863854, 0.863854, 1.0 ]
@@ -5331,7 +5348,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 122.0, 416.0, 51.0, 20.0 ],
+									"patching_rect" : [ 122.0, 416.0, 51.0, 22.0 ],
 									"style" : "",
 									"text" : "sysexin"
 								}
@@ -5345,7 +5362,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 327.0, 552.0, 49.0, 20.0 ],
+									"patching_rect" : [ 327.0, 552.0, 49.0, 22.0 ],
 									"style" : "",
 									"text" : "midiout"
 								}
@@ -5360,7 +5377,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 64.0, 416.0, 42.0, 20.0 ],
+									"patching_rect" : [ 64.0, 416.0, 42.0, 22.0 ],
 									"style" : "",
 									"text" : "midiin"
 								}
@@ -5849,7 +5866,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 80.0, 224.0, 93.0, 20.0 ],
+									"patching_rect" : [ 80.0, 224.0, 93.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -5955,7 +5972,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 330.0, 144.0, 50.0, 18.0 ],
+									"patching_rect" : [ 330.0, 144.0, 50.0, 20.0 ],
 									"style" : ""
 								}
 
@@ -5983,7 +6000,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "bang", "" ],
-									"patching_rect" : [ 392.0, 176.0, 54.0, 20.0 ],
+									"patching_rect" : [ 392.0, 176.0, 54.0, 22.0 ],
 									"style" : "",
 									"text" : "select 1"
 								}
@@ -6011,7 +6028,7 @@
 									"numinlets" : 4,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 280.0, 199.0, 96.0, 20.0 ],
+									"patching_rect" : [ 280.0, 199.0, 96.0, 22.0 ],
 									"style" : "",
 									"text" : "tempo 120 1 96"
 								}
@@ -6026,7 +6043,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 280.0, 239.0, 39.0, 20.0 ],
+									"patching_rect" : [ 280.0, 239.0, 39.0, 22.0 ],
 									"style" : "",
 									"text" : "t 248"
 								}
@@ -6041,7 +6058,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 392.0, 240.0, 39.0, 20.0 ],
+									"patching_rect" : [ 392.0, 240.0, 39.0, 22.0 ],
 									"style" : "",
 									"text" : "t 250"
 								}
@@ -6056,7 +6073,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 504.0, 240.0, 39.0, 20.0 ],
+									"patching_rect" : [ 504.0, 240.0, 39.0, 22.0 ],
 									"style" : "",
 									"text" : "t 252"
 								}
@@ -6070,7 +6087,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 280.0, 280.0, 90.0, 20.0 ],
+									"patching_rect" : [ 280.0, 280.0, 90.0, 22.0 ],
 									"style" : "",
 									"text" : "s ---toMidiOut"
 								}
@@ -6371,6 +6388,15 @@
 									"disabled" : 0,
 									"hidden" : 0,
 									"source" : [ "obj-87", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-3", 0 ],
+									"disabled" : 0,
+									"hidden" : 0,
+									"source" : [ "obj-88", 0 ]
 								}
 
 							}
@@ -6967,96 +6993,96 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-69::obj-34::obj-23" : [ "Mod2Amount", ".", 0 ],
-			"obj-22::obj-13" : [ "PatternSize", "Size", 0 ],
-			"obj-69::obj-34::obj-62" : [ "Mod7Amount", ".", 0 ],
-			"obj-6::obj-2" : [ "Env1Decay", "Decay", 0 ],
-			"obj-22::obj-16" : [ "PatternRotation", "Rotation", 0 ],
-			"obj-10::obj-75" : [ "Cutoff", "Cutoff", 0 ],
-			"obj-2::obj-47::obj-108" : [ "textbutton", "textbutton", 0 ],
-			"obj-11::obj-28" : [ "Osc2Detune", "Detune", 0 ],
 			"obj-22::obj-25" : [ "Division", "Division", 0 ],
-			"obj-6::obj-8" : [ "Env1Release", "Release", 0 ],
-			"obj-6::obj-12" : [ "Env2Sustain", "Sustain", 0 ],
-			"obj-12::obj-20" : [ "PvkFmFeedback", "Feedback", 0 ],
-			"obj-22::obj-6" : [ "Osc1Range[1]", "Groove", 0 ],
-			"obj-54::obj-75" : [ "Op1Input1", "Input1", 0 ],
-			"obj-11::obj-33" : [ "NoiseVolume", "Noise", 0 ],
+			"obj-54::obj-80" : [ "Op1Operator", "Op", 0 ],
+			"obj-6::obj-4" : [ "Env1Attack", "Attack", 0 ],
+			"obj-12::obj-30" : [ "DspProgram", "Program", 0 ],
+			"obj-4::obj-4" : [ "Lfo1Waveform", "Shape", 0 ],
+			"obj-6::obj-16" : [ "Env2Attack", "Attack", 0 ],
+			"obj-12::obj-5" : [ "SvfResonance2", "Reson 2", 0 ],
 			"obj-69::obj-34::obj-92" : [ "Mod10Amount", ".", 0 ],
-			"obj-4::obj-2" : [ "Lfo1Rate", "Rate", 0 ],
-			"obj-22::obj-22" : [ "ArpRange", "Range", 0 ],
 			"obj-69::obj-34::obj-50" : [ "Mod3Amount", ".", 0 ],
+			"obj-12::obj-39" : [ "DelayFeedback", "Feedback", 0 ],
 			"obj-69::obj-34::obj-56" : [ "Mod8Amount", ".", 0 ],
+			"obj-12::obj-33" : [ "4pmMode", "Mode", 0 ],
+			"obj-55::obj-65" : [ "SystemChannel", "Channel", 0 ],
+			"obj-4::obj-6" : [ "Lfo1Attack", "Attack", 0 ],
+			"obj-4::obj-20" : [ "Lfo2Attack", "Attack", 0 ],
+			"obj-11::obj-20" : [ "Osc2Range", "Range", 0 ],
 			"obj-10::obj-78" : [ "Resonance", "Reson", 0 ],
+			"obj-22::obj-16" : [ "PatternRotation", "Rotation", 0 ],
+			"obj-69::obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
+			"obj-69::obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
+			"obj-11::obj-31" : [ "SubVolume", "SubVol", 0 ],
+			"obj-54::obj-75" : [ "Op1Input1", "Input1", 0 ],
+			"obj-55::obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
+			"obj-69::obj-34::obj-86" : [ "Mod11Amount", ".", 0 ],
+			"obj-4::obj-18" : [ "Lfo2Mode", "Mode", 0 ],
+			"obj-54::obj-5" : [ "Op2Input2", "Input2", 0 ],
+			"obj-69::obj-34::obj-44" : [ "Mod4Amount", ".", 0 ],
+			"obj-11::obj-35" : [ "SubShape", "Shape", 0 ],
+			"obj-69::obj-34::obj-98" : [ "Mod9Amount", ".", 0 ],
+			"obj-11::obj-4" : [ "Osc1Parameter", "Param", 0 ],
+			"obj-10::obj-75" : [ "Cutoff", "Cutoff", 0 ],
+			"obj-22::obj-22" : [ "ArpRange", "Range", 0 ],
+			"obj-22::obj-6" : [ "Osc1Range[1]", "Groove", 0 ],
+			"obj-12::obj-9" : [ "SvfMode2", "Mode 2", 0 ],
+			"obj-4::obj-24" : [ "Lfo2Waveform", "Shape", 0 ],
+			"obj-11::obj-1" : [ "Osc1Shape", "Shape", 0 ],
+			"obj-12::obj-43" : [ "DelayTime", "Time", 0 ],
+			"obj-12::obj-20" : [ "PvkFmFeedback", "Feedback", 0 ],
+			"obj-6::obj-14" : [ "Env2Decay", "Decay", 0 ],
+			"obj-55::obj-56" : [ "SystemTuning", "Tuning", 0 ],
+			"obj-22::obj-29" : [ "SequencerTempoXt", "Tempo", 0 ],
+			"obj-55::obj-55" : [ "SystemLegato", "Legato", 0 ],
+			"obj-12::obj-16" : [ "PvkOverdrive", "Drive", 0 ],
+			"obj-55::obj-50" : [ "SystemPortamento", "Porta", 0 ],
+			"obj-11::obj-6" : [ "Osc1Range", "Range", 0 ],
+			"obj-69::obj-34::obj-80" : [ "Mod12Amount", ".", 0 ],
+			"obj-12::obj-3" : [ "SvfCutoff2", "Cut 2", 0 ],
+			"obj-55::obj-48" : [ "SystemOctave", "Octave", 0 ],
+			"obj-11::obj-24" : [ "Osc2Shape", "Shape", 0 ],
+			"obj-6::obj-10" : [ "Env2Release", "Release", 0 ],
+			"obj-69::obj-34::obj-74" : [ "Mod5Amount", ".", 0 ],
+			"obj-12::obj-47" : [ "spMode", "Mode", 0 ],
+			"obj-12::obj-24" : [ "DspParam2", "P2", 0 ],
+			"obj-55::obj-71" : [ "SystemCvMode", "CV", 0 ],
+			"obj-11::obj-28" : [ "Osc2Detune", "Detune", 0 ],
+			"obj-6::obj-6" : [ "Env1Sustain", "Sustain", 0 ],
+			"obj-6::obj-12" : [ "Env2Sustain", "Sustain", 0 ],
+			"obj-54::obj-3" : [ "Op1Input2", "Input2", 0 ],
+			"obj-11::obj-33" : [ "NoiseVolume", "Noise", 0 ],
+			"obj-4::obj-2" : [ "Lfo1Rate", "Rate", 0 ],
+			"obj-4::obj-22" : [ "Lfo2Rate", "Rate", 0 ],
+			"obj-6::obj-2" : [ "Env1Decay", "Decay", 0 ],
+			"obj-12::obj-7" : [ "SvfMode1", "Mode 1", 0 ],
+			"obj-10::obj-82" : [ "Lfo", "LFO 2", 0 ],
+			"obj-12::obj-18" : [ "PvkMode1", "Mode", 0 ],
+			"obj-22::obj-32" : [ "SequencerModeXt", "Mode", 0 ],
+			"obj-2::obj-47::obj-108" : [ "textbutton", "textbutton", 0 ],
+			"obj-54::obj-7" : [ "Op2Operator", "Op", 0 ],
+			"obj-12::obj-37" : [ "DelayFlavour", "Flavour", 0 ],
+			"obj-12::obj-64" : [ "spFeedback", "Feedback", 0 ],
+			"obj-22::obj-8" : [ "ModulationOperator[1]", "Amount", 0 ],
+			"obj-4::obj-8" : [ "Lfo1Mode", "Mode", 0 ],
+			"obj-6::obj-8" : [ "Env1Release", "Release", 0 ],
+			"obj-22::obj-20" : [ "ArpPattern", "Pattern", 0 ],
+			"obj-69::obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
+			"obj-69::obj-34::obj-68" : [ "Mod6Amount", ".", 0 ],
+			"obj-12::obj-41" : [ "DelayLevel", "Level", 0 ],
+			"obj-12::obj-54" : [ "DspMode1", "Mode", 0 ],
+			"obj-22::obj-24" : [ "ArpDirection", "Direction", 0 ],
+			"obj-12::obj-35" : [ "4pmFlavour", "Flavour", 0 ],
 			"obj-11::obj-8" : [ "ModulationOperator", "Operator", 0 ],
 			"obj-11::obj-22" : [ "Osc2Parameter", "Param", 0 ],
-			"obj-12::obj-3" : [ "SvfCutoff2", "Cut 2", 0 ],
-			"obj-12::obj-13" : [ "SsmHighpass", "HP", 0 ],
-			"obj-54::obj-3" : [ "Op1Input2", "Input2", 0 ],
-			"obj-12::obj-37" : [ "DelayFlavour", "Flavour", 0 ],
-			"obj-4::obj-8" : [ "Lfo1Mode", "Mode", 0 ],
-			"obj-11::obj-4" : [ "Osc1Parameter", "Param", 0 ],
-			"obj-12::obj-47" : [ "spMode", "Mode", 0 ],
-			"obj-12::obj-7" : [ "SvfMode1", "Mode 1", 0 ],
-			"obj-12::obj-41" : [ "DelayLevel", "Level", 0 ],
-			"obj-4::obj-20" : [ "Lfo2Attack", "Attack", 0 ],
-			"obj-69::obj-34::obj-86" : [ "Mod11Amount", ".", 0 ],
-			"obj-12::obj-18" : [ "PvkMode1", "Mode", 0 ],
-			"obj-69::obj-34::obj-44" : [ "Mod4Amount", ".", 0 ],
-			"obj-55::obj-2" : [ "SystemMidiModeXt", "Midi", 0 ],
-			"obj-69::obj-34::obj-98" : [ "Mod9Amount", ".", 0 ],
 			"obj-11::obj-26" : [ "OscMix", "Mix", 0 ],
-			"obj-6::obj-4" : [ "Env1Attack", "Attack", 0 ],
-			"obj-55::obj-65" : [ "SystemChannel", "Channel", 0 ],
-			"obj-22::obj-8" : [ "ModulationOperator[1]", "Amount", 0 ],
-			"obj-6::obj-16" : [ "Env2Attack", "Attack", 0 ],
-			"obj-6::obj-10" : [ "Env2Release", "Release", 0 ],
-			"obj-4::obj-18" : [ "Lfo2Mode", "Mode", 0 ],
-			"obj-69::obj-1::obj-191" : [ "sequencerSteps[1]", "steps", 0 ],
-			"obj-69::obj-1::obj-192" : [ "SequenceGrid", "Grid", 0 ],
-			"obj-22::obj-20" : [ "ArpPattern", "Pattern", 0 ],
-			"obj-12::obj-30" : [ "DspProgram", "Program", 0 ],
-			"obj-6::obj-6" : [ "Env1Sustain", "Sustain", 0 ],
-			"obj-69::obj-34::obj-80" : [ "Mod12Amount", ".", 0 ],
-			"obj-12::obj-54" : [ "DspMode1", "Mode", 0 ],
-			"obj-4::obj-24" : [ "Lfo2Waveform", "Shape", 0 ],
-			"obj-69::obj-34::obj-74" : [ "Mod5Amount", ".", 0 ],
-			"obj-12::obj-43" : [ "DelayTime", "Time", 0 ],
-			"obj-4::obj-4" : [ "Lfo1Waveform", "Shape", 0 ],
-			"obj-22::obj-24" : [ "ArpDirection", "Direction", 0 ],
+			"obj-22::obj-13" : [ "PatternSize", "Size", 0 ],
+			"obj-69::obj-34::obj-23" : [ "Mod2Amount", ".", 0 ],
 			"obj-54::obj-9" : [ "Op2Input1", "Input1", 0 ],
-			"obj-10::obj-82" : [ "Lfo", "LFO 2", 0 ],
-			"obj-55::obj-56" : [ "SystemTuning", "Tuning", 0 ],
-			"obj-55::obj-55" : [ "SystemLegato", "Legato", 0 ],
-			"obj-12::obj-33" : [ "4pmMode", "Mode", 0 ],
-			"obj-55::obj-50" : [ "SystemPortamento", "Porta", 0 ],
-			"obj-12::obj-9" : [ "SvfMode2", "Mode 2", 0 ],
-			"obj-12::obj-28" : [ "DspParam1", "P1", 0 ],
-			"obj-55::obj-48" : [ "SystemOctave", "Octave", 0 ],
-			"obj-22::obj-29" : [ "SequencerTempoXt", "Tempo", 0 ],
-			"obj-54::obj-80" : [ "Op1Operator", "Op", 0 ],
-			"obj-12::obj-39" : [ "DelayFeedback", "Feedback", 0 ],
-			"obj-11::obj-20" : [ "Osc2Range", "Range", 0 ],
-			"obj-4::obj-6" : [ "Lfo1Attack", "Attack", 0 ],
-			"obj-11::obj-1" : [ "Osc1Shape", "Shape", 0 ],
-			"obj-6::obj-14" : [ "Env2Decay", "Decay", 0 ],
-			"obj-54::obj-7" : [ "Op2Operator", "Op", 0 ],
-			"obj-69::obj-34::obj-20" : [ "Mod1Amount", ".", 0 ],
-			"obj-12::obj-64" : [ "spFeedback", "Feedback", 0 ],
+			"obj-69::obj-34::obj-62" : [ "Mod7Amount", ".", 0 ],
+			"obj-12::obj-13" : [ "SsmHighpass", "HP", 0 ],
 			"obj-10::obj-80" : [ "Envelope", "Env 1", 0 ],
-			"obj-69::obj-34::obj-68" : [ "Mod6Amount", ".", 0 ],
-			"obj-11::obj-31" : [ "SubVolume", "SubVol", 0 ],
-			"obj-4::obj-22" : [ "Lfo2Rate", "Rate", 0 ],
-			"obj-12::obj-16" : [ "PvkOverdrive", "Drive", 0 ],
-			"obj-12::obj-5" : [ "SvfResonance2", "Reson 2", 0 ],
-			"obj-12::obj-35" : [ "4pmFlavour", "Flavour", 0 ],
-			"obj-55::obj-71" : [ "SystemCvMode", "CV", 0 ],
-			"obj-12::obj-24" : [ "DspParam2", "P2", 0 ],
-			"obj-54::obj-5" : [ "Op2Input2", "Input2", 0 ],
-			"obj-11::obj-6" : [ "Osc1Range", "Range", 0 ],
-			"obj-11::obj-35" : [ "SubShape", "Shape", 0 ],
-			"obj-11::obj-24" : [ "Osc2Shape", "Shape", 0 ],
-			"obj-22::obj-32" : [ "SequencerModeXt", "Mode", 0 ]
+			"obj-12::obj-28" : [ "DspParam1", "P1", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -7139,7 +7165,7 @@
 			}
 , 			{
 				"name" : "DevicePresets.json",
-				"bootpath" : "~/Documents/Projects/Shreditor/shreditor/data",
+				"bootpath" : "~/Library/Application Support/Vauxlab/Shreditor",
 				"type" : "JSON",
 				"implicit" : 1
 			}

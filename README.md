@@ -1,21 +1,20 @@
 # Shreditor
 
 ## TODO before release
-* clean up documentation development notes
 * update info tab in shreditor to point to github instead of support
-* what happened to shruthi4live?
-* document @mode live?
-* move the docs to github readme
 * test eeprom transfer
 * put new builds on vauxlab
-* firmware check always returns 1.00
 * licentie toevoegen en boven files plaatsen
+* delete doc folder from vauxlab/downloads/shreditor
+* squash all old commits van voor april 11 2015
+* test bidirectional communication
+* als midi op full staat lijkt de request niet goed te gaan. Firmware en numbanks requests komen in 1 sysex message terecht lijkt het wel. 0b (numbanke) en 0c (firmware)
 
 
 ## Description
-An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer.
+An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer. A compact hybrid synth combining 8-bit oscillators with an analog filter.
 
-![screenshot](docs/images/shreditor-ui.png =800x)
+![screenshot](docs/images/shreditor-ui.png)
 
 The editor application is built with [Max](https://cycling74.com/products/max), but the core of the software is a custom Max object written in C++ called vx.shruthi. The object takes care of all the MIDI communication and data management.
 
@@ -66,9 +65,14 @@ Don't connect multiple Shruthi devices on the same physical MIDI port. The Shred
 ├── objects : XCode & Visual Studio projects for building the vx.shruthi object
 └── shreditor : Max Shreditor project files
 
+## Prebuilt binaries
+The prebuilt Shreditor binaries can be found [here](. If you want to build it from source, read on.
+
 ## Build the Shreditor for OSX
 
 1) Build the vx.shruthi object using the project at __objects/Shreditor.xcodeproj__. If you hit cmd+b should output __vx.shruthi.mxo__ at __objects/bin__.
+
+You can enable debugging output to the Max console by switching the build to development mode. Go to "edit (build) scheme" and select "development" as the build configuration in the "run" section. This will enable all DPOST macros to output their message to the Max console.
 
 2) Copy the vx.shruthi.mxo file to shreditor/externals. This makes it available to the Max project
 
@@ -82,9 +86,10 @@ The resulting file should be an .app bundle containing an export of all the file
 
 Addionally you can strip the app bundle of some unneccesary files to make it smaller. Right-click -> Show package content, and then remove:
 
-* resources/c74/extensions/max/clang
+* resources/c74/extensions/max/clang (36Mb)
 * resources/c74/externals/msp
 * resources/c74/externals/jitter
+* resources/c74/media
 
 ## Build the Shreditor for Windows
 
@@ -101,12 +106,6 @@ The patch (and all of its abstractions) opens in __presentation mode__. Hit __cm
 
 In order to prevent window resizing by the user, the maximum window dimensions are limited to 980x830 to neatly contain just the UI and fit it on a 12" laptop screen. You can increase the maximum size by clicking on the message in the top right corner saying `window constrain 200 200 1500 1500, window exec` which sets the maximum dimensions to 1500x1500.
 
-## Additional Notes
+## Additional Development Notes
+There are some additional notes [here](/notes). If you want to help out with development maybe look at the section about [this needs work](/notes/this%20needs%20work.md)
 
-###eeprom
-Internal storage is 2048 bytes == 16 blocks of 128 .
-
-  0x0000 – 0x0010  System settings
-  0x0010 – 0x05d0  16 internal patches
-  0x05d0 – 0x07d0  16 internal sequences
-  0x07f0 – 0x0800    unused*

@@ -11,45 +11,45 @@ static t_symbol *ps_invalid = gensym("invalid");
 static t_symbol *ps_empty = gensym("");
 
 ShruthiMidi::ShruthiMidi(VxShruthi &x)
-    : x_(x), transfer_(x), channelOut_(0), lastDataMsb_(-1), lastNrpnIndex_(-1),
+    : x_(x), transfer_(x, *this), channelOut_(0), lastDataMsb_(-1), lastNrpnIndex_(-1),
       indexLsb_(0), indexMsb_(0), valueLsb_(0), valueMsb_(0),
       isNrpnValid_(false) {
   // Create an api map.
-  std::map<int, std::string> apiMap;
-  apiMap[RtMidi::MACOSX_CORE] = "OS-X CoreMidi";
-  apiMap[RtMidi::WINDOWS_MM] = "Windows MultiMedia";
-  apiMap[RtMidi::WINDOWS_KS] = "Windows Kernel Streaming";
-  apiMap[RtMidi::UNIX_JACK] = "Jack Client";
-  apiMap[RtMidi::LINUX_ALSA] = "Linux ALSA";
-  apiMap[RtMidi::RTMIDI_DUMMY] = "RtMidi Dummy";
+  // std::map<int, std::string> apiMap;
+  // apiMap[RtMidi::MACOSX_CORE] = "OS-X CoreMidi";
+  // apiMap[RtMidi::WINDOWS_MM] = "Windows MultiMedia";
+  // apiMap[RtMidi::WINDOWS_KS] = "Windows Kernel Streaming";
+  // apiMap[RtMidi::UNIX_JACK] = "Jack Client";
+  // apiMap[RtMidi::LINUX_ALSA] = "Linux ALSA";
+  // apiMap[RtMidi::RTMIDI_DUMMY] = "RtMidi Dummy";
 
-  std::vector<RtMidi::Api> apis;
-  RtMidi::getCompiledApi(apis);
+  // std::vector<RtMidi::Api> apis;
+  // RtMidi::getCompiledApi(apis);
 
-  DPOST("Compiled APIs:");
-  for (unsigned int i = 0; i < apis.size(); i++) {
-    DPOST("%s", apiMap[apis[i]].c_str());
-  }
+  // DPOST("Compiled APIs:");
+  // for (unsigned int i = 0; i < apis.size(); i++) {
+  //   DPOST("%s", apiMap[apis[i]].c_str());
+  // }
 }
 
 ShruthiMidi::~ShruthiMidi() {
-  try {
-    if (midiInput_) {
-      midiInput_->closePort();
-      delete midiInput_;
-    }
-    if (midiAuxInput_) {
-      midiAuxInput_->closePort();
-      delete midiAuxInput_;
-    }
-    if (midiOutput_) {
-      midiOutput_->closePort();
-      delete midiOutput_;
-    }
+  // try {
+  //   if (midiInput_) {
+  //     midiInput_->closePort();
+  //     delete midiInput_;
+  //   }
+  //   if (midiAuxInput_) {
+  //     midiAuxInput_->closePort();
+  //     delete midiAuxInput_;
+  //   }
+  //   if (midiOutput_) {
+  //     midiOutput_->closePort();
+  //     delete midiOutput_;
+  //   }
 
-  } catch (RtError err) {
-    error("Failed to clean up midi ports, %s", err.what());
-  }
+  // } catch (RtError err) {
+  //   error("Failed to clean up midi ports, %s", err.what());
+  // }
 }
 
 bool ShruthiMidi::validateSysexChecksum(const std::vector<uint8_t> &msg,
@@ -62,23 +62,23 @@ bool ShruthiMidi::validateSysexChecksum(const std::vector<uint8_t> &msg,
 }
 
 void ShruthiMidi::testMidiOut() {
-  std::vector<uint8_t> msg;
+  // std::vector<uint8_t> msg;
 
-  try {
-    // Control Change: 176, 7, 100 (volume)
-    msg.push_back(176 | channelOut_);
-    msg.push_back(7);
-    msg.push_back(100);
-    sendMessage(msg);
+  // try {
+  //   // Control Change: 176, 7, 100 (volume)
+  //   msg.push_back(176 | channelOut_);
+  //   msg.push_back(7);
+  //   msg.push_back(100);
+  //   sendMessage(msg);
 
-    // Note On: 144, 64, 90
-    msg[0] = 144 | channelOut_;
-    msg[1] = 64;
-    msg[2] = 90;
-    sendMessage(msg);
-  } catch (RtError &err) {
-    error("%s", err.what());
-  }
+  //   // Note On: 144, 64, 90
+  //   msg[0] = 144 | channelOut_;
+  //   msg[1] = 64;
+  //   msg[2] = 90;
+  //   sendMessage(msg);
+  // } catch (RtError &err) {
+  //   error("%s", err.what());
+  // }
 }
 
 bool ShruthiMidi::isValidSysex(const std::vector<uint8_t> &msg) {
@@ -371,7 +371,7 @@ void ShruthiMidi::sendNrpn(long nrpn_index, long nrpn_value) {
     // save dataMsb_ for redundancy check
     lastDataMsb_ = dataMsb_;
 
-  } catch (RtError &err) {
+  } catch (std::exception &err) {
     error("%s", err.what());
   }
 }
@@ -416,4 +416,8 @@ void ShruthiMidi::sendSequenceProgramChange(long slot) {
   msg.push_back(0xc0 | channelOut_);
   msg.push_back(patch & 0x7f);
   sendMessage(msg);
+}
+
+void ShruthiMidi::transferEeprom(uint8_t *data, size_t size) {
+  transfer_.transferEeprom(data, size);
 }

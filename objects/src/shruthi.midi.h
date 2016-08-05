@@ -9,12 +9,12 @@
 
 #include "ext.h"
 #include "maxcpp6.h"
-#include "rtmidi/RtMidi.h"
+// #include "rtmidi/RtMidi.h"
 #include "shruthi.transfer.h"
 #include "shruthi.types.h"
 
-class RtMidiIn;
-class RtMidiOut;
+// class RtMidiIn;
+// class RtMidiOut;
 class VxShruthi;
 
 class SysexBulkTransfer;
@@ -50,10 +50,11 @@ public:
   void testMidiOut();
   bool isValidSysex(const std::vector<uint8_t> &sysex);
 
-  void setOutlets(void *midiOutlet, void *msgOutlet) {
+  void setOutlets(void *midiOutlet) {
     midiOutlet_ = midiOutlet;
-    msgOutlet_ = msgOutlet;
   }
+
+  void transferEeprom(uint8_t *data, size_t size);
 
 private:
   void parseControlChangeAsNrpn();
@@ -63,9 +64,9 @@ private:
 
   SysexBulkTransfer transfer_;
 
-  RtMidiIn *midiInput_;
-  RtMidiIn *midiAuxInput_;
-  RtMidiOut *midiOutput_;
+  // RtMidiIn *midiInput_;
+  // RtMidiIn *midiAuxInput_;
+  // RtMidiOut *midiOutput_;
 
   uint8_t channelOut_;
 
@@ -84,7 +85,6 @@ private:
   bool isNrpnValid_;
 
   void *midiOutlet_;
-  void *msgOutlet_;
 };
 
 #endif
