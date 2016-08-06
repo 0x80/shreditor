@@ -29,7 +29,7 @@
 		8473C6281610FA67004C5FFA /* vx.shruthi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8473C6241610FA67004C5FFA /* vx.shruthi.cpp */; };
 		84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A5939C1668CCDB00214212 /* shruthi.midi.cpp */; };
 		84C0D7D418007048004706D1 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C0D7D318007048004706D1 /* CoreServices.framework */; };
-		84CE31951838E3E50050AEF2 /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84CE31941838E3E50050AEF2 /* patch.cpp */; };
+		84F5E3271D56406600D52AC7 /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F5E3231D56406600D52AC7 /* patch.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +58,10 @@
 		84C0D7D318007048004706D1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = maxmspsdk.xcconfig; sourceTree = "<group>"; };
 		84C3C13315A84702007FE735 /* commonsyms.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = commonsyms.c; path = "../c74support/max-includes/common/commonsyms.c"; sourceTree = "<group>"; };
-		84CE31911838E3A30050AEF2 /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = patch.h; path = src/patch.h; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		84CE31921838E3A30050AEF2 /* sequencer_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = sequencer_settings.h; path = src/sequencer_settings.h; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		84CE31931838E3A30050AEF2 /* system_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = system_settings.h; path = src/system_settings.h; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		84CE31941838E3E50050AEF2 /* patch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = patch.cpp; path = src/patch.cpp; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		84F5E3231D56406600D52AC7 /* patch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = patch.cpp; path = external/patch.cpp; sourceTree = "<group>"; };
+		84F5E3241D56406600D52AC7 /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = patch.h; path = external/patch.h; sourceTree = "<group>"; };
+		84F5E3251D56406600D52AC7 /* sequencer_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sequencer_settings.h; path = external/sequencer_settings.h; sourceTree = "<group>"; };
+		84F5E3261D56406600D52AC7 /* system_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = system_settings.h; path = external/system_settings.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +107,6 @@
 		08FB77ADFE841716C02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				84CE31921838E3A30050AEF2 /* sequencer_settings.h */,
-				84CE31931838E3A30050AEF2 /* system_settings.h */,
-				84CE31911838E3A30050AEF2 /* patch.h */,
-				84CE31941838E3E50050AEF2 /* patch.cpp */,
 				84A5939A1668CC2000214212 /* vx.shruthi.h */,
 				8473C6241610FA67004C5FFA /* vx.shruthi.cpp */,
 				84A5939C1668CCDB00214212 /* shruthi.midi.cpp */,
@@ -123,6 +119,10 @@
 		84477E9B171C9DA000910AEA /* External */ = {
 			isa = PBXGroup;
 			children = (
+				84F5E3231D56406600D52AC7 /* patch.cpp */,
+				84F5E3241D56406600D52AC7 /* patch.h */,
+				84F5E3251D56406600D52AC7 /* sequencer_settings.h */,
+				84F5E3261D56406600D52AC7 /* system_settings.h */,
 				84477FFF171C9EC900910AEA /* base.h */,
 				84477FFE171C9EB900910AEA /* maxcpp6.h */,
 				84C3C13315A84702007FE735 /* commonsyms.c */,
@@ -215,8 +215,8 @@
 			files = (
 				8473C6281610FA67004C5FFA /* vx.shruthi.cpp in Sources */,
 				846B9B6416346B2E00718272 /* commonsyms.c in Sources */,
+				84F5E3271D56406600D52AC7 /* patch.cpp in Sources */,
 				84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */,
-				84CE31951838E3E50050AEF2 /* patch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
