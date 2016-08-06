@@ -1,3 +1,25 @@
+//  The MIT License
+//
+//  Copyright (c) 2013-2016 Thijs Koerselman, http://vauxlab.com
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
 #include "vx.shruthi.h"
 
 #include <cstdlib>
@@ -29,21 +51,14 @@
 
 #define SHREDITOR_VERSION "1.0"
 
-//const float VELOCITY_SCALE_DOWN = 7.f / 127.f;
-//const float VELOCITY_SCALE_UP = 1.f / VELOCITY_SCALE_DOWN;
+static const float SEQUENCE_UPDATE_INTERVAL_MS = 500;
 
-//#define WAVETABLE_NSAMPS 129
-//#define WAVETABLE_SIZE 129 << 3 // 8 * 129
 
-static const float SEQUENCE_UPDATE_INTERVAL_MS = 500.f;
 
-const size_t kExternalEepromSize = kBankSize * kMaxNumBanks;
-const size_t kExternalEepromOffset = kInternalEepromSize;
-const size_t kEepromSize = kInternalEepromSize + kExternalEepromSize;
-
+// pre generate all used message symbols
 static t_symbol *ps_nrpn = gensym("nrpn");
 static t_symbol *ps_empty = gensym("");
-static t_symbol *psx_name = gensym("name");
+t_symbol *ps_name = gensym("name");
 static t_symbol *ps_settings = gensym("settings");
 static t_symbol *ps_lpf = gensym("lpf");
 static t_symbol *ps_ssm = gensym("ssm");
@@ -67,9 +82,11 @@ static t_symbol *ps_nooutput = gensym("--- none ---");
 VxShruthi::VxShruthi(t_symbol *sym, long ac, t_atom *av)
     : midi_(*this), numAccessibleBanks_(2), useEepromCache_(true),
       hasEepromCache_(false), progressCounter_(0), slotIndex_(-1) {
-  setupIO(1, 3); // inlets / outlets
 
-  // point outlets to right place
+  // inlets / outlets
+  setupIO(1, 3);
+
+  // just some aliases for better readability
   nrpnOut_ = m_outlets[0];
   msgOut_ = m_outlets[1];
   midiOut_ = m_outlets[2];
@@ -77,24 +94,24 @@ VxShruthi::VxShruthi(t_symbol *sym, long ac, t_atom *av)
   midi_.setOutlets(midiOut_);
 
   eeprom_ = new uint8_t[kEepromSize];
-  settings_ =
-      (SystemSettings *)eeprom_; // settings are stored in first part of eeprom
 
-  memset(eeprom_, 0, kEepromSize * sizeof(uint8_t)); // init to zero
+  // settings are stored in first part of eeprom
+  settings_ = (SystemSettings *) eeprom_;
 
-  // init active indexs to -1
+  // initialize memory
+  memset(eeprom_, 0, kEepromSize * sizeof(uint8_t));
   memset(workingPatchIndex_, -1, NUM_DEVICE_SLOTS * sizeof(int));
   memset(workingSequencerIndex_, -1, NUM_DEVICE_SLOTS * sizeof(int));
 
   clock_ = clock_new((t_object *)this, (method)onTick);
-  clock_fdelay(clock_, SEQUENCE_UPDATE_INTERVAL_MS);
+  clock_delay(clock_, SEQUENCE_UPDATE_INTERVAL_MS);
 
-  // after io is setup
   initializeSystemStoragePath();
 }
 
 VxShruthi::~VxShruthi() {
-  // is dit handig?
+  // Saving the active eeprom copy to disk on close.
+  // Not entirely sure if this is a good idea
   if (hasEepromCache_)
     saveDeviceEeprom();
 
@@ -144,10 +161,10 @@ void VxShruthi::initializeSystemStoragePath() {
                          PATH_TYPE_ABSOLUTE)) {
       object_error((t_object *)this, "Failed to conform path");
     }
+
     root = std::string(conformpath, strlen(path)) +
            std::string("/Vauxlab/Shreditor");
-    // root = std::string(path, strlen(path)) +
-    // std::string("\\Vauxlab\\Shreditor");
+
     dataroot_ = root + std::string("/Eeprom");
     presetfile_ = root + std::string("/DevicePresets.json");
 
@@ -224,11 +241,11 @@ void VxShruthi::initializeSystemStoragePath() {
 void VxShruthi::outputDataroot() {
   atom_setsym(atoms_, gensym("dataroot"));
   atom_setsym(atoms_ + 1, gensym(dataroot_.c_str()));
-  outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+  outlet_list(msgOut_, ps_empty, 2, atoms_);
 
   atom_setsym(atoms_, gensym("presetfile"));
   atom_setsym(atoms_ + 1, gensym(presetfile_.c_str()));
-  outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+  outlet_list(msgOut_, ps_empty, 2, atoms_);
 }
 
 void VxShruthi::onReady(VxShruthi *x, t_symbol *s, short ac, t_atom *av) {
@@ -237,7 +254,7 @@ void VxShruthi::onReady(VxShruthi *x, t_symbol *s, short ac, t_atom *av) {
   t_atom a[2];
   atom_setsym(a, gensym("version"));
   atom_setsym(a + 1, gensym(SHREDITOR_VERSION));
-  outlet_list(x->m_outlets[1], ps_empty, 2, a);
+  outlet_list(x->msgOut_, ps_empty, 2, a);
 
   x->outputDataroot();
 }
@@ -248,7 +265,7 @@ void VxShruthi::onFail(VxShruthi *x, t_symbol *s, short ac, t_atom *av) {
   t_atom a[2];
   atom_setsym(a, gensym("error"));
   atom_setsym(a + 1, gensym("init"));
-  outlet_list(x->m_outlets[1], ps_empty, 2, a);
+  outlet_list(x->msgOut_, ps_empty, 2, a);
 }
 
 uint16_t VxShruthi::addressable_space_size() {
@@ -256,7 +273,6 @@ uint16_t VxShruthi::addressable_space_size() {
 }
 
 void VxShruthi::outputProgress(long progress) {
-  DPOST("progress %i", progress);
 
   int total = addressable_space_size();
   int uploaded = ++progressCounter_ * 128;
@@ -267,7 +283,7 @@ void VxShruthi::outputProgress(long progress) {
   atom_setlong(atoms_ + 2, uploaded);
   atom_setlong(atoms_ + 3, total);
 
-  outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+  outlet_list(msgOut_, ps_empty, 4, atoms_);
 
   if (percentage == 100) {
     DPOST("done 100%");
@@ -409,13 +425,13 @@ void VxShruthi::outputSettingsData() {
   atom_setlong(a++, settings_->midi_split_point);
   atom_setlong(a++, settings_->expansion_filter_board);
   atom_setlong(a++, settings_->expansion_cv_mode);
-  outlet_list(m_outlets[1], ps_empty, 11, atoms_);
+  outlet_list(msgOut_, ps_empty, 11, atoms_);
 }
 
 void VxShruthi::outputNrpn(long index, long value) {
   atom_setlong(atoms_, index);
   atom_setlong(atoms_ + 1, value);
-  outlet_list(m_outlets[0], ps_nrpn, 2, atoms_);
+  outlet_list(nrpnOut_, ps_nrpn, 2, atoms_);
 }
 
 void VxShruthi::outputSequencerSettings() {
@@ -448,32 +464,32 @@ void VxShruthi::outputSequence() {
   atom_setsym(atoms_ + 1, ps_note);
   for (int i = 0; i < kNumSteps; ++i)
     atom_setlong(data + i, s.steps[i].note()); // only first 7 bits
-  outlet_list(m_outlets[1], ps_empty, kNumSteps + 2, atoms_);
+  outlet_list(msgOut_, ps_empty, kNumSteps + 2, atoms_);
 
   // velocity
   atom_setsym(atoms_ + 1, ps_velocity);
   for (int i = 0; i < kNumSteps; ++i) {
     atom_setlong(data + i, s.steps[i].velocity());
   }
-  outlet_list(m_outlets[1], ps_empty, kNumSteps + 2, atoms_);
+  outlet_list(msgOut_, ps_empty, kNumSteps + 2, atoms_);
 
   // ctrl
   atom_setsym(atoms_ + 1, ps_ctrl);
   for (int i = 0; i < kNumSteps; ++i)
     atom_setlong(data + i, s.steps[i].controller());
-  outlet_list(m_outlets[1], ps_empty, kNumSteps + 2, atoms_);
+  outlet_list(msgOut_, ps_empty, kNumSteps + 2, atoms_);
 
   // gate
   atom_setsym(atoms_ + 1, ps_gate);
   for (int i = 0; i < kNumSteps; ++i)
     atom_setlong(data + i, s.steps[i].gate());
-  outlet_list(m_outlets[1], ps_empty, kNumSteps + 2, atoms_);
+  outlet_list(msgOut_, ps_empty, kNumSteps + 2, atoms_);
 
   // legato / tie
   atom_setsym(atoms_ + 1, ps_legato);
   for (int i = 0; i < kNumSteps; ++i)
     atom_setlong(data + i, s.steps[i].legato());
-  outlet_list(m_outlets[1], ps_empty, kNumSteps + 2, atoms_);
+  outlet_list(msgOut_, ps_empty, kNumSteps + 2, atoms_);
 
   // gate legato matrix
   atom_setsym(atoms_, ps_liveGrid);
@@ -482,14 +498,14 @@ void VxShruthi::outputSequence() {
     atom_setlong(atoms_ + 1, i + 1);
     atom_setlong(atoms_ + 2, 1);
     atom_setlong(atoms_ + 3, s.steps[i].legato());
-    outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+    outlet_list(msgOut_, ps_empty, 4, atoms_);
   }
 
   for (int i = 0; i < 16; ++i) {
     atom_setlong(atoms_ + 1, i + 1);
     atom_setlong(atoms_ + 2, 2);
     atom_setlong(atoms_ + 3, s.steps[i].gate());
-    outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+    outlet_list(msgOut_, ps_empty, 4, atoms_);
   }
 
   // pattern size is not global but extracted from steps
@@ -560,17 +576,14 @@ void VxShruthi::requestRom(long inlet) {
   progressCounter_ = 0;
   midi_.sendSysexCommand(0x50);
 
-  // Blindly assuming that this will go ok, since we currently don't have a
-  // trigger when transfer is ready
+  // TODO this assumption should be a result of evaluating the transfer progress
   hasEepromCache_ = true;
 }
 
-// send out complete eeprom to midi
+// send out complete eeprom to device as sysex
 void VxShruthi::transferRom(long inlet) {
   progressCounter_ = 0;
-  // DPOST("transferRom werkt niet");
-  midi_.transferEeprom(eeprom_, addressable_space_size());
-  // useEepromCache_ = true;
+  midi_.startEepromTransfer(eeprom_, addressable_space_size());
 }
 
 // requests
@@ -581,7 +594,7 @@ void VxShruthi::requestVersion(long inlet) {
 
   atom_setsym(atoms_, gensym("firmware"));
   atom_setsym(atoms_ + 1, gensym("undefined"));
-  outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+  outlet_list(msgOut_, ps_empty, 2, atoms_);
 
   midi_.sendSysexCommand(0x1c);
 }
@@ -640,9 +653,9 @@ void VxShruthi::setPatchName(long inlet, t_symbol *name) {
 
   transferPatchName();
 
-  atom_setsym(atoms_, psx_name);
+  atom_setsym(atoms_, ps_name);
   atom_setsym(atoms_ + 1, gensym((char *)workingPatch_[slotIndex_].name));
-  outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+  outlet_list(msgOut_, ps_empty, 2, atoms_);
 }
 
 void VxShruthi::setSettingsFilter(long inlet, t_symbol *name) {
@@ -1066,7 +1079,7 @@ void VxShruthi::processSysexInput(SysexCommand cmd, uint8_t arg,
       atom_setsym(atoms_, gensym("current"));
       atom_setlong(atoms_ + 1, currentPatchNumber_);
       atom_setlong(atoms_ + 2, currentSequenceNumber_);
-      outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+      outlet_list(msgOut_, ps_empty, 3, atoms_);
     }
     break;
 
@@ -1085,7 +1098,7 @@ void VxShruthi::processSysexInput(SysexCommand cmd, uint8_t arg,
       }
       atom_setsym(atoms_, gensym("numbanks"));
       atom_setlong(atoms_ + 1, numAccessibleBanks_);
-      outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+      outlet_list(msgOut_, ps_empty, 2, atoms_);
     }
     break;
 
@@ -1099,7 +1112,7 @@ void VxShruthi::processSysexInput(SysexCommand cmd, uint8_t arg,
       atom_setsym(atoms_, gensym("firmware"));
       atom_setlong(atoms_ + 1, firmware_major_);
       atom_setlong(atoms_ + 2, firmware_minor_);
-      outlet_list(m_outlets[1], ps_empty, 3, atoms_);
+      outlet_list(msgOut_, ps_empty, 3, atoms_);
 
     } else {
       object_error((t_object *)this, "Invalid response from version request");
@@ -1783,7 +1796,7 @@ void VxShruthi::mapNrpnToEeprom(long nrpn_index, long v) {
   }
 }
 
-void VxShruthi::stopTransfer(long inlet) { midi_.stopTransfer(); }
+void VxShruthi::stopTransfer(long inlet) { midi_.stopEepromTransfer(); }
 
 // triggered by kNumBanks return, because first we want to know the
 // total number of slots to init the list
@@ -1796,7 +1809,7 @@ void VxShruthi::listPatchNames(long inlet) {
   // first output how many patches there will be
   atom_setsym(atoms_, gensym("patchcount"));
   atom_setlong(atoms_ + 1, getNumPatches());
-  outlet_list(m_outlets[1], ps_empty, 2, atoms_);
+  outlet_list(msgOut_, ps_empty, 2, atoms_);
 
   // then build the list
   atom_setsym(atoms_, gensym("patchlist"));
@@ -1818,7 +1831,7 @@ void VxShruthi::listPatchNames(long inlet) {
       str[kPatchNameSize] = 0;
       atom_setsym(atoms_ + 3, gensym(str));
     }
-    outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+    outlet_list(msgOut_, ps_empty, 4, atoms_);
     ++p;
   }
 
@@ -1840,7 +1853,7 @@ void VxShruthi::listPatchNames(long inlet) {
         str[kPatchNameSize] = 0;
         atom_setsym(atoms_ + 3, gensym(str));
       }
-      outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+      outlet_list(msgOut_, ps_empty, 4, atoms_);
       ++p;
 
       if (rowNumber >= 32) {
@@ -1860,14 +1873,14 @@ void VxShruthi::clearPatchNames(long inlet) {
   for (size_t i = 0; i < 16; ++i) {
     atom_setlong(atoms_ + 1, (float)patchNumber++ / 32.f);
     atom_setlong(atoms_ + 2, rowNumber++);
-    outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+    outlet_list(msgOut_, ps_empty, 4, atoms_);
   }
 
   for (int k = 0; k < 7; ++k) {
     for (size_t i = 0; i < 64; ++i) {
       atom_setlong(atoms_ + 1, (float)patchNumber++ / 32.f);
       atom_setlong(atoms_ + 2, rowNumber++);
-      outlet_list(m_outlets[1], ps_empty, 4, atoms_);
+      outlet_list(msgOut_, ps_empty, 4, atoms_);
 
       if (rowNumber >= 32) {
         rowNumber = 0;

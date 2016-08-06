@@ -15,10 +15,6 @@
 //
 // -----------------------------------------------------------------------------
 
-/*
-  Original file edited by Thijs Koerselman
-*/
-
 #ifndef SHRUTHI_SYSTEM_SEQUENCER_SETTINGS_H_
 #define SHRUTHI_SYSTEM_SEQUENCER_SETTINGS_H_
 
@@ -91,7 +87,6 @@ enum ArpeggioDirection {
 //    6: vel
 //    7: vel
 //    8: legato MSB
-#include "maxcpp6.h"
 
 struct SequenceStep {
   void set_gate(uint8_t gate) {

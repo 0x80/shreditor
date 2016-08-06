@@ -1,3 +1,25 @@
+//  The MIT License
+//
+//  Copyright (c) 2013-2016 Thijs Koerselman, http://vauxlab.com
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
 #include "shruthi.midi.h"
 #include "vx.shruthi.h"
 
@@ -6,50 +28,24 @@
 #include <iostream>
 #include <map>
 
+#define SYSEX_TRANSFER_INTERVAL_MS 250
+
 class VxShruthi;
 static t_symbol *ps_invalid = gensym("invalid");
 static t_symbol *ps_empty = gensym("");
 
 ShruthiMidi::ShruthiMidi(VxShruthi &x)
-    : x_(x), transfer_(x, *this), channelOut_(0), lastDataMsb_(-1), lastNrpnIndex_(-1),
-      indexLsb_(0), indexMsb_(0), valueLsb_(0), valueMsb_(0),
+    : maxobj_(x), channelOut_(0), lastDataMsb_(-1), lastNrpnIndex_(-1),
+      indexLsb_(0), indexMsb_(0), valueLsb_(0), valueMsb_(0), midiOutlet_(nullptr),
       isNrpnValid_(false) {
-  // Create an api map.
-  // std::map<int, std::string> apiMap;
-  // apiMap[RtMidi::MACOSX_CORE] = "OS-X CoreMidi";
-  // apiMap[RtMidi::WINDOWS_MM] = "Windows MultiMedia";
-  // apiMap[RtMidi::WINDOWS_KS] = "Windows Kernel Streaming";
-  // apiMap[RtMidi::UNIX_JACK] = "Jack Client";
-  // apiMap[RtMidi::LINUX_ALSA] = "Linux ALSA";
-  // apiMap[RtMidi::RTMIDI_DUMMY] = "RtMidi Dummy";
 
-  // std::vector<RtMidi::Api> apis;
-  // RtMidi::getCompiledApi(apis);
-
-  // DPOST("Compiled APIs:");
-  // for (unsigned int i = 0; i < apis.size(); i++) {
-  //   DPOST("%s", apiMap[apis[i]].c_str());
-  // }
+  transferClock = clock_new((t_object *)this, (method)onTransferTick);
+  transferEepromBuffer = new uint8_t[kEepromSize];
 }
 
 ShruthiMidi::~ShruthiMidi() {
-  // try {
-  //   if (midiInput_) {
-  //     midiInput_->closePort();
-  //     delete midiInput_;
-  //   }
-  //   if (midiAuxInput_) {
-  //     midiAuxInput_->closePort();
-  //     delete midiAuxInput_;
-  //   }
-  //   if (midiOutput_) {
-  //     midiOutput_->closePort();
-  //     delete midiOutput_;
-  //   }
-
-  // } catch (RtError err) {
-  //   error("Failed to clean up midi ports, %s", err.what());
-  // }
+  delete[] transferEepromBuffer;
+  object_free(transferClock);
 }
 
 bool ShruthiMidi::validateSysexChecksum(const std::vector<uint8_t> &msg,
@@ -61,25 +57,6 @@ bool ShruthiMidi::validateSysexChecksum(const std::vector<uint8_t> &msg,
   return target == checksum;
 }
 
-void ShruthiMidi::testMidiOut() {
-  // std::vector<uint8_t> msg;
-
-  // try {
-  //   // Control Change: 176, 7, 100 (volume)
-  //   msg.push_back(176 | channelOut_);
-  //   msg.push_back(7);
-  //   msg.push_back(100);
-  //   sendMessage(msg);
-
-  //   // Note On: 144, 64, 90
-  //   msg[0] = 144 | channelOut_;
-  //   msg[1] = 64;
-  //   msg[2] = 90;
-  //   sendMessage(msg);
-  // } catch (RtError &err) {
-  //   error("%s", err.what());
-  // }
-}
 
 bool ShruthiMidi::isValidSysex(const std::vector<uint8_t> &msg) {
   if (msg.size() < 11) { // sysex zonder payload is 11 bytes
@@ -121,7 +98,6 @@ void ShruthiMidi::parseSysex(const std::vector<uint8_t> &msg) {
       msg.begin() + 8; // first 8 bytes are not payload
   int counter = 0;
   std::vector<uint8_t> data;
-
   uint8_t msb, lsb, byte;
   uint8_t checksum = 0;
 
@@ -143,7 +119,7 @@ void ShruthiMidi::parseSysex(const std::vector<uint8_t> &msg) {
     return;
   }
 
-  x_.processSysexInput(cmd, arg, data);
+  maxobj_.processSysexInput(cmd, arg, data);
 }
 
 void ShruthiMidi::sendMessage(const std::vector<uint8_t> &msg) {
@@ -295,7 +271,7 @@ void ShruthiMidi::parseControlChange(long cc_index, long cc_value) {
     break;
   default:
     // process cc coming from xt knob movements
-    x_.processCcInput(cc_index, cc_value);
+    maxobj_.processCcInput(cc_index, cc_value);
     break;
   }
 }
@@ -304,12 +280,12 @@ void ShruthiMidi::parseControlChangeAsNrpn() {
   if (valueMsb_ && valueLsb_ > 63) {
     // negative
     long v = valueLsb_ - 0x80;
-    x_.processNrpnInput(indexMsb_ | indexLsb_, v);
+    maxobj_.processNrpnInput(indexMsb_ | indexLsb_, v);
 
   } else {
     // range 0-127 or positive >127
     long v = valueMsb_ | valueLsb_;
-    x_.processNrpnInput(indexMsb_ | indexLsb_, v);
+    maxobj_.processNrpnInput(indexMsb_ | indexLsb_, v);
   }
 }
 
@@ -418,6 +394,70 @@ void ShruthiMidi::sendSequenceProgramChange(long slot) {
   sendMessage(msg);
 }
 
-void ShruthiMidi::transferEeprom(uint8_t *data, size_t size) {
-  transfer_.transferEeprom(data, size);
+void ShruthiMidi::startEepromTransfer(uint8_t *data, size_t size) {
+  if(isTransferBusy) {
+    DPOST("There is already a transfer active");
+    return;
+  }
+  
+  // copy all of the data
+  std::memcpy(transferEepromBuffer, data, size);
+  
+  initTransferState(size);
+  
+  // start the transfer clock
+  clock_delay(transferClock, SYSEX_TRANSFER_INTERVAL_MS);
+}
+
+void ShruthiMidi::stopEepromTransfer() {
+  if (!isTransferBusy) {
+    DPOST("There is no active transfer to stop");
+    return;
+  }
+  
+  clock_unset(transferClock);
+  isTransferBusy = false;
+}
+
+void ShruthiMidi::initTransferState(size_t size) {
+  
+  TransferState& state = transferState;
+  
+  state.messageId = 0x40;
+  state.blockId = 0;
+  state.dataPosition = 0;
+  state.size = size;
+}
+
+void ShruthiMidi::incrementTransferState() {
+  
+  TransferState &state = transferState;
+  
+  state.blockId++;
+
+  if(state.blockId == 128) {
+    state.blockId = 0;
+    state.messageId++;
+  }
+  
+  state.dataPosition += kSysExBulkDumpBlockSize;
+}
+
+void ShruthiMidi::onTransferTick(ShruthiMidi *x) {
+  
+  TransferState &state = x->transferState;
+  
+  x->sendSysex(x->transferEepromBuffer + state.dataPosition, state.messageId, state.blockId, kSysExBulkDumpBlockSize);
+  
+  x->maxobj_.outputProgress(state.blockId);
+  
+  x->incrementTransferState();
+  
+  if(state.dataPosition < state.size) {
+    // we're not done yet, schedule a new tick
+    clock_delay(x->transferClock, SYSEX_TRANSFER_INTERVAL_MS);
+  } else {
+    // all done
+    x->isTransferBusy = false;
+  }
 }

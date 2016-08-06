@@ -23,9 +23,6 @@
 // Also includes code for checking whether a buffer looks like a reasonable
 // patch.
 
-/*
-  Original file edited by Thijs Koerselman
-*/
 
 #ifndef SHRUTHI_PATCH_H_
 #define SHRUTHI_PATCH_H_

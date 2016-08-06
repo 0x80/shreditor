@@ -9,7 +9,8 @@
 * squash all old commits van voor april 11 2015
 * test bidirectional communication
 * als midi op full staat lijkt de request niet goed te gaan. Firmware en numbanks requests komen in 1 sysex message terecht lijkt het wel. 0b (numbanke) en 0c (firmware)
-
+* move stuff to source external folder
+* gebruik outlet aliases consistent
 
 ## Description
 An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer. A compact hybrid synth combining 8-bit oscillators with an analog filter.

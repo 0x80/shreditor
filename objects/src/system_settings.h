@@ -15,9 +15,6 @@
 //
 // -----------------------------------------------------------------------------
 
-/*
-  Original file edited by Thijs Koerselman
-*/
 
 #ifndef SHRUTHI_SYSTEM_SETTINGS_H_
 #define SHRUTHI_SYSTEM_SETTINGS_H_

@@ -16,6 +16,12 @@ In a refactoring phase I tried to seperate the midi and transfer classes to sepe
 
 The transfer class needs a reference to the max object to output progress messages. It also needs a handle to the midi class to output sysex. Currently both are passed in to its constructor. It seems needlessly complex and messy, and can be done in a much cleaner way probably.
 
+
+midi_ is vooral send functies die hoeven geen ref naar maxob te hebben. De parse functies nu wel, maar die zouden gewoon hun resultaten in return terug kunnen geven toch?
+
+midi_.parseControlChange(index, v);
+
+
 ## Eeprom transfer
 On transfering the eeprom I think we want to skip the internal eeprom part.
 

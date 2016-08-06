@@ -168,7 +168,6 @@ public:
 		static void call(T * x, double v) { ((x)->*F)(proxy_getinlet((t_object *)x), v); }
 	};
     
-    // START EDIT THIJS
     typedef void (T::*maxmethodsymbol)(long inlet, t_symbol *v);
 	template<maxmethodsymbol F>
 	struct MaxMethodSymbol {
@@ -204,8 +203,6 @@ public:
 	struct MaxMethodListDef {
 		static void call(T * x, t_symbol * s, long ac, t_atom * av) { ((x)->*F)(s, ac, av); }
 	};
-    // END EDIT THIJS
-
 };
 
 // note: only include this file once to prevent linker errors!

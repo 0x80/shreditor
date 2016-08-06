@@ -28,7 +28,6 @@
 		846B9B6416346B2E00718272 /* commonsyms.c in Sources */ = {isa = PBXBuildFile; fileRef = 84C3C13315A84702007FE735 /* commonsyms.c */; };
 		8473C6281610FA67004C5FFA /* vx.shruthi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8473C6241610FA67004C5FFA /* vx.shruthi.cpp */; };
 		84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A5939C1668CCDB00214212 /* shruthi.midi.cpp */; };
-		84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84A593A5166A48F300214212 /* shruthi.transfer.cpp */; };
 		84C0D7D418007048004706D1 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C0D7D318007048004706D1 /* CoreServices.framework */; };
 		84CE31951838E3E50050AEF2 /* patch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84CE31941838E3E50050AEF2 /* patch.cpp */; };
 /* End PBXBuildFile section */
@@ -55,16 +54,14 @@
 		84A5939A1668CC2000214212 /* vx.shruthi.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = vx.shruthi.h; path = src/vx.shruthi.h; sourceTree = "<group>"; tabWidth = 2; };
 		84A5939C1668CCDB00214212 /* shruthi.midi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = shruthi.midi.cpp; path = src/shruthi.midi.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		84A593A01668DD5E00214212 /* shruthi.midi.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = shruthi.midi.h; path = src/shruthi.midi.h; sourceTree = "<group>"; tabWidth = 2; };
-		84A593A4166A48D700214212 /* shruthi.transfer.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = shruthi.transfer.h; path = src/shruthi.transfer.h; sourceTree = "<group>"; tabWidth = 2; };
-		84A593A5166A48F300214212 /* shruthi.transfer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = shruthi.transfer.cpp; path = src/shruthi.transfer.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		84A593A7166A4AC100214212 /* shruthi.types.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = shruthi.types.h; path = src/shruthi.types.h; sourceTree = "<group>"; tabWidth = 2; };
 		84C0D7D318007048004706D1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		84C3C12615A844E5007FE735 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = maxmspsdk.xcconfig; sourceTree = "<group>"; };
 		84C3C13315A84702007FE735 /* commonsyms.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = commonsyms.c; path = "../c74support/max-includes/common/commonsyms.c"; sourceTree = "<group>"; };
-		84CE31911838E3A30050AEF2 /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = patch.h; path = src/patch.h; sourceTree = "<group>"; tabWidth = 2; };
-		84CE31921838E3A30050AEF2 /* sequencer_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = sequencer_settings.h; path = src/sequencer_settings.h; sourceTree = "<group>"; tabWidth = 2; };
-		84CE31931838E3A30050AEF2 /* system_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = system_settings.h; path = src/system_settings.h; sourceTree = "<group>"; tabWidth = 2; };
-		84CE31941838E3E50050AEF2 /* patch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = patch.cpp; path = src/patch.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		84CE31911838E3A30050AEF2 /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = patch.h; path = src/patch.h; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		84CE31921838E3A30050AEF2 /* sequencer_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = sequencer_settings.h; path = src/sequencer_settings.h; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		84CE31931838E3A30050AEF2 /* system_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = system_settings.h; path = src/system_settings.h; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		84CE31941838E3E50050AEF2 /* patch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = patch.cpp; path = src/patch.cpp; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +115,6 @@
 				8473C6241610FA67004C5FFA /* vx.shruthi.cpp */,
 				84A5939C1668CCDB00214212 /* shruthi.midi.cpp */,
 				84A593A01668DD5E00214212 /* shruthi.midi.h */,
-				84A593A4166A48D700214212 /* shruthi.transfer.h */,
-				84A593A5166A48F300214212 /* shruthi.transfer.cpp */,
 				84A593A7166A4AC100214212 /* shruthi.types.h */,
 			);
 			name = Source;
@@ -221,7 +216,6 @@
 				8473C6281610FA67004C5FFA /* vx.shruthi.cpp in Sources */,
 				846B9B6416346B2E00718272 /* commonsyms.c in Sources */,
 				84A5939D1668CCDB00214212 /* shruthi.midi.cpp in Sources */,
-				84A593A6166A48F300214212 /* shruthi.transfer.cpp in Sources */,
 				84CE31951838E3E50050AEF2 /* patch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +286,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DSTROOT = "$(SRCROOT)/bin";
+				FRAMEWORK_SEARCH_PATHS = "\"$(C74SUPPORT)/max-includes\"";
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -303,6 +298,10 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					external,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					external,
 				);
@@ -330,6 +329,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DSTROOT = "$(SRCROOT)/bin";
+				FRAMEWORK_SEARCH_PATHS = "\"$(C74SUPPORT)/max-includes\"";
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
@@ -339,6 +339,10 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					external,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					external,
 				);

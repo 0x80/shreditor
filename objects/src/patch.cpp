@@ -1,8 +1,33 @@
+// Copyright 2009 Olivier Gillet.
+//
+// Author: Olivier Gillet (ol.gillet@gmail.com)
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// -----------------------------------------------------------------------------
+//
+// Patch definition. The order of the fields must match the numbering of the
+// parameters defined later. Contains methods for packing/unpacking to a
+// buffer of bytes (the compression is not optimal, but a more optimal
+// compression that would use, for example, the MSB of all parameters in the
+// 0-127 range, would result in a high code size).
+// Also includes code for checking whether a buffer looks like a reasonable
+// patch.
+
 
 #include "patch.h"
 #include "sequencer_settings.h"
 #include "system_settings.h"
-#include "vx.shruthi.h"
+//#include "vx.shruthi.h"
 
 void Patch::PrepareForWriteOrig() {
   version_ = '!';

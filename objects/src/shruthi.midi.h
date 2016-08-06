@@ -1,3 +1,25 @@
+//  The MIT License
+//
+//  Copyright (c) 2013-2016 Thijs Koerselman, http://vauxlab.com
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
 #ifndef MutableSysex_shruthi_midi_h
 #define MutableSysex_shruthi_midi_h
 
@@ -9,15 +31,17 @@
 
 #include "ext.h"
 #include "maxcpp6.h"
-// #include "rtmidi/RtMidi.h"
-#include "shruthi.transfer.h"
 #include "shruthi.types.h"
 
-// class RtMidiIn;
-// class RtMidiOut;
 class VxShruthi;
 
-class SysexBulkTransfer;
+struct TransferState {
+  uint8_t messageId;
+  uint8_t blockId;
+  int blockCounter;
+  size_t size;
+  size_t dataPosition;
+};
 
 class ShruthiMidi {
 public:
@@ -35,7 +59,7 @@ public:
   void sendSequenceProgramChange(long slot);
   void sendPatchProgramChange(long slot);
 
-  void stopTransfer() { transfer_.stop(); }
+  
 
   void clearCache() { lastNrpnIndex_ = -1; }
 
@@ -54,20 +78,25 @@ public:
     midiOutlet_ = midiOutlet;
   }
 
-  void transferEeprom(uint8_t *data, size_t size);
+  void startEepromTransfer(uint8_t *data, size_t size);
+  void stopEepromTransfer();
+  static void onTransferTick(ShruthiMidi *x);
+  void initTransferState(size_t size);
+  void incrementTransferState();
 
+  void*         transferClock;
+  TransferState transferState;
+  bool          isTransferBusy;
+  uint8_t*      transferEepromBuffer;
+  
+  t_atom atoms_[280]; // sysex dump blocksize is 128 = 256 atoms + sysex wrapper
+  
 private:
   void parseControlChangeAsNrpn();
-  t_atom atoms_[140]; // sysex dump blocksize is 128
+  
+  VxShruthi &maxobj_; // dirty hack
 
-  VxShruthi &x_; // dirty hack
-
-  SysexBulkTransfer transfer_;
-
-  // RtMidiIn *midiInput_;
-  // RtMidiIn *midiAuxInput_;
-  // RtMidiOut *midiOutput_;
-
+  
   uint8_t channelOut_;
 
   uint8_t nrpnMsb_;
@@ -85,6 +114,8 @@ private:
   bool isNrpnValid_;
 
   void *midiOutlet_;
+  
+  
 };
 
 #endif
