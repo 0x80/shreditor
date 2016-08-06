@@ -2,7 +2,7 @@
 
 It was my intention to release an instrument for Ableton Live to control the Shruthi using the same core vx.shruthi object. I ran into several unforseen difficulties and eventually out of time.
 
-## RtMidi clash
+It should be quite easy now to take parts of the Shreditor interface and place them in a Max4Live patch. Beware that M4L doesn't support sysex so you're limited to the parts that use CC communication.
 
 I initially used the RtMidi library to have more control over midi, and have full sysex control which (at the time of writing) wasn't supported by the Max4Live MIDI API.
 

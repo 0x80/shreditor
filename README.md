@@ -2,15 +2,10 @@
 
 ## TODO before release
 * update info tab in shreditor to point to github instead of support
-* test eeprom transfer
 * put new builds on vauxlab
-* licentie toevoegen en boven files plaatsen
 * delete doc folder from vauxlab/downloads/shreditor
-* squash all old commits van voor april 11 2015
-* test bidirectional communication
 * als midi op full staat lijkt de request niet goed te gaan. Firmware en numbanks requests komen in 1 sysex message terecht lijkt het wel. 0b (numbanke) en 0c (firmware)
-* move stuff to source external folder
-* gebruik outlet aliases consistent
+* transfer progress is 2x size?
 
 ## Description
 An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer. A compact hybrid synth combining 8-bit oscillators with an analog filter.
@@ -43,7 +38,6 @@ Shruthi-1 with firmware >= v1.0. The firmware update instructions are found belo
 The documentation on how to use the application can be found in __docs/user-manual.md__. Build instructions for OSX and Windows are listed below.
 
 ## Known Issues
-* Transfer eeprom from computer to device is broken and leeds to crash. See development notes.
 * Firmware version, for example 1.02, is wrongly reported as 1.00 in the interface.
 
 ## Troubleshooting
