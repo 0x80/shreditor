@@ -60,7 +60,7 @@ Don't connect multiple Shruthi devices on the same physical MIDI port. The Shred
 ```
 
 ## Prebuilt binaries
-The prebuilt Shreditor binaries for OSX and Windows can be found [here](http://vauxlab.com/downloads/shreditor/). If you want to build it from source, read on.
+The prebuilt Shreditor binaries for OSX and Windows can be found [here](https://github.com/0x80/shreditor/releases). If you want to build it from source, read on.
 
 ## Building the Shreditor from source
 
