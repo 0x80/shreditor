@@ -5,19 +5,20 @@ Shreditor is a software editor for the [Shruthi-1](http://mutable-instruments.ne
 
 ![screenshot](docs/images/shreditor-ui.png)
 
-The editor application is built with [Max](https://cycling74.com/products/max), but the core of the software is a custom Max object written in C++ called vx.shruthi. The object takes care of all the MIDI communication and data management.
+The editor application is built with [Max](https://cycling74.com/products/max), but the core of the software is a custom Max object written in C++ called vx.shruthi. The object takes care of all the MIDI logic and data management.
 
 The patches and externals should work with both Max v6 and v7
 
 ## Features
-* Control all 100+ parameters including matrix, sequencer and settings
-* Bidirectional communication. Active update of patch and sequence data in the interface
+* Control every parameter and setting including matrix, sequencer and settings
+* Bidirectional communication updates the software when you tweak the hardware
 * Edit up to 8 devices simultaneously
 * Copy and paste patches and sequences between devices
 * Quick patch browsing and naming
 * Import and export of eeprom data
+* Support for different filter boards
 
-There are also some things you can not do on a Shruthi without the Shreditor:
+There are also some things you can not do on a Shruthi device without the Shreditor:
 
 * Load/browse a sequence of one patch while keeping the sound of the current one (xt)
 * Copy-paste patches and sequences between slots and different devices

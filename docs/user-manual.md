@@ -7,14 +7,16 @@ Overview
 ------------------
 
 ### Features
-* Control all relevant parameters including matrix, sequencer and settings.
-* Bidirectional communication. Active update of patch and sequence data in the interface.
+* Control every parameter and setting including matrix, sequencer and settings
+* Bidirectional communication updates the software when you tweak the hardware
 * Edit up to 8 devices simultaneously
-* Copy and paste patches and sequences between devices.
-* Quick patch browsing and naming.
-* Import and export of eeprom data.
+* Copy and paste patches and sequences between devices
+* Quick patch browsing and naming
+* Import and export of eeprom data
+* Support for different filter boards
 
-There are some things you can not do on a Shruthi without the Shreditor:
+There are also some things you can not do on a Shruthi device without the Shreditor:
+
 * Load/browse a sequence of one patch while keeping the sound of the current one (xt)
 * Copy-paste patches and sequences between slots and different devices
 * Scramble sequence notes (keeping the pitch and velocity but randomize its position)
