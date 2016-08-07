@@ -52,9 +52,9 @@ Don't connect multiple Shruthi devices on the same physical MIDI port. The Shred
 ## Folder Structure
 ```
 .
-├── build : Prebuilt documentation and Shruthi-1 firmware
-├── c74support : Max object SDK, as copied from Cycling '74
+├── c74support : Max object SDK, copied from Cycling '74
 ├── docs : User manual
+├── firmware : Device firmware
 ├── notes : Some development related notes
 ├── objects : XCode & Visual Studio projects for building the vx.shruthi object
 └── shreditor : Max Shreditor project files
