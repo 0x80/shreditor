@@ -28,6 +28,7 @@
 #define SHRUTHI_PATCH_H_
 
 #include "avrlib/base.h"
+#include "memory.h"
 
 const uint8_t kPatchNameSize = 8;
 const uint8_t kModulationMatrixSize = 12;

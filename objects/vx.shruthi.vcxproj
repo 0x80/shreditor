@@ -55,26 +55,26 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_common.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_x86.props" />
+    <Import Project="..\c74support\max-includes\max_extern_common.props" />
+    <Import Project="..\c74support\max-includes\max_extern_x86.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_common.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_x86.props" />
+    <Import Project="..\c74support\max-includes\max_extern_common.props" />
+    <Import Project="..\c74support\max-includes\max_extern_x86.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_common.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_x64.props" />
+    <Import Project="..\c74support\max-includes\max_extern_common.props" />
+    <Import Project="..\c74support\max-includes\max_extern_x64.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_common.props" />
-    <Import Project="..\..\..\c74support\max-includes\max_extern_x64.props" />
+    <Import Project="..\c74support\max-includes\max_extern_common.props" />
+    <Import Project="..\c74support\max-includes\max_extern_x64.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -103,7 +103,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>external\;$(C74SUPPORT)\max-includes;$(C74SUPPORT)\msp-includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>external\;$(C74SUPPORT)\max-includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN_VERSION;WIN32;_DEBUG;_WINDOWS;_USRDLL;WIN_EXT_VERSION;__WINDOWS_MM__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -187,7 +187,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>external\;$(C74SUPPORT)\max-includes;$(C74SUPPORT)\msp-includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>external\;$(C74SUPPORT)\max-includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MAXAPI_USE_MSCRT;WIN_VERSION;WIN32;NDEBUG;_WINDOWS;_USRDLL;WIN_EXT_VERSION;__WINDOWS_MM__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -271,26 +271,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\c74support\max-includes\common\dllmain_win.c" />
+    <ClCompile Include="..\c74support\max-includes\common\dllmain_win.c" />
     <ClCompile Include="..\c74support\max-includes\common\commonsyms.c" />
-    <ClCompile Include="external\rtmidi\RtMidi.cpp" />
-    <ClCompile Include="src\patch.cpp" />
+    <ClCompile Include="external\patch.cpp" />
     <ClCompile Include="src\shruthi.midi.cpp" />
-    <ClCompile Include="src\shruthi.transfer.cpp" />
-    <ClCompile Include="src\vx.shruthi.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile Include="src\vx.shruthi.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="external\avrlib\base.h" />
     <ClInclude Include="external\maxcpp6.h" />
-    <ClInclude Include="external\rtmidi\RtMidi.h" />
-    <ClInclude Include="src\patch.h" />
-    <ClInclude Include="src\sequencer_settings.h" />
+    <ClInclude Include="external\patch.h" />
+    <ClInclude Include="external\sequencer_settings.h" />
+    <ClInclude Include="external\system_settings.h" />
     <ClInclude Include="src\shruthi.midi.h" />
-    <ClInclude Include="src\shruthi.transfer.h" />
     <ClInclude Include="src\shruthi.types.h" />
-    <ClInclude Include="src\system_settings.h" />
     <ClInclude Include="src\vx.shruthi.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -27,7 +27,6 @@
 #include "patch.h"
 #include "sequencer_settings.h"
 #include "system_settings.h"
-//#include "vx.shruthi.h"
 
 void Patch::PrepareForWriteOrig() {
   version_ = '!';
