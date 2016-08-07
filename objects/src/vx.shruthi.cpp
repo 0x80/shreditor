@@ -1815,7 +1815,7 @@ void VxShruthi::listPatchNames(long inlet) {
   atom_setsym(atoms_, gensym("patchlist"));
 
   // 16 internal patches
-  pmem = eeprom_ + 0x0010;
+  pmem = eeprom_ + 16;
 
   for (size_t i = 0; i < 16; ++i) {
     p = reinterpret_cast<Patch *>(pmem + i * PATCH_SIZE);

@@ -23,12 +23,6 @@
 #ifndef MutableSysex_shruthi_midi_h
 #define MutableSysex_shruthi_midi_h
 
-#ifdef _DEBUG
-#define __RTMIDI_DEBUG__ 0
-#else
-#define __RTMIDI_DEBUG__ 0
-#endif
-
 #include "ext.h"
 #include "maxcpp6.h"
 #include "shruthi.types.h"
@@ -59,15 +53,13 @@ public:
   void sendSequenceProgramChange(long slot);
   void sendPatchProgramChange(long slot);
 
-  
-
   void clearCache() { lastNrpnIndex_ = -1; }
 
   void sendMessage(const std::vector<uint8_t> &msg);
   void sendNrpn(long nrpn_index, long nrpn_value);
 
   void setOutputChannel(long v) {
-    channelOut_ = CLAMP(v - 1, 0, 15); // 0 en 1 zijn beiden 1 op shruthi
+    channelOut_ = CLAMP(v - 1, 0, 15); // 0 en 1 are both 1 for shruthi?
     DPOST("Set output channel %d", v);
   }
 
@@ -80,22 +72,22 @@ public:
 
   void startEepromTransfer(uint8_t *data, size_t size);
   void stopEepromTransfer();
-  static void onTransferTick(ShruthiMidi *x);
   void initTransferState(size_t size);
   void incrementTransferState();
+  static void onTransferTick(ShruthiMidi *x);
 
   void*         transferClock;
   TransferState transferState;
   bool          isTransferBusy;
   uint8_t*      transferEepromBuffer;
   
-  t_atom atoms_[280]; // sysex dump blocksize is 128 = 256 atoms + sysex wrapper
+  // sysex dump blocksize is 128 bytes = 256 nibbles + some for sysex wrapper
+  t_atom atoms_[280];
   
 private:
   void parseControlChangeAsNrpn();
   
-  VxShruthi &maxobj_; // dirty hack
-
+  VxShruthi &maxobj_; // reference to vx.shruthi as a quick hack
   
   uint8_t channelOut_;
 
@@ -106,7 +98,6 @@ private:
   uint8_t lastDataMsb_;
 
   long lastNrpnIndex_;
-
   long indexLsb_;
   long indexMsb_;
   long valueLsb_;
@@ -114,8 +105,6 @@ private:
   bool isNrpnValid_;
 
   void *midiOutlet_;
-  
-  
 };
 
 #endif

@@ -191,7 +191,7 @@ private:
   int workingSequencerIndex_[NUM_DEVICE_SLOTS];
   SequencerSettings clipboardSequencer_;
 
-  uint8_t wavetable_[kUserWavetableSize + 1]; // waarom +1?
+  uint8_t wavetable_[kUserWavetableSize + 1]; // why +1?
   t_atom atoms_[128];
 
   SystemSettings *settings_; // settings are stored at beginning of eeprom so
