@@ -1,9 +1,9 @@
 Shreditor User Manual
 =================
 
-![screenshot](images/shreditor-ui.png =800x)
+![screenshot](images/shreditor-ui.png)
 
-1. Overview
+Overview
 ------------------
 
 ### Features
@@ -24,7 +24,7 @@ There are some things you can not do on a Shruthi without the Shreditor:
 ###Firmware
 Shreditor only supports firmware 1.0 and up.
 
-2. Setting Up
+Setting Up
 ------------------
 These are the steps to get you up and running quickly. You typically only have to go through these steps once.
 
@@ -41,7 +41,7 @@ In the *Devices* tab enter a label for your Shruthi, for example "4 Pole Mission
 
 Now you are ready to store the device settings in one of the 8 available slots. At first all of the slots will appear white, indicating that they are empty. Store the preset in one of the slots by hitting [shift-click]. The slot color will change to dark grey (meaning it is filled) and then blue (which means it is active). Up to 8 different devices can be configured this way.
 
-###Step 4: Download the Patches
+###Step 4: Download the data from the device
 In order to minimize transfer of data and to keep the UI responsive, the Shreditor keeps a copy of the device internal eeprom storage at all time. This way, when you load a patch, the editor knows all of the settings instantly and you can navigate without having to request the data from the device.
 
 You can request the data from the Shruthi by going to the *Data* tab and click on the [request] button. You will see a progress bar indicating the status of the data transfer.
@@ -52,7 +52,7 @@ After the transfer has completed you should see all of your patches show up in t
 If you own more than one Shruthi, and you have enough physical midi ports, you can repeat steps 2-4 for each device. The Shreditor will let you edit these devices simultaneously. You can switch back and forth and it will keep track of your edits. Please note that you *can not* connect multiple devices to the same midi port, since the editor communicates with sysex and sysex messages are not tied to any midi channel.
 
 
-3. Caveats
+Caveats
 ------------
 Listed here are some things worth knowing when using the Shreditor, because they might function differently from what you would expect.
 

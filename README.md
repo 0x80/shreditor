@@ -1,10 +1,7 @@
 # Shreditor
 
-## TODO before release
-* put new builds on vauxlab, replace doc folder with a README.txt
-
 ## Description
-An editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY synthesizer. A compact hybrid synth combining 8-bit oscillators with an analog filter.
+Shreditor is a software editor for the [Shruthi-1](http://mutable-instruments.net/shruthi1) DIY hardware synthesizer. An awesome little hybrid mono synth developed by Mutable Instruments, which combines 8-bit oscillators with various analog filter boards.
 
 ![screenshot](docs/images/shreditor-ui.png)
 
@@ -13,7 +10,7 @@ The editor application is built with [Max](https://cycling74.com/products/max), 
 The patches and externals should work with both Max v6 and v7
 
 ## Features
-* Control all relevant parameters including matrix, sequencer and settings
+* Control all 100+ parameters including matrix, sequencer and settings
 * Bidirectional communication. Active update of patch and sequence data in the interface
 * Edit up to 8 devices simultaneously
 * Copy and paste patches and sequences between devices
@@ -30,12 +27,14 @@ There are also some things you can not do on a Shruthi without the Shreditor:
 ## Requirements
 Shruthi-1 with firmware >= v1.0. The firmware update instructions are found below.
 
+Additionally, if you want to build the Shreditor application from source you also need Max version 6 or higher.
+
 ## Usage
 The documentation on how to use the application can be found in __docs/user-manual.md__. Build instructions for OSX and Windows are listed below.
 
 ## Known Issues
 * Firmware version, for example 1.02, is wrongly reported as 1.00 in the interface.
-* Eeprom transfer progress is reporting double the bytes (nibbles).
+* Eeprom transfer progress is reporting nibbles as bytes (double the amount).
 
 ## Troubleshooting
 ### No compatible Shruthi firmware version was detected on this port.
@@ -50,6 +49,7 @@ The MIDI channel on which the Shruthi is listening can be found in the bottom ri
 Don't connect multiple Shruthi devices on the same physical MIDI port. The Shreditor uses sysex to communicate and because this is channel independent having more than one device on the same port will cause conflicts.
 
 ## Folder Structure
+```
 .
 ├── build : Prebuilt documentation and Shruthi-1 firmware
 ├── c74support : Max object SDK, as copied from Cycling '74
@@ -57,11 +57,14 @@ Don't connect multiple Shruthi devices on the same physical MIDI port. The Shred
 ├── notes : Some development related notes
 ├── objects : XCode & Visual Studio projects for building the vx.shruthi object
 └── shreditor : Max Shreditor project files
+```
 
 ## Prebuilt binaries
-The prebuilt Shreditor binaries can be found [here](. If you want to build it from source, read on.
+The prebuilt Shreditor binaries for OSX and Windows can be found [here](http://vauxlab.com/downloads/shreditor/). If you want to build it from source, read on.
 
-## Build the Shreditor from source
+## Building the Shreditor from source
+
+In order to build the application from source you will need to install [Max](https://cycling74.com/downloads/) on your system. For Windows you need the 32bit edition of Max.
 
 1) First build the vx.shruthi object using the project at `objects/Shreditor.xcodeproj` (XCode) or `objects/Shreditor.sln` (Visual Studio). Start the build process from the menu or cmd+b / F7. When successful this outputs the `vx.shruthi.mxo` (OSX) or `vx.shruthi.mxe` (Windows) binaries at `objects/bin`.
 
@@ -84,16 +87,15 @@ Addionally you can strip the app bundle of some unneccesary files to make it sma
 * resources/c74/externals/jitter
 * resources/c74/media
 
-
-## Update the device firmware
-The most up to date official firmware (v1.02) can be found in the `firmware` folder. To transfer the firmware, hold the rightmost switch on the device while powering on. Use a sysex tool like Elektron's C6 to transfer the firmware.
-
-In the C6 settings you'll have to set the "delay ticks" to something like 15, otherwise the transfer goes too fast and the last few leds on the Shruthi-1 won't get to blinking.
-
 ## Editing the Shreditor patch
 The patch (and all of its abstractions) opens in __presentation mode__. Hit __cmd + alt + e__ to switch to patching mode.
 
 In order to prevent window resizing by the user, the maximum window dimensions are limited to 980x830 to neatly contain just the UI and fit it on a 12" laptop screen. You can increase the maximum size by clicking on the message in the top right corner saying `window constrain 200 200 1500 1500, window exec` which sets the maximum dimensions to 1500x1500.
+
+## Device firmware
+The most up to date official firmware (v1.02) can be found in the `firmware` folder. To transfer the firmware, hold the rightmost switch on the device while powering on. Use a sysex tool like Elektron's C6 to transfer the firmware.
+
+In the C6 settings you'll have to set the "delay ticks" to something like 15, otherwise the transfer goes too fast and the last few leds on the Shruthi-1 won't get to blinking.
 
 ## Additional Development Notes
 Some additional notes regarding development can be found [here](/notes).

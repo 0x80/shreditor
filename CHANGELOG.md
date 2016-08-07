@@ -4,9 +4,10 @@ Shreditor Change Log
 1.0
 -------------------
 * Move firmware and banks check to device switch
-* Reimplement eeprom transfer, removing messed up threading approach
-* Major code cleanup
+* Reimplement eeprom transfer, removing threading mess
+* Major codebase cleanup
 * Remove RtMidi dependency
+* Bumped Max version to 7.2.4
 
 Beta 8
 -------------------
